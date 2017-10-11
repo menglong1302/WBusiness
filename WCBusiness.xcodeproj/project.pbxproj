@@ -16,6 +16,8 @@
 		48B229131F8E10FF009081DA /* WBSquareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B229121F8E10FF009081DA /* WBSquareViewController.swift */; };
 		48B229151F8E1170009081DA /* WBCommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B229141F8E1170009081DA /* WBCommunityViewController.swift */; };
 		48B229181F8E11BD009081DA /* WBTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B229171F8E11BD009081DA /* WBTabBarController.swift */; };
+		48B2291C1F8E1865009081DA /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 48B2291B1F8E1864009081DA /* Podfile */; };
+		D67C4EB45342A182F25710C6 /* Pods_WCBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8177D5654C1C57B57B4F4E60 /* Pods_WCBusiness.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19E6E30505F7E01FC58190FC /* Pods-WCBusiness.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WCBusiness.release.xcconfig"; path = "Pods/Target Support Files/Pods-WCBusiness/Pods-WCBusiness.release.xcconfig"; sourceTree = "<group>"; };
 		48B228E11F8E08E1009081DA /* WCBusiness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WCBusiness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48B228E41F8E08E1009081DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48B228E61F8E08E1009081DA /* WBMyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBMyViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +54,9 @@
 		48B229121F8E10FF009081DA /* WBSquareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBSquareViewController.swift; sourceTree = "<group>"; };
 		48B229141F8E1170009081DA /* WBCommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBCommunityViewController.swift; sourceTree = "<group>"; };
 		48B229171F8E11BD009081DA /* WBTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBTabBarController.swift; sourceTree = "<group>"; };
+		48B2291B1F8E1864009081DA /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		502B83F3D1E5515B4473B3CF /* Pods-WCBusiness.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WCBusiness.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WCBusiness/Pods-WCBusiness.debug.xcconfig"; sourceTree = "<group>"; };
+		8177D5654C1C57B57B4F4E60 /* Pods_WCBusiness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WCBusiness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D67C4EB45342A182F25710C6 /* Pods_WCBusiness.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,13 +85,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		348ADA6D70D5F123175DB35D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8177D5654C1C57B57B4F4E60 /* Pods_WCBusiness.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		48B228D81F8E08E1009081DA = {
 			isa = PBXGroup;
 			children = (
+				48B2291B1F8E1864009081DA /* Podfile */,
 				48B228E31F8E08E1009081DA /* WCBusiness */,
 				48B228F81F8E08E1009081DA /* WCBusinessTests */,
 				48B229031F8E08E1009081DA /* WCBusinessUITests */,
 				48B228E21F8E08E1009081DA /* Products */,
+				4FD4F6B47808C242A6597F84 /* Pods */,
+				348ADA6D70D5F123175DB35D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -139,6 +157,15 @@
 			path = controller;
 			sourceTree = "<group>";
 		};
+		4FD4F6B47808C242A6597F84 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				502B83F3D1E5515B4473B3CF /* Pods-WCBusiness.debug.xcconfig */,
+				19E6E30505F7E01FC58190FC /* Pods-WCBusiness.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,9 +173,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48B229091F8E08E1009081DA /* Build configuration list for PBXNativeTarget "WCBusiness" */;
 			buildPhases = (
+				49044F00221C41EB23E2ED9C /* [CP] Check Pods Manifest.lock */,
 				48B228DD1F8E08E1009081DA /* Sources */,
 				48B228DE1F8E08E1009081DA /* Frameworks */,
 				48B228DF1F8E08E1009081DA /* Resources */,
+				B6FEFC2853C73EA1878AEBA9 /* [CP] Embed Pods Frameworks */,
+				CF7FDF61C1E4830B2B0253CE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -246,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48B2291C1F8E1865009081DA /* Podfile in Resources */,
 				48B228EF1F8E08E1009081DA /* LaunchScreen.storyboard in Resources */,
 				48B228EC1F8E08E1009081DA /* Assets.xcassets in Resources */,
 			);
@@ -266,6 +297,78 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		49044F00221C41EB23E2ED9C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WCBusiness-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B6FEFC2853C73EA1878AEBA9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-WCBusiness/Pods-WCBusiness-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Onboard/Onboard.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
+				"${BUILT_PRODUCTS_DIR}/Whisper/Whisper.framework",
+				"${BUILT_PRODUCTS_DIR}/ZCAnimatedLabel/ZCAnimatedLabel.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Onboard.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Whisper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZCAnimatedLabel.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WCBusiness/Pods-WCBusiness-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CF7FDF61C1E4830B2B0253CE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WCBusiness/Pods-WCBusiness-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		48B228DD1F8E08E1009081DA /* Sources */ = {
@@ -432,30 +535,34 @@
 		};
 		48B2290A1F8E08E1009081DA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 502B83F3D1E5515B4473B3CF /* Pods-WCBusiness.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P8PCL77DZL;
 				INFOPLIST_FILE = WCBusiness/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = LYL.WCBusiness;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		48B2290B1F8E08E1009081DA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19E6E30505F7E01FC58190FC /* Pods-WCBusiness.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P8PCL77DZL;
 				INFOPLIST_FILE = WCBusiness/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = LYL.WCBusiness;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
