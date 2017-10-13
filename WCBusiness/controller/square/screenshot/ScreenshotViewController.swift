@@ -9,9 +9,6 @@
 import UIKit
 import SnapKit
 
-
-
-
 class ScreenshotViewController: BaseViewController {
     var collectionView:UICollectionView?
     
