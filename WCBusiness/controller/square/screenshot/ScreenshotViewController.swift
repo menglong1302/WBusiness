@@ -50,6 +50,7 @@ class ScreenshotViewController: BaseViewController {
         collectionView?.bounces = true
         collectionView?.backgroundColor = UIColor.white
         collectionView?.register(SquareCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView?.register(WXZFBHeaderResuableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerCell")
         collectionView?.delegate = self;
         collectionView?.dataSource = self;
         
@@ -99,5 +100,23 @@ extension ScreenshotViewController:UICollectionViewDataSource,UICollectionViewDe
 
         }
     }
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+         var supplementaryView:WXZFBHeaderResuableView!
+        if kind ==  UICollectionElementKindSectionHeader  {
+              supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCell", for: indexPath) as! WXZFBHeaderResuableView
+            
+            if indexPath.section == 0{
+                supplementaryView.title = "微信"
+            }else{
+                supplementaryView.title = "支付宝"
+
+            }
+        }
+        return supplementaryView
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize.init(width: SCREEN_WIDTH, height: 44);
+    }
+    
 }
 
