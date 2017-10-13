@@ -9,6 +9,8 @@
 import UIKit
 import ChameleonFramework
 class BaseViewController: UIViewController {
+    var isShowBack:Bool? = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
@@ -22,7 +24,9 @@ class BaseViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated);
-        addLeftButtonWithImage()
+        if let isShow =  isShowBack , isShow == true{
+            addLeftButtonWithImage()
+        }
 
     }
     func addLeftButtonWithImage() {
