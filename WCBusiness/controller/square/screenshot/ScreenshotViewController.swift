@@ -49,7 +49,7 @@ class ScreenshotViewController: BaseViewController {
 
         collectionView?.bounces = true
         collectionView?.backgroundColor = UIColor.white
-        collectionView?.register(SquareCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView?.register(ScreenshotCollectionCell.self, forCellWithReuseIdentifier: "cell")
         collectionView?.register(WXZFBHeaderResuableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerCell")
         collectionView?.delegate = self;
         collectionView?.dataSource = self;
@@ -64,16 +64,16 @@ class ScreenshotViewController: BaseViewController {
 extension ScreenshotViewController:UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return self.dataArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.dataArray[section].count;
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as!  SquareCollectionViewCell
-
-//        cell.setData(dataArray[indexPath.item])
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as!  ScreenshotCollectionCell
+        
+        cell.setData(dataArray[indexPath.section][indexPath.item])
         return cell
     }
 
