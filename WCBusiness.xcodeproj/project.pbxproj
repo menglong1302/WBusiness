@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		481C17921F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C17911F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift */; };
+		481C17941F90931800C3D7C1 /* ScreenshotCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C17931F90931800C3D7C1 /* ScreenshotCollectionCell.swift */; };
 		48B228E51F8E08E1009081DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B228E41F8E08E1009081DA /* AppDelegate.swift */; };
 		48B228E71F8E08E1009081DA /* WBMyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B228E61F8E08E1009081DA /* WBMyViewController.swift */; };
 		48B228EC1F8E08E1009081DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48B228EB1F8E08E1009081DA /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 
 /* Begin PBXFileReference section */
 		19E6E30505F7E01FC58190FC /* Pods-WCBusiness.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WCBusiness.release.xcconfig"; path = "Pods/Target Support Files/Pods-WCBusiness/Pods-WCBusiness.release.xcconfig"; sourceTree = "<group>"; };
+		481C17911F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXZFBHeaderResuableView.swift; sourceTree = "<group>"; };
+		481C17931F90931800C3D7C1 /* ScreenshotCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCollectionCell.swift; sourceTree = "<group>"; };
 		48B228E11F8E08E1009081DA /* WCBusiness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WCBusiness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48B228E41F8E08E1009081DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48B228E61F8E08E1009081DA /* WBMyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBMyViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 			isa = PBXGroup;
 			children = (
 				48FD47511F8F16F4006685A8 /* SquareCollectionViewCell.swift */,
+				481C17911F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift */,
+				481C17931F90931800C3D7C1 /* ScreenshotCollectionCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -447,6 +453,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				481C17941F90931800C3D7C1 /* ScreenshotCollectionCell.swift in Sources */,
 				48FD47581F8F3844006685A8 /* SquareModel.swift in Sources */,
 				48B228E71F8E08E1009081DA /* WBMyViewController.swift in Sources */,
 				48FD475D1F8F5507006685A8 /* BaseViewController.swift in Sources */,
@@ -455,6 +462,7 @@
 				48B2291F1F8F0210009081DA /* BaseNavigationController.swift in Sources */,
 				48FD47521F8F16F4006685A8 /* SquareCollectionViewCell.swift in Sources */,
 				48B228E51F8E08E1009081DA /* AppDelegate.swift in Sources */,
+				481C17921F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift in Sources */,
 				48B229181F8E11BD009081DA /* WBTabBarController.swift in Sources */,
 				48FD475B1F8F4C64006685A8 /* ScreenshotViewController.swift in Sources */,
 				48B229151F8E1170009081DA /* WBCommunityViewController.swift in Sources */,
