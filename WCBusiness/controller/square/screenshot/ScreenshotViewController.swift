@@ -86,19 +86,38 @@ extension ScreenshotViewController:UICollectionViewDataSource,UICollectionViewDe
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch indexPath.item {
-        case 0:
-            break;
-        case 1:
-            let screenVC = ScreenshotViewController();
-            screenVC.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(screenVC, animated: true)
-            break;
-
-        default:
-            break;
-
+        if indexPath.section == 0 {
+            switch indexPath.item {
+            case 0:
+                break;
+            case 1:
+                let screenVC = ScreenshotViewController();
+                screenVC.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(screenVC, animated: true)
+                break;
+                
+            default:
+                break;
+                
+            }
+        } else {
+            switch indexPath.item {
+            case 0:
+                let alipayConversationVC = AlipayConversationViewController();
+                alipayConversationVC.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(alipayConversationVC, animated: true)
+            case 1:
+//                let screenVC = ScreenshotViewController();
+//                screenVC.hidesBottomBarWhenPushed = true
+//                self.navigationController?.pushViewController(screenVC, animated: true)
+                break;
+                
+            default:
+                break;
+                
+            }
         }
+        
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
          var supplementaryView:WXZFBHeaderResuableView!
