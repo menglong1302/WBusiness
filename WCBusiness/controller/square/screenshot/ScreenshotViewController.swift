@@ -11,6 +11,7 @@ import SnapKit
 
 class ScreenshotViewController: BaseViewController {
     var collectionView:UICollectionView?
+    var roleBtn:UIButton?
     var dataArray =
         [
             [["name":"微信单聊","icon":"icon"],
@@ -19,7 +20,7 @@ class ScreenshotViewController: BaseViewController {
              ["name":"微信零钱","icon":"icon"],
              ["name":"微信转账","icon":"icon"],
              ["name":"微信提现","icon":"icon"]
- 
+                
             ]
             ,[
                 ["name":"支付宝对话","icon":"icon"],
@@ -28,13 +29,15 @@ class ScreenshotViewController: BaseViewController {
                 ["name":"支付余额","icon":"icon"],
                 ["name":"支付宝提现","icon":"icon"]
             ]
-        ]
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.white
         self.navigationItem.title = "对话截图"
+        self.view.backgroundColor = UIColor.flatGray
+
         initView()
     }
     func initView() -> Void {
@@ -45,28 +48,48 @@ class ScreenshotViewController: BaseViewController {
         
         collectionView = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: layout)
         self.view.addSubview(collectionView!)
-
+        
         collectionView?.bounces = true
         collectionView?.backgroundColor = UIColor.white
         collectionView?.register(ScreenshotCollectionCell.self, forCellWithReuseIdentifier: "cell")
         collectionView?.register(WXZFBHeaderResuableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerCell")
+        
+        
         collectionView?.delegate = self;
         collectionView?.dataSource = self;
         
-         collectionView?.snp.makeConstraints({ (maker) in
+        collectionView?.snp.makeConstraints({ (maker) in
             maker.top.left.right.equalToSuperview()
-            maker.bottom.equalToSuperview().offset(-50)
+            maker.bottom.equalToSuperview().offset(-60)
         })
-     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.view.backgroundColor = UIColor.flatGray
+        
+        roleBtn = UIButton.init(frame: CGRect.zero)
+        self.view.addSubview(roleBtn!)
+        roleBtn?.backgroundColor = UIColor.white
+        roleBtn?.setTitleColor(UIColor.black, for: .normal)
+        roleBtn?.setTitle("角色库", for: .normal)
+        roleBtn?.setImage(UIImage.init(named: "portrait"), for: .normal)
+        roleBtn?.contentHorizontalAlignment = .center
+        roleBtn?.imageView?.contentMode = .scaleAspectFit
+        roleBtn?.imageView?.layer.masksToBounds = true
+        
+        roleBtn?.snp.makeConstraints({ (maker) in
+            maker.left.right.bottom.equalToSuperview()
+            maker.height.equalTo(44)
+        })
+        roleBtn?.titleLabel?.snp.makeConstraints({ (maker) in
+            maker.centerX.equalToSuperview().offset(20)
+            maker.height.equalTo(30)
+            maker.centerY.equalToSuperview()
+        })
+        roleBtn?.imageView?.snp.makeConstraints({ (maker) in
+            maker.width.height.equalTo(30)
+            maker.right.equalTo((roleBtn?.titleLabel)!.snp.left).offset(-10)
+            maker.centerY.equalToSuperview()
+        })
+        
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.view.backgroundColor = UIColor.white
-    }
+ 
 }
 extension ScreenshotViewController:UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     
@@ -83,15 +106,15 @@ extension ScreenshotViewController:UICollectionViewDataSource,UICollectionViewDe
         cell.setData(dataArray[indexPath.section][indexPath.item])
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets.init(top: 1, left: 20, bottom: 1, right: 20)
+        return UIEdgeInsets.init(top: 5, left: 20, bottom: 5, right: 20)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize.init(width: (SCREEN_WIDTH-48)/3, height: 120) //(SCREEN_WIDTH-(3*2-1)*10)/3
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             switch indexPath.item {
@@ -127,22 +150,25 @@ extension ScreenshotViewController:UICollectionViewDataSource,UICollectionViewDe
         
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-         var supplementaryView:WXZFBHeaderResuableView!
+        var supplementaryView:UICollectionReusableView!
         if kind ==  UICollectionElementKindSectionHeader  {
-              supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCell", for: indexPath) as! WXZFBHeaderResuableView
+            let  view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCell", for: indexPath) as! WXZFBHeaderResuableView
             
             if indexPath.section == 0{
-                supplementaryView.title = "微信截图"
+                view.title = "微信截图"
             }else{
-                supplementaryView.title = "支付宝截图"
-
+                view.title = "支付宝截图"
+                
             }
+            supplementaryView = view
         }
+ 
         return supplementaryView
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize.init(width: SCREEN_WIDTH, height: 44);
     }
     
+ 
 }
 
