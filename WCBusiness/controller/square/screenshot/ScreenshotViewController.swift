@@ -53,7 +53,7 @@ class ScreenshotViewController: BaseViewController {
         collectionView?.backgroundColor = UIColor.white
         collectionView?.register(ScreenshotCollectionCell.self, forCellWithReuseIdentifier: "cell")
         collectionView?.register(WXZFBHeaderResuableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerCell")
-        collectionView?.register(WXZFBFooterResuableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footerCell")
+        
         
         collectionView?.delegate = self;
         collectionView?.dataSource = self;
