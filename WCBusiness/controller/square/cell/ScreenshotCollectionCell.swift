@@ -38,6 +38,7 @@ class ScreenshotCollectionCell: UICollectionViewCell {
         nameLabel.textColor = UIColor.black
         nameLabel.textAlignment = .center
         nameLabel.font = UIFont.systemFont(ofSize: 13);
+        
         iconImage.contentMode = .scaleAspectFit
         iconImage.layer.cornerRadius = 8.0
         iconImage.layer.masksToBounds = true

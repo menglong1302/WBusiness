@@ -11,7 +11,6 @@ import SnapKit
 
 class ScreenshotViewController: BaseViewController {
     var collectionView:UICollectionView?
-    
     var dataArray =
         [
             [["name":"微信单聊","icon":"icon"],
@@ -54,11 +53,19 @@ class ScreenshotViewController: BaseViewController {
         collectionView?.delegate = self;
         collectionView?.dataSource = self;
         
-        collectionView?.snp.makeConstraints({ (maker) in
+         collectionView?.snp.makeConstraints({ (maker) in
             maker.top.left.right.equalToSuperview()
             maker.bottom.equalToSuperview().offset(-50)
         })
-        
+     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.view.backgroundColor = UIColor.flatGray
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.view.backgroundColor = UIColor.white
     }
 }
 extension ScreenshotViewController:UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
@@ -78,7 +85,7 @@ extension ScreenshotViewController:UICollectionViewDataSource,UICollectionViewDe
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets.init(top: 40, left: 20, bottom: 10, right: 20)
+        return UIEdgeInsets.init(top: 1, left: 20, bottom: 1, right: 20)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -125,9 +132,9 @@ extension ScreenshotViewController:UICollectionViewDataSource,UICollectionViewDe
               supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCell", for: indexPath) as! WXZFBHeaderResuableView
             
             if indexPath.section == 0{
-                supplementaryView.title = "微信"
+                supplementaryView.title = "微信截图"
             }else{
-                supplementaryView.title = "支付宝"
+                supplementaryView.title = "支付宝截图"
 
             }
         }
