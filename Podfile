@@ -12,4 +12,7 @@ pod "ZCAnimatedLabel"
 pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
 pod 'Onboard'
 pod 'FSCalendar'
+pod 'ReachabilitySwift'
+pod 'SnapKit', '~> 3.0.0'
+pod 'StarWars', '~> 2.0'
 end
