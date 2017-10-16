@@ -108,7 +108,8 @@ extension ScreenshotViewController:UICollectionViewDataSource,UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets.init(top: 5, left: 20, bottom: 5, right: 20)
+         return UIEdgeInsets.init(top: 5, left: 20, bottom: 5, right: 20)
+ 
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
