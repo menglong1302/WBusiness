@@ -15,4 +15,5 @@ pod 'FSCalendar'
 pod 'ReachabilitySwift'
 pod 'SnapKit', '~> 3.0.0'
 pod 'StarWars', '~> 2.0'
+pod 'RealmSwift'
 end
