@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import ChameleonFramework
 class WXZFBHeaderResuableView: UICollectionReusableView {
     lazy var label = UILabel()
     lazy var containter = UIView()
@@ -24,7 +25,6 @@ class WXZFBHeaderResuableView: UICollectionReusableView {
         
     }
     func initView() -> Void {
-        
         containter = UIView.init(frame: CGRect.zero)
         self.addSubview(containter)
         containter.snp.makeConstraints { (maker) in
