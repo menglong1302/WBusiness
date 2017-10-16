@@ -8,7 +8,7 @@
 
 import UIKit
 import SnapKit
-
+import ChameleonFramework
 class ScreenshotViewController: BaseViewController {
     var collectionView:UICollectionView?
     var roleBtn:UIButton?
@@ -34,10 +34,10 @@ class ScreenshotViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor.init(hexString: "EFEFEF")
         self.navigationItem.title = "对话截图"
         self.view.backgroundColor = UIColor.flatGray
-
+        
         initView()
     }
     func initView() -> Void {
@@ -54,13 +54,14 @@ class ScreenshotViewController: BaseViewController {
         collectionView?.register(ScreenshotCollectionCell.self, forCellWithReuseIdentifier: "cell")
         collectionView?.register(WXZFBHeaderResuableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerCell")
         
-        
+        collectionView?.showsVerticalScrollIndicator = false
+        collectionView?.showsHorizontalScrollIndicator = false
         collectionView?.delegate = self;
         collectionView?.dataSource = self;
         
         collectionView?.snp.makeConstraints({ (maker) in
             maker.top.left.right.equalToSuperview()
-            maker.bottom.equalToSuperview().offset(-60)
+            maker.bottom.equalToSuperview().offset(-44)
         })
         
         roleBtn = UIButton.init(frame: CGRect.zero)
@@ -72,6 +73,7 @@ class ScreenshotViewController: BaseViewController {
         roleBtn?.contentHorizontalAlignment = .center
         roleBtn?.imageView?.contentMode = .scaleAspectFit
         roleBtn?.imageView?.layer.masksToBounds = true
+        roleBtn?.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         
         roleBtn?.snp.makeConstraints({ (maker) in
             maker.left.right.bottom.equalToSuperview()
@@ -88,8 +90,23 @@ class ScreenshotViewController: BaseViewController {
             maker.centerY.equalToSuperview()
         })
         
+        
+        
     }
- 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let path = UIBezierPath()
+        path.move(to: CGPoint.init(x: 0, y: 0))
+        path.addLine(to: CGPoint.init(x: SCREEN_WIDTH, y: 0))
+        
+        let shapLayer = CAShapeLayer()
+        shapLayer.frame = (roleBtn?.bounds)!
+        shapLayer.path = path.cgPath
+        shapLayer.lineWidth = 0.5
+        shapLayer.strokeColor = UIColor.init(hexString: "EFEFEF")?.cgColor
+        shapLayer.fillColor = UIColor.clear.cgColor
+        roleBtn?.layer.addSublayer(shapLayer)
+    }
 }
 extension ScreenshotViewController:UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     
@@ -138,9 +155,9 @@ extension ScreenshotViewController:UICollectionViewDataSource,UICollectionViewDe
                 alipayConversationVC.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(alipayConversationVC, animated: true)
             case 1:
-//                let screenVC = ScreenshotViewController();
-//                screenVC.hidesBottomBarWhenPushed = true
-//                self.navigationController?.pushViewController(screenVC, animated: true)
+                //                let screenVC = ScreenshotViewController();
+                //                screenVC.hidesBottomBarWhenPushed = true
+                //                self.navigationController?.pushViewController(screenVC, animated: true)
                 break;
                 
             default:
@@ -163,13 +180,14 @@ extension ScreenshotViewController:UICollectionViewDataSource,UICollectionViewDe
             }
             supplementaryView = view
         }
- 
+        supplementaryView.backgroundColor = UIColor.init(hexString: "EFEFEF")
+        collectionView.sendSubview(toBack: supplementaryView)
         return supplementaryView
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize.init(width: SCREEN_WIDTH, height: 44);
     }
     
- 
+    
 }
 
