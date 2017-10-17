@@ -28,6 +28,7 @@
 		48FD475B1F8F4C64006685A8 /* ScreenshotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FD475A1F8F4C64006685A8 /* ScreenshotViewController.swift */; };
 		48FD475D1F8F5507006685A8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FD475C1F8F5507006685A8 /* BaseViewController.swift */; };
 		711F85511F95982D001190A2 /* AlipayConversationAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F85501F95982D001190A2 /* AlipayConversationAddView.swift */; };
+		711F85531F95B154001190A2 /* AlipayConversationAddViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F85521F95B154001190A2 /* AlipayConversationAddViewCell.swift */; };
 		71B235A51F90AD170084A60F /* AlipayConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B235A41F90AD170084A60F /* AlipayConversationViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +92,7 @@
 		48FD475A1F8F4C64006685A8 /* ScreenshotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotViewController.swift; sourceTree = "<group>"; };
 		48FD475C1F8F5507006685A8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		711F85501F95982D001190A2 /* AlipayConversationAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayConversationAddView.swift; sourceTree = "<group>"; };
+		711F85521F95B154001190A2 /* AlipayConversationAddViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayConversationAddViewCell.swift; sourceTree = "<group>"; };
 		71B235A41F90AD170084A60F /* AlipayConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayConversationViewController.swift; sourceTree = "<group>"; };
 		8BC4A6418B154F154EFE3AF0 /* Pods-WCBusiness.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WCBusiness.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WCBusiness/Pods-WCBusiness.debug.xcconfig"; sourceTree = "<group>"; };
 		E9F4C63A189F658B8526E8D4 /* Pods_WCBusiness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WCBusiness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -288,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				711F85501F95982D001190A2 /* AlipayConversationAddView.swift */,
+				711F85521F95B154001190A2 /* AlipayConversationAddViewCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				48B228E71F8E08E1009081DA /* WBMyViewController.swift in Sources */,
 				48FD475D1F8F5507006685A8 /* BaseViewController.swift in Sources */,
 				48B229131F8E10FF009081DA /* WBSquareViewController.swift in Sources */,
+				711F85531F95B154001190A2 /* AlipayConversationAddViewCell.swift in Sources */,
 				48FD47551F8F2D6B006685A8 /* CommonUtil.swift in Sources */,
 				48B2291F1F8F0210009081DA /* BaseNavigationController.swift in Sources */,
 				48FD47521F8F16F4006685A8 /* SquareCollectionViewCell.swift in Sources */,

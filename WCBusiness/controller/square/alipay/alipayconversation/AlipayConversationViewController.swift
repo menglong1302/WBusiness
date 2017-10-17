@@ -96,7 +96,7 @@ class AlipayConversationViewController : BaseViewController  {
         self.view.addSubview(alipayCAV);
         alipayCAV.snp.makeConstraints({(maker) in
             maker.left.bottom.right.equalToSuperview()
-            maker.height.equalTo(self.view.frame.height/2)
+            maker.height.equalTo(self.tableView.frame.height/2)
             maker.width.equalTo(self.view.frame.width)
         })
         print("footerViewLeftBtnAction")
@@ -130,7 +130,7 @@ extension AlipayConversationViewController:UITableViewDataSource,UITableViewDele
         if (indexPath.section == 0) {
             if (indexPath.row == 0) {
                 cell?.textLabel?.text = "第一行";
-                cell?.detailTextLabel?.text = "待添加";
+                cell?.detailTextLabel?.text = "设置资料";
                 cell?.detailTextLabel?.font = UIFont .systemFont(ofSize: CGFloat(13))
                 cell?.accessoryType=UITableViewCellAccessoryType.disclosureIndicator
             }
