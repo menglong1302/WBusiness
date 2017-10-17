@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	 
+	<key>New item</key>
+	<dict>
+		<key>nickName</key>
+		<string>斑点水玛线</string>
+		<key>imageName</key>
+		<string>image01</string>
+	</dict>
+    
+    <key>New item1</key>
+
+    <dict>
+        <key>nickName</key>
+        <string>- 扯蛋 丶</string>
+        <key>imageName</key>
+        <string>image02</string>
+    </dict>
+    <key>New item2</key>
+
+    <dict>
+        <key>nickName</key>
+        <string>想太多我会难过</string>
+        <key>imageName</key>
+        <string>image03</string>
+    </dict>
+    <dict>
+        <key>nickName</key>
+        <string>童话里没有你</string>
+        <key>imageName</key>
+        <string>image04</string>
+    </dict>
+    <dict>
+        <key>nickName</key>
+        <string>Abandon丶</string>
+        <key>imageName</key>
+        <string>image05</string>
+    </dict>
+    <dict>
+        <key>nickName</key>
+        <string>Sunny°刺眼</string>
+        <key>imageName</key>
+        <string>image06</string>
+    </dict>
+    <dict>
+        <key>nickName</key>
+        <string>So what、</string>
+        <key>imageName</key>
+        <string>image07</string>
+    </dict>
+    <dict>
+        <key>nickName</key>
+        <string>焚心劫</string>
+        <key>imageName</key>
+        <string>image08</string>
+    </dict><dict>
+        <key>nickName</key>
+        <string>昂贵的、背影</string>
+        <key>imageName</key>
+        <string>image09</string>
+    </dict>
+    <dict>
+        <key>nickName</key>
+        <string>米兰</string>
+        <key>imageName</key>
+        <string>image10</string>
+    </dict>
+    <dict>
+        <key>nickName</key>
+        <string>泡泡龙</string>
+        <key>imageName</key>
+        <string>image11</string>
+    </dict>
+    <dict>
+        <key>nickName</key>
+        <string>为爱放弃</string>
+        <key>imageName</key>
+        <string>image12</string>
+    </dict>
+    <dict>
+        <key>nickName</key>
+        <string>花菲</string>
+        <key>imageName</key>
+        <string>image13</string>
+    </dict>
+    <dict>
+        <key>nickName</key>
+        <string>杰克</string>
+        <key>imageName</key>
+        <string>image14</string>
+    </dict>
+    <dict>
+        <key>nickName</key>
+        <string>大朋友</string>
+        <key>imageName</key>
+        <string>image15</string>
+    </dict>
+    <dict>
+        <key>nickName</key>
+        <string>文远</string>
+        <key>imageName</key>
+        <string>image16</string>
+    </dict>
+    <dict>
+        <key>nickName</key>
+        <string>愛/heart</string>
+        <key>imageName</key>
+        <string>image17</string>
+    </dict>
+</dict>
+</plist>

@@ -20,6 +20,7 @@
 		48B229181F8E11BD009081DA /* WBTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B229171F8E11BD009081DA /* WBTabBarController.swift */; };
 		48B2291C1F8E1865009081DA /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 48B2291B1F8E1864009081DA /* Podfile */; };
 		48B2291F1F8F0210009081DA /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B2291E1F8F0210009081DA /* BaseNavigationController.swift */; };
+		48F4D1A41F94AE8200410CC7 /* RoleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F4D1A31F94AE8200410CC7 /* RoleModel.swift */; };
 		48FD47521F8F16F4006685A8 /* SquareCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FD47511F8F16F4006685A8 /* SquareCollectionViewCell.swift */; };
 		48FD47551F8F2D6B006685A8 /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FD47541F8F2D6B006685A8 /* CommonUtil.swift */; };
 		48FD47581F8F3844006685A8 /* SquareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FD47571F8F3844006685A8 /* SquareModel.swift */; };
@@ -67,6 +68,7 @@
 		48B229171F8E11BD009081DA /* WBTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBTabBarController.swift; sourceTree = "<group>"; };
 		48B2291B1F8E1864009081DA /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		48B2291E1F8F0210009081DA /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		48F4D1A31F94AE8200410CC7 /* RoleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleModel.swift; sourceTree = "<group>"; };
 		48FD47511F8F16F4006685A8 /* SquareCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareCollectionViewCell.swift; sourceTree = "<group>"; };
 		48FD47541F8F2D6B006685A8 /* CommonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtil.swift; sourceTree = "<group>"; };
 		48FD47571F8F3844006685A8 /* SquareModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareModel.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		48B228E31F8E08E1009081DA /* WCBusiness */ = {
 			isa = PBXGroup;
 			children = (
+				48F4D1A51F94B71B00410CC7 /* data */,
 				48FD47531F8F2D42006685A8 /* common */,
 				48B229161F8E117D009081DA /* controller */,
 				48B228E41F8E08E1009081DA /* AppDelegate.swift */,
@@ -186,6 +189,13 @@
 			path = base;
 			sourceTree = "<group>";
 		};
+		48F4D1A51F94B71B00410CC7 /* data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
 		48FD474F1F8F13C1006685A8 /* square */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				48FD47571F8F3844006685A8 /* SquareModel.swift */,
+				48F4D1A31F94AE8200410CC7 /* RoleModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -490,6 +501,7 @@
 				71B235A51F90AD170084A60F /* AlipayConversationViewController.swift in Sources */,
 				48FD475B1F8F4C64006685A8 /* ScreenshotViewController.swift in Sources */,
 				48B229151F8E1170009081DA /* WBCommunityViewController.swift in Sources */,
+				48F4D1A41F94AE8200410CC7 /* RoleModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
