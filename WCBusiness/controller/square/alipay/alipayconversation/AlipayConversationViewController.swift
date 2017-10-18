@@ -10,21 +10,23 @@ import UIKit
 import SnapKit
 class AlipayConversationViewController : BaseViewController  {
     var tableView = UITableView()
+    var rigthBtn:UIButton?
     var footerView:UIView?
     var footerViewLeftBtn:UIButton?
     var footerViewRightBtn:UIButton?
-    var rigthBtn:UIButton?
+    var alipayCAV:AlipayConversationAddView?
     let cellID = "cellID"
+    var window:UIWindow?
     //建立数据数组
     var tableData = ["宝宝0","宝宝1","宝宝2","宝宝3","宝宝4","宝宝5","宝宝6","宝宝7","宝宝8","宝宝9","宝宝10","宝宝11","宝宝12","宝宝13","宝宝14","宝宝15","宝宝16","宝宝17","宝宝18","宝宝19","宝宝20","宝宝21","宝宝22","宝宝23","宝宝24","宝宝25","宝宝26","宝宝27","宝宝28","宝宝29","宝宝30","宝宝31"];
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = UIColor.white
         self.navigationItem.title = "支付宝对话"
         initRightItem()
         initView()
         initFooterView()
+        initAddView()
+        self.view.backgroundColor = UIColor.init(hexString: "EFEFF4")
     }
     func initRightItem() -> Void {
         rigthBtn = UIButton.init(frame:CGRect.zero);
@@ -37,9 +39,9 @@ class AlipayConversationViewController : BaseViewController  {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rigthBtn!);
     }
     func initView() -> Void {
-        self.view.backgroundColor = UIColor.blue;
+//        self.view.backgroundColor = UIColor.blue;
         //设置tableView的frame
-        let tableViewHeight = self.view.frame.height-64-44;
+        let tableViewHeight = self.view.frame.height-64-44-1;
 //        print("View高度\(self.view.frame.height)");
         tableView = UITableView.init(frame:CGRect.init(x:0, y:0, width:self.view.frame.width, height:tableViewHeight),style:.grouped);
         //tableView的两个代理方法
@@ -90,16 +92,19 @@ class AlipayConversationViewController : BaseViewController  {
     func rightItemBtnAction() -> Void {
         print("rightItemBtnAction")
     }
+    func initAddView(){
+        alipayCAV = AlipayConversationAddView.init(frame: CGRect.init(x:0,y:SCREEN_HEIGHT,width:SCREEN_WIDTH,height:SCREEN_HEIGHT))
+//        window = (UIApplication.shared.delegate?.window)!
+//        window?.addSubview(alipayCAV!)
+    }
     func footerViewLeftBtnAction() -> Void {
-        let alipayCAV = AlipayConversationAddView.init(frame: CGRect.zero);
-        
-        self.view.addSubview(alipayCAV);
-        alipayCAV.snp.makeConstraints({(maker) in
-            maker.left.bottom.right.equalToSuperview()
-            maker.height.equalTo(self.tableView.frame.height/2)
-            maker.width.equalTo(self.view.frame.width)
-        })
         print("footerViewLeftBtnAction")
+        self.view.addSubview(alipayCAV!);
+        alipayCAV?.frame = CGRect.init(x:0,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT)
+        UIView.animate(withDuration: 0.5, animations: {
+            self.alipayCAV?.containerView?.frame = CGRect.init(x:0,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT-64)
+            self.alipayCAV?.backgroundColor = UIColor(red: 0 / 255.0, green: 0 / 255.0, blue: 0 / 255.0, alpha: 0.5)
+        })
     }
     func footerViewRightBtnAction(button:UIButton) -> Void {
         print("footerViewRightBtnAction=\(button)")
@@ -119,7 +124,6 @@ extension AlipayConversationViewController:UITableViewDataSource,UITableViewDele
         } else {
             return tableData.count;
         }
-        
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier="identtifier";
@@ -134,15 +138,12 @@ extension AlipayConversationViewController:UITableViewDataSource,UITableViewDele
                 cell?.detailTextLabel?.font = UIFont .systemFont(ofSize: CGFloat(13))
                 cell?.accessoryType=UITableViewCellAccessoryType.disclosureIndicator
             }
-        
         } else {
             cell?.textLabel?.text = tableData[indexPath.row];
             cell?.detailTextLabel?.text = "待添加内容";
             cell?.detailTextLabel?.font = UIFont .systemFont(ofSize: CGFloat(13))
             cell?.accessoryType=UITableViewCellAccessoryType.disclosureIndicator
         }
-        
-        
         return cell!
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
