@@ -74,7 +74,7 @@ class ScreenshotViewController: BaseViewController {
         roleBtn?.imageView?.contentMode = .scaleAspectFit
         roleBtn?.imageView?.layer.masksToBounds = true
         roleBtn?.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        
+        roleBtn?.addTarget(self, action: #selector(roleClick), for: .touchUpInside)
         roleBtn?.snp.makeConstraints({ (maker) in
             maker.left.right.bottom.equalToSuperview()
             maker.height.equalTo(44)
@@ -87,11 +87,15 @@ class ScreenshotViewController: BaseViewController {
         roleBtn?.imageView?.snp.makeConstraints({ (maker) in
             maker.width.height.equalTo(30)
             maker.right.equalTo((roleBtn?.titleLabel)!.snp.left).offset(-10)
-            maker.centerY.equalToSuperview()
-        })
+         })
         
         
         
+    }
+    
+    @objc func roleClick() {
+        let roleVC = RoleViewController()
+        self.navigationController?.pushViewController(roleVC, animated: true)
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()

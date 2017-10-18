@@ -10,6 +10,8 @@
 		0938EACA38AFC62C1A043510 /* Pods_WCBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F4C63A189F658B8526E8D4 /* Pods_WCBusiness.framework */; };
 		481C17921F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C17911F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift */; };
 		481C17941F90931800C3D7C1 /* ScreenshotCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C17931F90931800C3D7C1 /* ScreenshotCollectionCell.swift */; };
+		4829AE101F95FB9900EBA903 /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4829AE0F1F95FB9900EBA903 /* RoleViewController.swift */; };
+		4829AE151F96F19C00EBA903 /* RoleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4829AE141F96F19C00EBA903 /* RoleTableViewCell.swift */; };
 		48B228E51F8E08E1009081DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B228E41F8E08E1009081DA /* AppDelegate.swift */; };
 		48B228E71F8E08E1009081DA /* WBMyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B228E61F8E08E1009081DA /* WBMyViewController.swift */; };
 		48B228EC1F8E08E1009081DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48B228EB1F8E08E1009081DA /* Assets.xcassets */; };
@@ -54,6 +56,8 @@
 		069C20F68A14933B86FE3D37 /* Pods-WCBusiness.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WCBusiness.release.xcconfig"; path = "Pods/Target Support Files/Pods-WCBusiness/Pods-WCBusiness.release.xcconfig"; sourceTree = "<group>"; };
 		481C17911F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXZFBHeaderResuableView.swift; sourceTree = "<group>"; };
 		481C17931F90931800C3D7C1 /* ScreenshotCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCollectionCell.swift; sourceTree = "<group>"; };
+		4829AE0F1F95FB9900EBA903 /* RoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
+		4829AE141F96F19C00EBA903 /* RoleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleTableViewCell.swift; sourceTree = "<group>"; };
 		48767B331F95D492000D9E0B /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48767B341F95D492000D9E0B /* ChameleonFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ChameleonFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48767B351F95D492000D9E0B /* FSCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FSCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,6 +139,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		4829AE0E1F95FB7900EBA903 /* role */ = {
+			isa = PBXGroup;
+			children = (
+				4829AE0F1F95FB9900EBA903 /* RoleViewController.swift */,
+				4829AE141F96F19C00EBA903 /* RoleTableViewCell.swift */,
+			);
+			path = role;
+			sourceTree = "<group>";
+		};
+		4829AE111F960A9B00EBA903 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
 		48B228D81F8E08E1009081DA = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +181,7 @@
 		48B228E31F8E08E1009081DA /* WCBusiness */ = {
 			isa = PBXGroup;
 			children = (
+				4829AE111F960A9B00EBA903 /* extension */,
 				48F4D1A51F94B71B00410CC7 /* data */,
 				48FD47531F8F2D42006685A8 /* common */,
 				48B229161F8E117D009081DA /* controller */,
@@ -221,6 +242,7 @@
 		48FD474F1F8F13C1006685A8 /* square */ = {
 			isa = PBXGroup;
 			children = (
+				4829AE0E1F95FB7900EBA903 /* role */,
 				71B2359E1F90A89F0084A60F /* alipay */,
 				48FD47591F8F4C2F006685A8 /* screenshot */,
 				48FD47561F8F3835006685A8 /* model */,
@@ -540,9 +562,11 @@
 				711F85531F95B154001190A2 /* AlipayConversationAddViewCell.swift in Sources */,
 				48FD47551F8F2D6B006685A8 /* CommonUtil.swift in Sources */,
 				48B2291F1F8F0210009081DA /* BaseNavigationController.swift in Sources */,
+				4829AE101F95FB9900EBA903 /* RoleViewController.swift in Sources */,
 				48FD47521F8F16F4006685A8 /* SquareCollectionViewCell.swift in Sources */,
 				48B228E51F8E08E1009081DA /* AppDelegate.swift in Sources */,
 				481C17921F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift in Sources */,
+				4829AE151F96F19C00EBA903 /* RoleTableViewCell.swift in Sources */,
 				711F85511F95982D001190A2 /* AlipayConversationAddView.swift in Sources */,
 				48B229181F8E11BD009081DA /* WBTabBarController.swift in Sources */,
 				71B235A51F90AD170084A60F /* AlipayConversationViewController.swift in Sources */,

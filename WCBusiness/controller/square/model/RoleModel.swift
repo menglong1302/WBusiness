@@ -16,6 +16,7 @@ class Role: Object {
     @objc dynamic var isSelf = false   //是否自己
     @objc dynamic var imageName = ""  //本地图片名字
     @objc dynamic var id = ""
+    @objc dynamic var firstLetter=""
     
     override static func primaryKey() -> String? {
         return "id"
