@@ -9,14 +9,14 @@
 import UIKit
 import SnapKit
 class AlipayConversationViewController : BaseViewController  {
-    var tableView = UITableView()
+    var tableView:UITableView?
     var rigthBtn:UIButton?
     var footerView:UIView?
     var footerViewLeftBtn:UIButton?
     var footerViewRightBtn:UIButton?
     var alipayCAV:AlipayConversationAddView?
     let cellID = "cellID"
-    var window:UIWindow?
+//    var window:UIWindow?
     //建立数据数组
     var tableData = ["宝宝0","宝宝1","宝宝2","宝宝3","宝宝4","宝宝5","宝宝6","宝宝7","宝宝8","宝宝9","宝宝10","宝宝11","宝宝12","宝宝13","宝宝14","宝宝15","宝宝16","宝宝17","宝宝18","宝宝19","宝宝20","宝宝21","宝宝22","宝宝23","宝宝24","宝宝25","宝宝26","宝宝27","宝宝28","宝宝29","宝宝30","宝宝31"];
     override func viewDidLoad() {
@@ -45,11 +45,11 @@ class AlipayConversationViewController : BaseViewController  {
 //        print("View高度\(self.view.frame.height)");
         tableView = UITableView.init(frame:CGRect.init(x:0, y:0, width:self.view.frame.width, height:tableViewHeight),style:.grouped);
         //tableView的两个代理方法
-        tableView.delegate = self;
-        tableView.dataSource = self;
+        tableView?.delegate = self;
+        tableView?.dataSource = self;
 //        tableView.sectionHeaderHeight = 20;
-        self.view.addSubview(tableView)
-        tableView.reloadData()
+        self.view.addSubview(tableView!)
+        tableView?.reloadData()
     }
     func initFooterView() -> Void {
         footerView = UIView.init(frame:CGRect.zero);
@@ -148,6 +148,12 @@ extension AlipayConversationViewController:UITableViewDataSource,UITableViewDele
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row);
+        if indexPath.section == 0 {
+           if indexPath.row == 0 {
+                let alipayCSVC = AlipayConversationSettingViewController()
+                self.navigationController?.pushViewController(alipayCSVC, animated: true)
+            }
+        }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50;
