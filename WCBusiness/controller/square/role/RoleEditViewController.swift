@@ -53,9 +53,9 @@ extension RoleEditViewController:UITableViewDataSource,UITableViewDelegate{
             if role.isLocalImage{
                 cell.portraitIcon.image = UIImage(named:role.imageName)
             }else{
-               
+                
                 cell.portraitIcon.kf.setImage(with: URL(fileURLWithPath: role.imageUrl.localPath()))
-
+                
             }
         }else{
             cell.hintLabel.text = "昵称"
@@ -65,7 +65,7 @@ extension RoleEditViewController:UITableViewDataSource,UITableViewDelegate{
                 cell.nickNameLabel.text = name
             }else{
                 cell.nickNameLabel.text = role.nickName
-
+                
             }
         }
         return cell
@@ -75,16 +75,23 @@ extension RoleEditViewController:UITableViewDataSource,UITableViewDelegate{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        let nameEditVC  = NameEditViewController()
-        nameEditVC.role = role
-        nameEditVC.nameBlock = {
-            (name:String)->Void in
-             self.tempNickName = name
-            
-            self.tableView.reloadData()
+        if indexPath.row == 1 {
+            let nameEditVC  = NameEditViewController()
+            nameEditVC.role = role
+            if let tempName = self.tempNickName {
+                nameEditVC.tempName = tempName
+            }
+            nameEditVC.nameBlock = {
+                (name:String)->Void in
+                self.tempNickName = name
+                
+                self.tableView.reloadData()
+                
+            }
+            self.navigationController?.pushViewController(nameEditVC, animated: true)
+        }else{
             
         }
-        self.navigationController?.pushViewController(nameEditVC, animated: true)
+        
     }
 }

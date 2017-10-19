@@ -13,6 +13,11 @@ typealias NameBlock = (String) -> ()
 
 class NameEditViewController: BaseViewController {
     var nameBlock:NameBlock?
+    var tempName:String?{
+        didSet{
+            textField.text = tempName
+        }
+    }
     var role:Role! {
         didSet(value){
             textField.text = role.nickName
