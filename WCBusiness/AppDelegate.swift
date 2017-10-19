@@ -101,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
 }
 
-extension String{
+public extension String{
     
     
     func getFirstLetterFromString() -> (String) {
