@@ -20,7 +20,7 @@ class RoleViewController: BaseViewController {
     lazy var dataArray = [String:[Role]]()
     lazy var keyArray = [[String:Int]]()
     lazy var keys = [String]()
-   
+ 
      override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
@@ -72,9 +72,7 @@ class RoleViewController: BaseViewController {
         }
         self.tableView.reloadData()
     }
-    
-    
-    
+   
     
 }
 
@@ -111,6 +109,21 @@ extension RoleViewController:UITableViewDataSource,UITableViewDelegate{
               let key =  keyArray[indexPath.section].keys.first!
               let role =  dataArray[key]![indexPath.row]
               roleVC.role = role
+              roleVC.block = {
+                (tempName,tempImageUrl) in
+                let realm = try! Realm()
+                try! realm.write {
+                    [weak self] in
+                    role.nickName = tempName
+                    role.firstLetter =  tempName.getFirstLetterFromString()
+                    if !tempImageUrl.isEmpty{
+                        role.isLocalImage = true
+                        role.imageName = ""
+                        role.imageUrl = tempImageUrl
+                    }
+                    self?.fetchData()
+                }
+              }
               self.navigationController?.pushViewController(roleVC, animated: true)
  
             break
