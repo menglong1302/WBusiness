@@ -15,6 +15,9 @@
 		484A10CA1F9847FE00BDFFE5 /* RoleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10C91F9847FE00BDFFE5 /* RoleEditViewController.swift */; };
 		484A10CC1F98565600BDFFE5 /* RoleEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10CB1F98565600BDFFE5 /* RoleEditTableViewCell.swift */; };
 		484A10CE1F98666C00BDFFE5 /* NameEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10CD1F98666C00BDFFE5 /* NameEditViewController.swift */; };
+		484A10D41F98AC9200BDFFE5 /* AlipayConversationSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10D01F98AC9200BDFFE5 /* AlipayConversationSettingViewController.swift */; };
+		484A10D51F98AC9200BDFFE5 /* AlipayConversationSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10D21F98AC9200BDFFE5 /* AlipayConversationSettingCell.swift */; };
+		484A10D61F98AC9200BDFFE5 /* AlipayConversationSettingSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10D31F98AC9200BDFFE5 /* AlipayConversationSettingSwitchCell.swift */; };
 		48B228E51F8E08E1009081DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B228E41F8E08E1009081DA /* AppDelegate.swift */; };
 		48B228E71F8E08E1009081DA /* WBMyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B228E61F8E08E1009081DA /* WBMyViewController.swift */; };
 		48B228EC1F8E08E1009081DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48B228EB1F8E08E1009081DA /* Assets.xcassets */; };
@@ -64,6 +67,9 @@
 		484A10C91F9847FE00BDFFE5 /* RoleEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleEditViewController.swift; sourceTree = "<group>"; };
 		484A10CB1F98565600BDFFE5 /* RoleEditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleEditTableViewCell.swift; sourceTree = "<group>"; };
 		484A10CD1F98666C00BDFFE5 /* NameEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEditViewController.swift; sourceTree = "<group>"; };
+		484A10D01F98AC9200BDFFE5 /* AlipayConversationSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlipayConversationSettingViewController.swift; sourceTree = "<group>"; };
+		484A10D21F98AC9200BDFFE5 /* AlipayConversationSettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlipayConversationSettingCell.swift; sourceTree = "<group>"; };
+		484A10D31F98AC9200BDFFE5 /* AlipayConversationSettingSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlipayConversationSettingSwitchCell.swift; sourceTree = "<group>"; };
 		48767B331F95D492000D9E0B /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48767B341F95D492000D9E0B /* ChameleonFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ChameleonFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48767B351F95D492000D9E0B /* FSCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FSCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +161,24 @@
 				484A10CD1F98666C00BDFFE5 /* NameEditViewController.swift */,
 			);
 			path = role;
+			sourceTree = "<group>";
+		};
+		484A10CF1F98AC9200BDFFE5 /* subcontroller */ = {
+			isa = PBXGroup;
+			children = (
+				484A10D01F98AC9200BDFFE5 /* AlipayConversationSettingViewController.swift */,
+				484A10D11F98AC9200BDFFE5 /* cell */,
+			);
+			path = subcontroller;
+			sourceTree = "<group>";
+		};
+		484A10D11F98AC9200BDFFE5 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				484A10D21F98AC9200BDFFE5 /* AlipayConversationSettingCell.swift */,
+				484A10D31F98AC9200BDFFE5 /* AlipayConversationSettingSwitchCell.swift */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		48B228D81F8E08E1009081DA = {
@@ -324,6 +348,7 @@
 		71B2359F1F90AB5E0084A60F /* alipayconversation */ = {
 			isa = PBXGroup;
 			children = (
+				484A10CF1F98AC9200BDFFE5 /* subcontroller */,
 				711F854F1F9597A8001190A2 /* cell */,
 				71B235A41F90AD170084A60F /* AlipayConversationViewController.swift */,
 			);
@@ -563,6 +588,7 @@
 				484A10CA1F9847FE00BDFFE5 /* RoleEditViewController.swift in Sources */,
 				711F85531F95B154001190A2 /* AlipayConversationAddViewCell.swift in Sources */,
 				484A10CC1F98565600BDFFE5 /* RoleEditTableViewCell.swift in Sources */,
+				484A10D41F98AC9200BDFFE5 /* AlipayConversationSettingViewController.swift in Sources */,
 				48FD47551F8F2D6B006685A8 /* CommonUtil.swift in Sources */,
 				48B2291F1F8F0210009081DA /* BaseNavigationController.swift in Sources */,
 				4829AE101F95FB9900EBA903 /* RoleViewController.swift in Sources */,
@@ -573,11 +599,13 @@
 				4829AE151F96F19C00EBA903 /* RoleTableViewCell.swift in Sources */,
 				711F85511F95982D001190A2 /* AlipayConversationAddView.swift in Sources */,
 				48B229181F8E11BD009081DA /* WBTabBarController.swift in Sources */,
+				484A10D51F98AC9200BDFFE5 /* AlipayConversationSettingCell.swift in Sources */,
 				71B235A51F90AD170084A60F /* AlipayConversationViewController.swift in Sources */,
 				48FD475B1F8F4C64006685A8 /* ScreenshotViewController.swift in Sources */,
 				48B229151F8E1170009081DA /* WBCommunityViewController.swift in Sources */,
 				48F4D1A41F94AE8200410CC7 /* RoleModel.swift in Sources */,
 				711F85551F961269001190A2 /* AlipayCAVHeaderResuableView.swift in Sources */,
+				484A10D61F98AC9200BDFFE5 /* AlipayConversationSettingSwitchCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
