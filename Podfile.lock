@@ -4,6 +4,7 @@ PODS:
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
   - FSCalendar (2.7.9)
+  - Gallery (2.0.1)
   - Kingfisher (3.13.1)
   - Moya (8.0.5):
     - Moya/Core (= 8.0.5)
@@ -21,11 +22,16 @@ PODS:
   - SnapKit (3.0.2)
   - StarWars (2.0)
   - SwiftyUserDefaults (3.0.0)
+  - TOCropViewController (2.1.0)
   - Whisper (5.0.0)
+  - YLImagePickerController (0.0.9):
+    - TOCropViewController (~> 2.1.0)
+  - ZZYQRCodeSwift (1.0.0)
 
 DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - FSCalendar
+  - Gallery
   - Kingfisher (~> 3.13.1)
   - Moya (~> 8.0.5)
   - Onboard
@@ -35,6 +41,8 @@ DEPENDENCIES:
   - StarWars (~> 2.0)
   - SwiftyUserDefaults
   - Whisper
+  - YLImagePickerController (~> 0.0.9)
+  - ZZYQRCodeSwift (~> 1.0.0)
 
 EXTERNAL SOURCES:
   ChameleonFramework:
@@ -49,6 +57,7 @@ SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
+  Gallery: 160e6ee5046e5897b200b0554219afbe306b96f4
   Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
   Moya: c37eec09a098ba9991b5a963b291fc5704bdb9ef
   Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
@@ -59,8 +68,11 @@ SPEC CHECKSUMS:
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   StarWars: 3c68dc5e9f1b6ca6d407b1d4218fd8a65c2eacfa
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
+  TOCropViewController: f88194a084f6afe1fd6f21a3f0edda7dd097e38b
   Whisper: 051f25e704bf8992641ffd28b20d5682ddc5f5d3
+  YLImagePickerController: 54a669c5ce7b5928ecf6321b706c4cec46294d67
+  ZZYQRCodeSwift: ec6ec9ec7a2e6b62a053b7004cf0c70f4ff01dc3
 
-PODFILE CHECKSUM: efdfc49c6952e43950b1dc3bed556a7e6916709c
+PODFILE CHECKSUM: fb397052debc318037b512233c05c2813c2a6801
 
 COCOAPODS: 1.3.1

@@ -9,11 +9,6 @@
 import UIKit
 import RealmSwift
 import SnapKit
-//import ImagePicker
-//import Gallery
-//import YPImagePicker
-//import ALCameraViewController
-//import PhotosUI
 enum OperatorType:Int {
     case Select = 1,Edit
 }
@@ -25,13 +20,15 @@ class RoleViewController: BaseViewController {
     lazy var dataArray = [String:[Role]]()
     lazy var keyArray = [[String:Int]]()
     lazy var keys = [String]()
-    override func viewDidLoad() {
+   
+     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         self.navigationItem.title = "角色库"
         initView()
         fetchData()
         operatorType = .Edit
+      
     }
     func initView() {
         tableView = UITableView.init(frame: CGRect.zero, style: .plain)
@@ -51,7 +48,7 @@ class RoleViewController: BaseViewController {
         keys.removeAll()
         
         let realm = try! Realm()
-         let roles = realm.objects(Role.self)
+        let roles = realm.objects(Role.self)
         for role in roles{
             var letter:String?
             if role.isSelf {
@@ -110,33 +107,15 @@ extension RoleViewController:UITableViewDataSource,UITableViewDelegate{
         case .Select:
             break
         case .Edit:
-//            let croppingEnabled = true
-            
-            /// Provides an image picker wrapped inside a UINavigationController instance
-//            let imagePickerViewController = CameraViewController.imagePickerViewController(croppingParameters: croppingEnabled) { [weak self] image, asset in
-//                // Do something with your image here.
-//                // If cropping is enabled this image will be the cropped version
-//
-//                self?.dismiss(animated: true, completion: nil)
-//            }
-//
-//            present(imagePickerViewController, animated: true, completion: nil)
-            
-//            let picker = YPImagePicker()
-//            picker.didSelectImage =  { img in
-//
-//            }
-//            present(picker, animated: true, completion: nil)
-//            let gallery = GalleryController()
-//            gallery.delegate = self
-//            present(gallery, animated: true, completion: nil)
-//            let imagePickerController = ImagePickerController()
-//            imagePickerController.delegate = self
-//            present(imagePickerController, animated: true, completion: nil)
+              let roleVC =   RoleEditViewController()
+              let key =  keyArray[indexPath.section].keys.first!
+              let role =  dataArray[key]![indexPath.row]
+              roleVC.role = role
+              self.navigationController?.pushViewController(roleVC, animated: true)
+ 
             break
             
-        default:
-            break
+        
             
         }
     }
