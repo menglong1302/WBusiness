@@ -13,7 +13,7 @@ class AlipayConversationViewController : BaseViewController  {
     var footerView:UIView?
     var footerViewLeftBtn:UIButton?
     var footerViewRightBtn:UIButton?
-    var roleBtn:UIButton?
+    var rigthBtn:UIButton?
     let cellID = "cellID"
     //建立数据数组
     var tableData = ["宝宝0","宝宝1","宝宝2","宝宝3","宝宝4","宝宝5","宝宝6","宝宝7","宝宝8","宝宝9","宝宝10","宝宝11","宝宝12","宝宝13","宝宝14","宝宝15","宝宝16","宝宝17","宝宝18","宝宝19","宝宝20","宝宝21","宝宝22","宝宝23","宝宝24","宝宝25","宝宝26","宝宝27","宝宝28","宝宝29","宝宝30","宝宝31"];
@@ -22,8 +22,19 @@ class AlipayConversationViewController : BaseViewController  {
         
         self.view.backgroundColor = UIColor.white
         self.navigationItem.title = "支付宝对话"
+        initRightItem()
         initView()
         initFooterView()
+    }
+    func initRightItem() -> Void {
+        rigthBtn = UIButton.init(frame:CGRect.zero);
+        rigthBtn?.setImage(UIImage.init(named: "portrait"), for: .normal);
+        rigthBtn?.addTarget(self,action:#selector(rightItemBtnAction), for: .touchUpInside)
+        rigthBtn?.snp.makeConstraints({(maker) in
+            maker.width.equalTo(30)
+            maker.height.equalTo(30)
+        })
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rigthBtn!);
     }
     func initView() -> Void {
         self.view.backgroundColor = UIColor.blue;
@@ -76,7 +87,18 @@ class AlipayConversationViewController : BaseViewController  {
             maker.width.equalTo(self.view.frame.width/2)
         })
     }
+    func rightItemBtnAction() -> Void {
+        print("rightItemBtnAction")
+    }
     func footerViewLeftBtnAction() -> Void {
+        let alipayCAV = AlipayConversationAddView.init(frame: CGRect.zero);
+        
+        self.view.addSubview(alipayCAV);
+        alipayCAV.snp.makeConstraints({(maker) in
+            maker.left.bottom.right.equalToSuperview()
+            maker.height.equalTo(self.tableView.frame.height/2)
+            maker.width.equalTo(self.view.frame.width)
+        })
         print("footerViewLeftBtnAction")
     }
     func footerViewRightBtnAction(button:UIButton) -> Void {
@@ -108,7 +130,7 @@ extension AlipayConversationViewController:UITableViewDataSource,UITableViewDele
         if (indexPath.section == 0) {
             if (indexPath.row == 0) {
                 cell?.textLabel?.text = "第一行";
-                cell?.detailTextLabel?.text = "待添加";
+                cell?.detailTextLabel?.text = "设置资料";
                 cell?.detailTextLabel?.font = UIFont .systemFont(ofSize: CGFloat(13))
                 cell?.accessoryType=UITableViewCellAccessoryType.disclosureIndicator
             }
