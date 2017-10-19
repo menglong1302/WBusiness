@@ -17,4 +17,5 @@ pod 'RealmSwift'
 pod 'Gallery'
 pod 'YLImagePickerController', '~> 0.0.9'
 pod 'ZZYQRCodeSwift', '~> 1.0.0'
+pod 'PGActionSheet'
 end

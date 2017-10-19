@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import Kingfisher
+import PGActionSheet
 typealias SaveBlock = (String,String) -> Void
 class RoleEditViewController: BaseViewController {
     var role:Role!
@@ -133,7 +134,12 @@ extension RoleEditViewController:UITableViewDataSource,UITableViewDelegate{
             }
             self.navigationController?.pushViewController(nameEditVC, animated: true)
         }else{
-            
+            let actionSheet = PGActionSheet(cancelButton: true, buttonList: ["相册","照相机"])
+            actionSheet.actionSheetTranslucent = false
+            actionSheet.handler = {index in
+                print("index = ", index)
+            }
+            present(actionSheet, animated: false, completion: nil)
         }
         
     }
