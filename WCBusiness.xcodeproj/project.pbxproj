@@ -11,9 +11,7 @@
 		481C17921F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C17911F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift */; };
 		481C17941F90931800C3D7C1 /* ScreenshotCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C17931F90931800C3D7C1 /* ScreenshotCollectionCell.swift */; };
 		4829AE101F95FB9900EBA903 /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4829AE0F1F95FB9900EBA903 /* RoleViewController.swift */; };
-		4829AE151F96F19C00EBA903 /* RoleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4829AE141F96F19C00EBA903 /* RoleTableViewCell.swift */; };
 		484A10CA1F9847FE00BDFFE5 /* RoleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10C91F9847FE00BDFFE5 /* RoleEditViewController.swift */; };
-		484A10CC1F98565600BDFFE5 /* RoleEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10CB1F98565600BDFFE5 /* RoleEditTableViewCell.swift */; };
 		484A10CE1F98666C00BDFFE5 /* NameEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10CD1F98666C00BDFFE5 /* NameEditViewController.swift */; };
 		484A10D41F98AC9200BDFFE5 /* AlipayConversationSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10D01F98AC9200BDFFE5 /* AlipayConversationSettingViewController.swift */; };
 		484A10D51F98AC9200BDFFE5 /* AlipayConversationSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10D21F98AC9200BDFFE5 /* AlipayConversationSettingCell.swift */; };
@@ -39,6 +37,8 @@
 		711F85531F95B154001190A2 /* AlipayConversationAddViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F85521F95B154001190A2 /* AlipayConversationAddViewCell.swift */; };
 		711F85551F961269001190A2 /* AlipayCAVHeaderResuableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F85541F961269001190A2 /* AlipayCAVHeaderResuableView.swift */; };
 		71B235A51F90AD170084A60F /* AlipayConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B235A41F90AD170084A60F /* AlipayConversationViewController.swift */; };
+		DB6082DE1F98F12E0095EF72 /* RoleEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6082DC1F98F12E0095EF72 /* RoleEditTableViewCell.swift */; };
+		DB6082DF1F98F12E0095EF72 /* RoleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6082DD1F98F12E0095EF72 /* RoleTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,9 +63,7 @@
 		481C17911F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXZFBHeaderResuableView.swift; sourceTree = "<group>"; };
 		481C17931F90931800C3D7C1 /* ScreenshotCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCollectionCell.swift; sourceTree = "<group>"; };
 		4829AE0F1F95FB9900EBA903 /* RoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
-		4829AE141F96F19C00EBA903 /* RoleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleTableViewCell.swift; sourceTree = "<group>"; };
 		484A10C91F9847FE00BDFFE5 /* RoleEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleEditViewController.swift; sourceTree = "<group>"; };
-		484A10CB1F98565600BDFFE5 /* RoleEditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleEditTableViewCell.swift; sourceTree = "<group>"; };
 		484A10CD1F98666C00BDFFE5 /* NameEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEditViewController.swift; sourceTree = "<group>"; };
 		484A10D01F98AC9200BDFFE5 /* AlipayConversationSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlipayConversationSettingViewController.swift; sourceTree = "<group>"; };
 		484A10D21F98AC9200BDFFE5 /* AlipayConversationSettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlipayConversationSettingCell.swift; sourceTree = "<group>"; };
@@ -113,6 +111,8 @@
 		711F85541F961269001190A2 /* AlipayCAVHeaderResuableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayCAVHeaderResuableView.swift; sourceTree = "<group>"; };
 		71B235A41F90AD170084A60F /* AlipayConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayConversationViewController.swift; sourceTree = "<group>"; };
 		8BC4A6418B154F154EFE3AF0 /* Pods-WCBusiness.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WCBusiness.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WCBusiness/Pods-WCBusiness.debug.xcconfig"; sourceTree = "<group>"; };
+		DB6082DC1F98F12E0095EF72 /* RoleEditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleEditTableViewCell.swift; sourceTree = "<group>"; };
+		DB6082DD1F98F12E0095EF72 /* RoleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleTableViewCell.swift; sourceTree = "<group>"; };
 		E9F4C63A189F658B8526E8D4 /* Pods_WCBusiness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WCBusiness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -154,10 +154,9 @@
 		4829AE0E1F95FB7900EBA903 /* role */ = {
 			isa = PBXGroup;
 			children = (
+				DB6082DB1F98F12E0095EF72 /* view */,
 				4829AE0F1F95FB9900EBA903 /* RoleViewController.swift */,
-				4829AE141F96F19C00EBA903 /* RoleTableViewCell.swift */,
 				484A10C91F9847FE00BDFFE5 /* RoleEditViewController.swift */,
-				484A10CB1F98565600BDFFE5 /* RoleEditTableViewCell.swift */,
 				484A10CD1F98666C00BDFFE5 /* NameEditViewController.swift */,
 			);
 			path = role;
@@ -353,6 +352,15 @@
 				71B235A41F90AD170084A60F /* AlipayConversationViewController.swift */,
 			);
 			path = alipayconversation;
+			sourceTree = "<group>";
+		};
+		DB6082DB1F98F12E0095EF72 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				DB6082DC1F98F12E0095EF72 /* RoleEditTableViewCell.swift */,
+				DB6082DD1F98F12E0095EF72 /* RoleTableViewCell.swift */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -587,16 +595,16 @@
 				48B229131F8E10FF009081DA /* WBSquareViewController.swift in Sources */,
 				484A10CA1F9847FE00BDFFE5 /* RoleEditViewController.swift in Sources */,
 				711F85531F95B154001190A2 /* AlipayConversationAddViewCell.swift in Sources */,
-				484A10CC1F98565600BDFFE5 /* RoleEditTableViewCell.swift in Sources */,
+				DB6082DF1F98F12E0095EF72 /* RoleTableViewCell.swift in Sources */,
 				484A10D41F98AC9200BDFFE5 /* AlipayConversationSettingViewController.swift in Sources */,
 				48FD47551F8F2D6B006685A8 /* CommonUtil.swift in Sources */,
 				48B2291F1F8F0210009081DA /* BaseNavigationController.swift in Sources */,
+				DB6082DE1F98F12E0095EF72 /* RoleEditTableViewCell.swift in Sources */,
 				4829AE101F95FB9900EBA903 /* RoleViewController.swift in Sources */,
 				484A10CE1F98666C00BDFFE5 /* NameEditViewController.swift in Sources */,
 				48FD47521F8F16F4006685A8 /* SquareCollectionViewCell.swift in Sources */,
 				48B228E51F8E08E1009081DA /* AppDelegate.swift in Sources */,
 				481C17921F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift in Sources */,
-				4829AE151F96F19C00EBA903 /* RoleTableViewCell.swift in Sources */,
 				711F85511F95982D001190A2 /* AlipayConversationAddView.swift in Sources */,
 				48B229181F8E11BD009081DA /* WBTabBarController.swift in Sources */,
 				484A10D51F98AC9200BDFFE5 /* AlipayConversationSettingCell.swift in Sources */,
