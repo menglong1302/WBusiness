@@ -8,21 +8,23 @@
 
 import UIKit
 import SnapKit
+import PGActionSheet
+
 class AlipayConversationSettingViewController : BaseViewController  {
     var tableView:UITableView?
     var rigthBtn:UIButton?
     var footerView:UIView?
     var footerViewLeftBtn:UIButton?
     var footerViewRightBtn:UIButton?
-    var alipayCAV:AlipayConversationAddView?
+    var alipayCSCRV:AlipayConversationSettingCellRoleView?
     let cellID = "cellID"
     //    var window:UIWindow?
-    //建立数据数组
-    var tableData = ["宝宝0","宝宝1","宝宝2","宝宝3","宝宝4","宝宝5","宝宝6","宝宝7","宝宝8","宝宝9","宝宝10","宝宝11","宝宝12","宝宝13","宝宝14","宝宝15","宝宝16","宝宝17","宝宝18","宝宝19","宝宝20","宝宝21","宝宝22","宝宝23","宝宝24","宝宝25","宝宝26","宝宝27","宝宝28","宝宝29","宝宝30","宝宝31"];
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "单聊设置"
         initView()
+        initAlipayCSCRView()
         self.view.backgroundColor = UIColor.init(hexString: "EFEFF4")
     }
 
@@ -41,6 +43,9 @@ class AlipayConversationSettingViewController : BaseViewController  {
         self.view.addSubview(tableView!)
         tableView?.reloadData()
     }
+    func initAlipayCSCRView(){
+        alipayCSCRV = AlipayConversationSettingCellRoleView.init(frame: CGRect.init(x:0,y:SCREEN_HEIGHT,width:SCREEN_WIDTH,height:SCREEN_HEIGHT))
+    }
 }
 //talbeView 的两个代理方法的实现，其实这两个代理还能加到class声明的后面，代理方法的时候和OC里面的实现是一样的
 extension AlipayConversationSettingViewController:UITableViewDataSource,UITableViewDelegate {
@@ -57,6 +62,7 @@ extension AlipayConversationSettingViewController:UITableViewDataSource,UITableV
         if (indexPath.section == 1 && indexPath.row == 1) {
             let switchCell = tableView.dequeueReusableCell(withIdentifier: "switchCell") as! AlipayConversationSettingSwitchCell
             switchCell.setData(["title":"已添加对方为好友"])
+            switchCell.selectionStyle = .none
             return switchCell
         } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlipayConversationSettingCell
@@ -75,8 +81,29 @@ extension AlipayConversationSettingViewController:UITableViewDataSource,UITableV
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row);
+        if indexPath.section == 0 {
+            self.view.addSubview(alipayCSCRV!);
+            alipayCSCRV?.frame = CGRect.init(x:0,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT)
+            UIView.animate(withDuration: 0.5, animations: {
+                self.alipayCSCRV?.containerView?.frame = CGRect.init(x:0,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT-64)
+                self.alipayCSCRV?.backgroundColor = UIColor(red: 0 / 255.0, green: 0 / 255.0, blue: 0 / 255.0, alpha: 0.5)
+            })
+        } else {
+            if indexPath.section == 1 && indexPath.row == 0 {
+                let actionSheet = PGActionSheet(cancelButton: true, buttonList: ["默认","相册","照相机"])
+                actionSheet.actionSheetTranslucent = false
+                actionSheet.handler = {index in
+                    print("index = ", index)
+                }
+                present(actionSheet, animated: false, completion: nil)
+            } else if (indexPath.section == 1 && indexPath.row == 1) {
+                 print(indexPath.row);
+            }
+        }
+        
+       
     }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50;
     }

@@ -1,14 +1,14 @@
 //
-//  AlipayConversationAddViewCell.swift
+//  AlipayConversationSettingCellRoleViewCell.swift
 //  WCBusiness
 //
-//  Created by Ray on 2017/10/17.
+//  Created by Ray on 2017/10/20.
 //  Copyright © 2017年 LYL. All rights reserved.
 //
 
 import UIKit
 
-class AlipayConversationAddViewCell: UICollectionViewCell {
+class AlipayConversationSettingCellRoleViewCell: UICollectionViewCell {
     
     var model:[String: String]!
     lazy var nameLabel = UILabel()
@@ -28,20 +28,20 @@ class AlipayConversationAddViewCell: UICollectionViewCell {
             make.left.right.equalToSuperview()
             make.bottom.equalToSuperview()
             make.height.equalTo(20)
-            make.bottom.equalToSuperview().offset(-5)
         }
         iconImage.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.width.equalTo(50)
-            make.height.equalTo(50)
-            make.bottom.equalToSuperview().offset(-30)
+            make.width.equalTo(60)
+            make.height.equalTo(60)
+            make.bottom.equalToSuperview().offset(-25)
+//            make.centerY.equalToSuperview().offset(-20)
         }
         nameLabel.textColor = UIColor.black
         nameLabel.textAlignment = .center
-        nameLabel.font = UIFont.systemFont(ofSize: 13);
+        nameLabel.font = UIFont.systemFont(ofSize: 15);
         
         iconImage.contentMode = .scaleAspectFit
-        iconImage.layer.cornerRadius = 25
+        iconImage.layer.cornerRadius = 30
         iconImage.layer.masksToBounds = true
     }
     
@@ -57,4 +57,3 @@ class AlipayConversationAddViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
-

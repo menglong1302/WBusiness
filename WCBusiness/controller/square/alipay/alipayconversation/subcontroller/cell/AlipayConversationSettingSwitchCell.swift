@@ -13,7 +13,7 @@ class AlipayConversationSettingSwitchCell: UITableViewCell {
     var model:[String: String]!
     lazy var titleLabel = UILabel()
     lazy var swichBtn = UISwitch()
-    
+    var switchValstring = ""
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style , reuseIdentifier: reuseIdentifier)
         initView ()
@@ -33,6 +33,7 @@ class AlipayConversationSettingSwitchCell: UITableViewCell {
         self.addSubview(swichBtn)
         swichBtn.isOn = true
         swichBtn.contentVerticalAlignment = .center
+        swichBtn.addTarget(self, action:#selector(swithClick(_:)), for:.valueChanged)
         swichBtn.snp.makeConstraints({(maker) in
             maker.top.equalToSuperview().offset(10)
             maker.right.equalToSuperview().offset(-10)
@@ -43,6 +44,17 @@ class AlipayConversationSettingSwitchCell: UITableViewCell {
     func setData(_ model:[String:String]) {
         self.model = model
         titleLabel.text = self.model["title"]!
+    }
+    //switch的点击事件
+    func swithClick(_ sender : UISwitch) {
+        
+        if (sender.isOn == true) {
+            switchValstring = "YES"
+            print("YES")
+        }else{
+            switchValstring = "NO"
+            print("NO")
+        }
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
