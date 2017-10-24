@@ -27,8 +27,6 @@ class RoleViewController: BaseViewController {
         self.navigationItem.title = "角色库"
         initView()
         fetchData()
-//        operatorType = .Edit
-      
     }
     func initView() {
         tableView = UITableView.init(frame: CGRect.zero, style: .plain)
@@ -105,8 +103,6 @@ extension RoleViewController:UITableViewDataSource,UITableViewDelegate{
         case .Select:
             let key =  keyArray[indexPath.section].keys.first!
             let role =  dataArray[key]![indexPath.row]
-//            print(key)
-//            print(role)
             roleSelectBlock!(role)
             self.navigationController?.popViewController(animated: true)
             break
@@ -118,18 +114,6 @@ extension RoleViewController:UITableViewDataSource,UITableViewDelegate{
               roleVC.block = {
                 [weak self] (tempName,tempImageUrl) in
                 self?.fetchData()
-//                let realm = try! Realm()
-//                try! realm.write {
-//                    [weak self] in
-//                    role.nickName = tempName
-//                    role.firstLetter =  tempName.getFirstLetterFromString()
-//                    if !tempImageUrl.isEmpty{
-//                        role.isLocalImage = true
-//                        role.imageName = ""
-//                        role.imageUrl = tempImageUrl
-//                    }
-//                    self?.fetchData()
-//                }
               }
               self.navigationController?.pushViewController(roleVC, animated: true)
  

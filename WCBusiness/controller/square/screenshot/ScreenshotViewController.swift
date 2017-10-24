@@ -95,6 +95,7 @@ class ScreenshotViewController: BaseViewController {
     
     @objc func roleClick() {
         let roleVC = RoleViewController()
+        roleVC.operatorType = .Edit
         self.navigationController?.pushViewController(roleVC, animated: true)
     }
     override func viewDidLayoutSubviews() {
