@@ -37,8 +37,8 @@ class AlipayConversationSettingViewController : BaseViewController  {
         initData()
     }
     override func viewWillDisappear(_ animated: Bool) {
-        alipayCUser?.isFriend = isFriend!
-        alipayCUser?.backgroundImageName = ""
+//        alipayCUser?.isFriend = isFriend!
+//        alipayCUser?.backgroundImageName = ""
 //        alipayCUser?.sender?.nickName
     }
     func initView() -> Void {
