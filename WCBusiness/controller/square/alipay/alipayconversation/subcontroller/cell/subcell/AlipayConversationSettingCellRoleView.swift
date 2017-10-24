@@ -8,14 +8,16 @@
 
 import UIKit
 import SnapKit
+typealias RoleTypeBlock = (String) -> ()
 
 class AlipayConversationSettingCellRoleView: UIView {
+    var roleTypeBlock:RoleTypeBlock?
     var containerView:UIView?
     var tapGestureView:UIView?
     var collectionView:UICollectionView?
     var cancelBtn:UIButton?
     var dataArray = [["name":"更换角色","icon":"icon"],["name":"编辑角色","icon":"icon"]]
-    
+    var nav:UINavigationController?
     override init(frame: CGRect) {
         super.init(frame: frame)
         initContainerView()
@@ -120,8 +122,16 @@ extension AlipayConversationSettingCellRoleView:UICollectionViewDataSource,UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("123");
         print(indexPath.item);
+        if indexPath.row == 0 {
+            roleTypeBlock!("change")
+        } else {
+            roleTypeBlock!("edit")
+        }
+        self.cancelBtnAction()
     }
+
 //    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 //        var supplementaryView:UICollectionReusableView!
 //        if kind ==  UICollectionElementKindSectionHeader  {

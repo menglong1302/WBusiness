@@ -10,10 +10,10 @@ import UIKit
 import SnapKit
 
 class AlipayConversationSettingSwitchCell: UITableViewCell {
-    var model:[String: String]!
+    var model:[String: Bool]!
     lazy var titleLabel = UILabel()
     lazy var swichBtn = UISwitch()
-    var switchValstring = ""
+//    var switchValstring = ""
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style , reuseIdentifier: reuseIdentifier)
         initView ()
@@ -24,6 +24,7 @@ class AlipayConversationSettingSwitchCell: UITableViewCell {
         titleLabel.textColor = UIColor.black
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.systemFont(ofSize: 15);
+        titleLabel.text = "已添加对方为好友";
         titleLabel.snp.makeConstraints({(maker) in
             maker.top.bottom.equalToSuperview()
             maker.left.equalToSuperview().offset(20)
@@ -31,9 +32,9 @@ class AlipayConversationSettingSwitchCell: UITableViewCell {
         })
         swichBtn = UISwitch.init()
         self.addSubview(swichBtn)
-        swichBtn.isOn = true
+//        swichBtn.isOn = true
         swichBtn.contentVerticalAlignment = .center
-        swichBtn.addTarget(self, action:#selector(swithClick(_:)), for:.valueChanged)
+//        swichBtn.addTarget(self, action:#selector(swithClick(_:)), for:.valueChanged)
         swichBtn.snp.makeConstraints({(maker) in
             maker.top.equalToSuperview().offset(10)
             maker.right.equalToSuperview().offset(-10)
@@ -41,21 +42,22 @@ class AlipayConversationSettingSwitchCell: UITableViewCell {
             maker.height.equalTo(30)
         })
     }
-    func setData(_ model:[String:String]) {
+    func setData(_ model:[String:Bool]) {
         self.model = model
-        titleLabel.text = self.model["title"]!
+//        titleLabel.text = self.model["title"]!
+        swichBtn.isOn = self.model["isFriend"]!
     }
     //switch的点击事件
-    func swithClick(_ sender : UISwitch) {
-        
-        if (sender.isOn == true) {
-            switchValstring = "YES"
-            print("YES")
-        }else{
-            switchValstring = "NO"
-            print("NO")
-        }
-    }
+//    func swithClick(_ sender : UISwitch) {
+//        
+//        if (sender.isOn == true) {
+//            switchValstring = "YES"
+//            print("YES")
+//        }else{
+//            switchValstring = "NO"
+//            print("NO")
+//        }
+//    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

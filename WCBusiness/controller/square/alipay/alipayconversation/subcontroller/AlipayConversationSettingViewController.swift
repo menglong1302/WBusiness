@@ -9,8 +9,10 @@
 import UIKit
 import SnapKit
 import PGActionSheet
+import RealmSwift
 
 class AlipayConversationSettingViewController : BaseViewController  {
+    var userId = ""
     var tableView:UITableView?
     var rigthBtn:UIButton?
     var footerView:UIView?
@@ -18,6 +20,8 @@ class AlipayConversationSettingViewController : BaseViewController  {
     var footerViewRightBtn:UIButton?
     var alipayCSCRV:AlipayConversationSettingCellRoleView?
     let cellID = "cellID"
+    var alipayCUser:AlipayConversationUser?
+    var isFriend:Bool?
     //    var window:UIWindow?
 
     override func viewDidLoad() {
@@ -26,8 +30,17 @@ class AlipayConversationSettingViewController : BaseViewController  {
         initView()
         initAlipayCSCRView()
         self.view.backgroundColor = UIColor.init(hexString: "EFEFF4")
+        
+        
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        initData()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        alipayCUser?.isFriend = isFriend!
+        alipayCUser?.backgroundImageName = ""
+//        alipayCUser?.sender?.nickName
+    }
     func initView() -> Void {
         //        self.view.backgroundColor = UIColor.blue;
         //设置tableView的frame
@@ -46,6 +59,20 @@ class AlipayConversationSettingViewController : BaseViewController  {
     func initAlipayCSCRView(){
         alipayCSCRV = AlipayConversationSettingCellRoleView.init(frame: CGRect.init(x:0,y:SCREEN_HEIGHT,width:SCREEN_WIDTH,height:SCREEN_HEIGHT))
     }
+    func initData () {
+        alipayCUser = AlipayConversationUser()
+        let realm = try! Realm()
+        let alipayConversationUser = realm.objects(AlipayConversationUser.self)
+        if (alipayConversationUser.count > 0){
+            print("111")
+            alipayCUser = realm.object(ofType: AlipayConversationUser.self, forPrimaryKey: self.userId)
+//            (alipayCUser?.isFriend)!
+            isFriend = alipayCUser?.isFriend
+            print(alipayCUser as Any)
+        } else {
+        }
+        
+    }
 }
 //talbeView 的两个代理方法的实现，其实这两个代理还能加到class声明的后面，代理方法的时候和OC里面的实现是一样的
 extension AlipayConversationSettingViewController:UITableViewDataSource,UITableViewDelegate {
@@ -61,21 +88,22 @@ extension AlipayConversationSettingViewController:UITableViewDataSource,UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 1 && indexPath.row == 1) {
             let switchCell = tableView.dequeueReusableCell(withIdentifier: "switchCell") as! AlipayConversationSettingSwitchCell
-            switchCell.setData(["title":"已添加对方为好友"])
+            switchCell.setData(["isFriend":isFriend!])
             switchCell.selectionStyle = .none
+            switchCell.swichBtn.addTarget(self, action:#selector(swithClick(_:)), for:.valueChanged)
             return switchCell
         } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlipayConversationSettingCell
         if indexPath.section == 0 {
             if indexPath.row == 0 {
-                cell.setData(["title":"用户1","name":"Ray"])
+                cell.setData(["title":"用户1","name":(alipayCUser?.sender?.nickName)!,"imageName":(alipayCUser?.sender?.imageName)!])
             } else {
-                cell.setData(["title":"用户2","name":"Test"])
+                cell.setData(["title":"用户2","name":(alipayCUser?.receiver?.nickName)!,"imageName":(alipayCUser?.receiver?.imageName)!])
             }
         } else {
             if indexPath.row == 0 {
-                cell.setData(["title":"修改聊天背景","name":""])
-            }
+                cell.setData(["title":"修改聊天背景","name":"","imageName":(alipayCUser?.backgroundImageName)!])
+            } 
           }
           return cell
         }
@@ -84,6 +112,24 @@ extension AlipayConversationSettingViewController:UITableViewDataSource,UITableV
         if indexPath.section == 0 {
             self.view.addSubview(alipayCSCRV!);
             alipayCSCRV?.frame = CGRect.init(x:0,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT)
+//            alipayCSCRV?.nav = self.navigationController
+            alipayCSCRV?.roleTypeBlock = {
+                (roleType:String)->Void in
+                if roleType == "change" {
+                    let roleVC = RoleViewController()
+                    roleVC.operatorType = .Select
+                    self.navigationController?.pushViewController(roleVC, animated: true)
+                } else if roleType == "edit" {
+                    let roleEditVC = RoleEditViewController()
+                    if indexPath.row == 0 {
+                        roleEditVC.role = self.alipayCUser?.sender
+                    } else if indexPath.row == 1 {
+                        roleEditVC.role = self.alipayCUser?.receiver
+                    }
+                    self.navigationController?.pushViewController(roleEditVC, animated: true)
+                }
+                
+            }
             UIView.animate(withDuration: 0.5, animations: {
                 self.alipayCSCRV?.containerView?.frame = CGRect.init(x:0,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT-64)
                 self.alipayCSCRV?.backgroundColor = UIColor(red: 0 / 255.0, green: 0 / 255.0, blue: 0 / 255.0, alpha: 0.5)
@@ -97,6 +143,7 @@ extension AlipayConversationSettingViewController:UITableViewDataSource,UITableV
                 }
                 present(actionSheet, animated: false, completion: nil)
             } else if (indexPath.section == 1 && indexPath.row == 1) {
+                
                  print(indexPath.row);
             }
         }
@@ -122,6 +169,19 @@ extension AlipayConversationSettingViewController:UITableViewDataSource,UITableV
         let view = UIView(frame: CGRect.init(x:0, y:0, width:self.view.frame.width, height:10.0));
         view.backgroundColor = UIColor.clear;
         return view;
+    }
+    func swithClick(_ sender : UISwitch) {
+        
+        if (sender.isOn == true) {
+//            switchValstring = "YES"
+            isFriend = true
+            print("YES")
+        }else{
+//            switchValstring = "NO"
+            print("NO")
+            isFriend = false
+        }
+        print(isFriend as Any)
     }
 }
 
