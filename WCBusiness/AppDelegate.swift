@@ -68,11 +68,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let userDefault = UserDefaults.standard
         let isFirst:Bool? = userDefault.hasKey("isDBInit")
         //存在first 并且first = true
+        if let first = isFirst ,!first{
+
         DispatchQueue.global().async{
- 
             let realm = try! Realm()
-            if let first = isFirst ,!first{
-                
                 let roleArray =  Role.initData()
                 for (index,name) in roleArray.enumerated(){
                     let role = Role()
@@ -87,7 +86,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         realm.create(Role.self, value: role, update: false)
                     }
                 }
-                
                 
                 DispatchQueue.main.async {
                     userDefault.set(true, forKey: "isDBInit")
