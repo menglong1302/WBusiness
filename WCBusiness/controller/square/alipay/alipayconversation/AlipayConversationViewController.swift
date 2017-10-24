@@ -28,9 +28,13 @@ class AlipayConversationViewController : BaseViewController  {
         initView()
         initFooterView()
         initAddView()
-        initData()
+//        initData()
 //        deleteData()
         self.view.backgroundColor = UIColor.init(hexString: "EFEFF4")
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        initData ()
     }
     func initRightItem() -> Void {
         rigthBtn = UIButton.init(frame:CGRect.zero);

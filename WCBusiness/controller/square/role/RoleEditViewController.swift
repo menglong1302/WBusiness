@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 import PGActionSheet
+import RealmSwift
 typealias SaveBlock = (String,String) -> Void
 class RoleEditViewController: BaseViewController {
     var role:Role!
@@ -77,9 +78,22 @@ class RoleEditViewController: BaseViewController {
             let tempImage = self.tempImageUrl ?? ""
             block!(tempNick,tempImage)
         }
+        saveData()
         self.navigationController?.popViewController(animated: true)
     }
-    
+    func saveData() {
+        let realm = try! Realm()
+        try! realm.write {
+            [weak self] in
+            role.nickName = self?.tempNickName ?? role.nickName
+            role.firstLetter =  (self?.tempNickName ?? role.nickName).getFirstLetterFromString()
+            if !(self?.tempImageUrl ?? "").isEmpty{
+                role.isLocalImage = true
+                role.imageName = ""
+                role.imageUrl = self?.tempImageUrl ?? ""
+            }
+        }
+    }
 }
 
 extension RoleEditViewController:UITableViewDataSource,UITableViewDelegate{

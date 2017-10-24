@@ -12,10 +12,10 @@ import SnapKit
 enum OperatorType:Int {
     case Select = 1,Edit
 }
-
+typealias RoleSelectBlock = (Role) -> ()
 class RoleViewController: BaseViewController {
-    var operatorType:OperatorType?
-    
+    var operatorType:OperatorType? = .Edit
+    var roleSelectBlock:RoleSelectBlock?
     lazy var tableView = UITableView()
     lazy var dataArray = [String:[Role]]()
     lazy var keyArray = [[String:Int]]()
@@ -27,7 +27,7 @@ class RoleViewController: BaseViewController {
         self.navigationItem.title = "角色库"
         initView()
         fetchData()
-        operatorType = .Edit
+//        operatorType = .Edit
       
     }
     func initView() {
@@ -103,6 +103,12 @@ extension RoleViewController:UITableViewDataSource,UITableViewDelegate{
         tableView.deselectRow(at: indexPath, animated: true)
         switch operatorType! {
         case .Select:
+            let key =  keyArray[indexPath.section].keys.first!
+            let role =  dataArray[key]![indexPath.row]
+//            print(key)
+//            print(role)
+            roleSelectBlock!(role)
+            self.navigationController?.popViewController(animated: true)
             break
         case .Edit:
               let roleVC =   RoleEditViewController()
@@ -110,19 +116,20 @@ extension RoleViewController:UITableViewDataSource,UITableViewDelegate{
               let role =  dataArray[key]![indexPath.row]
               roleVC.role = role
               roleVC.block = {
-                (tempName,tempImageUrl) in
-                let realm = try! Realm()
-                try! realm.write {
-                    [weak self] in
-                    role.nickName = tempName
-                    role.firstLetter =  tempName.getFirstLetterFromString()
-                    if !tempImageUrl.isEmpty{
-                        role.isLocalImage = true
-                        role.imageName = ""
-                        role.imageUrl = tempImageUrl
-                    }
-                    self?.fetchData()
-                }
+                [weak self] (tempName,tempImageUrl) in
+                self?.fetchData()
+//                let realm = try! Realm()
+//                try! realm.write {
+//                    [weak self] in
+//                    role.nickName = tempName
+//                    role.firstLetter =  tempName.getFirstLetterFromString()
+//                    if !tempImageUrl.isEmpty{
+//                        role.isLocalImage = true
+//                        role.imageName = ""
+//                        role.imageUrl = tempImageUrl
+//                    }
+//                    self?.fetchData()
+//                }
               }
               self.navigationController?.pushViewController(roleVC, animated: true)
  
