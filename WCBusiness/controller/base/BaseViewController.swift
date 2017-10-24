@@ -27,8 +27,8 @@ class BaseViewController: UIViewController {
         if let isShow =  isShowBack , isShow == true{
             addLeftButtonWithImage()
         }
-
     }
+    
     func addLeftButtonWithImage() {
         
         let btn = UIButton.init(type: .custom)

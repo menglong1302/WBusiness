@@ -36,9 +36,11 @@ class AlipayConversationSettingViewController : BaseViewController  {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
-
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        saveData()
+    }
     func initView() -> Void {
         //设置tableView的frame
         let tableViewHeight = self.view.frame.height-64-44-1;
@@ -53,8 +55,8 @@ class AlipayConversationSettingViewController : BaseViewController  {
         
         saveBtn = UIButton.init(frame:CGRect.zero);
         self.view.addSubview(saveBtn!);
-        saveBtn?.backgroundColor = UIColor.white;
-        saveBtn?.setTitleColor(UIColor.black, for: .normal);
+        saveBtn?.backgroundColor = UIColor.init(hexString: "FF6633");
+        saveBtn?.setTitleColor(UIColor.white, for: .normal);
         saveBtn?.setTitle("保存", for: .normal);
         saveBtn?.contentHorizontalAlignment = .center;
         saveBtn?.titleLabel?.font = UIFont.systemFont(ofSize: 15.0);

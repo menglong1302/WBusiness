@@ -224,6 +224,7 @@ class AlipayConversationViewController : BaseViewController  {
             print(alipayCUser as Any)
             userId = alipayConversationUser[0].id
         }
+        tableView?.reloadData()
     }
 }
 //talbeView 的两个代理方法的实现，其实这两个代理还能加到class声明的后面，代理方法的时候和OC里面的实现是一样的
