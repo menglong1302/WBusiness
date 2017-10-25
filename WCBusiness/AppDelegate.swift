@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     role.id = UUID().uuidString
                     role.nickName = name
                     role.imageName = "Image-\(index+1)"
-                    role.isLocalImage = true
+                    role.isDiskImage = false
                     role.isSelf = false
                     role.imageUrl = ""
                     role.firstLetter =  name.getFirstLetterFromString()
