@@ -43,7 +43,7 @@ class RoleViewController: BaseViewController {
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         btn.contentHorizontalAlignment = .right;
         btn.translatesAutoresizingMaskIntoConstraints = false;
-        btn.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -15)
+        btn.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10)
         btn.addTarget(self, action: #selector(addRole), for: .touchUpInside)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: btn)
     }
@@ -54,7 +54,7 @@ class RoleViewController: BaseViewController {
             DispatchQueue.main.async{
                 self?.fetchData()
                 self?.tableView.reloadData()
-
+                
             }
         }
         present(UINavigationController(rootViewController: addVC), animated: true, completion: nil)
@@ -148,6 +148,26 @@ extension RoleViewController:UITableViewDataSource,UITableViewDelegate{
             
             
         }
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let key =  keyArray[indexPath.section].keys.first!
+        let role =  dataArray[key]!.remove(at: indexPath.row)
+        let realm = try! Realm()
+        try! realm.write {
+            realm.delete(role)
+        }
+        self.fetchData()
+        
+    }
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "删除"
     }
 }
 
