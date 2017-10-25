@@ -51,7 +51,11 @@ class RoleViewController: BaseViewController {
         let addVC = AddRoleViewController()
         addVC.block = {
             [weak self] in
-            self?.tableView.reloadData()
+            DispatchQueue.main.async{
+                self?.fetchData()
+                self?.tableView.reloadData()
+
+            }
         }
         present(UINavigationController(rootViewController: addVC), animated: true, completion: nil)
     }

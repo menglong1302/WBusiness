@@ -28,6 +28,7 @@ class RoleEditViewController: BaseViewController {
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         btn.addTarget(self, action: #selector(saveBtnClick(_:)), for: .touchUpInside)
         btn.layer.cornerRadius = 5
+       
         btn.layer.masksToBounds = true
         btn.setTitleColor(UIColor.white, for: .normal)
         btn.backgroundColor = UIColor.flatCoffee

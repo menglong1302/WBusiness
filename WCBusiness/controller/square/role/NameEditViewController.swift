@@ -41,6 +41,10 @@ class NameEditViewController: BaseViewController {
     lazy var barItem:UIBarButtonItem = {
         let btn = UIButton(type:.custom)
         btn.setTitle("保存", for:.normal)
+        btn.contentHorizontalAlignment = .right;
+        btn.translatesAutoresizingMaskIntoConstraints = false;
+        btn.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -15)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         btn.addTarget(self, action: #selector(saveClick), for: .touchUpInside)
         return UIBarButtonItem(customView: btn)
     }()

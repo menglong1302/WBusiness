@@ -118,7 +118,6 @@ class AddRoleViewController: BaseViewController {
         
         try! realm.write {
             realm.create(Role.self, value: role, update: false)
-            
         }
     }
     override func touchLeftBtn() {
