@@ -140,6 +140,8 @@ extension ScreenshotViewController:UICollectionViewDataSource,UICollectionViewDe
         if indexPath.section == 0 {
             switch indexPath.item {
             case 0:
+                let conversationVC = WXConversationViewController()
+                self.navigationController?.pushViewController(conversationVC, animated: true)
                 break;
             case 1:
                 let screenVC = ScreenshotViewController();

@@ -17,6 +17,7 @@
 		484A10D51F98AC9200BDFFE5 /* AlipayConversationSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10D21F98AC9200BDFFE5 /* AlipayConversationSettingCell.swift */; };
 		484A10D61F98AC9200BDFFE5 /* AlipayConversationSettingSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10D31F98AC9200BDFFE5 /* AlipayConversationSettingSwitchCell.swift */; };
 		487F6E171FA05FAD00F62868 /* AddRoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487F6E161FA05FAD00F62868 /* AddRoleViewController.swift */; };
+		487F6E1A1FA0795600F62868 /* WXConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487F6E191FA0795600F62868 /* WXConversationViewController.swift */; };
 		48AE56AC1F9F3AE20055551D /* HXAlbumListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AE56581F9F3AE20055551D /* HXAlbumListView.m */; };
 		48AE56AD1F9F3AE20055551D /* HXAlbumListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AE565A1F9F3AE20055551D /* HXAlbumListViewController.m */; };
 		48AE56AE1F9F3AE20055551D /* HXAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AE565C1F9F3AE20055551D /* HXAlbumModel.m */; };
@@ -71,6 +72,11 @@
 		48B229181F8E11BD009081DA /* WBTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B229171F8E11BD009081DA /* WBTabBarController.swift */; };
 		48B2291C1F8E1865009081DA /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 48B2291B1F8E1864009081DA /* Podfile */; };
 		48B2291F1F8F0210009081DA /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B2291E1F8F0210009081DA /* BaseNavigationController.swift */; };
+		48D6F0BA1FA07C5500F77521 /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0B91FA07C5400F77521 /* UIColor+extension.swift */; };
+		48D6F0BD1FA0824500F77521 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0BC1FA0824500F77521 /* PeopleTableViewCell.swift */; };
+		48D6F0BF1FA08EF200F77521 /* PrivateConversationSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0BE1FA08EF200F77521 /* PrivateConversationSettingViewController.swift */; };
+		48D6F0C11FA08F3900F77521 /* GroupConversationSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0C01FA08F3900F77521 /* GroupConversationSettingViewController.swift */; };
+		48D6F0C31FA0943300F77521 /* ChangeRoleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0C21FA0943300F77521 /* ChangeRoleTableViewCell.swift */; };
 		48F4D1A41F94AE8200410CC7 /* RoleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F4D1A31F94AE8200410CC7 /* RoleModel.swift */; };
 		48FD47521F8F16F4006685A8 /* SquareCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FD47511F8F16F4006685A8 /* SquareCollectionViewCell.swift */; };
 		48FD47551F8F2D6B006685A8 /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FD47541F8F2D6B006685A8 /* CommonUtil.swift */; };
@@ -133,6 +139,7 @@
 		48767B401F95D492000D9E0B /* Whisper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Whisper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48767B421F95D65A000D9E0B /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		487F6E161FA05FAD00F62868 /* AddRoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoleViewController.swift; sourceTree = "<group>"; };
+		487F6E191FA0795600F62868 /* WXConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXConversationViewController.swift; sourceTree = "<group>"; };
 		48AE56571F9F3AE20055551D /* HXAlbumListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXAlbumListView.h; sourceTree = "<group>"; };
 		48AE56581F9F3AE20055551D /* HXAlbumListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXAlbumListView.m; sourceTree = "<group>"; };
 		48AE56591F9F3AE20055551D /* HXAlbumListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXAlbumListViewController.h; sourceTree = "<group>"; };
@@ -236,6 +243,11 @@
 		48B229171F8E11BD009081DA /* WBTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBTabBarController.swift; sourceTree = "<group>"; };
 		48B2291B1F8E1864009081DA /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		48B2291E1F8F0210009081DA /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		48D6F0B91FA07C5400F77521 /* UIColor+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
+		48D6F0BC1FA0824500F77521 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
+		48D6F0BE1FA08EF200F77521 /* PrivateConversationSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateConversationSettingViewController.swift; sourceTree = "<group>"; };
+		48D6F0C01FA08F3900F77521 /* GroupConversationSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupConversationSettingViewController.swift; sourceTree = "<group>"; };
+		48D6F0C21FA0943300F77521 /* ChangeRoleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRoleTableViewCell.swift; sourceTree = "<group>"; };
 		48F4D1A31F94AE8200410CC7 /* RoleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleModel.swift; sourceTree = "<group>"; };
 		48FD47511F8F16F4006685A8 /* SquareCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareCollectionViewCell.swift; sourceTree = "<group>"; };
 		48FD47541F8F2D6B006685A8 /* CommonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtil.swift; sourceTree = "<group>"; };
@@ -322,6 +334,17 @@
 				484A10D31F98AC9200BDFFE5 /* AlipayConversationSettingSwitchCell.swift */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		487F6E181FA0786400F62868 /* wechat */ = {
+			isa = PBXGroup;
+			children = (
+				48D6F0BB1FA0822A00F77521 /* view */,
+				487F6E191FA0795600F62868 /* WXConversationViewController.swift */,
+				48D6F0BE1FA08EF200F77521 /* PrivateConversationSettingViewController.swift */,
+				48D6F0C01FA08F3900F77521 /* GroupConversationSettingViewController.swift */,
+			);
+			path = wechat;
 			sourceTree = "<group>";
 		};
 		48AE56551F9F3AB50055551D /* lib */ = {
@@ -502,6 +525,15 @@
 			path = base;
 			sourceTree = "<group>";
 		};
+		48D6F0BB1FA0822A00F77521 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				48D6F0BC1FA0824500F77521 /* PeopleTableViewCell.swift */,
+				48D6F0C21FA0943300F77521 /* ChangeRoleTableViewCell.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		48FD474F1F8F13C1006685A8 /* square */ = {
 			isa = PBXGroup;
 			children = (
@@ -528,6 +560,7 @@
 		48FD47531F8F2D42006685A8 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				48D6F0B91FA07C5400F77521 /* UIColor+extension.swift */,
 				48FD47541F8F2D6B006685A8 /* CommonUtil.swift */,
 			);
 			path = common;
@@ -545,6 +578,7 @@
 		48FD47591F8F4C2F006685A8 /* screenshot */ = {
 			isa = PBXGroup;
 			children = (
+				487F6E181FA0786400F62868 /* wechat */,
 				48FD475A1F8F4C64006685A8 /* ScreenshotViewController.swift */,
 			);
 			path = screenshot;
@@ -858,7 +892,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				48AE56B61F9F3AE20055551D /* HXDatePhotoCollectionViewLayout.m in Sources */,
+				48D6F0C11FA08F3900F77521 /* GroupConversationSettingViewController.swift in Sources */,
 				48AE56AC1F9F3AE20055551D /* HXAlbumListView.m in Sources */,
+				48D6F0C31FA0943300F77521 /* ChangeRoleTableViewCell.swift in Sources */,
 				481C17941F90931800C3D7C1 /* ScreenshotCollectionCell.swift in Sources */,
 				48AE56AD1F9F3AE20055551D /* HXAlbumListViewController.m in Sources */,
 				48AE56D41F9F3AE20055551D /* UIFont+HXExtension.m in Sources */,
@@ -877,11 +913,13 @@
 				48AE56C61F9F3AE20055551D /* HXPhotoSubViewCell.m in Sources */,
 				48AE56C71F9F3AE20055551D /* HXPhotoTools.m in Sources */,
 				48AE56BD1F9F3AE20055551D /* HXPhoto3DTouchViewController.m in Sources */,
+				48D6F0BD1FA0824500F77521 /* PeopleTableViewCell.swift in Sources */,
 				48AE56B11F9F3AE20055551D /* HXCameraViewController.m in Sources */,
 				48AE56C91F9F3AE20055551D /* HXPhotoView.m in Sources */,
 				484A10D41F98AC9200BDFFE5 /* AlipayConversationSettingViewController.swift in Sources */,
 				48AE56BE1F9F3AE20055551D /* HXPhotoCustomNavigationBar.m in Sources */,
 				48FD47551F8F2D6B006685A8 /* CommonUtil.swift in Sources */,
+				487F6E1A1FA0795600F62868 /* WXConversationViewController.swift in Sources */,
 				48AE56B41F9F3AE20055551D /* HXCustomCameraView.m in Sources */,
 				48AE56B31F9F3AE20055551D /* HXCollectionView.m in Sources */,
 				48B2291F1F8F0210009081DA /* BaseNavigationController.swift in Sources */,
@@ -895,6 +933,7 @@
 				48AE56C21F9F3AE20055551D /* HXPhotoModel.m in Sources */,
 				48AE56C41F9F3AE20055551D /* HXPhotoPreviewViewController.m in Sources */,
 				712BC2C91F99DE0F00F5B248 /* AlipayConversationSettingCellRoleViewCell.swift in Sources */,
+				48D6F0BF1FA08EF200F77521 /* PrivateConversationSettingViewController.swift in Sources */,
 				4829AE101F95FB9900EBA903 /* RoleViewController.swift in Sources */,
 				71CF24F01FA03DCE0063A674 /* AlipayConversationTextSettingViewController.swift in Sources */,
 				484A10CE1F98666C00BDFFE5 /* NameEditViewController.swift in Sources */,
@@ -931,6 +970,7 @@
 				717E5EC11F9DB325002F1696 /* AlipayConversationDataModel.swift in Sources */,
 				711F85551F961269001190A2 /* AlipayCAVHeaderResuableView.swift in Sources */,
 				484A10D61F98AC9200BDFFE5 /* AlipayConversationSettingSwitchCell.swift in Sources */,
+				48D6F0BA1FA07C5500F77521 /* UIColor+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
