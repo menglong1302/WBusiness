@@ -43,7 +43,7 @@ class RoleTableViewCell: UITableViewCell {
         
         label?.text = role.nickName
         
-        if self.role.isLocalImage{
+        if !self.role.isDiskImage{
             portraitIcon!.image = UIImage.init(named: self.role.imageName)
         }else{
             portraitIcon?.kf.indicatorType = .activity
