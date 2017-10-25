@@ -12,7 +12,7 @@ import RealmSwift
 class Role: Object {
     @objc dynamic var nickName = "" //昵称
     @objc dynamic var imageUrl = "" // 图片url
-    @objc dynamic var isLocalImage = true  //是否本地图片
+    @objc dynamic var isDiskImage = false  //是否本地图片
     @objc dynamic var isSelf = false   //是否自己
     @objc dynamic var imageName = ""  //本地图片名字
     @objc dynamic var id = ""
