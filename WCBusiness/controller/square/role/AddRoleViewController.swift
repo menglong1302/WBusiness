@@ -1,20 +1,18 @@
 //
-//  RoleEditViewController.swift
+//  AddRoleViewController.swift
 //  WCBusiness
 //
-//  Created by YangXL on 2017/10/19.
+//  Created by YangXL on 2017/10/25.
 //  Copyright © 2017年 LYL. All rights reserved.
 //
-
 import UIKit
 import SnapKit
 import Kingfisher
 import PGActionSheet
 import RealmSwift
-typealias SaveBlock = (String,String) -> Void
-class RoleEditViewController: BaseViewController {
-    var role:Role!
-    var block:SaveBlock?
+typealias AddBlock = () -> Void
+class AddRoleViewController: BaseViewController {
+    var block:AddBlock?
     var tempImageUrl:String?
     var tempNickName:String?
     var footerView:UIView = {
@@ -46,14 +44,14 @@ class RoleEditViewController: BaseViewController {
     }()
     
     lazy var manager:HXPhotoManager = {
-       () in
+        () in
         let manager = HXPhotoManager(type: HXPhotoManagerSelectedTypePhotoAndVideo)
         manager?.outerCamera = true
         manager?.openCamera = true
         manager?.saveSystemAblum = true
         manager?.singleSelected = true
         manager?.singleSelecteClip = false
-       
+        
         return manager!
     }()
     lazy var photoVC = {
@@ -65,7 +63,7 @@ class RoleEditViewController: BaseViewController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = role.nickName
+        self.navigationItem.title = "新建角色"
         initView()
         
     }
@@ -91,31 +89,44 @@ class RoleEditViewController: BaseViewController {
             
         }
     }
+    
     func  saveBtnClick(_ btn:UIButton) {
-        if block != nil {
-            let tempNick  = self.tempNickName ?? role.nickName
-            let tempImage = self.tempImageUrl ?? ""
-            block!(tempNick,tempImage)
+        if tempImageUrl == nil{
+            self.view.showImageHUDText("图片不能为空")
+            return
+        }
+        if tempNickName == nil {
+            self.view.showImageHUDText("昵称不能为空")
+            return
         }
         saveData()
-        self.navigationController?.popViewController(animated: true)
+        if block != nil {
+            block!()
+        }
+        dismiss(animated: true, completion: nil)
     }
     func saveData() {
         let realm = try! Realm()
+        let role = Role()
+        role.id = UUID().uuidString
+        role.nickName = tempNickName!
+        role.imageName = ""
+        role.isDiskImage = true
+        role.isSelf = true
+        role.imageUrl = tempImageUrl!
+        role.firstLetter =  ""
+        
         try! realm.write {
-            [weak self] in
-            role.nickName = self?.tempNickName ?? role.nickName
-            role.firstLetter =  (self?.tempNickName ?? role.nickName).getFirstLetterFromString()
-            if !(self?.tempImageUrl ?? "").isEmpty{
-                role.isDiskImage = true
-                role.imageName = ""
-                role.imageUrl = (self?.tempImageUrl)!
-            }
+            realm.create(Role.self, value: role, update: false)
+            
         }
+    }
+    override func touchLeftBtn() {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
-extension RoleEditViewController:UITableViewDataSource,UITableViewDelegate{
+extension AddRoleViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
@@ -130,13 +141,7 @@ extension RoleEditViewController:UITableViewDataSource,UITableViewDelegate{
             if let temp = tempImageUrl,!(temp.isEmpty){
                 cell.portraitIcon.kf.setImage(with: URL(fileURLWithPath: temp.localPath()))
             }else{
-                if role.isDiskImage{
-                     cell.portraitIcon.kf.setImage(with: URL(fileURLWithPath: role.imageUrl.localPath()))
-                }else{
-                    cell.portraitIcon.image = UIImage(named:role.imageName)
-                }
-               
-                
+                cell.portraitIcon.image = UIImage(named:"portrait")
             }
         }else{
             cell.hintLabel.text = "昵称"
@@ -145,7 +150,7 @@ extension RoleEditViewController:UITableViewDataSource,UITableViewDelegate{
             if let name = self.tempNickName{
                 cell.nickNameLabel.text = name
             }else{
-                cell.nickNameLabel.text = role.nickName
+                cell.nickNameLabel.text = ""
                 
             }
         }
@@ -158,9 +163,11 @@ extension RoleEditViewController:UITableViewDataSource,UITableViewDelegate{
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 1 {
             let nameEditVC  = NameEditViewController()
-            nameEditVC.role = role
             if let tempName = self.tempNickName {
                 nameEditVC.tempName = tempName
+            }else{
+                nameEditVC.tempName = ""
+                
             }
             nameEditVC.nameBlock = {
                 (name:String)->Void in
@@ -172,7 +179,7 @@ extension RoleEditViewController:UITableViewDataSource,UITableViewDelegate{
             self.navigationController?.pushViewController(nameEditVC, animated: true)
         }else{
             self.manager.clearSelectedList()
-
+            
             let nav = UINavigationController(rootViewController: self.photoVC);
             nav.isNavigationBarHidden = true
             self.present(nav, animated: true, completion: nil)
@@ -181,11 +188,11 @@ extension RoleEditViewController:UITableViewDataSource,UITableViewDelegate{
         
     }
 }
-extension RoleEditViewController:HXPhotoViewControllerDelegate{
+extension AddRoleViewController:HXPhotoViewControllerDelegate{
     func photoViewControllerDidCancel() {
-     }
+    }
     func photoViewControllerDidNext(_ allList: [HXPhotoModel]!, photos: [HXPhotoModel]!, videos: [HXPhotoModel]!, original: Bool) {
-       let model =  photos[0]
+        let model =  photos[0]
         
         let clipVC = TOCropViewController(croppingStyle: .default, image: model.thumbPhoto)
         clipVC.customAspectRatio = CGSize(width: 1, height: 1)
@@ -196,9 +203,9 @@ extension RoleEditViewController:HXPhotoViewControllerDelegate{
         clipVC.aspectRatioLockEnabled = true
         clipVC.delegate = self
         self.navigationController?.pushViewController(clipVC, animated: false)
-     }
+    }
 }
-extension RoleEditViewController:TOCropViewControllerDelegate{
+extension AddRoleViewController:TOCropViewControllerDelegate{
     func cropViewController(_ cropViewController: TOCropViewController, didFinishCancelled cancelled: Bool) {
         self.navigationController?.popViewController(animated: false)
     }
@@ -211,7 +218,7 @@ extension RoleEditViewController:TOCropViewControllerDelegate{
         
         self.tableView.reloadData()
         self.navigationController?.popViewController(animated: false)
-
+        
     }
     
 }

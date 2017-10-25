@@ -20,8 +20,8 @@ class RoleViewController: BaseViewController {
     lazy var dataArray = [String:[Role]]()
     lazy var keyArray = [[String:Int]]()
     lazy var keys = [String]()
- 
-     override func viewDidLoad() {
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         self.navigationItem.title = "角色库"
@@ -38,8 +38,24 @@ class RoleViewController: BaseViewController {
         tableView.snp.makeConstraints { (makder) in
             makder.left.top.right.bottom.equalToSuperview()
         }
-        
+        let btn = UIButton(type: .custom)
+        btn.setTitle("新建", for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        btn.contentHorizontalAlignment = .right;
+        btn.translatesAutoresizingMaskIntoConstraints = false;
+        btn.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -15)
+        btn.addTarget(self, action: #selector(addRole), for: .touchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: btn)
     }
+    @objc func addRole(){
+        let addVC = AddRoleViewController()
+        addVC.block = {
+            [weak self] in
+            self?.tableView.reloadData()
+        }
+        present(UINavigationController(rootViewController: addVC), animated: true, completion: nil)
+    }
+    
     func fetchData(){
         dataArray.removeAll()
         keyArray.removeAll()
@@ -60,6 +76,7 @@ class RoleViewController: BaseViewController {
             }
             dataArray[letter!]!.append(role)
         }
+        let meArray = dataArray.removeValue(forKey: "我")
         let temp =  dataArray.sorted { (t1, t2) -> Bool in
             return   t1.key < t2.key ? true:false
         }
@@ -68,9 +85,14 @@ class RoleViewController: BaseViewController {
             keyArray.append([data.0 : data.1.count])
             keys.append(data.0)
         }
+        if let array = meArray,array.count>0 {
+            keyArray.insert(["我":array.count], at: 0)
+            keys.insert("我", at: 0)
+            dataArray["我"] = array
+        }
         self.tableView.reloadData()
     }
-   
+    
     
 }
 
@@ -107,19 +129,19 @@ extension RoleViewController:UITableViewDataSource,UITableViewDelegate{
             self.navigationController?.popViewController(animated: true)
             break
         case .Edit:
-              let roleVC =   RoleEditViewController()
-              let key =  keyArray[indexPath.section].keys.first!
-              let role =  dataArray[key]![indexPath.row]
-              roleVC.role = role
-              roleVC.block = {
+            let roleVC =   RoleEditViewController()
+            let key =  keyArray[indexPath.section].keys.first!
+            let role =  dataArray[key]![indexPath.row]
+            roleVC.role = role
+            roleVC.block = {
                 [weak self] (tempName,tempImageUrl) in
                 self?.fetchData()
-              }
-              self.navigationController?.pushViewController(roleVC, animated: true)
- 
+            }
+            self.navigationController?.pushViewController(roleVC, animated: true)
+            
             break
             
-        
+            
             
         }
     }

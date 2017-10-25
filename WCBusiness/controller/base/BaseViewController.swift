@@ -42,7 +42,7 @@ class BaseViewController: UIViewController {
         navigationItem.leftBarButtonItems = [spaceItem,UIBarButtonItem.init(customView: btn)]
         
      }
-    @objc private func touchLeftBtn() -> Void {
+    @objc  func touchLeftBtn() -> Void {
         
         self.navigationController?.popViewController(animated: true)
     }
