@@ -506,7 +506,6 @@
 			isa = PBXGroup;
 			children = (
 				4829AE0E1F95FB7900EBA903 /* role */,
-				71B2359E1F90A89F0084A60F /* alipay */,
 				48FD47591F8F4C2F006685A8 /* screenshot */,
 				48FD47561F8F3835006685A8 /* model */,
 				48FD47501F8F13D6006685A8 /* cell */,
@@ -545,6 +544,7 @@
 		48FD47591F8F4C2F006685A8 /* screenshot */ = {
 			isa = PBXGroup;
 			children = (
+				71B2359E1F90A89F0084A60F /* alipay */,
 				48FD475A1F8F4C64006685A8 /* ScreenshotViewController.swift */,
 			);
 			path = screenshot;
@@ -1090,7 +1090,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P8PCL77DZL;
+				DEVELOPMENT_TEAM = E26HJGEMA9;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				INFOPLIST_FILE = WCBusiness/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1110,7 +1110,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P8PCL77DZL;
+				DEVELOPMENT_TEAM = E26HJGEMA9;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				INFOPLIST_FILE = WCBusiness/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
