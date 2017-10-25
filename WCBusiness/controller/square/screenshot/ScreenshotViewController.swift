@@ -68,7 +68,7 @@ class ScreenshotViewController: BaseViewController {
         self.view.addSubview(roleBtn!)
         roleBtn?.backgroundColor = UIColor.white
         roleBtn?.setTitleColor(UIColor.black, for: .normal)
-        roleBtn?.setTitle("角色库", for: .normal)
+        roleBtn?.setTitle("    角色库", for: .normal)
         roleBtn?.setImage(UIImage.init(named: "portrait"), for: .normal)
         roleBtn?.contentHorizontalAlignment = .center
         roleBtn?.imageView?.contentMode = .scaleAspectFit
@@ -79,17 +79,16 @@ class ScreenshotViewController: BaseViewController {
             maker.left.right.bottom.equalToSuperview()
             maker.height.equalTo(44)
         })
-        roleBtn?.titleLabel?.snp.makeConstraints({ (maker) in
-            maker.centerX.equalToSuperview().offset(20)
-            maker.height.equalTo(30)
-            maker.centerY.equalToSuperview()
-        })
-        roleBtn?.imageView?.snp.makeConstraints({ (maker) in
+        
+        roleBtn?.imageView?.snp.remakeConstraints({ (maker) in
             maker.width.height.equalTo(30)
-            maker.right.equalTo((roleBtn?.titleLabel)!.snp.left).offset(-10)
+            maker.centerXWithinMargins.equalTo(-30)
+            
+          })
+        
+        roleBtn?.titleLabel?.snp.remakeConstraints({ (maker) in
+            maker.left.equalTo((self.roleBtn?.imageView)!.snp.right)
          })
-        
-        
         
     }
     
