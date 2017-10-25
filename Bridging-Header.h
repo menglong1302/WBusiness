@@ -7,3 +7,7 @@
 //
  
  
+#import "SDWebImage/UIImageView+WebCache.h"
+#import "HXPhotoManager.h"
+#import "HXPhotoViewController.h"
+#import "TOCropViewController.h"
