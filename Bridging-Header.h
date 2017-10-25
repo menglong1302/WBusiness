@@ -11,3 +11,4 @@
 #import "HXPhotoManager.h"
 #import "HXPhotoViewController.h"
 #import "TOCropViewController.h"
+#import "UIView+HXExtension.h"
