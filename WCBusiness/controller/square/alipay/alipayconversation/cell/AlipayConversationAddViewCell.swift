@@ -25,8 +25,7 @@ class AlipayConversationAddViewCell: UICollectionViewCell {
         self.contentView.addSubview(nameLabel)
         self.contentView.addSubview(iconImage)
         nameLabel.snp.makeConstraints { (make) in
-            make.left.right.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.centerX.equalToSuperview()
             make.height.equalTo(20)
             make.bottom.equalToSuperview().offset(-5)
         }

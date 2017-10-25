@@ -26,7 +26,7 @@ class AlipayConversationSettingSwitchCell: UITableViewCell {
         titleLabel.font = UIFont.systemFont(ofSize: 15);
         titleLabel.text = "已添加对方为好友";
         titleLabel.snp.makeConstraints({(maker) in
-            maker.top.bottom.equalToSuperview()
+            maker.centerY.equalToSuperview()
             maker.left.equalToSuperview().offset(20)
             maker.height.equalTo(20)
         })
@@ -36,8 +36,9 @@ class AlipayConversationSettingSwitchCell: UITableViewCell {
         swichBtn.contentVerticalAlignment = .center
 //        swichBtn.addTarget(self, action:#selector(swithClick(_:)), for:.valueChanged)
         swichBtn.snp.makeConstraints({(maker) in
-            maker.top.equalToSuperview().offset(10)
-            maker.right.equalToSuperview().offset(-10)
+//            maker.top.equalToSuperview().offset(10)
+            maker.centerY.equalToSuperview()
+            maker.right.equalToSuperview().offset(-6)
             maker.width.equalTo(60)
             maker.height.equalTo(30)
         })

@@ -26,8 +26,8 @@ class AlipayConversationSettingInfoCell: UITableViewCell {
         iconImage1.contentMode = .scaleAspectFit
         iconImage1.layer.masksToBounds = true
         iconImage1.snp.makeConstraints({(maker) in
-            maker.top.bottom.equalToSuperview()
-            maker.left.equalToSuperview().offset(20)
+            maker.centerY.equalToSuperview()
+            maker.left.equalToSuperview().offset(15)
             maker.width.height.equalTo(40)
         })
         
@@ -37,8 +37,8 @@ class AlipayConversationSettingInfoCell: UITableViewCell {
         iconImage2.layer.cornerRadius = 8
         iconImage2.layer.masksToBounds = true
         iconImage2.snp.makeConstraints({(maker) in
-            maker.top.bottom.equalToSuperview()
-            maker.left.equalToSuperview().offset(70)
+            maker.centerY.equalToSuperview()
+            maker.left.equalToSuperview().offset(65)
             maker.width.height.equalTo(40)
         })
         
@@ -47,7 +47,7 @@ class AlipayConversationSettingInfoCell: UITableViewCell {
         arrowImage.contentMode = .scaleAspectFit
         arrowImage.layer.masksToBounds = true
         arrowImage.snp.makeConstraints({(maker) in
-            maker.top.bottom.equalToSuperview()
+            maker.centerY.equalToSuperview()
             maker.right.equalToSuperview().offset(-10)
             maker.height.equalTo(13)
             maker.width.equalTo(8)
@@ -59,7 +59,7 @@ class AlipayConversationSettingInfoCell: UITableViewCell {
         nameLabel.textAlignment = .right
         nameLabel.font = UIFont.systemFont(ofSize: 15);
         nameLabel.snp.makeConstraints({(maker) in
-            maker.top.bottom.equalToSuperview()
+            maker.centerY.equalToSuperview()
             maker.right.equalToSuperview().offset(-28)
             maker.height.equalTo(20)
         })

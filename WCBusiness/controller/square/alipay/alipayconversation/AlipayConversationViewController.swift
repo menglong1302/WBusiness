@@ -58,7 +58,7 @@ class AlipayConversationViewController : BaseViewController  {
         tableView?.register(AlipayConversationSettingInfoCell.self, forCellReuseIdentifier: "settingInfoCell")
 //        tableView.sectionHeaderHeight = 20;
         self.view.addSubview(tableView!)
-        tableView?.reloadData()
+//        tableView?.reloadData()
     }
     func initFooterView() -> Void {
         footerView = UIView.init(frame:CGRect.zero);
@@ -181,8 +181,6 @@ class AlipayConversationViewController : BaseViewController  {
     }
     func initData () {
         let realm = try! Realm()
-//        let alipayConversationContent = realm.objects(AlipayConversationContent.self)
-//        if (alipayConversationContent.count == 0){
         let alipayConversationUser = realm.objects(AlipayConversationUser.self)
         if (alipayConversationUser.count == 0){
             print ("数据库无数据")
@@ -224,6 +222,7 @@ class AlipayConversationViewController : BaseViewController  {
             print(alipayCUser as Any)
             userId = alipayConversationUser[0].id
         }
+        tableView?.reloadData()
     }
 }
 //talbeView 的两个代理方法的实现，其实这两个代理还能加到class声明的后面，代理方法的时候和OC里面的实现是一样的
@@ -246,7 +245,6 @@ extension AlipayConversationViewController:UITableViewDataSource,UITableViewDele
         if (indexPath.section == 0 && indexPath.row == 0) {
             let settingInfoCell = tableView.dequeueReusableCell(withIdentifier: "settingInfoCell",for: indexPath) as! AlipayConversationSettingInfoCell
             settingInfoCell.setData(["name":"设置资料","imageName1":(alipayCUser?.sender?.imageName)!,"imageName2":(alipayCUser?.receiver?.imageName)!])
-
             return settingInfoCell
         } else {
             let identifier="identtifier";
