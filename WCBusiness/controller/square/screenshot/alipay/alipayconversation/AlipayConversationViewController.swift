@@ -123,14 +123,14 @@ class AlipayConversationViewController : BaseViewController  {
         let realm = try! Realm()
         let sender = Role(value:["nickName":"Ray",
                                  "imageUrl":"",
-                                 "isLocalImage":true,
+                                 "isDiskImage":true,
                                  "isSelf":true,
                                  "imageName":"Image-1",
                                  "id":UUID().uuidString,
                                  "firstLetter":"R",])
         let receiver = Role(value:["nickName":"Yu",
                                    "imageUrl":"",
-                                   "isLocalImage":true,
+                                   "isDiskImage":true,
                                    "isSelf":false,
                                    "imageName":"Image-2",
                                    "id":UUID().uuidString,
@@ -186,14 +186,14 @@ class AlipayConversationViewController : BaseViewController  {
             print ("数据库无数据")
             let sender = Role(value:["nickName":"Ray",
                                      "imageUrl":"",
-                                     "isLocalImage":true,
+                                     "isDiskImage":true,
                                      "isSelf":true,
                                      "imageName":"Image-1",
                                      "id":UUID().uuidString,
                                      "firstLetter":"R",])
             let receiver = Role(value:["nickName":"Yu",
                                        "imageUrl":"",
-                                       "isLocalImage":true,
+                                       "isDiskImage":true,
                                        "isSelf":false,
                                        "imageName":"Image-2",
                                        "id":UUID().uuidString,
