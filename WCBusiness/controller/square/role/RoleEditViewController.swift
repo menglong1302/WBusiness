@@ -44,6 +44,25 @@ class RoleEditViewController: BaseViewController {
         
         return tableView
     }()
+    
+    lazy var manager:HXPhotoManager = {
+       () in
+        let manager = HXPhotoManager(type: HXPhotoManagerSelectedTypePhotoAndVideo)
+        manager?.outerCamera = true
+        manager?.openCamera = true
+        manager?.saveSystemAblum = true
+        manager?.singleSelected = true
+        manager?.singleSelecteClip = false
+       
+        return manager!
+    }()
+    lazy var photoVC = {
+        () -> HXPhotoViewController in
+        let vc = HXPhotoViewController()
+        vc.manager = self.manager;
+        vc.delegate = self;
+        return vc
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = role.nickName
@@ -88,9 +107,9 @@ class RoleEditViewController: BaseViewController {
             role.nickName = self?.tempNickName ?? role.nickName
             role.firstLetter =  (self?.tempNickName ?? role.nickName).getFirstLetterFromString()
             if !(self?.tempImageUrl ?? "").isEmpty{
-                role.isLocalImage = true
+                role.isDiskImage = true
                 role.imageName = ""
-                role.imageUrl = self?.tempImageUrl ?? ""
+                role.imageUrl = (self?.tempImageUrl)!
             }
         }
     }
@@ -108,11 +127,15 @@ extension RoleEditViewController:UITableViewDataSource,UITableViewDelegate{
             cell.hintLabel.text = "头像"
             cell.nickNameLabel.isHidden = true
             cell.portraitIcon.isHidden = false
-            if role.isLocalImage{
-                cell.portraitIcon.image = UIImage(named:role.imageName)
+            if let temp = tempImageUrl,!(temp.isEmpty){
+                cell.portraitIcon.kf.setImage(with: URL(fileURLWithPath: temp.localPath()))
             }else{
-                
-                cell.portraitIcon.kf.setImage(with: URL(fileURLWithPath: role.imageUrl.localPath()))
+                if role.isDiskImage{
+                     cell.portraitIcon.kf.setImage(with: URL(fileURLWithPath: role.imageUrl.localPath()))
+                }else{
+                    cell.portraitIcon.image = UIImage(named:role.imageName)
+                }
+               
                 
             }
         }else{
@@ -148,13 +171,61 @@ extension RoleEditViewController:UITableViewDataSource,UITableViewDelegate{
             }
             self.navigationController?.pushViewController(nameEditVC, animated: true)
         }else{
-            let actionSheet = PGActionSheet(cancelButton: true, buttonList: ["相册","照相机"])
-            actionSheet.actionSheetTranslucent = false
-            actionSheet.handler = {index in
-                print("index = ", index)
-            }
-            present(actionSheet, animated: false, completion: nil)
+            self.manager.clearSelectedList()
+
+            let nav = UINavigationController(rootViewController: self.photoVC);
+            nav.isNavigationBarHidden = true
+            self.present(nav, animated: true, completion: nil)
+            
+//            let actionSheet = PGActionSheet(cancelButton: true, buttonList: ["相册","照相机"])
+//            actionSheet.actionSheetTranslucent = false
+//            actionSheet.handler = {index in
+//                actionSheet.dismiss(animated: false, completion: nil)
+//            }
+//            present(actionSheet, animated: false, completion: nil)
         }
         
     }
 }
+extension RoleEditViewController:HXPhotoViewControllerDelegate{
+    func photoViewControllerDidCancel() {
+     }
+    func photoViewControllerDidNext(_ allList: [HXPhotoModel]!, photos: [HXPhotoModel]!, videos: [HXPhotoModel]!, original: Bool) {
+       let model =  photos[0]
+        
+        let clipVC = TOCropViewController(croppingStyle: .default, image: model.thumbPhoto)
+        clipVC.customAspectRatio = CGSize(width: 1, height: 1)
+        clipVC.aspectRatioPickerButtonHidden = true
+        clipVC.rotateClockwiseButtonHidden = true
+        clipVC.rotateButtonsHidden = true
+        clipVC.resetAspectRatioEnabled = false
+        clipVC.aspectRatioLockEnabled = true
+        clipVC.delegate = self
+        self.navigationController?.pushViewController(clipVC, animated: false)
+//        present(clipVC, animated: false, completion: nil)
+    }
+}
+extension RoleEditViewController:TOCropViewControllerDelegate{
+    func cropViewController(_ cropViewController: TOCropViewController, didFinishCancelled cancelled: Bool) {
+        self.navigationController?.popViewController(animated: false)
+    }
+    func cropViewController(_ cropViewController: TOCropViewController, didCropToImage image: UIImage, rect cropRect: CGRect, angle: Int) {
+        let data = image.kf.jpegRepresentation(compressionQuality: 0.7)
+        let imagename = (UUID().uuidString+".png")
+        let path = imagename.localPath()
+        try? data?.write(to: URL(fileURLWithPath: path))
+        tempImageUrl = imagename
+        
+        self.tableView.reloadData()
+        self.navigationController?.popViewController(animated: false)
+
+    }
+    
+}
+
+
+
+
+
+
+
