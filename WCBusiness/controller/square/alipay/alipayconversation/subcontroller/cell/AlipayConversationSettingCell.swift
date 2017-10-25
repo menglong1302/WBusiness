@@ -27,7 +27,7 @@ class AlipayConversationSettingCell: UITableViewCell {
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.systemFont(ofSize: 15);
         titleLabel.snp.makeConstraints({(maker) in
-            maker.top.bottom.equalToSuperview()
+            maker.centerY.equalToSuperview()
             maker.left.equalToSuperview().offset(20)
             maker.height.equalTo(20)
         })
@@ -36,21 +36,21 @@ class AlipayConversationSettingCell: UITableViewCell {
         arrowImage.contentMode = .scaleAspectFit
         arrowImage.layer.masksToBounds = true
         arrowImage.snp.makeConstraints({(maker) in
-            maker.top.bottom.equalToSuperview()
+            maker.centerY.equalToSuperview()
             maker.right.equalToSuperview().offset(-10)
-            maker.height.equalTo(20)
-            maker.width.equalTo(10)
+            maker.height.equalTo(13)
+            maker.width.equalTo(8)
         })
         iconImage = UIImageView.init()
         self.addSubview(iconImage)
         iconImage.contentMode = .scaleAspectFit
-        iconImage.layer.cornerRadius = 8
+        iconImage.layer.cornerRadius = 5
         iconImage.layer.masksToBounds = true
         iconImage.snp.makeConstraints({(maker) in
-            maker.top.bottom.equalToSuperview()
-            maker.right.equalToSuperview().offset(-30)
-            maker.height.equalTo(30)
-            maker.width.equalTo(30)
+            maker.centerY.equalToSuperview()
+            maker.right.equalToSuperview().offset(-28)
+            maker.height.equalTo(40)
+            maker.width.equalTo(40)
         })
         nameLabel = UILabel.init()
         self.addSubview(nameLabel)
@@ -58,8 +58,8 @@ class AlipayConversationSettingCell: UITableViewCell {
         nameLabel.textAlignment = .right
         nameLabel.font = UIFont.systemFont(ofSize: 15);
         nameLabel.snp.makeConstraints({(maker) in
-            maker.top.bottom.equalToSuperview()
-            maker.right.equalToSuperview().offset(-70)
+            maker.centerY.equalToSuperview()
+            maker.right.equalToSuperview().offset(-80)
             maker.height.equalTo(20)
         })
     }
