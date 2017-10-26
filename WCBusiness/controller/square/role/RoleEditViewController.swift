@@ -48,7 +48,7 @@ class RoleEditViewController: BaseViewController {
     
     lazy var manager:HXPhotoManager = {
        () in
-        let manager = HXPhotoManager(type: HXPhotoManagerSelectedTypePhotoAndVideo)
+        let manager = HXPhotoManager(type: HXPhotoManagerSelectedTypePhoto)
         manager?.outerCamera = true
         manager?.openCamera = true
         manager?.saveSystemAblum = true

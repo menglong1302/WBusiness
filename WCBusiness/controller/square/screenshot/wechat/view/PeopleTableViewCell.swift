@@ -44,10 +44,41 @@ class PeopleTableViewCell: UITableViewCell {
         [hintLabel,numLabel].forEach {
             addSubview($0)
         }
-         hintLabel.snp.makeConstraints { (maker) in
+        hintLabel.snp.makeConstraints { (maker) in
             maker.top.bottom.equalToSuperview()
             maker.right.equalToSuperview().offset(-30)
         }
+    }
+    func confige(_ conversation:WXConversation)  {
+        if let role = conversation.sender{
+            let imageView = self.viewWithTag(101) as! UIImageView
+            //用户存在沙盒
+            if (role.isDiskImage){
+                imageView.kf.setImage(with: URL(fileURLWithPath: (role.imageUrl.localPath())))
+            }else {
+                imageView.image = UIImage(named: (role.imageName))
+            }
+        }
+       
+        if conversation.receivers.count>0  {
+          let receivers = conversation.receivers
+            var i:Int = 2
+            for role in receivers{
+                if  let view = self.viewWithTag(100+i){
+                    let imageView = view as! UIImageView
+                    if (role.isDiskImage){
+                        imageView.kf.setImage(with: URL(fileURLWithPath: (role.imageUrl.localPath())))
+                    }else {
+                        imageView.image = UIImage(named: (role.imageName))
+                    }
+                    i += 1
+                }
+                if i > 4 {
+                    break
+                }
+            }
+        }
+        
     }
     func initImageView()  {
         if imageNum <= 2{
@@ -59,6 +90,8 @@ class PeopleTableViewCell: UITableViewCell {
         var array = [UIImageView]()
         for i in 1...imageNum {
             let imageView = UIImageView()
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
             imageView.tag = 100+i
             imageView.image = UIImage(named:"portrait")
             array.append(imageView)
@@ -69,13 +102,13 @@ class PeopleTableViewCell: UITableViewCell {
         for i in 1...sum{
             self.viewWithTag(100+i)?.snp.makeConstraints({ (maker) in
                 maker.centerY.equalToSuperview()
-                maker.width.height.equalTo(35)
-                maker.left.equalTo(15+5*(i-1)+(i-1)*35 )
+                maker.width.height.equalTo(40)
+                maker.left.equalTo(15+5*(i-1)+(i-1)*40 )
             })
         }
         numLabel.snp.makeConstraints { (maker) in
             maker.centerY.equalToSuperview()
-            maker.left.equalTo(15+5*(sum+1)+sum*35)
+            maker.left.equalTo(15+5*(sum+1)+sum*40)
         }
         numLabel.text = "等\(imageNum)人"
     }

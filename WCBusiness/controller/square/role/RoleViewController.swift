@@ -20,7 +20,7 @@ class RoleViewController: BaseViewController {
     lazy var dataArray = [String:[Role]]()
     lazy var keyArray = [[String:Int]]()
     lazy var keys = [String]()
-    
+    var tempRole:Role?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
@@ -129,6 +129,13 @@ extension RoleViewController:UITableViewDataSource,UITableViewDelegate{
         case .Select:
             let key =  keyArray[indexPath.section].keys.first!
             let role =  dataArray[key]![indexPath.row]
+            if let temp =  self.tempRole{
+                if temp.id == role.id{
+                    self.view .showImageHUDText("不能选择已经选择过的角色")
+                    return
+                }
+            }
+            
             roleSelectBlock!(role)
             self.navigationController?.popViewController(animated: true)
             break
