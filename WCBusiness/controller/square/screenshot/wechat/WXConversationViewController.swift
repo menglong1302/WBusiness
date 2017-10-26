@@ -9,11 +9,12 @@
 import Foundation
 import UIKit
 import SnapKit
-
+import RealmSwift
 enum ConversationType {
     case privateChat
     case groupChat
 }
+
 
 class WXConversationViewController: BaseViewController {
     lazy var tableView = self.makeTableView()
@@ -32,10 +33,12 @@ class WXConversationViewController: BaseViewController {
             }
         }
     }
+    lazy var conversation = WXConversation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
+        fetchData()
     }
     func initView()  {
 
@@ -64,7 +67,18 @@ class WXConversationViewController: BaseViewController {
         }
     }
     
-    
+    func fetchData(){
+        let realm = try! Realm()
+        if let conv = realm.objects(WXConversation.self).filter("conversationType = 1").first{
+            conversation = conv
+        }else{
+            conversation.id = UUID().uuidString
+            try! realm.write {
+                realm.create(WXConversation.self, value: conversation, update: false)
+            }
+        }
+       
+    }
     
     func makeTableView() -> UITableView {
         let tableView = UITableView(frame: CGRect.zero)
@@ -117,12 +131,13 @@ extension WXConversationViewController:UITableViewDelegate,UITableViewDataSource
           let cell = tableView.dequeueReusableCell(withIdentifier: "peopleCellId") as! PeopleTableViewCell
             cell.accessoryType = .disclosureIndicator
             cell.imageNum = 2
+            cell.confige(conversation)
             return  cell
         }
         return UITableViewCell()
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        return 50
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -141,12 +156,13 @@ extension WXConversationViewController:UITableViewDelegate,UITableViewDataSource
         var vc:UIViewController?
         switch self.conversationType {
         case .groupChat:
-            vc = GroupConversationSettingViewController()
-            
+            let groupVc = GroupConversationSettingViewController()
+            vc = groupVc
             break
         default:
-            vc = PrivateConversationSettingViewController()
-
+            let privateVC = PrivateConversationSettingViewController()
+            privateVC.conversation = self.conversation
+            vc = privateVC
             break
         }
         self.navigationController?.pushViewController(vc!, animated: true)

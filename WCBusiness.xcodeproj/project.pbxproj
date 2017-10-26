@@ -74,6 +74,9 @@
 		48D6F0BF1FA08EF200F77521 /* PrivateConversationSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0BE1FA08EF200F77521 /* PrivateConversationSettingViewController.swift */; };
 		48D6F0C11FA08F3900F77521 /* GroupConversationSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0C01FA08F3900F77521 /* GroupConversationSettingViewController.swift */; };
 		48D6F0C31FA0943300F77521 /* ChangeRoleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0C21FA0943300F77521 /* ChangeRoleTableViewCell.swift */; };
+		48D6F0C61FA1780D00F77521 /* WXConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0C51FA1780D00F77521 /* WXConversation.swift */; };
+		48D6F0C81FA188C800F77521 /* ChatSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0C71FA188C800F77521 /* ChatSettingTableViewCell.swift */; };
+		48D6F0CA1FA1C69600F77521 /* ContentEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0C91FA1C69600F77521 /* ContentEditViewController.swift */; };
 		48F4D1A41F94AE8200410CC7 /* RoleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F4D1A31F94AE8200410CC7 /* RoleModel.swift */; };
 		48FD47521F8F16F4006685A8 /* SquareCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FD47511F8F16F4006685A8 /* SquareCollectionViewCell.swift */; };
 		48FD47551F8F2D6B006685A8 /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FD47541F8F2D6B006685A8 /* CommonUtil.swift */; };
@@ -245,6 +248,9 @@
 		48D6F0BE1FA08EF200F77521 /* PrivateConversationSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateConversationSettingViewController.swift; sourceTree = "<group>"; };
 		48D6F0C01FA08F3900F77521 /* GroupConversationSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupConversationSettingViewController.swift; sourceTree = "<group>"; };
 		48D6F0C21FA0943300F77521 /* ChangeRoleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRoleTableViewCell.swift; sourceTree = "<group>"; };
+		48D6F0C51FA1780D00F77521 /* WXConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXConversation.swift; sourceTree = "<group>"; };
+		48D6F0C71FA188C800F77521 /* ChatSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSettingTableViewCell.swift; sourceTree = "<group>"; };
+		48D6F0C91FA1C69600F77521 /* ContentEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentEditViewController.swift; sourceTree = "<group>"; };
 		48F4D1A31F94AE8200410CC7 /* RoleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleModel.swift; sourceTree = "<group>"; };
 		48FD47511F8F16F4006685A8 /* SquareCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareCollectionViewCell.swift; sourceTree = "<group>"; };
 		48FD47541F8F2D6B006685A8 /* CommonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtil.swift; sourceTree = "<group>"; };
@@ -319,10 +325,12 @@
 		487F6E181FA0786400F62868 /* wechat */ = {
 			isa = PBXGroup;
 			children = (
+				48D6F0C41FA177DD00F77521 /* entity */,
 				48D6F0BB1FA0822A00F77521 /* view */,
 				487F6E191FA0795600F62868 /* WXConversationViewController.swift */,
 				48D6F0BE1FA08EF200F77521 /* PrivateConversationSettingViewController.swift */,
 				48D6F0C01FA08F3900F77521 /* GroupConversationSettingViewController.swift */,
+				48D6F0C91FA1C69600F77521 /* ContentEditViewController.swift */,
 			);
 			path = wechat;
 			sourceTree = "<group>";
@@ -510,8 +518,17 @@
 			children = (
 				48D6F0BC1FA0824500F77521 /* PeopleTableViewCell.swift */,
 				48D6F0C21FA0943300F77521 /* ChangeRoleTableViewCell.swift */,
+				48D6F0C71FA188C800F77521 /* ChatSettingTableViewCell.swift */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		48D6F0C41FA177DD00F77521 /* entity */ = {
+			isa = PBXGroup;
+			children = (
+				48D6F0C51FA1780D00F77521 /* WXConversation.swift */,
+			);
+			path = entity;
 			sourceTree = "<group>";
 		};
 		48FD474F1F8F13C1006685A8 /* square */ = {
@@ -920,6 +937,7 @@
 				48D6F0BD1FA0824500F77521 /* PeopleTableViewCell.swift in Sources */,
 				48AE56B11F9F3AE20055551D /* HXCameraViewController.m in Sources */,
 				48AE56C91F9F3AE20055551D /* HXPhotoView.m in Sources */,
+				48D6F0CA1FA1C69600F77521 /* ContentEditViewController.swift in Sources */,
 				48AE56BE1F9F3AE20055551D /* HXPhotoCustomNavigationBar.m in Sources */,
 				48FD47551F8F2D6B006685A8 /* CommonUtil.swift in Sources */,
 				487F6E1A1FA0795600F62868 /* WXConversationViewController.swift in Sources */,
@@ -931,6 +949,7 @@
 				71876EEE1FA09D7F00BCD139 /* AlipayConversationSettingCellRoleView.swift in Sources */,
 				48AE56BF1F9F3AE20055551D /* HXPhotoEditView.m in Sources */,
 				48AE56BA1F9F3AE20055551D /* HXDatePhotoViewController.m in Sources */,
+				48D6F0C81FA188C800F77521 /* ChatSettingTableViewCell.swift in Sources */,
 				48AE56CB1F9F3AE20055551D /* HXPhotoViewController.m in Sources */,
 				48AE56AE1F9F3AE20055551D /* HXAlbumModel.m in Sources */,
 				71876EE51FA09D7F00BCD139 /* AlipayCAVHeaderResuableView.swift in Sources */,
@@ -949,6 +968,7 @@
 				481C17921F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift in Sources */,
 				71876EE41FA09D7F00BCD139 /* AlipayConversationViewController.swift in Sources */,
 				48AE56D21F9F3AE20055551D /* NSDate+HXExtension.m in Sources */,
+				48D6F0C61FA1780D00F77521 /* WXConversation.swift in Sources */,
 				48AE56BB1F9F3AE20055551D /* HXFullScreenCameraPlayView.m in Sources */,
 				48AE56C81F9F3AE20055551D /* HXPhotoUIManager.m in Sources */,
 				48AE56C31F9F3AE20055551D /* HXPhotoPreviewViewCell.m in Sources */,
