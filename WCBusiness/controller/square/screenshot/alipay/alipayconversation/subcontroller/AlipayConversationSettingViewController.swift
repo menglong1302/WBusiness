@@ -17,11 +17,11 @@ class AlipayConversationSettingViewController : BaseViewController  {
     var saveBtn:UIButton?
     var alipayCSCRV:AlipayConversationSettingCellRoleView?
     var alipayCUser:AlipayConversationUser?
-    var isFriend:Bool?
+    var isFriend:Bool? = true
     var sender:Role?
     var receiver:Role?
     var backgroundImageUrl:String?
-    var isDiskImage:Bool?
+    var isDiskImage:Bool? = false
     //    var window:UIWindow?
     lazy var manager:HXPhotoManager = {
         () in
@@ -96,15 +96,45 @@ class AlipayConversationSettingViewController : BaseViewController  {
             self.isFriend = alipayCUser?.isFriend
             self.isDiskImage = alipayCUser?.isDiskImage
             self.backgroundImageUrl = alipayCUser?.backgroundImageUrl
-            tableView?.reloadData()
+        } else {
+            let addRoleVC = AddRoleViewController()
+            present(UINavigationController(rootViewController: addRoleVC), animated: true, completion: {
+                addRoleVC.addRoleBlock = {
+                    [weak self] (role:Role) in
+                    self?.sender = role
+                    
+                    let date = NSDate()
+                    let timeFormatter = DateFormatter()
+                    timeFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+                    let strNowTime = timeFormatter.string(from: date as Date) as String
+                    
+                    self?.alipayCUser?.id = UUID().uuidString
+                    self?.alipayCUser?.sender = role
+                    self?.alipayCUser?.receiver = nil
+                    self?.alipayCUser?.isFriend = true
+                    self?.alipayCUser?.isDiskImage = false
+                    self?.alipayCUser?.backgroundImageName = "default"
+                    self?.alipayCUser?.backgroundImageUrl = ""
+                    self?.alipayCUser?.creatAt = strNowTime
+//                    try! realm.write {
+//                        realm.add((self?.alipayCUser)!)
+//                    }
+                    try! realm.write {
+                        realm.create(AlipayConversationUser.self, value: self?.alipayCUser as Any, update: false)
+                    }
+                }
+            })
         }
+        tableView?.reloadData()
     }
+   
     func saveBtnAction () {
         saveData()
         self.navigationController?.popViewController(animated: true)
     }
     func saveData () {
         let realm = try! Realm()
+        
         try! realm.write {
             [weak self] in
             alipayCUser?.sender = self?.sender
@@ -133,7 +163,7 @@ extension AlipayConversationSettingViewController:UITableViewDataSource,UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 1 && indexPath.row == 1) {
             let switchCell = tableView.dequeueReusableCell(withIdentifier: "switchCell") as! AlipayConversationSettingSwitchCell
-            switchCell.setData(["isFriend":isFriend!])
+            switchCell.setData(["isFriend":(isFriend ?? true)])
             switchCell.selectionStyle = .none
             switchCell.swichBtn.addTarget(self, action:#selector(swithClick(_:)), for:.valueChanged)
             return switchCell
@@ -141,19 +171,43 @@ extension AlipayConversationSettingViewController:UITableViewDataSource,UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlipayConversationSettingCell
         if indexPath.section == 0 {
             if indexPath.row == 0 {
-                cell.setData(["title":"用户1","name":(self.sender?.nickName)!,"imageName":(self.sender?.imageName)!])
+                if (self.sender == nil){
+                    cell.setData(["title":"用户1","name":(self.sender?.nickName ?? ""),"imageName":(self.sender?.imageName ?? "portrait")])
+                } else {
+                    if (self.sender?.isDiskImage)! {
+                        cell.setData(["title":"用户1","name":(self.sender?.nickName ?? ""),"imageName":""])
+                        if let temp = self.sender?.imageUrl,!(temp.isEmpty){
+                            cell.iconImage.kf.setImage(with: URL(fileURLWithPath: temp.localPath()))
+                        }
+                    } else {
+                        cell.setData(["title":"用户1","name":(self.sender?.nickName ?? ""),"imageName":(self.sender?.imageName ?? "portrait")])
+                    }
+                }
+                
+                
             } else {
-                cell.setData(["title":"用户2","name":(self.receiver?.nickName)!,"imageName":(self.receiver?.imageName)!])
+                if (self.receiver == nil){
+                    cell.setData(["title":"用户2","name":(self.receiver?.nickName ?? ""),"imageName":(self.receiver?.imageName ?? "portrait")])
+                } else {
+                    if (self.receiver?.isDiskImage)! {
+                        cell.setData(["title":"用户2","name":(self.receiver?.nickName ?? ""),"imageName":""])
+                        if let temp = self.receiver?.imageUrl,!(temp.isEmpty){
+                            cell.iconImage.kf.setImage(with: URL(fileURLWithPath: temp.localPath()))
+                        }
+                    } else {
+                        cell.setData(["title":"用户2","name":(self.receiver?.nickName ?? ""),"imageName":(self.receiver?.imageName ?? "portrait")])
+                    }
+                }
             }
         } else {
             if indexPath.row == 0 {
-                if self.isDiskImage! {
+                if (self.isDiskImage!){
                     cell.setData(["title":"修改聊天背景","name":"","imageName":""])
                     if let temp = backgroundImageUrl,!(temp.isEmpty){
                         cell.iconImage.kf.setImage(with: URL(fileURLWithPath: temp.localPath()))
                     }
                 } else {
-                    cell.setData(["title":"修改聊天背景","name":"","imageName":(alipayCUser?.backgroundImageName)!])
+                    cell.setData(["title":"修改聊天背景","name":"","imageName":(alipayCUser?.backgroundImageName ?? "default")])
                 }
             }
           }
