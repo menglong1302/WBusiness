@@ -18,4 +18,11 @@ extension String {
         return path
         
     }
+    func isPurnInt() -> Bool {
+        
+        let scan: Scanner = Scanner(string: self)
+        var val:Int = 0
+        return scan.scanInt(&val) && scan.isAtEnd
+        
+    }
 }

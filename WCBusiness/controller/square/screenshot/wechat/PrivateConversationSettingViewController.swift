@@ -129,7 +129,7 @@ extension PrivateConversationSettingViewController:UITableViewDelegate,UITableVi
             let settingCell = tableView.dequeueReusableCell(withIdentifier: "chatSettingCellId") as! ChatSettingTableViewCell
             switch indexPath.row{
             case 0:
-                settingCell.hintLabel.text = "未读消息树"
+                settingCell.hintLabel.text = "未读消息数"
                 settingCell.numLabel.text = String(self.conversation.unReadMessageNum)
                 settingCell.numLabel.isHidden = false
                 settingCell.swichBar.isHidden = true
@@ -140,8 +140,13 @@ extension PrivateConversationSettingViewController:UITableViewDelegate,UITableVi
                 settingCell.numLabel.text = ""
                 settingCell.numLabel.isHidden = true
                 settingCell.swichBar.isHidden = false
+                settingCell.swichBar.addTarget(self, action: #selector(switchAction(_:)), for:.valueChanged)
                 settingCell.accessoryType = .none
-                
+                if self.conversation.isUseTelephoneReceiver{
+                    settingCell.swichBar.isOn = true
+                }else{
+                    settingCell.swichBar.isOn = false
+                }
                 break
             default :
                 break
@@ -243,7 +248,7 @@ extension PrivateConversationSettingViewController:UITableViewDelegate,UITableVi
                     actionSheet.handler = {
                         [weak self] index  in
                         self?.dismiss(animated: false, completion: nil)
-
+                        
                         if index ==  0{
                             let vc = RoleViewController()
                             vc.operatorType = .Select
@@ -300,6 +305,15 @@ extension PrivateConversationSettingViewController:UITableViewDelegate,UITableVi
         }else{
             switch indexPath.row{
             case 0 :
+                let vc = ContentEditViewController()
+                vc.conversation = self.conversation
+                vc.editContentType = .UnReadMessageNum
+                vc.navTitle = "未读消息数"
+                vc.textField.text = String(self.conversation.unReadMessageNum)
+                vc.block = {
+                    self.tableView.reloadData()
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
                 break
             case 1 :
                 break
@@ -308,6 +322,18 @@ extension PrivateConversationSettingViewController:UITableViewDelegate,UITableVi
                 
             }
         }
+    }
+    
+    @objc func switchAction(_ swt:UISwitch) {
+        let realm = try! Realm()
+        try! realm.write {
+            if swt.isOn{
+                self.conversation.isUseTelephoneReceiver = true
+            }else{
+                self.conversation.isUseTelephoneReceiver = false
+            }
+        }
+        
     }
 }
 
