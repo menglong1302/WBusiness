@@ -12,17 +12,10 @@ import PGActionSheet
 import RealmSwift
 
 class AlipayConversationSettingViewController : BaseViewController  {
-    var userId = ""
     var tableView:UITableView?
     var saveBtn:UIButton?
     var alipayCSCRV:AlipayConversationSettingCellRoleView?
-    var alipayCUser:AlipayConversationUser?
-    var isFriend:Bool? = true
-    var sender:Role?
-    var receiver:Role?
-    var backgroundImageUrl:String?
-    var isDiskImage:Bool? = false
-    //    var window:UIWindow?
+    var acUser:AlipayConversationUser!
     lazy var manager:HXPhotoManager = {
         () in
         let manager = HXPhotoManager(type: HXPhotoManagerSelectedTypePhoto)
@@ -32,7 +25,6 @@ class AlipayConversationSettingViewController : BaseViewController  {
         manager?.saveSystemAblum = true
         manager?.singleSelected = true
         manager?.singleSelecteClip = false
-        
         return manager!
     }()
     lazy var photoVC = {
@@ -48,14 +40,14 @@ class AlipayConversationSettingViewController : BaseViewController  {
         initView()
         initAlipayCSCRView()
         self.view.backgroundColor = UIColor.init(hexString: "EFEFF4")
-        initData()
+//        initData()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        saveData()
+//        saveData()
     }
     func initView() -> Void {
         //设置tableView的frame
@@ -85,69 +77,11 @@ class AlipayConversationSettingViewController : BaseViewController  {
     func initAlipayCSCRView(){
         alipayCSCRV = AlipayConversationSettingCellRoleView.init(frame: CGRect.init(x:0,y:SCREEN_HEIGHT,width:SCREEN_WIDTH,height:SCREEN_HEIGHT))
     }
-    func initData () {
-        alipayCUser = AlipayConversationUser()
-        let realm = try! Realm()
-        let alipayConversationUser = realm.objects(AlipayConversationUser.self)
-        if (alipayConversationUser.count > 0){
-            alipayCUser = realm.object(ofType: AlipayConversationUser.self, forPrimaryKey: self.userId)
-            self.sender = alipayCUser?.sender
-            self.receiver = alipayCUser?.receiver
-            self.isFriend = alipayCUser?.isFriend
-            self.isDiskImage = alipayCUser?.isDiskImage
-            self.backgroundImageUrl = alipayCUser?.backgroundImageUrl
-        } else {
-            let addRoleVC = AddRoleViewController()
-            present(UINavigationController(rootViewController: addRoleVC), animated: true, completion: {
-                addRoleVC.addRoleBlock = {
-                    [weak self] (role:Role) in
-                    self?.sender = role
-                    
-                    let date = NSDate()
-                    let timeFormatter = DateFormatter()
-                    timeFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
-                    let strNowTime = timeFormatter.string(from: date as Date) as String
-                    
-                    self?.alipayCUser?.id = UUID().uuidString
-                    self?.alipayCUser?.sender = role
-                    self?.alipayCUser?.receiver = nil
-                    self?.alipayCUser?.isFriend = true
-                    self?.alipayCUser?.isDiskImage = false
-                    self?.alipayCUser?.backgroundImageName = "default"
-                    self?.alipayCUser?.backgroundImageUrl = ""
-                    self?.alipayCUser?.creatAt = strNowTime
-//                    try! realm.write {
-//                        realm.add((self?.alipayCUser)!)
-//                    }
-                    try! realm.write {
-                        realm.create(AlipayConversationUser.self, value: self?.alipayCUser as Any, update: false)
-                    }
-                }
-            })
-        }
-        tableView?.reloadData()
-    }
-   
+
     func saveBtnAction () {
-        saveData()
         self.navigationController?.popViewController(animated: true)
     }
-    func saveData () {
-        let realm = try! Realm()
-        
-        try! realm.write {
-            [weak self] in
-            alipayCUser?.sender = self?.sender
-            alipayCUser?.receiver = self?.receiver
-            alipayCUser?.isFriend = (self?.isFriend)!
-            if !(self?.backgroundImageUrl ?? "").isEmpty{
-                alipayCUser?.isDiskImage = (self?.isDiskImage)!
-                alipayCUser?.backgroundImageName = "default"
-                alipayCUser?.backgroundImageUrl = (self?.backgroundImageUrl)!
-            }
-        }
-        
-    }
+
 }
 //talbeView 的两个代理方法的实现，其实这两个代理还能加到class声明的后面，代理方法的时候和OC里面的实现是一样的
 extension AlipayConversationSettingViewController:UITableViewDataSource,UITableViewDelegate {
@@ -163,7 +97,7 @@ extension AlipayConversationSettingViewController:UITableViewDataSource,UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 1 && indexPath.row == 1) {
             let switchCell = tableView.dequeueReusableCell(withIdentifier: "switchCell") as! AlipayConversationSettingSwitchCell
-            switchCell.setData(["isFriend":(isFriend ?? true)])
+            switchCell.setData(["isFriend":self.acUser.isFriend])
             switchCell.selectionStyle = .none
             switchCell.swichBtn.addTarget(self, action:#selector(swithClick(_:)), for:.valueChanged)
             return switchCell
@@ -171,43 +105,44 @@ extension AlipayConversationSettingViewController:UITableViewDataSource,UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlipayConversationSettingCell
         if indexPath.section == 0 {
             if indexPath.row == 0 {
-                if (self.sender == nil){
-                    cell.setData(["title":"用户1","name":(self.sender?.nickName ?? ""),"imageName":(self.sender?.imageName ?? "portrait")])
+                if (self.acUser.sender == nil){
+                    cell.setData(["title":"用户1","name":(self.acUser.sender?.nickName ?? ""),"imageName":(self.acUser.sender?.imageName ?? "")])
                 } else {
-                    if (self.sender?.isDiskImage)! {
-                        cell.setData(["title":"用户1","name":(self.sender?.nickName ?? ""),"imageName":""])
-                        if let temp = self.sender?.imageUrl,!(temp.isEmpty){
+                    if (self.acUser.sender?.isDiskImage)! {
+                        cell.setData(["title":"用户1","name":(self.acUser.sender?.nickName ?? ""),"imageName":""])
+                        if let temp = self.acUser.sender?.imageUrl,!(temp.isEmpty){
                             cell.iconImage.kf.setImage(with: URL(fileURLWithPath: temp.localPath()))
                         }
                     } else {
-                        cell.setData(["title":"用户1","name":(self.sender?.nickName ?? ""),"imageName":(self.sender?.imageName ?? "portrait")])
+                        cell.setData(["title":"用户1","name":(self.acUser.sender?.nickName ?? ""),"imageName":(self.acUser.sender?.imageName ?? "")])
                     }
                 }
                 
                 
             } else {
-                if (self.receiver == nil){
-                    cell.setData(["title":"用户2","name":(self.receiver?.nickName ?? ""),"imageName":(self.receiver?.imageName ?? "portrait")])
+                if (self.acUser.receiver == nil){
+                    cell.setData(["title":"用户2","name":(self.acUser.receiver?.nickName ?? ""),"imageName":(self.acUser.receiver?.imageName ?? "")])
                 } else {
-                    if (self.receiver?.isDiskImage)! {
-                        cell.setData(["title":"用户2","name":(self.receiver?.nickName ?? ""),"imageName":""])
-                        if let temp = self.receiver?.imageUrl,!(temp.isEmpty){
+                    if (self.acUser.receiver?.isDiskImage)! {
+                        cell.setData(["title":"用户2","name":(self.acUser.receiver?.nickName ?? ""),"imageName":""])
+                        if let temp = self.acUser.receiver?.imageUrl,!(temp.isEmpty){
                             cell.iconImage.kf.setImage(with: URL(fileURLWithPath: temp.localPath()))
                         }
                     } else {
-                        cell.setData(["title":"用户2","name":(self.receiver?.nickName ?? ""),"imageName":(self.receiver?.imageName ?? "portrait")])
+                        cell.setData(["title":"用户2","name":(self.acUser.receiver?.nickName ?? ""),"imageName":(self.acUser.receiver?.imageName ?? "")])
                     }
                 }
             }
         } else {
             if indexPath.row == 0 {
-                if (self.isDiskImage!){
+                if (self.acUser.isDiskImage){
                     cell.setData(["title":"修改聊天背景","name":"","imageName":""])
-                    if let temp = backgroundImageUrl,!(temp.isEmpty){
+                    let temp = self.acUser.backgroundImageUrl
+                    if !(temp.isEmpty){
                         cell.iconImage.kf.setImage(with: URL(fileURLWithPath: temp.localPath()))
                     }
                 } else {
-                    cell.setData(["title":"修改聊天背景","name":"","imageName":(alipayCUser?.backgroundImageName ?? "default")])
+                    cell.setData(["title":"修改聊天背景","name":"","imageName":self.acUser.backgroundImageName])
                 }
             }
           }
@@ -220,33 +155,38 @@ extension AlipayConversationSettingViewController:UITableViewDataSource,UITableV
             alipayCSCRV?.frame = CGRect.init(x:0,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT)
             alipayCSCRV?.roleTypeBlock = {
               [weak self] (roleType:String)  in
-                if roleType == "change" {
+                 if  "change" == roleType {
                     let roleVC = RoleViewController()
                     roleVC.operatorType = .Select
-                    self?.navigationController?.pushViewController(roleVC, animated: true)
                     roleVC.roleSelectBlock = {
                         [weak self] (role:Role) in
-                        if indexPath.row == 0 {
-//                            print(role)
-                            self?.sender = role
-                        } else if indexPath.row == 1 {
-                            self?.receiver = role
+                        let realm = try! Realm()
+                        try! realm.write {
+                            if indexPath.row == 0 {
+                                self?.acUser.sender = role
+                            } else if indexPath.row == 1 {
+                                self?.acUser.receiver = role
+                            }
                         }
-                        tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
+                        self?.tableView?.reloadData()
+//                        tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
                     }
+                    self?.navigationController?.pushViewController(roleVC, animated: true)
+
                 } else if roleType == "edit" {
                     let roleEditVC = RoleEditViewController()
                     if indexPath.row == 0 {
-                        roleEditVC.role = self?.sender
+                        roleEditVC.role = self?.acUser.sender
                     } else if indexPath.row == 1 {
-                        roleEditVC.role = self?.receiver
+                        roleEditVC.role = self?.acUser.receiver
+                    }
+                    roleEditVC.block = {
+                        [weak self] (nickName:String,imageName:String) in
+                        self?.tableView?.reloadData()
                     }
                     self?.navigationController?.pushViewController(roleEditVC, animated: true)
                     
-                    roleEditVC.block = {
-                        [weak self] (nickName:String,imageName:String) in
-                        self?.initData()
-                    }
+                    
                 }
                 
             }
@@ -261,22 +201,24 @@ extension AlipayConversationSettingViewController:UITableViewDataSource,UITableV
                 present(actionSheet, animated: false, completion: {
                     actionSheet.handler = {[weak self] index  in
                         self?.dismiss(animated: false, completion: {
-                            print("index = ", index)
+//                            print("index = ", index)
                             if index != 0 {
                                 self?.manager.clearSelectedList()
                                 let nav = UINavigationController(rootViewController: (self?.photoVC)!);
                                 nav.isNavigationBarHidden = true
                                 self?.present(nav, animated: true, completion: nil)
                             } else {
-                                self?.isDiskImage = false
-                                self?.saveData()
-                                self?.initData()
+                                let realm = try! Realm()
+                                try! realm.write {
+                                    self?.acUser.isDiskImage = false
+                                }
+                            self?.tableView?.reloadData()
                             }
                         })
                     }
                 })
             } else if (indexPath.section == 1 && indexPath.row == 1) {
-                 print(indexPath.row);
+//                 print(indexPath.row);
             }
         }
     }
@@ -301,13 +243,14 @@ extension AlipayConversationSettingViewController:UITableViewDataSource,UITableV
         return view;
     }
     func swithClick(_ sender : UISwitch) {
-        
-        if (sender.isOn == true) {
-            isFriend = true
-        }else{
-            isFriend = false
+        let realm = try! Realm()
+        try! realm.write {
+            if (sender.isOn == true) {
+                self.acUser.isFriend = true
+            }else{
+                self.acUser.isFriend = false
+            }
         }
-//        print(isFriend as Any)
     }
 }
 
@@ -320,13 +263,14 @@ extension AlipayConversationSettingViewController:HXPhotoViewControllerDelegate{
         let imagename = (UUID().uuidString+".png")
         let path = imagename.localPath()
         try? data?.write(to: URL(fileURLWithPath: path))
-        backgroundImageUrl = imagename
         
-        self.dismiss(animated: false) {
-            self.isDiskImage = true
-            self.saveData()
-            self.initData()
+        let realm = try! Realm()
+        try! realm.write {
+            self.acUser.backgroundImageUrl = imagename
+            self.acUser.isDiskImage = true
         }
+        self.dismiss(animated: false, completion: nil)
+        self.tableView?.reloadData()
     }
 }
 

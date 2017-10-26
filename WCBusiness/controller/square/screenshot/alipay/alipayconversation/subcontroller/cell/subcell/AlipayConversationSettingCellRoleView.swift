@@ -122,8 +122,7 @@ extension AlipayConversationSettingCellRoleView:UICollectionViewDataSource,UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("123");
-        print(indexPath.item);
+//        print(indexPath.item);
         if indexPath.row == 0 {
             roleTypeBlock!("change")
         } else {

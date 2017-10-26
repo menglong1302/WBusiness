@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import RealmSwift
+
 class AlipayConversationViewController : BaseViewController  {
     var tableView:UITableView?
     var rigthBtn:UIButton?
@@ -16,11 +17,9 @@ class AlipayConversationViewController : BaseViewController  {
     var footerViewLeftBtn:UIButton?
     var footerViewRightBtn:UIButton?
     var alipayCAV:AlipayConversationAddView?
-    var alipayCUser:AlipayConversationUser?
-    let cellID = "cellID"
-    var userId = ""
-//    var window:UIWindow?
     var tableData = ["宝宝0","宝宝1","宝宝2","宝宝3","宝宝4","宝宝5","宝宝6"]
+    lazy var acUser = AlipayConversationUser()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "支付宝对话"
@@ -28,8 +27,6 @@ class AlipayConversationViewController : BaseViewController  {
         initView()
         initFooterView()
         initAddView()
-//        initData()
-//        deleteData()
         self.view.backgroundColor = UIColor.init(hexString: "EFEFF4")
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -47,7 +44,6 @@ class AlipayConversationViewController : BaseViewController  {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rigthBtn!);
     }
     func initView() -> Void {
-//        self.view.backgroundColor = UIColor.blue;
         //设置tableView的frame
         let tableViewHeight = self.view.frame.height-64-44-1;
 //        print("View高度\(self.view.frame.height)");
@@ -56,9 +52,7 @@ class AlipayConversationViewController : BaseViewController  {
         tableView?.delegate = self;
         tableView?.dataSource = self;
         tableView?.register(AlipayConversationSettingInfoCell.self, forCellReuseIdentifier: "settingInfoCell")
-//        tableView.sectionHeaderHeight = 20;
         self.view.addSubview(tableView!)
-//        tableView?.reloadData()
     }
     func initFooterView() -> Void {
         footerView = UIView.init(frame:CGRect.zero);
@@ -99,16 +93,14 @@ class AlipayConversationViewController : BaseViewController  {
         })
     }
     func rightItemBtnAction() -> Void {
-        print("rightItemBtnAction")
-        loadData()
+//        print("rightItemBtnAction")
+//        loadData()
     }
     func initAddView(){
         alipayCAV = AlipayConversationAddView.init(frame: CGRect.init(x:0,y:SCREEN_HEIGHT,width:SCREEN_WIDTH,height:SCREEN_HEIGHT))
-//        window = (UIApplication.shared.delegate?.window)!
-//        window?.addSubview(alipayCAV!)
     }
     func footerViewLeftBtnAction() -> Void {
-        print("footerViewLeftBtnAction")
+//        print("footerViewLeftBtnAction")
         self.view.addSubview(alipayCAV!);
         alipayCAV?.frame = CGRect.init(x:0,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT)
         UIView.animate(withDuration: 0.5, animations: {
@@ -117,124 +109,25 @@ class AlipayConversationViewController : BaseViewController  {
         })
     }
     func footerViewRightBtnAction(button:UIButton) -> Void {
-        print("footerViewRightBtnAction=\(button)")
+//        print("footerViewRightBtnAction=\(button)")
     }
-    func writeData() -> Void {
-        let realm = try! Realm()
-        let sender = Role(value:["nickName":"Ray",
-                                 "imageUrl":"",
-                                 "isDiskImage":true,
-                                 "isSelf":true,
-                                 "imageName":"Image-1",
-                                 "id":UUID().uuidString,
-                                 "firstLetter":"R",])
-        let receiver = Role(value:["nickName":"Yu",
-                                   "imageUrl":"",
-                                   "isDiskImage":true,
-                                   "isSelf":false,
-                                   "imageName":"Image-2",
-                                   "id":UUID().uuidString,
-                                   "firstLetter":"Y",])
-        let date = NSDate()
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
-        let strNowTime = timeFormatter.string(from: date as Date) as String
-
-        let alipayConversationUser = AlipayConversationUser()
-        alipayConversationUser.id = UUID().uuidString
-        alipayConversationUser.sender = sender
-        alipayConversationUser.receiver = receiver
-        alipayConversationUser.backgroundImageUrl = ""
-        alipayConversationUser.isDiskImage = true
-        alipayConversationUser.backgroundImageName = ""
-        alipayConversationUser.isFriend = true
-        alipayConversationUser.creatAt = strNowTime
-        
-        let alipayConversationContent = AlipayConversationContent()
-        alipayConversationContent.id = UUID().uuidString
-        alipayConversationContent.user = alipayConversationUser
-        alipayConversationContent.type = ""
-        alipayConversationContent.index = ""
-        alipayConversationContent.content = ""
-        alipayConversationContent.creatAt = strNowTime
-        
-        try! realm.write {
-            realm.add(alipayConversationContent)
-        }
-    }
-    func loadData() -> Void {
-        let realm = try! Realm()
-        let alipayConversationUser = realm.objects(AlipayConversationUser.self)
-        print(alipayConversationUser)
-    }
-    func deleteData () {
-        let realm = try! Realm()
-        let alipayConversationUser = realm.object(ofType: AlipayConversationUser.self, forPrimaryKey: "56E68463-02BB-4A0C-A545-602E3F56E3C2")
-        /* 在事务中删除数据 */
-        try! realm.write {
-            realm.delete(alipayConversationUser!)
-        }
-    }
+    
     func initData () {
         let realm = try! Realm()
-        let alipayConversationUser = realm.objects(AlipayConversationUser.self)
-        if (alipayConversationUser.count == 0){
-//            let addRoleVC = AddRoleViewController()
-//            present(addRoleVC, animated: false, completion: {
-////                addRoleVC.addRoleBlock = {
-////                    [weak self] in
-////                    DispatchQueue.main.async{
-////                        self?.tableView?.reloadData()
-////                        self?.initData()
-////                    }
-////                }
-//                addRoleVC.addRoleBlock  = {
-//                    [weak self] (role:Role) in
-//
-//                }
-//            })
-            
-//            self.navigationController?.pushViewController(addRoleVC, animated: false)
-            print ("数据库无数据")
-//            let sender = Role(value:["nickName":"Ray",
-//                                     "imageUrl":"",
-//                                     "isDiskImage":true,
-//                                     "isSelf":true,
-//                                     "imageName":"Image-1",
-//                                     "id":UUID().uuidString,
-//                                     "firstLetter":"R",])
-//            let receiver = Role(value:["nickName":"Yu",
-//                                       "imageUrl":"",
-//                                       "isDiskImage":true,
-//                                       "isSelf":false,
-//                                       "imageName":"Image-2",
-//                                       "id":UUID().uuidString,
-//                                       "firstLetter":"Y",])
-//            let date = NSDate()
-//            let timeFormatter = DateFormatter()
-//            timeFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
-//            let strNowTime = timeFormatter.string(from: date as Date) as String
-//
-//            let alipayConversationUser = AlipayConversationUser()
-//            alipayConversationUser.id = UUID().uuidString
-//            alipayConversationUser.sender = sender
-//            alipayConversationUser.receiver = receiver
-//            alipayConversationUser.backgroundImageUrl = ""
-//            alipayConversationUser.isDiskImage = true
-//            alipayConversationUser.backgroundImageName = ""
-//            alipayConversationUser.isFriend = true
-//            alipayConversationUser.creatAt = strNowTime
-//            try! realm.write {
-//                realm.add(alipayConversationUser)
-//            }
-        } else {
-            print ("数据库有数据")
-            alipayCUser = AlipayConversationUser()
-            alipayCUser = alipayConversationUser[0]
-            print(alipayCUser as Any)
-            userId = alipayConversationUser[0].id
+        if let alipayConversationUser = realm.objects(AlipayConversationUser.self).first{
+            acUser = alipayConversationUser
+        }else{
+            acUser.id = UUID().uuidString
+            let date = NSDate()
+            let timeFormatter = DateFormatter()
+            timeFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+            let strNowTime = timeFormatter.string(from: date as Date) as String
+            self.acUser.creatAt = strNowTime
+            try! realm.write {
+                realm.create(AlipayConversationUser.self, value: acUser, update: false)
+            }
         }
-        tableView?.reloadData()
+        self.tableView?.reloadData()
     }
 }
 //talbeView 的两个代理方法的实现，其实这两个代理还能加到class声明的后面，代理方法的时候和OC里面的实现是一样的
@@ -256,29 +149,24 @@ extension AlipayConversationViewController:UITableViewDataSource,UITableViewDele
 
         if (indexPath.section == 0 && indexPath.row == 0) {
             let settingInfoCell = tableView.dequeueReusableCell(withIdentifier: "settingInfoCell",for: indexPath) as! AlipayConversationSettingInfoCell
-            if (alipayCUser?.sender?.isDiskImage != nil) {
-                if (alipayCUser?.sender?.isDiskImage)!{
+            if (acUser.sender?.isDiskImage != nil) {
+                if (acUser.sender?.isDiskImage)!{
                     settingInfoCell.setData(["name":"设置资料","imageName1":"","imageName2":""])
-                    let imageUrl1 = alipayCUser?.sender?.imageUrl
-                    let imageUrl2 = alipayCUser?.sender?.imageUrl
+                    let imageUrl1 = acUser.sender?.imageUrl
+                    let imageUrl2 = acUser.sender?.imageUrl
                     if !((imageUrl1?.isEmpty)!) {
                         settingInfoCell.iconImage1.kf.setImage(with: URL(fileURLWithPath: (imageUrl1?.localPath())!))
                     }
                     if !((imageUrl2?.isEmpty)!) {
                         settingInfoCell.iconImage2.kf.setImage(with: URL(fileURLWithPath: (imageUrl2?.localPath())!))
                     }
-//                    if let temp = backgroundImageUrl,!(temp.isEmpty){
-//                        settingInfoCell.iconImage.kf.setImage(with: URL(fileURLWithPath: temp.localPath()))
-//                    }
                 } else {
-                    settingInfoCell.setData(["name":"设置资料","imageName1":(alipayCUser?.sender?.imageName ?? "portrait"),"imageName2":(alipayCUser?.receiver?.imageName ?? "portrait")])
+                    settingInfoCell.setData(["name":"设置资料","imageName1":(acUser.sender?.imageName ?? "portrait"),"imageName2":(acUser.receiver?.imageName ?? "portrait")])
                 }
             } else {
-                settingInfoCell.setData(["name":"设置资料","imageName1":(alipayCUser?.sender?.imageName ?? "portrait"),"imageName2":(alipayCUser?.receiver?.imageName ?? "portrait")])
+                settingInfoCell.setData(["name":"设置资料","imageName1":(acUser.sender?.imageName ?? "portrait"),"imageName2":(acUser.receiver?.imageName ?? "portrait")])
             }
-            
-            
-            settingInfoCell.setData(["name":"设置资料","imageName1":(alipayCUser?.sender?.imageName ?? "portrait"),"imageName2":(alipayCUser?.receiver?.imageName ?? "portrait")])
+            settingInfoCell.setData(["name":"设置资料","imageName1":(acUser.sender?.imageName ?? "portrait"),"imageName2":(acUser.receiver?.imageName ?? "portrait")])
             return settingInfoCell
         } else {
             let identifier="identtifier";
@@ -292,14 +180,12 @@ extension AlipayConversationViewController:UITableViewDataSource,UITableViewDele
             cell?.accessoryType=UITableViewCellAccessoryType.disclosureIndicator
             return cell!
         }
-        
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row);
         if indexPath.section == 0 {
            if indexPath.row == 0 {
                 let alipayCSVC = AlipayConversationSettingViewController()
-                alipayCSVC.userId = userId
+                alipayCSVC.acUser = acUser
                 self.navigationController?.pushViewController(alipayCSVC, animated: true)
             }
         }
