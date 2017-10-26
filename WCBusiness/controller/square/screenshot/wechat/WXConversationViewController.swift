@@ -42,8 +42,7 @@ class WXConversationViewController: BaseViewController {
     }
     func initView()  {
 
-        self.navigationItem.title = "微信单聊"
-        self.view.backgroundColor = UIColor.white
+         self.view.backgroundColor = UIColor.white
         self.view.addSubview(tableView)
         self.view.addSubview(footerView)
         footerView.snp.makeConstraints { (maker) in
@@ -69,15 +68,29 @@ class WXConversationViewController: BaseViewController {
     
     func fetchData(){
         let realm = try! Realm()
-        if let conv = realm.objects(WXConversation.self).filter("conversationType = 1").first{
-            conversation = conv
-        }else{
-            conversation.id = UUID().uuidString
-            try! realm.write {
-                realm.create(WXConversation.self, value: conversation, update: false)
+        
+        if self.conversationType == .privateChat {
+            if let conv = realm.objects(WXConversation.self).filter("conversationType = 1").first{
+                conversation = conv
+            }else{
+                conversation.id = UUID().uuidString
+                try! realm.write {
+                    realm.create(WXConversation.self, value: conversation, update: false)
+                }
             }
+        }else{
+            if let conv = realm.objects(WXConversation.self).filter("conversationType = 2").first{
+                conversation = conv
+            }else{
+                conversation.id = UUID().uuidString
+                conversation.conversationType = 2
+                try! realm.write {
+                    realm.create(WXConversation.self, value: conversation, update: false)
+                }
+            }
+            
         }
-       
+
     }
     
     func makeTableView() -> UITableView {
