@@ -169,13 +169,9 @@ class AlipayConversationViewController : BaseViewController  {
     }
     func deleteData () {
         let realm = try! Realm()
-//        let role1 = realm.object(ofType: Role.self, forPrimaryKey: "2FED7A54-291D-4AE2-B5EB-A871D20BCD12")
-//        let role2 = realm.object(ofType: Role.self, forPrimaryKey: "3A189ED6-E5C4-477E-BDD4-31CDE24006EA")
         let alipayConversationUser = realm.object(ofType: AlipayConversationUser.self, forPrimaryKey: "56E68463-02BB-4A0C-A545-602E3F56E3C2")
         /* 在事务中删除数据 */
         try! realm.write {
-//            realm.delete(role1!) // 删除数据
-//            realm.delete(role2!)
             realm.delete(alipayConversationUser!)
         }
     }
@@ -183,38 +179,54 @@ class AlipayConversationViewController : BaseViewController  {
         let realm = try! Realm()
         let alipayConversationUser = realm.objects(AlipayConversationUser.self)
         if (alipayConversationUser.count == 0){
-            print ("数据库无数据")
-            let sender = Role(value:["nickName":"Ray",
-                                     "imageUrl":"",
-                                     "isDiskImage":true,
-                                     "isSelf":true,
-                                     "imageName":"Image-1",
-                                     "id":UUID().uuidString,
-                                     "firstLetter":"R",])
-            let receiver = Role(value:["nickName":"Yu",
-                                       "imageUrl":"",
-                                       "isDiskImage":true,
-                                       "isSelf":false,
-                                       "imageName":"Image-2",
-                                       "id":UUID().uuidString,
-                                       "firstLetter":"Y",])
-            let date = NSDate()
-            let timeFormatter = DateFormatter()
-            timeFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
-            let strNowTime = timeFormatter.string(from: date as Date) as String
+//            let addRoleVC = AddRoleViewController()
+//            present(addRoleVC, animated: false, completion: {
+////                addRoleVC.addRoleBlock = {
+////                    [weak self] in
+////                    DispatchQueue.main.async{
+////                        self?.tableView?.reloadData()
+////                        self?.initData()
+////                    }
+////                }
+//                addRoleVC.addRoleBlock  = {
+//                    [weak self] (role:Role) in
+//
+//                }
+//            })
             
-            let alipayConversationUser = AlipayConversationUser()
-            alipayConversationUser.id = UUID().uuidString
-            alipayConversationUser.sender = sender
-            alipayConversationUser.receiver = receiver
-            alipayConversationUser.backgroundImageUrl = ""
-            alipayConversationUser.isDiskImage = true
-            alipayConversationUser.backgroundImageName = ""
-            alipayConversationUser.isFriend = true
-            alipayConversationUser.creatAt = strNowTime
-            try! realm.write {
-                realm.add(alipayConversationUser)
-            }
+//            self.navigationController?.pushViewController(addRoleVC, animated: false)
+            print ("数据库无数据")
+//            let sender = Role(value:["nickName":"Ray",
+//                                     "imageUrl":"",
+//                                     "isDiskImage":true,
+//                                     "isSelf":true,
+//                                     "imageName":"Image-1",
+//                                     "id":UUID().uuidString,
+//                                     "firstLetter":"R",])
+//            let receiver = Role(value:["nickName":"Yu",
+//                                       "imageUrl":"",
+//                                       "isDiskImage":true,
+//                                       "isSelf":false,
+//                                       "imageName":"Image-2",
+//                                       "id":UUID().uuidString,
+//                                       "firstLetter":"Y",])
+//            let date = NSDate()
+//            let timeFormatter = DateFormatter()
+//            timeFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+//            let strNowTime = timeFormatter.string(from: date as Date) as String
+//
+//            let alipayConversationUser = AlipayConversationUser()
+//            alipayConversationUser.id = UUID().uuidString
+//            alipayConversationUser.sender = sender
+//            alipayConversationUser.receiver = receiver
+//            alipayConversationUser.backgroundImageUrl = ""
+//            alipayConversationUser.isDiskImage = true
+//            alipayConversationUser.backgroundImageName = ""
+//            alipayConversationUser.isFriend = true
+//            alipayConversationUser.creatAt = strNowTime
+//            try! realm.write {
+//                realm.add(alipayConversationUser)
+//            }
         } else {
             print ("数据库有数据")
             alipayCUser = AlipayConversationUser()
@@ -241,10 +253,32 @@ extension AlipayConversationViewController:UITableViewDataSource,UITableViewDele
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         if (indexPath.section == 0 && indexPath.row == 0) {
             let settingInfoCell = tableView.dequeueReusableCell(withIdentifier: "settingInfoCell",for: indexPath) as! AlipayConversationSettingInfoCell
-            settingInfoCell.setData(["name":"设置资料","imageName1":(alipayCUser?.sender?.imageName)!,"imageName2":(alipayCUser?.receiver?.imageName)!])
+            if (alipayCUser?.sender?.isDiskImage != nil) {
+                if (alipayCUser?.sender?.isDiskImage)!{
+                    settingInfoCell.setData(["name":"设置资料","imageName1":"","imageName2":""])
+                    let imageUrl1 = alipayCUser?.sender?.imageUrl
+                    let imageUrl2 = alipayCUser?.sender?.imageUrl
+                    if !((imageUrl1?.isEmpty)!) {
+                        settingInfoCell.iconImage1.kf.setImage(with: URL(fileURLWithPath: (imageUrl1?.localPath())!))
+                    }
+                    if !((imageUrl2?.isEmpty)!) {
+                        settingInfoCell.iconImage2.kf.setImage(with: URL(fileURLWithPath: (imageUrl2?.localPath())!))
+                    }
+//                    if let temp = backgroundImageUrl,!(temp.isEmpty){
+//                        settingInfoCell.iconImage.kf.setImage(with: URL(fileURLWithPath: temp.localPath()))
+//                    }
+                } else {
+                    settingInfoCell.setData(["name":"设置资料","imageName1":(alipayCUser?.sender?.imageName ?? "portrait"),"imageName2":(alipayCUser?.receiver?.imageName ?? "portrait")])
+                }
+            } else {
+                settingInfoCell.setData(["name":"设置资料","imageName1":(alipayCUser?.sender?.imageName ?? "portrait"),"imageName2":(alipayCUser?.receiver?.imageName ?? "portrait")])
+            }
+            
+            
+            settingInfoCell.setData(["name":"设置资料","imageName1":(alipayCUser?.sender?.imageName ?? "portrait"),"imageName2":(alipayCUser?.receiver?.imageName ?? "portrait")])
             return settingInfoCell
         } else {
             let identifier="identtifier";

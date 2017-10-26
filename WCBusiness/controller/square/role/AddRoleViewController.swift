@@ -11,10 +11,13 @@ import Kingfisher
 import PGActionSheet
 import RealmSwift
 typealias AddBlock = () -> Void
+typealias AddRoleBlock = (Role) -> ()
 class AddRoleViewController: BaseViewController {
     var block:AddBlock?
+    var addRoleBlock:AddRoleBlock?
     var tempImageUrl:String?
     var tempNickName:String?
+    var roleObj:Role?
     var footerView:UIView = {
         let view = UIView()
         return view
@@ -103,6 +106,9 @@ class AddRoleViewController: BaseViewController {
         if block != nil {
             block!()
         }
+        if addRoleBlock != nil {
+            addRoleBlock!(roleObj!)
+        }
         dismiss(animated: true, completion: nil)
     }
     func saveData() {
@@ -115,7 +121,7 @@ class AddRoleViewController: BaseViewController {
         role.isSelf = true
         role.imageUrl = tempImageUrl!
         role.firstLetter =  ""
-        
+        roleObj = role
         try! realm.write {
             realm.create(Role.self, value: role, update: false)
         }
