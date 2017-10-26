@@ -242,6 +242,8 @@ extension PrivateConversationSettingViewController:UITableViewDelegate,UITableVi
                     })
                     actionSheet.handler = {
                         [weak self] index  in
+                        self?.dismiss(animated: false, completion: nil)
+
                         if index ==  0{
                             let vc = RoleViewController()
                             vc.operatorType = .Select
