@@ -9,13 +9,15 @@
 import Foundation
 class GroupSelectPeopleTableViewCell: UITableViewCell {
     let num:CGFloat = 5.0
-    let cellHeight:CGFloat = 90.0
+    let cellHeight:CGFloat = 80.0
+    var model:PeopleModel?
     var conversation:WXConversation?
     let collectionView:UICollectionView = { ()  in
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 2
         layout.minimumInteritemSpacing = 2
         let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collection.register(GroupPersionCollectionViewCell.self, forCellWithReuseIdentifier: "GroupPersionCellId")
         return collection
     }()
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -31,14 +33,27 @@ class GroupSelectPeopleTableViewCell: UITableViewCell {
         let linNum = ceil( CGFloat((conversation?.receivers.count)!) / num)
         if linNum != 0 {
             collectionView.snp.remakeConstraints { (maker) in
-                maker.left.right.top.equalToSuperview()
-                maker.height.equalTo(linNum * cellHeight)
+                maker.top.equalTo(0)
+                maker.left.right.equalToSuperview()
+                maker.height.greaterThanOrEqualTo(linNum * cellHeight).priority(999)
+                maker.bottom.equalToSuperview()
+
+            }
+        }else{
+            collectionView.snp.remakeConstraints { (maker) in
+                maker.top.equalTo(0)
+
+                maker.left.right.equalToSuperview()
+                maker.height.greaterThanOrEqualTo(cellHeight).priority(999)
+                maker.bottom.equalToSuperview()
             }
         }
        
         self.layoutIfNeeded()
     }
     func initView() {
+        backgroundColor = UIColor.white
+        collectionView.backgroundColor = UIColor.white
         addSubview(collectionView)
         collectionView.snp.makeConstraints { (maker) in
             maker.edges.equalToSuperview()

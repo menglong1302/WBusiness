@@ -38,7 +38,12 @@ class WXConversationViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
-        fetchData()
+       
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+         fetchData()
+        self.tableView.reloadData()
     }
     func initView()  {
 
@@ -170,6 +175,7 @@ extension WXConversationViewController:UITableViewDelegate,UITableViewDataSource
         switch self.conversationType {
         case .groupChat:
             let groupVc = GroupConversationSettingViewController()
+            groupVc.conversation = self.conversation
             vc = groupVc
             break
         default:

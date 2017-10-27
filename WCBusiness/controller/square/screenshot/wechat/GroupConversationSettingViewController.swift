@@ -10,7 +10,17 @@ import Foundation
 class GroupConversationSettingViewController: BaseViewController {
     
     lazy var tableView = self.makeTableView()
-
+    var conversation:WXConversation?{
+        didSet{
+            for role in (conversation?.receivers)!{
+                peopleArray.append(PeopleModel(role: role))
+            }
+            let model =  PeopleModel()
+            model.isAdd = true
+            peopleArray.append(model)
+        }
+    }
+    var peopleArray = [PeopleModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
@@ -22,7 +32,7 @@ class GroupConversationSettingViewController: BaseViewController {
         tableView.snp.makeConstraints { (maker) in
             maker.left.right.top.bottom.equalToSuperview()
         }
-     }
+    }
     
     
     func makeTableView() -> UITableView {
@@ -43,14 +53,19 @@ class GroupConversationSettingViewController: BaseViewController {
 
 extension GroupConversationSettingViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        if indexPath.section == 0{
+            let tempCell =   tableView.dequeueReusableCell(withIdentifier: "groupSelectCellId") as! GroupSelectPeopleTableViewCell
+            tempCell.collectionView.delegate = self
+            tempCell.collectionView.dataSource = self
+            tempCell.configer(conversation!)
+            
+            return tempCell
+        }
         
         
         return UITableViewCell()
     }
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 50
-//    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
@@ -66,5 +81,19 @@ extension GroupConversationSettingViewController:UITableViewDataSource,UITableVi
 }
 
 extension GroupConversationSettingViewController:UICollectionViewDelegateFlowLayout,UICollectionViewDelegate,UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.peopleArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GroupPersionCellId", for: indexPath) as! GroupPersionCollectionViewCell
+        cell.configer( self.peopleArray[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return  CGSize(width: (SCREEN_WIDTH-CGFloat(2*6))/5.0, height: 80)
+        
+    }
     
 }
