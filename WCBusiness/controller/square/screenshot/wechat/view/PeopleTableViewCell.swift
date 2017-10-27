@@ -9,8 +9,7 @@
 import Foundation
 import SnapKit
 class PeopleTableViewCell: UITableViewCell {
-    
-    var imageNum:Int = 2{
+     var imageNum:Int = 2{
         didSet{
             initImageView()
         }

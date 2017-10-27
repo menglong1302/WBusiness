@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 enum EditContentType:Int {
-    case UnReadMessageNum = 0
+    case UnReadMessageNum = 0,GroupName,GroupNum
 }
 typealias EditContentBlock = () -> Void
 class ContentEditViewController: BaseViewController {
@@ -75,6 +75,13 @@ class ContentEditViewController: BaseViewController {
                 switch self.editContentType{
                 case .UnReadMessageNum:
                     self.conversation.unReadMessageNum =  Int((text.isPurnInt() ? text : "0"))!
+                    break
+                case .GroupName:
+                    
+                    self.conversation.groupName =  text
+                    break
+                case .GroupNum:
+                    self.conversation.groupNum =  Int((text.isPurnInt() ? text : "0"))!
                     break
                 default:
                     break

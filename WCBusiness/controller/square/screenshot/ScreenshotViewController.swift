@@ -141,10 +141,12 @@ extension ScreenshotViewController:UICollectionViewDataSource,UICollectionViewDe
             switch indexPath.item {
             case 0:
                 let conversationVC = WXConversationViewController()
+                conversationVC.conversationType = .privateChat
                 self.navigationController?.pushViewController(conversationVC, animated: true)
                 break;
             case 1:
-                let screenVC = ScreenshotViewController();
+                let screenVC = WXConversationViewController();
+                screenVC.conversationType = .groupChat
                 screenVC.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(screenVC, animated: true)
                 break;

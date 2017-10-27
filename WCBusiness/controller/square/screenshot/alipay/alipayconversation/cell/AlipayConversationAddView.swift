@@ -35,7 +35,8 @@ class AlipayConversationAddView: UIView {
         initCancelBtn()
     }
     func initContainerView() -> Void {
-        containerView = UIView.init(frame:CGRect.init(x:0,y:SCREEN_HEIGHT,width:SCREEN_WIDTH,height:SCREEN_HEIGHT-64));
+        containerView = UIView.init(frame:CGRect.init(x:0,y:SCREEN_HEIGHT,width:SCREEN_WIDTH,height:SCREEN_HEIGHT));
+        
         self.addSubview(containerView!);
     }
     func initTapGestureView() -> Void {
@@ -67,11 +68,11 @@ class AlipayConversationAddView: UIView {
         collectionView?.snp.makeConstraints({ (maker) in
             maker.left.right.equalToSuperview()
             maker.height.equalTo(220)
-            maker.bottom.equalToSuperview().offset(-44)
+            
         })
     }
     func initCancelBtn() -> Void {
-        cancelBtn = UIButton.init(frame:CGRect.init(x:0,y:SCREEN_HEIGHT-64-47,width:SCREEN_WIDTH,height:47));
+        cancelBtn = UIButton.init(frame:CGRect.zero);
         containerView?.addSubview(cancelBtn!);
         cancelBtn?.setTitle("取消", for: .normal);
         cancelBtn?.backgroundColor = UIColor.white;
@@ -81,6 +82,14 @@ class AlipayConversationAddView: UIView {
         let lineView = UIView.init(frame: CGRect.zero);
         lineView.backgroundColor = UIColor.gray;
         cancelBtn?.addSubview(lineView);
+        
+        
+        cancelBtn?.snp.makeConstraints({ (maker) in
+            maker.left.right.bottom.equalToSuperview()
+            maker.top.equalTo((collectionView?.snp.bottom)!)
+            maker.height.equalTo(47).priority(999)
+        })
+        
         lineView.snp.makeConstraints({(maker) in
             maker.left.right.top.equalToSuperview()
             maker.height.equalTo(3)
@@ -88,12 +97,9 @@ class AlipayConversationAddView: UIView {
     }
 
     func cancelBtnAction() -> Void {
-//        self.tag = 101
-//        if let window = UIApplication.shared.keyWindow{
-//            window.viewWithTag(self.tag)?.removeFromSuperview()
-//        }
+ 
         UIView.animate(withDuration: 0.5, animations: {
-            self.containerView?.frame = CGRect.init(x:0,y:SCREEN_HEIGHT,width:SCREEN_WIDTH,height:SCREEN_HEIGHT-64)
+            self.containerView?.frame = CGRect.init(x:0,y:SCREEN_HEIGHT,width:SCREEN_WIDTH,height:SCREEN_HEIGHT)
             self.backgroundColor = UIColor(red: 0 / 255.0, green: 0 / 255.0, blue: 0 / 255.0, alpha: 0)
         }) { (complete) in
             if (complete) {

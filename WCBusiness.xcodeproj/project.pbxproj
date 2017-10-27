@@ -77,6 +77,9 @@
 		48D6F0C61FA1780D00F77521 /* WXConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0C51FA1780D00F77521 /* WXConversation.swift */; };
 		48D6F0C81FA188C800F77521 /* ChatSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0C71FA188C800F77521 /* ChatSettingTableViewCell.swift */; };
 		48D6F0CA1FA1C69600F77521 /* ContentEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0C91FA1C69600F77521 /* ContentEditViewController.swift */; };
+		48D6F0CC1FA1DE2B00F77521 /* GroupSelectPeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0CB1FA1DE2B00F77521 /* GroupSelectPeopleTableViewCell.swift */; };
+		48D6F0CE1FA2D8DC00F77521 /* GroupPersionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0CD1FA2D8DC00F77521 /* GroupPersionCollectionViewCell.swift */; };
+		48D6F0D01FA2DBC100F77521 /* PeopleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0CF1FA2DBC100F77521 /* PeopleModel.swift */; };
 		48F4D1A41F94AE8200410CC7 /* RoleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F4D1A31F94AE8200410CC7 /* RoleModel.swift */; };
 		48FD47521F8F16F4006685A8 /* SquareCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FD47511F8F16F4006685A8 /* SquareCollectionViewCell.swift */; };
 		48FD47551F8F2D6B006685A8 /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FD47541F8F2D6B006685A8 /* CommonUtil.swift */; };
@@ -251,6 +254,9 @@
 		48D6F0C51FA1780D00F77521 /* WXConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXConversation.swift; sourceTree = "<group>"; };
 		48D6F0C71FA188C800F77521 /* ChatSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSettingTableViewCell.swift; sourceTree = "<group>"; };
 		48D6F0C91FA1C69600F77521 /* ContentEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentEditViewController.swift; sourceTree = "<group>"; };
+		48D6F0CB1FA1DE2B00F77521 /* GroupSelectPeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSelectPeopleTableViewCell.swift; sourceTree = "<group>"; };
+		48D6F0CD1FA2D8DC00F77521 /* GroupPersionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPersionCollectionViewCell.swift; sourceTree = "<group>"; };
+		48D6F0CF1FA2DBC100F77521 /* PeopleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleModel.swift; sourceTree = "<group>"; };
 		48F4D1A31F94AE8200410CC7 /* RoleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleModel.swift; sourceTree = "<group>"; };
 		48FD47511F8F16F4006685A8 /* SquareCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareCollectionViewCell.swift; sourceTree = "<group>"; };
 		48FD47541F8F2D6B006685A8 /* CommonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtil.swift; sourceTree = "<group>"; };
@@ -519,6 +525,8 @@
 				48D6F0BC1FA0824500F77521 /* PeopleTableViewCell.swift */,
 				48D6F0C21FA0943300F77521 /* ChangeRoleTableViewCell.swift */,
 				48D6F0C71FA188C800F77521 /* ChatSettingTableViewCell.swift */,
+				48D6F0CB1FA1DE2B00F77521 /* GroupSelectPeopleTableViewCell.swift */,
+				48D6F0CD1FA2D8DC00F77521 /* GroupPersionCollectionViewCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -527,6 +535,7 @@
 			isa = PBXGroup;
 			children = (
 				48D6F0C51FA1780D00F77521 /* WXConversation.swift */,
+				48D6F0CF1FA2DBC100F77521 /* PeopleModel.swift */,
 			);
 			path = entity;
 			sourceTree = "<group>";
@@ -928,10 +937,12 @@
 				48AE56C51F9F3AE20055551D /* HXPhotoResultModel.m in Sources */,
 				71876EEC1FA09D7F00BCD139 /* AlipayConversationSettingCell.swift in Sources */,
 				DB6082DF1F98F12E0095EF72 /* RoleTableViewCell.swift in Sources */,
+				48D6F0D01FA2DBC100F77521 /* PeopleModel.swift in Sources */,
 				71876EE61FA09D7F00BCD139 /* AlipayConversationAddView.swift in Sources */,
 				48AE56AF1F9F3AE20055551D /* HXAlbumTitleButton.m in Sources */,
 				48AE56C61F9F3AE20055551D /* HXPhotoSubViewCell.m in Sources */,
 				48AE56C71F9F3AE20055551D /* HXPhotoTools.m in Sources */,
+				48D6F0CC1FA1DE2B00F77521 /* GroupSelectPeopleTableViewCell.swift in Sources */,
 				71876EE71FA09D7F00BCD139 /* AlipayConversationAddViewCell.swift in Sources */,
 				48AE56BD1F9F3AE20055551D /* HXPhoto3DTouchViewController.m in Sources */,
 				48D6F0BD1FA0824500F77521 /* PeopleTableViewCell.swift in Sources */,
@@ -982,6 +993,7 @@
 				48AE56CD1F9F3AE20055551D /* HXTransition.m in Sources */,
 				48AE56B71F9F3AE20055551D /* HXDatePhotoCollectionViewLayoutAttributes.m in Sources */,
 				48AE56B21F9F3AE20055551D /* HXCircleProgressView.m in Sources */,
+				48D6F0CE1FA2D8DC00F77521 /* GroupPersionCollectionViewCell.swift in Sources */,
 				71876EE91FA09D7F00BCD139 /* AlipayConversationDataModel.swift in Sources */,
 				48FD475B1F8F4C64006685A8 /* ScreenshotViewController.swift in Sources */,
 				48AE56B01F9F3AE20055551D /* HXCameraPreviewViewController.m in Sources */,
