@@ -157,7 +157,7 @@ class WXConversationViewController: BaseViewController {
             self.selectView.containerView?.frame = CGRect.init(x:0,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT)
             self.selectView.backgroundColor = UIColor.rgbq(r: 0, g: 0, b: 0, a: 0.3)
         }, completion: nil)
-            
+        
     }
     
 }
