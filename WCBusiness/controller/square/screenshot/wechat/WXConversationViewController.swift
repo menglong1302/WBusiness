@@ -33,6 +33,12 @@ class WXConversationViewController: BaseViewController {
             }
         }
     }
+    let selectView:AlipayConversationAddView = {
+        () in
+        let view = AlipayConversationAddView()
+        return  view
+    }()
+    
     lazy var conversation = WXConversation()
     
     override func viewDidLoad() {
@@ -50,7 +56,7 @@ class WXConversationViewController: BaseViewController {
         self.view.backgroundColor = UIColor.white
         self.view.addSubview(tableView)
         self.view.addSubview(footerView)
-        footerView.snp.makeConstraints { (maker) in
+         footerView.snp.makeConstraints { (maker) in
             maker.left.right.bottom.equalToSuperview()
             maker.height.equalTo(50)
         }
@@ -69,6 +75,7 @@ class WXConversationViewController: BaseViewController {
             maker.right.top.bottom.equalToSuperview()
             maker.width.equalTo(SCREEN_WIDTH/2.0)
         }
+       
     }
     
     func fetchData(){
@@ -125,6 +132,8 @@ class WXConversationViewController: BaseViewController {
         btn.setTitleColor(UIColor.flatBlack, for: .normal)
         btn.titleLabel?.textAlignment = .center
         btn.backgroundColor = UIColor.white
+        btn.addTarget(self, action: #selector(addConversationBtnClick), for: .touchUpInside)
+        
         return btn
     }
     func makeGeneratePreviewBtn() -> UIButton{
@@ -136,7 +145,20 @@ class WXConversationViewController: BaseViewController {
         btn.backgroundColor = UIColor.rgbq(r: 37, g: 202, b: 117, a: 1)
         return btn
     }
-    
+    func addConversationBtnClick()  {
+        
+        UIApplication.shared.keyWindow?.addSubview(selectView)
+
+        selectView.snp.makeConstraints { (maker) in
+            maker.edges.equalToSuperview()
+        }
+        self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.5, delay: 0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+            self.selectView.containerView?.frame = CGRect.init(x:0,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT)
+            self.selectView.backgroundColor = UIColor.rgbq(r: 0, g: 0, b: 0, a: 0.3)
+        }, completion: nil)
+            
+    }
     
 }
 
@@ -154,7 +176,7 @@ extension WXConversationViewController:UITableViewDelegate,UITableViewDataSource
             if conversation.receivers.count>0{
                 count = conversation.receivers.count+1
             }else if self.conversation.sender != nil{
-                    count = 1
+                count = 1
             }
             cell.imageNum = count<=2 ? 2:count
             cell.confige(conversation)
