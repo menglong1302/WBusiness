@@ -23,7 +23,7 @@ class GroupPersionCollectionViewCell: UICollectionViewCell {
     func configer(_ model:PeopleModel)  {
         self.model = model
         if model.isAdd{
-            nameLabel.text="123"
+            nameLabel.text=""
             portraitIcon.image = UIImage(named:"default")
         }else{
             if (self.model?.role?.isDiskImage)!{

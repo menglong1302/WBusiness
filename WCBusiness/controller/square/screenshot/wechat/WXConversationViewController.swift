@@ -38,15 +38,15 @@ class WXConversationViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
-       
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-         fetchData()
+        fetchData()
         self.tableView.reloadData()
     }
     func initView()  {
-
+        
         self.view.backgroundColor = UIColor.white
         self.view.addSubview(tableView)
         self.view.addSubview(footerView)
@@ -95,7 +95,7 @@ class WXConversationViewController: BaseViewController {
             }
             
         }
-
+        
     }
     
     func makeTableView() -> UITableView {
@@ -146,9 +146,15 @@ extension WXConversationViewController:UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section==0 {
-          let cell = tableView.dequeueReusableCell(withIdentifier: "peopleCellId") as! PeopleTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "peopleCellId") as! PeopleTableViewCell
             cell.accessoryType = .disclosureIndicator
-            cell.imageNum = 2
+            var count:Int = 0
+            if conversation.receivers.count>0{
+                count = conversation.receivers.count+1
+            }else if self.conversation.sender != nil{
+                    count = 1
+            }
+            cell.imageNum = count<=2 ? 2:count
             cell.confige(conversation)
             return  cell
         }

@@ -14,6 +14,10 @@ class GroupConversationSettingViewController: BaseViewController {
     lazy var tableView = self.makeTableView()
     var conversation:WXConversation?{
         didSet{
+            if let sender = conversation?.sender{
+                peopleArray.append(PeopleModel(role:sender))
+            }
+            
             for role in (conversation?.receivers)!{
                 peopleArray.append(PeopleModel(role: role))
             }
@@ -103,16 +107,24 @@ extension GroupConversationSettingViewController:UICollectionViewDelegateFlowLay
             let roleVC = RoleViewController()
             roleVC.operatorType = .MutilSelect
             roleVC.mutilRole = self.conversation?.receivers
+            roleVC.tempRole = self.conversation?.sender
             roleVC.roleSelectBlock = {
                 (role) in
-                self.peopleArray.insert(PeopleModel(role: role), at: self.peopleArray.count-1)
-                let realm = try! Realm()
-                try! realm.write{
-                    self.conversation?.receivers.append(role)
-
+                if self.peopleArray.count == 1{
+                    let realm = try! Realm()
+                    try! realm.write{
+                        self.conversation?.sender = role
+                    }
+                }else{
+                    let realm = try! Realm()
+                    try! realm.write{
+                        self.conversation?.receivers.append(role)
+                    }
                 }
-                self.tableView.reloadData()
+                self.peopleArray.insert(PeopleModel(role: role), at: self.peopleArray.count-1)
+                
                 collectionView.reloadData()
+                self.tableView.reloadData()
             }
             self.navigationController?.pushViewController(roleVC, animated: true)
         }else{
@@ -122,22 +134,32 @@ extension GroupConversationSettingViewController:UICollectionViewDelegateFlowLay
             actionSheet.handler = { (index) in
                 
                 actionSheet.dismiss(animated: false, completion: nil)
-
+                
                 switch index {
                 case 0:
                     let roleVC = RoleViewController()
                     roleVC.operatorType = .ChangeSelect
                     roleVC.changeIndex = indexPath.row
                     roleVC.mutilRole = self.conversation?.receivers
+                    roleVC.tempRole = self.conversation?.sender
                     roleVC.roleSelectBlock = {
                         (role) in
+                        if indexPath.row == 0{
+                            let realm = try! Realm()
+                            try! realm.write{
+                                self.conversation?.sender = role
+                            }
+                        }else{
+                            let realm = try! Realm()
+                            try! realm.write{
+                                self.conversation?.receivers.insert(role, at: (indexPath.row))
+                                self.conversation?.receivers.remove(at: indexPath.row-1)
+                            }
+                        }
+                        
                         self.peopleArray.insert(PeopleModel(role: role), at: (indexPath.row+1))
                         self.peopleArray.remove(at: indexPath.row)
-                        let realm = try! Realm()
-                        try! realm.write{
-                            self.conversation?.receivers.insert(role, at: (indexPath.row+1))
-                            self.conversation?.receivers.remove(at: indexPath.row)
-                        }
+                        
                         self.tableView.reloadData()
                         collectionView.reloadData()
                     }
@@ -151,27 +173,40 @@ extension GroupConversationSettingViewController:UICollectionViewDelegateFlowLay
                         model.role = roleVC.role
                         collectionView.reloadData()
                         self.tableView.reloadData()
-                      }
+                    }
                     self.navigationController?.pushViewController(roleVC, animated: true)
-
+                    
                     break
                 default:
                     self.peopleArray.remove(at: indexPath.row)
                     let realm = try! Realm()
                     try! realm.write{
-                        self.conversation?.receivers.remove(at: indexPath.row)
+                        if indexPath.row == 0{
+                            if self.peopleArray.count>1{
+                                self.conversation?.sender = self.conversation?.receivers.first
+                                self.conversation?.receivers.remove(at: 0)
+                            }else{
+                                self.conversation?.sender = nil
+                                self.conversation?.receivers.removeAll()
+                            }
+                            
+                        }else{
+                             self.conversation?.receivers.remove(at: indexPath.row-1)
+                        }
                     }
-                     collectionView.deleteItems(at: [indexPath])
+                    
+                    
+                    collectionView.deleteItems(at: [indexPath])
                     let time: TimeInterval = 0.5
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time, execute: {
                         self.tableView.reloadData()
                     })
-                       break
+                    break
                 }
                 
             }
         }
-       
+        
     }
     
     

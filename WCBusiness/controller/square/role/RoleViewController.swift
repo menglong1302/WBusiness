@@ -163,32 +163,59 @@ extension RoleViewController:UITableViewDataSource,UITableViewDelegate{
                         self.view .showImageHUDText("不能选择已经选择过的角色")
                         return
                     }
+                }    
+            }
+            if let r = self.tempRole{
+                if r.id == role.id{
+                    self.view .showImageHUDText("不能选择已经选择过的角色")
+                    return
                 }
-                
             }
             roleSelectBlock!(role)
             self.navigationController?.popViewController(animated: true)
-
+            
             break
         case .ChangeSelect:
             let key =  keyArray[indexPath.section].keys.first!
             let role =  dataArray[key]![indexPath.row]
             
-            
-            if let roles =  self.mutilRole{
-               let r1 =  roles[self.changeIndex!]
-                if r1.id == role.id{
+            if self.changeIndex == 0{
+                if role.id == (self.tempRole?.id)!{
                     self.navigationController?.popViewController(animated: true)
                     return
-                }
-                for r in roles{
-                    if r.id == role.id{
-                        self.view .showImageHUDText("不能选择已经选择过的角色")
-                        return
+                }else{
+                    if let roles =  self.mutilRole{
+                        for r in roles{
+                            if r.id == role.id{
+                                self.view .showImageHUDText("不能选择已经选择过的角色")
+                                return
+                            }
+                        }
+                        roleSelectBlock!(role)
+                        
                     }
                 }
-                roleSelectBlock!(role) 
+            }else{
+                if role.id == (self.tempRole?.id)!{
+                    self.view .showImageHUDText("不能选择已经选择过的角色")
+                    return
+                }
+                if let roles =  self.mutilRole{
+                    let r1 =  roles[self.changeIndex!-1]
+                    if r1.id == role.id{
+                        self.navigationController?.popViewController(animated: true)
+                        return
+                    }
+                    for r in roles{
+                        if r.id == role.id{
+                            self.view .showImageHUDText("不能选择已经选择过的角色")
+                            return
+                        }
+                    }
+                    roleSelectBlock!(role)
+                }
             }
+            
             self.navigationController?.popViewController(animated: true)
             break
         }

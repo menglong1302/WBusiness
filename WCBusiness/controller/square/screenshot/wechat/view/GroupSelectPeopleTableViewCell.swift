@@ -30,17 +30,23 @@ class GroupSelectPeopleTableViewCell: UITableViewCell {
     }
     func configer(_ conv:WXConversation) {
         conversation = conv
-        let linNum = ceil( CGFloat((conversation?.receivers.count)!+1) / num)
+        var linNum:CGFloat
+        if conversation?.sender != nil{
+            linNum = ceil( CGFloat((conversation?.receivers.count)!+1+1) / num)
+            
+        }else{
+            linNum =  ceil( CGFloat((conversation?.receivers.count)!+1+1) / num)
+        }
         if linNum != 0 {
             collectionView.snp.remakeConstraints { (maker) in
                 maker.top.equalTo(0)
                 maker.left.right.equalToSuperview()
                 maker.height.greaterThanOrEqualTo(linNum * cellHeight).priority(999)
                 maker.bottom.equalToSuperview()
-
+                
             }
         } 
-       
+        
         self.layoutIfNeeded()
     }
     func initView() {
