@@ -116,7 +116,7 @@ extension PrivateConversationSettingViewController:UITableViewDelegate,UITableVi
         }else if indexPath.section == 1{
             let changeCell = tableView.dequeueReusableCell(withIdentifier: "roleCellId") as! ChangeRoleTableViewCell
             changeCell.accessoryType = .disclosureIndicator
-            changeCell.hintLabel.text = "用户1"
+            changeCell.hintLabel.text = "修改聊天背景"
             changeCell.nickNameLabel.isHidden = true
             if !self.conversation.backgroundUrl.isEmpty{
                 changeCell.portraitIcon.kf.setImage(with:URL(fileURLWithPath: self.conversation.backgroundUrl.localPath()))

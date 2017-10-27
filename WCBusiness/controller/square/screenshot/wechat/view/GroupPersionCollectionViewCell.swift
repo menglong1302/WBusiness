@@ -44,12 +44,12 @@ class GroupPersionCollectionViewCell: UICollectionViewCell {
         }
         
         portraitIcon.snp.makeConstraints { (maker) in
-            maker.height.width.equalTo(40)
+            maker.height.width.equalTo(50)
             maker.centerX.equalToSuperview()
-            maker.top.equalTo(10)
+            maker.top.equalTo(5)
         }
         nameLabel.snp.makeConstraints { (maker) in
-            maker.height.equalTo(20)
+            maker.height.equalTo(15)
             maker.left.equalToSuperview().offset(2)
             maker.right.equalToSuperview().offset(-2)
             maker.top.equalTo(portraitIcon.snp.bottom).offset(5)

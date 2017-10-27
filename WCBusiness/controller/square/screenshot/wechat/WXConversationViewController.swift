@@ -82,6 +82,7 @@ class WXConversationViewController: BaseViewController {
                 try! realm.write {
                     realm.create(WXConversation.self, value: conversation, update: false)
                 }
+                fetchData()
             }
         }else{
             if let conv = realm.objects(WXConversation.self).filter("conversationType = 2").first{
@@ -92,6 +93,7 @@ class WXConversationViewController: BaseViewController {
                 try! realm.write {
                     realm.create(WXConversation.self, value: conversation, update: false)
                 }
+                fetchData()
             }
             
         }

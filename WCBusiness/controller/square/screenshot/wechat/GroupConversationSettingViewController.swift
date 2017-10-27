@@ -12,6 +12,25 @@ import RealmSwift
 class GroupConversationSettingViewController: BaseViewController {
     
     lazy var tableView = self.makeTableView()
+    lazy var manager:HXPhotoManager = {
+        () in
+        let manager = HXPhotoManager(type: HXPhotoManagerSelectedTypePhoto)
+        manager?.cameraType = HXPhotoManagerCameraTypeFullScreen
+        manager?.outerCamera = true
+        manager?.openCamera = true
+        manager?.saveSystemAblum = true
+        manager?.singleSelected = true
+        manager?.singleSelecteClip = false
+        
+        return manager!
+    }()
+    lazy var photoVC = {
+        () -> HXPhotoViewController in
+        let vc = HXPhotoViewController()
+        vc.manager = self.manager;
+        vc.delegate = self;
+        return vc
+    }()
     var conversation:WXConversation?{
         didSet{
             if let sender = conversation?.sender{
@@ -67,7 +86,77 @@ extension GroupConversationSettingViewController:UITableViewDataSource,UITableVi
             
             return tempCell
         }
-        
+        else if indexPath.section == 1 {
+            let changeCell = tableView.dequeueReusableCell(withIdentifier: "roleCellId") as! ChangeRoleTableViewCell
+            changeCell.accessoryType = .disclosureIndicator
+            changeCell.hintLabel.text = "修改聊天背景"
+            changeCell.nickNameLabel.isHidden = true
+            if !(self.conversation?.backgroundUrl.isEmpty)!{
+                changeCell.portraitIcon.kf.setImage(with:URL(fileURLWithPath: (self.conversation?.backgroundUrl.localPath())!))
+                
+            }else{
+                changeCell.portraitIcon.image = UIImage(named: "default")
+            }
+            return changeCell
+        }else{
+            let settingCell = tableView.dequeueReusableCell(withIdentifier: "chatSettingCellId") as! ChatSettingTableViewCell
+            switch indexPath.row{
+            case 0:
+                settingCell.hintLabel.text = "群聊名称"
+                settingCell.numLabel.text = self.conversation?.groupName
+                settingCell.numLabel.isHidden = false
+                settingCell.swichBar.isHidden = true
+                settingCell.accessoryType = .disclosureIndicator
+                break
+                
+            case 1:
+                settingCell.hintLabel.text = "群聊人数"
+                settingCell.numLabel.text = String.init(describing: (self.conversation?.groupNum)!)
+                settingCell.numLabel.isHidden = false
+                settingCell.swichBar.isHidden = true
+                settingCell.accessoryType = .disclosureIndicator
+                break
+            case 2:
+                
+                settingCell.hintLabel.text = "未读消息树"
+                settingCell.numLabel.text =  String.init(describing: (self.conversation?.unReadMessageNum)!)
+                settingCell.numLabel.isHidden = false
+                settingCell.swichBar.isHidden = true
+                settingCell.accessoryType = .disclosureIndicator
+                break
+            case 3:
+                settingCell.hintLabel.text = "消息免打扰"
+                settingCell.numLabel.text = ""
+                settingCell.numLabel.isHidden = true
+                settingCell.swichBar.isHidden = false
+                settingCell.swichBar.tag = 100
+                settingCell.swichBar.addTarget(self, action: #selector(switchAction(_:)), for:.valueChanged)
+                settingCell.accessoryType = .none
+                if (self.conversation?.isUseTelephoneReceiver)!{
+                    settingCell.swichBar.isOn = true
+                }else{
+                    settingCell.swichBar.isOn = false
+                }
+                break
+            case 4:
+                settingCell.hintLabel.text = "显示群成员昵称"
+                settingCell.numLabel.text = ""
+                settingCell.numLabel.isHidden = true
+                settingCell.swichBar.isHidden = false
+                settingCell.swichBar.tag = 101
+                settingCell.swichBar.addTarget(self, action: #selector(switchAction(_:)), for:.valueChanged)
+                settingCell.accessoryType = .none
+                if (self.conversation?.isShowGroupMemberNickName)!{
+                    settingCell.swichBar.isOn = true
+                }else{
+                    settingCell.swichBar.isOn = false
+                }
+                break
+            default :
+                break
+            }
+            return settingCell
+        }
         
         return UITableViewCell()
     }
@@ -76,13 +165,93 @@ extension GroupConversationSettingViewController:UITableViewDataSource,UITableVi
         return 3
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if  section == 0||section == 1 {
+            return 1
+        }
+        return 5
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return UIView()
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == 1 {
+            let actionSheet = PGActionSheet(cancelButton: true, buttonList: ["默认","自定义"])
+            actionSheet.actionSheetTranslucent = false
+            present(actionSheet, animated: false, completion: {
+                
+            })
+            actionSheet.handler = {[weak self] index  in
+                if index != 0 {
+                    self?.dismiss(animated: false, completion: {
+                        
+                        self?.manager.clearSelectedList()
+                        let nav = UINavigationController(rootViewController: (self?.photoVC)!);
+                        nav.isNavigationBarHidden = true
+                        self?.present(nav, animated: true, completion: nil)
+                    })
+                } else {
+                    self?.dismiss(animated: false, completion: {
+                        self?.conversation?.backgroundUrl = ""
+                    })
+                }
+                
+            }
+        }else if(indexPath.section == 2&&indexPath.row<3){
+            let vc = ContentEditViewController()
+            vc.conversation = self.conversation
+            switch indexPath.row{
+            case 0:
+                vc.editContentType = .GroupName
+
+                vc.navTitle = "群聊名称"
+                vc.textField.text = String((self.conversation?.groupName)!)
+                break
+            case 1:
+                vc.editContentType = .GroupNum
+
+                vc.navTitle = "群聊人数"
+                vc.textField.text = String((self.conversation?.groupNum)!)
+                break
+            case 2:
+                vc.editContentType = .UnReadMessageNum
+
+                vc.navTitle = "未读消息树"
+                vc.textField.text = String((self.conversation?.unReadMessageNum)!)
+                break
+            default :
+                break
+            }
+           
+            vc.block = {
+                self.tableView.reloadData()
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+    }
+    @objc func switchAction(_ swt:UISwitch) {
+        let realm = try! Realm()
+        
+        try! realm.write {
+            if swt.tag == 100{
+                if swt.isOn{
+                    self.conversation?.isUseTelephoneReceiver = true
+                }else{
+                    self.conversation?.isUseTelephoneReceiver = false
+                }
+            }else{
+                if swt.isOn{
+                    self.conversation?.isShowGroupMemberNickName = true
+                }else{
+                    self.conversation?.isShowGroupMemberNickName = false
+                }
+            }
+        }
+        
     }
 }
 
@@ -191,7 +360,7 @@ extension GroupConversationSettingViewController:UICollectionViewDelegateFlowLay
                             }
                             
                         }else{
-                             self.conversation?.receivers.remove(at: indexPath.row-1)
+                            self.conversation?.receivers.remove(at: indexPath.row-1)
                         }
                     }
                     
@@ -210,4 +379,23 @@ extension GroupConversationSettingViewController:UICollectionViewDelegateFlowLay
     }
     
     
+}
+extension GroupConversationSettingViewController:HXPhotoViewControllerDelegate{
+    func photoViewControllerDidCancel() {
+    }
+    func photoViewControllerDidNext(_ allList: [HXPhotoModel]!, photos: [HXPhotoModel]!, videos: [HXPhotoModel]!, original: Bool) {
+        let model =  photos[0]
+        let data = model.thumbPhoto.kf.jpegRepresentation(compressionQuality: 0.7)
+        let imagename = (UUID().uuidString+".png")
+        let path = imagename.localPath()
+        try? data?.write(to: URL(fileURLWithPath: path))
+        let realm = try! Realm()
+        try! realm.write {
+            self.conversation?.backgroundUrl = imagename
+            
+        }
+        self.dismiss(animated: true) {
+            self.tableView.reloadData()
+        }
+    }
 }
