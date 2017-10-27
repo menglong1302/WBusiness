@@ -50,7 +50,8 @@ class GroupPersionCollectionViewCell: UICollectionViewCell {
         }
         nameLabel.snp.makeConstraints { (maker) in
             maker.height.equalTo(20)
-            maker.left.right.equalToSuperview()
+            maker.left.equalToSuperview().offset(2)
+            maker.right.equalToSuperview().offset(-2)
             maker.top.equalTo(portraitIcon.snp.bottom).offset(5)
         }
         
@@ -64,9 +65,10 @@ class GroupPersionCollectionViewCell: UICollectionViewCell {
     
     func  makeNameLabel() -> UILabel {
         let label = UILabel(frame: CGRect.zero)
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 10)
         label.textColor = UIColor.flatGray
         label.textAlignment = .center
+        label.lineBreakMode = .byTruncatingTail
         return label
     }
 }

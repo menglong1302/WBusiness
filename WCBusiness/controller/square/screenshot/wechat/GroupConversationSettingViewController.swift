@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import PGActionSheet
+import RealmSwift
 class GroupConversationSettingViewController: BaseViewController {
     
     lazy var tableView = self.makeTableView()
@@ -95,5 +97,82 @@ extension GroupConversationSettingViewController:UICollectionViewDelegateFlowLay
         return  CGSize(width: (SCREEN_WIDTH-CGFloat(2*6))/5.0, height: 80)
         
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let model = self.peopleArray[indexPath.row]
+        if model.isAdd {
+            let roleVC = RoleViewController()
+            roleVC.operatorType = .MutilSelect
+            roleVC.mutilRole = self.conversation?.receivers
+            roleVC.roleSelectBlock = {
+                (role) in
+                self.peopleArray.insert(PeopleModel(role: role), at: self.peopleArray.count-1)
+                let realm = try! Realm()
+                try! realm.write{
+                    self.conversation?.receivers.append(role)
+
+                }
+                self.tableView.reloadData()
+                collectionView.reloadData()
+            }
+            self.navigationController?.pushViewController(roleVC, animated: true)
+        }else{
+            let actionSheet = PGActionSheet(cancelButton: true, buttonList: ["更换角色","编辑角色","移除角色"])
+            actionSheet.actionSheetTranslucent = false
+            present(actionSheet, animated: false, completion: nil)
+            actionSheet.handler = { (index) in
+                
+                actionSheet.dismiss(animated: false, completion: nil)
+
+                switch index {
+                case 0:
+                    let roleVC = RoleViewController()
+                    roleVC.operatorType = .ChangeSelect
+                    roleVC.changeIndex = indexPath.row
+                    roleVC.mutilRole = self.conversation?.receivers
+                    roleVC.roleSelectBlock = {
+                        (role) in
+                        self.peopleArray.insert(PeopleModel(role: role), at: (indexPath.row+1))
+                        self.peopleArray.remove(at: indexPath.row)
+                        let realm = try! Realm()
+                        try! realm.write{
+                            self.conversation?.receivers.insert(role, at: (indexPath.row+1))
+                            self.conversation?.receivers.remove(at: indexPath.row)
+                        }
+                        self.tableView.reloadData()
+                        collectionView.reloadData()
+                    }
+                    self.navigationController?.pushViewController(roleVC, animated: true)
+                    break
+                case 1:
+                    let roleVC =   RoleEditViewController()
+                    roleVC.role = model.role
+                    roleVC.block = {
+                        (str1,str2) in
+                        model.role = roleVC.role
+                        collectionView.reloadData()
+                        self.tableView.reloadData()
+                      }
+                    self.navigationController?.pushViewController(roleVC, animated: true)
+
+                    break
+                default:
+                    self.peopleArray.remove(at: indexPath.row)
+                    let realm = try! Realm()
+                    try! realm.write{
+                        self.conversation?.receivers.remove(at: indexPath.row)
+                    }
+                     collectionView.deleteItems(at: [indexPath])
+                    let time: TimeInterval = 0.5
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time, execute: {
+                        self.tableView.reloadData()
+                    })
+                       break
+                }
+                
+            }
+        }
+       
+    }
+    
     
 }

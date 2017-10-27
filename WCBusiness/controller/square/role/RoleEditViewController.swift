@@ -92,13 +92,13 @@ class RoleEditViewController: BaseViewController {
             
         }
     }
-    func  saveBtnClick(_ btn:UIButton) {
+    func  saveBtnClick(_ btn:UIButton) {        
+        saveData()
         if block != nil {
             let tempNick  = self.tempNickName ?? role.nickName
             let tempImage = self.tempImageUrl ?? ""
             block!(tempNick,tempImage)
         }
-        saveData()
         self.navigationController?.popViewController(animated: true)
     }
     func saveData() {

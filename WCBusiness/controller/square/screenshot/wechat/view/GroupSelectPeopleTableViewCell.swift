@@ -30,7 +30,7 @@ class GroupSelectPeopleTableViewCell: UITableViewCell {
     }
     func configer(_ conv:WXConversation) {
         conversation = conv
-        let linNum = ceil( CGFloat((conversation?.receivers.count)!) / num)
+        let linNum = ceil( CGFloat((conversation?.receivers.count)!+1) / num)
         if linNum != 0 {
             collectionView.snp.remakeConstraints { (maker) in
                 maker.top.equalTo(0)
@@ -39,15 +39,7 @@ class GroupSelectPeopleTableViewCell: UITableViewCell {
                 maker.bottom.equalToSuperview()
 
             }
-        }else{
-            collectionView.snp.remakeConstraints { (maker) in
-                maker.top.equalTo(0)
-
-                maker.left.right.equalToSuperview()
-                maker.height.greaterThanOrEqualTo(cellHeight).priority(999)
-                maker.bottom.equalToSuperview()
-            }
-        }
+        } 
        
         self.layoutIfNeeded()
     }

@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import SnapKit
 enum OperatorType:Int {
-    case Select = 1,Edit
+    case Select = 1,Edit,MutilSelect,ChangeSelect
 }
 typealias RoleSelectBlock = (Role) -> ()
 class RoleViewController: BaseViewController {
@@ -21,6 +21,8 @@ class RoleViewController: BaseViewController {
     lazy var keyArray = [[String:Int]]()
     lazy var keys = [String]()
     var tempRole:Role?
+    var mutilRole:List<Role>?
+    var changeIndex:Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
@@ -152,12 +154,50 @@ extension RoleViewController:UITableViewDataSource,UITableViewDelegate{
             
             break
             
+        case .MutilSelect:
+            let key =  keyArray[indexPath.section].keys.first!
+            let role =  dataArray[key]![indexPath.row]
+            if let roles =  self.mutilRole{
+                for r in roles{
+                    if r.id == role.id{
+                        self.view .showImageHUDText("不能选择已经选择过的角色")
+                        return
+                    }
+                }
+                
+            }
+            roleSelectBlock!(role)
+            self.navigationController?.popViewController(animated: true)
+
+            break
+        case .ChangeSelect:
+            let key =  keyArray[indexPath.section].keys.first!
+            let role =  dataArray[key]![indexPath.row]
             
             
+            if let roles =  self.mutilRole{
+               let r1 =  roles[self.changeIndex!]
+                if r1.id == role.id{
+                    self.navigationController?.popViewController(animated: true)
+                    return
+                }
+                for r in roles{
+                    if r.id == role.id{
+                        self.view .showImageHUDText("不能选择已经选择过的角色")
+                        return
+                    }
+                }
+                roleSelectBlock!(role) 
+            }
+            self.navigationController?.popViewController(animated: true)
+            break
         }
     }
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        if  self.operatorType == .Edit {
+            return true
+        }
+        return false
     }
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return .delete

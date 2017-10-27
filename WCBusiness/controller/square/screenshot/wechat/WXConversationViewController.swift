@@ -47,7 +47,7 @@ class WXConversationViewController: BaseViewController {
     }
     func initView()  {
 
-         self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor.white
         self.view.addSubview(tableView)
         self.view.addSubview(footerView)
         footerView.snp.makeConstraints { (maker) in
