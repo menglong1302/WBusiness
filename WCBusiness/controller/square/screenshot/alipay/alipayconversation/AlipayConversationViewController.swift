@@ -107,6 +107,27 @@ class AlipayConversationViewController : BaseViewController  {
             self.alipayCAV?.containerView?.frame = CGRect.init(x:0,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT-64)
             self.alipayCAV?.backgroundColor = UIColor(red: 0 / 255.0, green: 0 / 255.0, blue: 0 / 255.0, alpha: 0.5)
         })
+        alipayCAV?.indexRowBlock = {
+           [weak self] (row:Int) in
+            switch row {
+            case 0:
+                break
+            case 1:
+                let alipayConversationISVC = AlipayConversationImageSettingViewController()
+                if self?.acUser.sender != nil && self?.acUser.receiver != nil {
+                    alipayConversationISVC.sender = self?.acUser.sender
+                    alipayConversationISVC.receiver = self?.acUser.receiver
+                    self?.navigationController?.pushViewController(alipayConversationISVC, animated: true)
+                } else {
+                    self?.view.showImageHUDText("请先设置角色")
+                }
+                break
+            case 2:
+                break
+            default:
+                break
+            }
+        }
     }
     func footerViewRightBtnAction(button:UIButton) -> Void {
 //        print("footerViewRightBtnAction=\(button)")

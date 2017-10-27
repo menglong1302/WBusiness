@@ -158,6 +158,12 @@ extension AlipayConversationSettingViewController:UITableViewDataSource,UITableV
                  if  "change" == roleType {
                     let roleVC = RoleViewController()
                     roleVC.operatorType = .Select
+                    if indexPath.row == 0 {
+                        roleVC.tempRole = self?.acUser.receiver
+                    } else {
+                        roleVC.tempRole = self?.acUser.sender
+                    }
+                    
                     roleVC.roleSelectBlock = {
                         [weak self] (role:Role) in
                         let realm = try! Realm()

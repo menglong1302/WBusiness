@@ -9,7 +9,10 @@
 import UIKit
 import SnapKit
 
+typealias IndexRowBlock = (Int) -> ()
+
 class AlipayConversationAddView: UIView {
+    var indexRowBlock:IndexRowBlock?
     var containerView:UIView?
     var tapGestureView:UIView?
     var collectionView:UICollectionView?
@@ -128,7 +131,8 @@ extension AlipayConversationAddView:UICollectionViewDataSource,UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        print(indexPath.item);
+        self.indexRowBlock!(indexPath.row)
+        self.cancelBtnAction()
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         var supplementaryView:UICollectionReusableView!
