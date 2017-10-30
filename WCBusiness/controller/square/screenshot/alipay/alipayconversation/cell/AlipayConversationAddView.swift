@@ -137,7 +137,7 @@ extension AlipayConversationAddView:UICollectionViewDataSource,UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if self.indexRowBlock !=nil{
+        if self.indexRowBlock != nil{
             self.indexRowBlock!(indexPath.row)
         }
         self.cancelBtnAction()
