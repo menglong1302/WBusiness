@@ -15,6 +15,7 @@
 		484A10CE1F98666C00BDFFE5 /* NameEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10CD1F98666C00BDFFE5 /* NameEditViewController.swift */; };
 		487F6E171FA05FAD00F62868 /* AddRoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487F6E161FA05FAD00F62868 /* AddRoleViewController.swift */; };
 		487F6E1A1FA0795600F62868 /* WXConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487F6E191FA0795600F62868 /* WXConversationViewController.swift */; };
+		488899731FA6C1B9000193C5 /* WXContentEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488899721FA6C1B9000193C5 /* WXContentEntity.swift */; };
 		48AE56AC1F9F3AE20055551D /* HXAlbumListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AE56581F9F3AE20055551D /* HXAlbumListView.m */; };
 		48AE56AD1F9F3AE20055551D /* HXAlbumListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AE565A1F9F3AE20055551D /* HXAlbumListViewController.m */; };
 		48AE56AE1F9F3AE20055551D /* HXAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AE565C1F9F3AE20055551D /* HXAlbumModel.m */; };
@@ -144,6 +145,7 @@
 		48767B421F95D65A000D9E0B /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		487F6E161FA05FAD00F62868 /* AddRoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoleViewController.swift; sourceTree = "<group>"; };
 		487F6E191FA0795600F62868 /* WXConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXConversationViewController.swift; sourceTree = "<group>"; };
+		488899721FA6C1B9000193C5 /* WXContentEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXContentEntity.swift; sourceTree = "<group>"; };
 		48AE56571F9F3AE20055551D /* HXAlbumListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXAlbumListView.h; sourceTree = "<group>"; };
 		48AE56581F9F3AE20055551D /* HXAlbumListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXAlbumListView.m; sourceTree = "<group>"; };
 		48AE56591F9F3AE20055551D /* HXAlbumListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXAlbumListViewController.h; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 			children = (
 				48D6F0C51FA1780D00F77521 /* WXConversation.swift */,
 				48D6F0CF1FA2DBC100F77521 /* PeopleModel.swift */,
+				488899721FA6C1B9000193C5 /* WXContentEntity.swift */,
 			);
 			path = entity;
 			sourceTree = "<group>";
@@ -975,6 +978,7 @@
 				4829AE101F95FB9900EBA903 /* RoleViewController.swift in Sources */,
 				484A10CE1F98666C00BDFFE5 /* NameEditViewController.swift in Sources */,
 				48AE56CE1F9F3AE20055551D /* HXVideoPresentTransition.m in Sources */,
+				488899731FA6C1B9000193C5 /* WXContentEntity.swift in Sources */,
 				48AE56D61F9F3AE20055551D /* UIView+HXExtension.m in Sources */,
 				48FD47521F8F16F4006685A8 /* SquareCollectionViewCell.swift in Sources */,
 				48AE56D31F9F3AE20055551D /* UIButton+HXExtension.m in Sources */,

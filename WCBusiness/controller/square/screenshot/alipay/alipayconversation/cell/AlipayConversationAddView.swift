@@ -40,7 +40,7 @@ class AlipayConversationAddView: UIView {
         self.addSubview(containerView!);
     }
     func initTapGestureView() -> Void {
-        tapGestureView = UIView.init(frame:CGRect.init(x:0,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT-64-220-44));
+        tapGestureView = UIView.init(frame:CGRect.init(x:0,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT-64-220));
         self.addSubview(tapGestureView!);
         tapGestureView?.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cancelBtnAction))
@@ -137,7 +137,9 @@ extension AlipayConversationAddView:UICollectionViewDataSource,UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.indexRowBlock!(indexPath.row)
+        if self.indexRowBlock !=nil{
+            self.indexRowBlock!(indexPath.row)
+        }
         self.cancelBtnAction()
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
