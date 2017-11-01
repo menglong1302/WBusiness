@@ -19,4 +19,7 @@ pod 'ZZYQRCodeSwift', '~> 1.0.0'
 pod 'PGActionSheet'
 pod 'SDWebImage'
 pod 'TOCropViewController', '~> 2.1.0'
+pod 'YYText'
+pod 'YYImage'
+
 end
