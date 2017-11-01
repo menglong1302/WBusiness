@@ -25,4 +25,9 @@ extension String {
         return scan.scanInt(&val) && scan.isAtEnd
         
     }
+    func getImageByName() -> UIImage {
+        var str =  Bundle.main.path(forResource: "wx_emoji", ofType: "bundle")
+        str?.append("/"+self)
+        return  UIImage(contentsOfFile:str!)!
+    }
 }
