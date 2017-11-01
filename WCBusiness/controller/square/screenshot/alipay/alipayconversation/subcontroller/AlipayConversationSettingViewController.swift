@@ -16,6 +16,7 @@ class AlipayConversationSettingViewController : BaseViewController  {
     var saveBtn:UIButton?
     var alipayCSCRV:AlipayConversationSettingCellRoleView?
     var acUser:AlipayConversationUser!
+    
     lazy var manager:HXPhotoManager = {
         () in
         let manager = HXPhotoManager(type: HXPhotoManagerSelectedTypePhoto)
@@ -47,7 +48,7 @@ class AlipayConversationSettingViewController : BaseViewController  {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        saveData()
+        saveData()
     }
     func initView() -> Void {
         //设置tableView的frame
@@ -79,9 +80,15 @@ class AlipayConversationSettingViewController : BaseViewController  {
     }
 
     func saveBtnAction () {
+        saveData()
         self.navigationController?.popViewController(animated: true)
     }
-
+    func saveData () {
+        let realm = try! Realm()
+        try! realm.write {
+            realm.create(AlipayConversationUser.self, value: self.acUser as Any, update: true)
+        }
+    }
 }
 //talbeView 的两个代理方法的实现，其实这两个代理还能加到class声明的后面，代理方法的时候和OC里面的实现是一样的
 extension AlipayConversationSettingViewController:UITableViewDataSource,UITableViewDelegate {
@@ -167,11 +174,33 @@ extension AlipayConversationSettingViewController:UITableViewDataSource,UITableV
                     roleVC.roleSelectBlock = {
                         [weak self] (role:Role) in
                         let realm = try! Realm()
-                        try! realm.write {
-                            if indexPath.row == 0 {
-                                self?.acUser.sender = role
-                            } else if indexPath.row == 1 {
+                        let alipayConversationContents = realm.objects(AlipayConversationContent.self)
+                        var senderArray:Array<AlipayConversationContent> = []
+                        var receiverArray:Array<AlipayConversationContent> = []
+                        for var item in alipayConversationContents {
+                            if item.contentSender?.id == item.user?.sender?.id {
+                                senderArray.append(item)
+                            } else if item.contentSender?.id == item.user?.receiver?.id {
+                                receiverArray.append(item)
+                            }
+                        }
+                        if indexPath.row == 0 {
+                            try! realm.write {
+                               self?.acUser.sender = role
+                            }
+                            for senderItem in senderArray {
+                                try! realm.write {
+                                    senderItem.contentSender = role
+                                }
+                            }
+                        } else if indexPath.row == 1 {
+                            try! realm.write {
                                 self?.acUser.receiver = role
+                            }
+                            for receiverItem in receiverArray {
+                                try! realm.write {
+                                    receiverItem.contentSender = role
+                                }
                             }
                         }
                         self?.tableView?.reloadData()
