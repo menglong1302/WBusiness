@@ -99,6 +99,7 @@
 		71876EED1FA09D7F00BCD139 /* AlipayConversationSettingSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71876EDE1FA09D7F00BCD139 /* AlipayConversationSettingSwitchCell.swift */; };
 		71876EEE1FA09D7F00BCD139 /* AlipayConversationSettingCellRoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71876EE01FA09D7F00BCD139 /* AlipayConversationSettingCellRoleView.swift */; };
 		71876EEF1FA09D7F00BCD139 /* AlipayConversationSettingCellRoleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71876EE11FA09D7F00BCD139 /* AlipayConversationSettingCellRoleViewCell.swift */; };
+		71A4AE431FA6F43700B60EC3 /* AlipayConversationContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A4AE421FA6F43700B60EC3 /* AlipayConversationContentCell.swift */; };
 		DB6082DE1F98F12E0095EF72 /* RoleEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6082DC1F98F12E0095EF72 /* RoleEditTableViewCell.swift */; };
 		DB6082DF1F98F12E0095EF72 /* RoleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6082DD1F98F12E0095EF72 /* RoleTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -277,6 +278,7 @@
 		71876EDE1FA09D7F00BCD139 /* AlipayConversationSettingSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlipayConversationSettingSwitchCell.swift; sourceTree = "<group>"; };
 		71876EE01FA09D7F00BCD139 /* AlipayConversationSettingCellRoleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlipayConversationSettingCellRoleView.swift; sourceTree = "<group>"; };
 		71876EE11FA09D7F00BCD139 /* AlipayConversationSettingCellRoleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlipayConversationSettingCellRoleViewCell.swift; sourceTree = "<group>"; };
+		71A4AE421FA6F43700B60EC3 /* AlipayConversationContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayConversationContentCell.swift; sourceTree = "<group>"; };
 		8BC4A6418B154F154EFE3AF0 /* Pods-WCBusiness.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WCBusiness.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WCBusiness/Pods-WCBusiness.debug.xcconfig"; sourceTree = "<group>"; };
 		DB6082DC1F98F12E0095EF72 /* RoleEditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleEditTableViewCell.swift; sourceTree = "<group>"; };
 		DB6082DD1F98F12E0095EF72 /* RoleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleTableViewCell.swift; sourceTree = "<group>"; };
@@ -641,6 +643,7 @@
 				71876ED41FA09D7F00BCD139 /* AlipayConversationAddView.swift */,
 				71876ED51FA09D7F00BCD139 /* AlipayConversationAddViewCell.swift */,
 				71876ED61FA09D7F00BCD139 /* AlipayConversationSettingInfoCell.swift */,
+				71A4AE421FA6F43700B60EC3 /* AlipayConversationContentCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -924,6 +927,7 @@
 				48D6F0C11FA08F3900F77521 /* GroupConversationSettingViewController.swift in Sources */,
 				48AE56AC1F9F3AE20055551D /* HXAlbumListView.m in Sources */,
 				48D6F0C31FA0943300F77521 /* ChangeRoleTableViewCell.swift in Sources */,
+				71A4AE431FA6F43700B60EC3 /* AlipayConversationContentCell.swift in Sources */,
 				481C17941F90931800C3D7C1 /* ScreenshotCollectionCell.swift in Sources */,
 				71876EE81FA09D7F00BCD139 /* AlipayConversationSettingInfoCell.swift in Sources */,
 				48AE56AD1F9F3AE20055551D /* HXAlbumListViewController.m in Sources */,
@@ -1171,6 +1175,7 @@
 				INFOPLIST_FILE = WCBusiness/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = LYL.WCBusiness;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Bridging-Header.h";

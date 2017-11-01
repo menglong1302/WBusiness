@@ -24,6 +24,7 @@ class AlipayConversationUser: Object {
 }
 class AlipayConversationContent: Object {
     @objc dynamic var id = ""
+    @objc dynamic var contentSender:Role?
     @objc dynamic var user:AlipayConversationUser?
     @objc dynamic var type = ""         //类型
     @objc dynamic var index = ""        //排序位置

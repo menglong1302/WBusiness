@@ -59,6 +59,7 @@ class AlipayConversationSettingInfoCell: UITableViewCell {
         nameLabel.textColor = UIColor.black
         nameLabel.textAlignment = .right
         nameLabel.font = UIFont.systemFont(ofSize: 15);
+        nameLabel.text = "设置资料"
         nameLabel.snp.makeConstraints({(maker) in
             maker.centerY.equalToSuperview()
             maker.right.equalToSuperview().offset(-28)
@@ -67,10 +68,15 @@ class AlipayConversationSettingInfoCell: UITableViewCell {
     }
     func setData(_ model:[String:String]) {
         self.model = model
-        nameLabel.text = self.model["name"]!
+//        nameLabel.text = self.model["name"]!
         arrowImage.image = UIImage.init(named: "right_arrow")
-        iconImage1.image = UIImage.init(named: self.model["imageName1"]!)
-        iconImage2.image = UIImage.init(named: self.model["imageName2"]!)
+        if self.model["imageName1"] != nil {
+            iconImage1.image = UIImage.init(named: self.model["imageName1"]!)
+        }
+        if self.model["imageName2"] != nil {
+            iconImage2.image = UIImage.init(named: self.model["imageName2"]!)
+        }
+        
         
     }
     required init?(coder aDecoder: NSCoder) {
