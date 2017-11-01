@@ -148,7 +148,7 @@ class WXConversationViewController: BaseViewController {
     func addConversationBtnClick()  {
         
         UIApplication.shared.keyWindow?.addSubview(selectView)
-
+UIApplication.shared.keyWindow?.bringSubview(toFront: selectView)
         selectView.snp.makeConstraints { (maker) in
             maker.edges.equalToSuperview()
         }
