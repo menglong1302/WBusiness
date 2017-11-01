@@ -16,6 +16,7 @@
 		487F6E171FA05FAD00F62868 /* AddRoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487F6E161FA05FAD00F62868 /* AddRoleViewController.swift */; };
 		487F6E1A1FA0795600F62868 /* WXConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487F6E191FA0795600F62868 /* WXConversationViewController.swift */; };
 		488899731FA6C1B9000193C5 /* WXContentEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488899721FA6C1B9000193C5 /* WXContentEntity.swift */; };
+		488899761FA6C599000193C5 /* FileSetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488899751FA6C599000193C5 /* FileSetingViewController.swift */; };
 		48AE56AC1F9F3AE20055551D /* HXAlbumListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AE56581F9F3AE20055551D /* HXAlbumListView.m */; };
 		48AE56AD1F9F3AE20055551D /* HXAlbumListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AE565A1F9F3AE20055551D /* HXAlbumListViewController.m */; };
 		48AE56AE1F9F3AE20055551D /* HXAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AE565C1F9F3AE20055551D /* HXAlbumModel.m */; };
@@ -70,6 +71,7 @@
 		48B229181F8E11BD009081DA /* WBTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B229171F8E11BD009081DA /* WBTabBarController.swift */; };
 		48B2291C1F8E1865009081DA /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 48B2291B1F8E1864009081DA /* Podfile */; };
 		48B2291F1F8F0210009081DA /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B2291E1F8F0210009081DA /* BaseNavigationController.swift */; };
+		48D56D7B1FA73373001B6971 /* WXEmojiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D56D7A1FA73373001B6971 /* WXEmojiCollectionViewCell.swift */; };
 		48D6F0BA1FA07C5500F77521 /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0B91FA07C5400F77521 /* UIColor+extension.swift */; };
 		48D6F0BD1FA0824500F77521 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0BC1FA0824500F77521 /* PeopleTableViewCell.swift */; };
 		48D6F0BF1FA08EF200F77521 /* PrivateConversationSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0BE1FA08EF200F77521 /* PrivateConversationSettingViewController.swift */; };
@@ -81,6 +83,13 @@
 		48D6F0CC1FA1DE2B00F77521 /* GroupSelectPeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0CB1FA1DE2B00F77521 /* GroupSelectPeopleTableViewCell.swift */; };
 		48D6F0CE1FA2D8DC00F77521 /* GroupPersionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0CD1FA2D8DC00F77521 /* GroupPersionCollectionViewCell.swift */; };
 		48D6F0D01FA2DBC100F77521 /* PeopleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0CF1FA2DBC100F77521 /* PeopleModel.swift */; };
+		48E997621FA6CF6A0047933D /* ContentEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E997611FA6CF6A0047933D /* ContentEnum.swift */; };
+		48E997641FA6D28B0047933D /* SenderPeopleSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E997631FA6D28B0047933D /* SenderPeopleSelectViewController.swift */; };
+		48E997671FA6D3350047933D /* SelectPeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E997661FA6D3350047933D /* SelectPeopleTableViewCell.swift */; };
+		48E997691FA6D8F50047933D /* InputMessageContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E997681FA6D8F50047933D /* InputMessageContentTableViewCell.swift */; };
+		48E9976B1FA711660047933D /* wx_emoji.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 48E9976A1FA711660047933D /* wx_emoji.bundle */; };
+		48E9976F1FA7226A0047933D /* WXEmojiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E9976E1FA7226A0047933D /* WXEmojiTableViewCell.swift */; };
+		48E997721FA7254D0047933D /* EmojiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E997711FA7254D0047933D /* EmojiModel.swift */; };
 		48F4D1A41F94AE8200410CC7 /* RoleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F4D1A31F94AE8200410CC7 /* RoleModel.swift */; };
 		48FD47521F8F16F4006685A8 /* SquareCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FD47511F8F16F4006685A8 /* SquareCollectionViewCell.swift */; };
 		48FD47551F8F2D6B006685A8 /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FD47541F8F2D6B006685A8 /* CommonUtil.swift */; };
@@ -147,6 +156,7 @@
 		487F6E161FA05FAD00F62868 /* AddRoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoleViewController.swift; sourceTree = "<group>"; };
 		487F6E191FA0795600F62868 /* WXConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXConversationViewController.swift; sourceTree = "<group>"; };
 		488899721FA6C1B9000193C5 /* WXContentEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXContentEntity.swift; sourceTree = "<group>"; };
+		488899751FA6C599000193C5 /* FileSetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSetingViewController.swift; sourceTree = "<group>"; };
 		48AE56571F9F3AE20055551D /* HXAlbumListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXAlbumListView.h; sourceTree = "<group>"; };
 		48AE56581F9F3AE20055551D /* HXAlbumListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXAlbumListView.m; sourceTree = "<group>"; };
 		48AE56591F9F3AE20055551D /* HXAlbumListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXAlbumListViewController.h; sourceTree = "<group>"; };
@@ -250,6 +260,7 @@
 		48B229171F8E11BD009081DA /* WBTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBTabBarController.swift; sourceTree = "<group>"; };
 		48B2291B1F8E1864009081DA /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		48B2291E1F8F0210009081DA /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		48D56D7A1FA73373001B6971 /* WXEmojiCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXEmojiCollectionViewCell.swift; sourceTree = "<group>"; };
 		48D6F0B91FA07C5400F77521 /* UIColor+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
 		48D6F0BC1FA0824500F77521 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
 		48D6F0BE1FA08EF200F77521 /* PrivateConversationSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateConversationSettingViewController.swift; sourceTree = "<group>"; };
@@ -261,6 +272,13 @@
 		48D6F0CB1FA1DE2B00F77521 /* GroupSelectPeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSelectPeopleTableViewCell.swift; sourceTree = "<group>"; };
 		48D6F0CD1FA2D8DC00F77521 /* GroupPersionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPersionCollectionViewCell.swift; sourceTree = "<group>"; };
 		48D6F0CF1FA2DBC100F77521 /* PeopleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleModel.swift; sourceTree = "<group>"; };
+		48E997611FA6CF6A0047933D /* ContentEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentEnum.swift; sourceTree = "<group>"; };
+		48E997631FA6D28B0047933D /* SenderPeopleSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderPeopleSelectViewController.swift; sourceTree = "<group>"; };
+		48E997661FA6D3350047933D /* SelectPeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPeopleTableViewCell.swift; sourceTree = "<group>"; };
+		48E997681FA6D8F50047933D /* InputMessageContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMessageContentTableViewCell.swift; sourceTree = "<group>"; };
+		48E9976A1FA711660047933D /* wx_emoji.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = wx_emoji.bundle; sourceTree = "<group>"; };
+		48E9976E1FA7226A0047933D /* WXEmojiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXEmojiTableViewCell.swift; sourceTree = "<group>"; };
+		48E997711FA7254D0047933D /* EmojiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiModel.swift; sourceTree = "<group>"; };
 		48F4D1A31F94AE8200410CC7 /* RoleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleModel.swift; sourceTree = "<group>"; };
 		48FD47511F8F16F4006685A8 /* SquareCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareCollectionViewCell.swift; sourceTree = "<group>"; };
 		48FD47541F8F2D6B006685A8 /* CommonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtil.swift; sourceTree = "<group>"; };
@@ -337,6 +355,7 @@
 		487F6E181FA0786400F62868 /* wechat */ = {
 			isa = PBXGroup;
 			children = (
+				488899741FA6C57C000193C5 /* content */,
 				48D6F0C41FA177DD00F77521 /* entity */,
 				48D6F0BB1FA0822A00F77521 /* view */,
 				487F6E191FA0795600F62868 /* WXConversationViewController.swift */,
@@ -345,6 +364,18 @@
 				48D6F0C91FA1C69600F77521 /* ContentEditViewController.swift */,
 			);
 			path = wechat;
+			sourceTree = "<group>";
+		};
+		488899741FA6C57C000193C5 /* content */ = {
+			isa = PBXGroup;
+			children = (
+				48E997701FA725410047933D /* model */,
+				48E997651FA6D3230047933D /* view */,
+				488899751FA6C599000193C5 /* FileSetingViewController.swift */,
+				48E997611FA6CF6A0047933D /* ContentEnum.swift */,
+				48E997631FA6D28B0047933D /* SenderPeopleSelectViewController.swift */,
+			);
+			path = content;
 			sourceTree = "<group>";
 		};
 		48AE56551F9F3AB50055551D /* lib */ = {
@@ -482,6 +513,7 @@
 				48B228EB1F8E08E1009081DA /* Assets.xcassets */,
 				48B228ED1F8E08E1009081DA /* LaunchScreen.storyboard */,
 				48B228F01F8E08E1009081DA /* Info.plist */,
+				48E9976A1FA711660047933D /* wx_emoji.bundle */,
 			);
 			path = WCBusiness;
 			sourceTree = "<group>";
@@ -545,6 +577,25 @@
 				488899721FA6C1B9000193C5 /* WXContentEntity.swift */,
 			);
 			path = entity;
+			sourceTree = "<group>";
+		};
+		48E997651FA6D3230047933D /* view */ = {
+			isa = PBXGroup;
+			children = (
+				48E997661FA6D3350047933D /* SelectPeopleTableViewCell.swift */,
+				48E997681FA6D8F50047933D /* InputMessageContentTableViewCell.swift */,
+				48E9976E1FA7226A0047933D /* WXEmojiTableViewCell.swift */,
+				48D56D7A1FA73373001B6971 /* WXEmojiCollectionViewCell.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		48E997701FA725410047933D /* model */ = {
+			isa = PBXGroup;
+			children = (
+				48E997711FA7254D0047933D /* EmojiModel.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		48FD474F1F8F13C1006685A8 /* square */ = {
@@ -808,6 +859,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48E9976B1FA711660047933D /* wx_emoji.bundle in Resources */,
 				48B2291C1F8E1865009081DA /* Podfile in Resources */,
 				48B228EF1F8E08E1009081DA /* LaunchScreen.storyboard in Resources */,
 				48B228EC1F8E08E1009081DA /* Assets.xcassets in Resources */,
@@ -872,6 +924,8 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
 				"${BUILT_PRODUCTS_DIR}/TOCropViewController/TOCropViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/Whisper/Whisper.framework",
+				"${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework",
+				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
 				"${BUILT_PRODUCTS_DIR}/ZZYQRCodeSwift/ZZYQRCodeSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -894,6 +948,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOCropViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Whisper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZZYQRCodeSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -937,6 +993,7 @@
 				48AE56D41F9F3AE20055551D /* UIFont+HXExtension.m in Sources */,
 				48AE56CC1F9F3AE20055551D /* HXPresentTransition.m in Sources */,
 				48FD47581F8F3844006685A8 /* SquareModel.swift in Sources */,
+				48E997671FA6D3350047933D /* SelectPeopleTableViewCell.swift in Sources */,
 				48AE56CA1F9F3AE20055551D /* HXPhotoViewCell.m in Sources */,
 				48B228E71F8E08E1009081DA /* WBMyViewController.swift in Sources */,
 				48FD475D1F8F5507006685A8 /* BaseViewController.swift in Sources */,
@@ -962,6 +1019,7 @@
 				48AE56BE1F9F3AE20055551D /* HXPhotoCustomNavigationBar.m in Sources */,
 				48FD47551F8F2D6B006685A8 /* CommonUtil.swift in Sources */,
 				487F6E1A1FA0795600F62868 /* WXConversationViewController.swift in Sources */,
+				48D56D7B1FA73373001B6971 /* WXEmojiCollectionViewCell.swift in Sources */,
 				48AE56B41F9F3AE20055551D /* HXCustomCameraView.m in Sources */,
 				48AE56B31F9F3AE20055551D /* HXCollectionView.m in Sources */,
 				48B2291F1F8F0210009081DA /* BaseNavigationController.swift in Sources */,
@@ -978,7 +1036,10 @@
 				48AE56C21F9F3AE20055551D /* HXPhotoModel.m in Sources */,
 				71876EEA1FA09D7F00BCD139 /* AlipayConversationSettingViewController.swift in Sources */,
 				48AE56C41F9F3AE20055551D /* HXPhotoPreviewViewController.m in Sources */,
+				48E9976F1FA7226A0047933D /* WXEmojiTableViewCell.swift in Sources */,
 				48D6F0BF1FA08EF200F77521 /* PrivateConversationSettingViewController.swift in Sources */,
+				488899761FA6C599000193C5 /* FileSetingViewController.swift in Sources */,
+				48E997641FA6D28B0047933D /* SenderPeopleSelectViewController.swift in Sources */,
 				4829AE101F95FB9900EBA903 /* RoleViewController.swift in Sources */,
 				484A10CE1F98666C00BDFFE5 /* NameEditViewController.swift in Sources */,
 				48AE56CE1F9F3AE20055551D /* HXVideoPresentTransition.m in Sources */,
@@ -986,6 +1047,7 @@
 				48AE56D61F9F3AE20055551D /* UIView+HXExtension.m in Sources */,
 				48FD47521F8F16F4006685A8 /* SquareCollectionViewCell.swift in Sources */,
 				48AE56D31F9F3AE20055551D /* UIButton+HXExtension.m in Sources */,
+				48E997621FA6CF6A0047933D /* ContentEnum.swift in Sources */,
 				48B228E51F8E08E1009081DA /* AppDelegate.swift in Sources */,
 				481C17921F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift in Sources */,
 				71876EE41FA09D7F00BCD139 /* AlipayConversationViewController.swift in Sources */,
@@ -993,6 +1055,7 @@
 				48D6F0C61FA1780D00F77521 /* WXConversation.swift in Sources */,
 				48AE56BB1F9F3AE20055551D /* HXFullScreenCameraPlayView.m in Sources */,
 				48AE56C81F9F3AE20055551D /* HXPhotoUIManager.m in Sources */,
+				48E997691FA6D8F50047933D /* InputMessageContentTableViewCell.swift in Sources */,
 				48AE56C31F9F3AE20055551D /* HXPhotoPreviewViewCell.m in Sources */,
 				48AE56B81F9F3AE20055551D /* HXDatePhotoPreviewBottomView.m in Sources */,
 				48AE56D11F9F3AE20055551D /* NSBundle+HXWeiboPhotoPicker.m in Sources */,
@@ -1000,6 +1063,7 @@
 				48AE56C11F9F3AE20055551D /* HXPhotoManager.m in Sources */,
 				48AE56C01F9F3AE20055551D /* HXPhotoEditViewController.m in Sources */,
 				48AE56D51F9F3AE20055551D /* UIImage+HXExtension.m in Sources */,
+				48E997721FA7254D0047933D /* EmojiModel.swift in Sources */,
 				48AE56B51F9F3AE20055551D /* HXCustomCameraViewController.m in Sources */,
 				48AE56CD1F9F3AE20055551D /* HXTransition.m in Sources */,
 				48AE56B71F9F3AE20055551D /* HXDatePhotoCollectionViewLayoutAttributes.m in Sources */,
