@@ -12,3 +12,4 @@
 #import "HXPhotoViewController.h"
 #import "TOCropViewController.h"
 #import "UIView+HXExtension.h"
+#import "YYText.h"
