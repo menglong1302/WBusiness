@@ -148,8 +148,7 @@ class WXConversationViewController: BaseViewController {
     func addConversationBtnClick()  {
         
         UIApplication.shared.keyWindow?.addSubview(selectView)
-UIApplication.shared.keyWindow?.bringSubview(toFront: selectView)
-        selectView.snp.makeConstraints { (maker) in
+         selectView.snp.makeConstraints { (maker) in
             maker.edges.equalToSuperview()
         }
         self.view.layoutIfNeeded()
@@ -157,6 +156,35 @@ UIApplication.shared.keyWindow?.bringSubview(toFront: selectView)
             self.selectView.containerView?.frame = CGRect.init(x:0,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT)
             self.selectView.backgroundColor = UIColor.rgbq(r: 0, g: 0, b: 0, a: 0.3)
         }, completion: nil)
+        selectView.indexRowBlock = {
+            (index) in
+            switch index {
+            case 0:
+                let vc = FileSetingViewController()
+                vc.contentEnumType = .WeChat
+                vc.conversation = self.conversation
+                vc.conversationType = self.conversationType
+                self.navigationController?.pushViewController(vc, animated: true)
+                break
+            case 1:
+                break
+            case 2:
+                break
+            case 3:
+                break
+            case 4:
+                break
+            case 5:
+                break
+            case 6:
+                break
+            case 7:
+                break
+            default: break
+                
+            }
+            
+        }
         
     }
     
