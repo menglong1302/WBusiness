@@ -27,7 +27,7 @@ class AlipayConversationContent: Object {
     @objc dynamic var contentSender:Role?
     @objc dynamic var user:AlipayConversationUser?
     @objc dynamic var type = ""         //类型
-    @objc dynamic var index = ""        //排序位置
+    @objc dynamic var index:Int = 0        //排序位置
     @objc dynamic var content = ""      //JSON消息内容
     @objc dynamic var creatAt = ""      //创建时间
     override static func primaryKey() -> String? {

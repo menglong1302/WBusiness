@@ -177,7 +177,7 @@ extension AlipayConversationSettingViewController:UITableViewDataSource,UITableV
                         let alipayConversationContents = realm.objects(AlipayConversationContent.self)
                         var senderArray:Array<AlipayConversationContent> = []
                         var receiverArray:Array<AlipayConversationContent> = []
-                        for var item in alipayConversationContents {
+                        for item in alipayConversationContents {
                             if item.contentSender?.id == item.user?.sender?.id {
                                 senderArray.append(item)
                             } else if item.contentSender?.id == item.user?.receiver?.id {
