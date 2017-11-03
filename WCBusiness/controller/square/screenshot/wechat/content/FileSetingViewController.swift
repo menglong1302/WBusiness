@@ -107,7 +107,7 @@ class FileSetingViewController: BaseViewController {
         
         let realm = try! Realm()
         if self.type == .Edit{
-            let entities = realm.objects(WXContentEntity.self)
+            let entities = realm.objects(WXContentEntity.self).filter("parent.id = %@",self.conversation?.id ?? "")
             contentEntity.index = entities.count+1
         }
         try! realm.write {

@@ -40,7 +40,7 @@ class WXConversationViewController: BaseViewController {
     }()
     
     lazy var conversation = WXConversation()
-    
+    lazy var contents = List<WXContentEntity>()
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
@@ -49,6 +49,7 @@ class WXConversationViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchData()
+        getConversation()
         self.tableView.reloadData()
     }
     func initView()  {
@@ -56,7 +57,7 @@ class WXConversationViewController: BaseViewController {
         self.view.backgroundColor = UIColor.white
         self.view.addSubview(tableView)
         self.view.addSubview(footerView)
-         footerView.snp.makeConstraints { (maker) in
+        footerView.snp.makeConstraints { (maker) in
             maker.left.right.bottom.equalToSuperview()
             maker.height.equalTo(50)
         }
@@ -75,7 +76,7 @@ class WXConversationViewController: BaseViewController {
             maker.right.top.bottom.equalToSuperview()
             maker.width.equalTo(SCREEN_WIDTH/2.0)
         }
-       
+        
     }
     
     func fetchData(){
@@ -104,7 +105,17 @@ class WXConversationViewController: BaseViewController {
             }
             
         }
+ 
         
+    }
+    func getConversation(){
+        self.contents.removeAll()
+        let realm = try! Realm()
+        let predicate = NSPredicate(format: "parent.id = %@", self.conversation.id)
+        let results = realm.objects(WXContentEntity.self).filter(predicate)
+        for result in results {
+            self.contents.append(result)
+        }
     }
     
     func makeTableView() -> UITableView {
@@ -148,7 +159,7 @@ class WXConversationViewController: BaseViewController {
     func addConversationBtnClick()  {
         
         UIApplication.shared.keyWindow?.addSubview(selectView)
-         selectView.snp.makeConstraints { (maker) in
+        selectView.snp.makeConstraints { (maker) in
             maker.edges.equalToSuperview()
         }
         self.view.layoutIfNeeded()
@@ -221,6 +232,8 @@ extension WXConversationViewController:UITableViewDelegate,UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
+        }else{
+            return contents.count
         }
         return 1
     }

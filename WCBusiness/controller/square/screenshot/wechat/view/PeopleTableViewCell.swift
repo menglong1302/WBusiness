@@ -80,6 +80,13 @@ class PeopleTableViewCell: UITableViewCell {
         
     }
     func initImageView()  {
+        
+        for view in self.subviews {
+            if view.isKind(of: UIImageView.self){
+                view.removeFromSuperview()
+            }
+        }
+        
         if imageNum <= 2{
             numLabel.isHidden = true
         }else{
@@ -87,25 +94,31 @@ class PeopleTableViewCell: UITableViewCell {
         }
         let sum = imageNum >= 4 ? 4:imageNum
         var array = [UIImageView]()
-        for i in 1...imageNum {
+        for i in 1...4 {
             let imageView = UIImageView()
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
             imageView.tag = 100+i
             imageView.image = UIImage(named:"portrait")
+            if i <= sum{
+                imageView.isHidden = false
+            }else{
+                imageView.isHidden = true
+
+            }
             array.append(imageView)
         }
         array.forEach { (view) in
             addSubview(view)
         }
-        for i in 1...sum{
-            self.viewWithTag(100+i)?.snp.makeConstraints({ (maker) in
+        for i in 1...4{
+            self.viewWithTag(100+i)?.snp.remakeConstraints({ (maker) in
                 maker.centerY.equalToSuperview()
                 maker.width.height.equalTo(40)
                 maker.left.equalTo(15+5*(i-1)+(i-1)*40 )
             })
         }
-        numLabel.snp.makeConstraints { (maker) in
+        numLabel.snp.remakeConstraints { (maker) in
             maker.centerY.equalToSuperview()
             maker.left.equalTo(15+5*(sum+1)+sum*40)
         }
