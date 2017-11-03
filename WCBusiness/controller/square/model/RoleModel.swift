@@ -21,7 +21,16 @@ class Role: Object {
     override static func primaryKey() -> String? {
         return "id"
     }
-    
+    var image: UIImage { // read-only properties are automatically ignored
+        if isDiskImage {
+            return  UIImage(contentsOfFile: imageUrl.localPath())!
+            
+        }else{
+            return UIImage(named:imageName)!
+        }
+        
+        
+    }
     static func initData() -> Array<String>{
         let dataArray = ["斑点水玛线","- 扯蛋 丶","想太多我会难过","童话里没有你","Abandon丶","Sunny°刺眼","So what、","焚心劫","昂贵的、背影","米兰","泡泡龙","为爱放弃","花菲","杰克","大朋友","文远","愛/heart"]
         return dataArray

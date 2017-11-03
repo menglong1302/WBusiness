@@ -40,7 +40,7 @@ class FileSetingViewController: BaseViewController {
                 contentEntity.sender = conversation?.sender
                 contentEntity.parent = conversation
                 contentEntity.id = UUID().uuidString
-                contentEntity.contentType = 1
+                contentEntity.contentType = 0
                 self.tableView.reloadData()
             }
         }
@@ -64,7 +64,7 @@ class FileSetingViewController: BaseViewController {
         for index in 1...114{
             let model = EmojiModel()
             model.name = "Expression_"+String(index)+"@2x"
-            model.mapperName = "[100\(index)]"
+            model.mapperName = ":100\(index):"
             array.append(model)
             emojiMapper[model.mapperName!] = model.image
         }
@@ -104,14 +104,14 @@ class FileSetingViewController: BaseViewController {
             self.view .showImageHUDText("请输入文本内容")
             return
         }
-        
+        contentEntity.content = string
         let realm = try! Realm()
         if self.type == .Edit{
             let entities = realm.objects(WXContentEntity.self).filter("parent.id = %@",self.conversation?.id ?? "")
             contentEntity.index = entities.count+1
         }
         try! realm.write {
-            realm.create(WXContentEntity.self, value: contentEntity, update: true)
+            realm.create(WXContentEntity.self, value: contentEntity, update: false)
         }
         if block != nil {
             block!()
