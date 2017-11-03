@@ -18,6 +18,7 @@
 		4855493C1FAAB230006F6153 /* emojiBarBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4855493B1FAAB230006F6153 /* emojiBarBundle.bundle */; };
 		4855493E1FAAB2E3006F6153 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4855493D1FAAB2E3006F6153 /* String+extension.swift */; };
 		485549401FAAB638006F6153 /* YLEmojiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4855493F1FAAB638006F6153 /* YLEmojiContainer.swift */; };
+		485549441FAC44A6006F6153 /* WXConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485549431FAC44A6006F6153 /* WXConversationTableViewCell.swift */; };
 		487F6E171FA05FAD00F62868 /* AddRoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487F6E161FA05FAD00F62868 /* AddRoleViewController.swift */; };
 		487F6E1A1FA0795600F62868 /* WXConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487F6E191FA0795600F62868 /* WXConversationViewController.swift */; };
 		488899731FA6C1B9000193C5 /* WXContentEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488899721FA6C1B9000193C5 /* WXContentEntity.swift */; };
@@ -148,6 +149,7 @@
 		4855493B1FAAB230006F6153 /* emojiBarBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = emojiBarBundle.bundle; sourceTree = "<group>"; };
 		4855493D1FAAB2E3006F6153 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		4855493F1FAAB638006F6153 /* YLEmojiContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YLEmojiContainer.swift; sourceTree = "<group>"; };
+		485549431FAC44A6006F6153 /* WXConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXConversationTableViewCell.swift; sourceTree = "<group>"; };
 		48767B331F95D492000D9E0B /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48767B341F95D492000D9E0B /* ChameleonFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ChameleonFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48767B351F95D492000D9E0B /* FSCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FSCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -588,6 +590,7 @@
 				48D6F0C71FA188C800F77521 /* ChatSettingTableViewCell.swift */,
 				48D6F0CB1FA1DE2B00F77521 /* GroupSelectPeopleTableViewCell.swift */,
 				48D6F0CD1FA2D8DC00F77521 /* GroupPersionCollectionViewCell.swift */,
+				485549431FAC44A6006F6153 /* WXConversationTableViewCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1039,6 +1042,7 @@
 				48AE56BD1F9F3AE20055551D /* HXPhoto3DTouchViewController.m in Sources */,
 				48D6F0BD1FA0824500F77521 /* PeopleTableViewCell.swift in Sources */,
 				48AE56B11F9F3AE20055551D /* HXCameraViewController.m in Sources */,
+				485549441FAC44A6006F6153 /* WXConversationTableViewCell.swift in Sources */,
 				48AE56C91F9F3AE20055551D /* HXPhotoView.m in Sources */,
 				48D6F0CA1FA1C69600F77521 /* ContentEditViewController.swift in Sources */,
 				48AE56BE1F9F3AE20055551D /* HXPhotoCustomNavigationBar.m in Sources */,
