@@ -14,9 +14,9 @@ class WXConversationTableViewCell: UITableViewCell {
         label.textVerticalAlignment = .center
         label.numberOfLines = 1;
         label.lineBreakMode = .byTruncatingTail
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 16)
         let mod =  YYTextLinePositionSimpleModifier()
-        mod.fixedLineHeight = 15
+        mod.fixedLineHeight = 18
         label.linePositionModifier = mod
         
         var emojiMapper = [String:UIImage]()
@@ -49,7 +49,7 @@ class WXConversationTableViewCell: UITableViewCell {
         portraitIcon.snp.makeConstraints { (maker) in
             maker.height.width.equalTo(35)
             maker.centerY.equalToSuperview()
-            maker.left.equalTo(10)
+            maker.left.equalTo(15)
         }
         contentLabel.snp.makeConstraints { (maker) in
             maker.left.equalTo(portraitIcon.snp.right).offset(10)
