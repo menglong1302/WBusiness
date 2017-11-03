@@ -16,7 +16,13 @@ class WXEmojiCollectionViewCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         return imageView
     }()
-    
+    var  isLast:Bool? = false{
+        didSet{
+            if isLast! {
+                imageView.image = "DeleteEmoticonBtn@2x".getImageByName()
+            }
+        }
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         initView()
@@ -25,7 +31,8 @@ class WXEmojiCollectionViewCell: UICollectionViewCell {
         backgroundColor = UIColor.white
         addSubview(imageView)
         imageView.snp.makeConstraints { (maker) in
-             maker.edges.equalToSuperview().inset(UIEdgeInsetsMake(5, 5, 5, 5))
+             maker.center.equalToSuperview()
+            maker.width.height.equalTo(25)
         }
     }
     

@@ -11,3 +11,6 @@ import Foundation
 enum ContentEnumType {
     case WeChat,Zhfubao
 }
+enum ToolType {
+    case Edit,Create
+}

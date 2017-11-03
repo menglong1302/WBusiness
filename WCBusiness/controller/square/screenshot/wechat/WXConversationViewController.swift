@@ -164,6 +164,9 @@ class WXConversationViewController: BaseViewController {
                 vc.contentEnumType = .WeChat
                 vc.conversation = self.conversation
                 vc.conversationType = self.conversationType
+                vc.block = {
+                    self.tableView.reloadData()
+                }
                 self.navigationController?.pushViewController(vc, animated: true)
                 break
             case 1:

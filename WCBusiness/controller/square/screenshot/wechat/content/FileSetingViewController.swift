@@ -6,13 +6,15 @@
 //  Copyright © 2017年 LYL. All rights reserved.
 //
 
-import Foundation
 
 import YYText
+import RealmSwift
+typealias ContentBlock  = () -> Void
 
 class FileSetingViewController: BaseViewController {
     
     var array = [EmojiModel]()
+    var block:ContentBlock?
     var emojiMapper = [String:UIImage]()
     var tempString:NSAttributedString?
     lazy var tableView:UITableView = {
@@ -30,19 +32,26 @@ class FileSetingViewController: BaseViewController {
         tableView.register(InputMessageContentTableViewCell.self, forCellReuseIdentifier: "InputMessageContentCellId")
         return tableView
     }()
+    var type:ToolType?
     var textView:YYTextView?
     var conversation:WXConversation?{
         didSet{
-            self.contentEntity.sender = conversation?.sender
-            self.tableView.reloadData()
+            if type == nil || type ==  .Create {
+                contentEntity.sender = conversation?.sender
+                contentEntity.parent = conversation
+                contentEntity.id = UUID().uuidString
+                contentEntity.contentType = 1
+                self.tableView.reloadData()
+            }
         }
     }
     var conversationType:ConversationType?
     var contentEnumType:ContentEnumType?
+    
     lazy var contentEntity:WXContentEntity = WXContentEntity()
     
     
-   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,10 +59,12 @@ class FileSetingViewController: BaseViewController {
         initView()
     }
     func getData() -> Void {
+       
+        
         for index in 1...114{
             let model = EmojiModel()
             model.name = "Expression_"+String(index)+"@2x"
-            model.mapperName = ":100\(index):"
+            model.mapperName = "[100\(index)]"
             array.append(model)
             emojiMapper[model.mapperName!] = model.image
         }
@@ -72,11 +83,40 @@ class FileSetingViewController: BaseViewController {
         self.tableView.snp.makeConstraints { (maker) in
             maker.edges.equalToSuperview()
         }
- 
+        
         self.automaticallyAdjustsScrollViewInsets = false
     }
     override func rightBtnClick(_ sender: UIButton) {
+        let text = textView?.attributedText
+        var string = ""
         
+        text?.enumerateAttribute(YYTextBackedStringAttributeName, in: NSMakeRange(0, (text?.length)!), options:NSAttributedString.EnumerationOptions.longestEffectiveRangeNotRequired, using: { (value, range, stop ) in
+            if value != nil  {
+                let backed = value as! YYTextBackedString
+
+                string.append(backed.string!)
+            }else{
+                string.append((text?.attributedSubstring(from: range).string)!)
+            }
+ 
+        })
+        if string.isEmpty {
+            self.view .showImageHUDText("请输入文本内容")
+            return
+        }
+        
+        let realm = try! Realm()
+        if self.type == .Edit{
+            let entities = realm.objects(WXContentEntity.self)
+            contentEntity.index = entities.count+1
+        }
+        try! realm.write {
+            realm.create(WXContentEntity.self, value: contentEntity, update: true)
+        }
+        if block != nil {
+            block!()
+        }
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func keyBoardWillShow(_ noti:Notification){
@@ -91,7 +131,7 @@ class FileSetingViewController: BaseViewController {
     }
     deinit {
         NotificationCenter.default.removeObserver(self)
-
+        
     }
 }
 extension FileSetingViewController:UITableViewDelegate,UITableViewDataSource{
@@ -127,7 +167,7 @@ extension FileSetingViewController:UITableViewDelegate,UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: "InputMessageContentCellId") as! InputMessageContentTableViewCell
             cell.mapper = emojiMapper
             self.textView = cell.textView
- 
+            
             return cell
         }
         
@@ -153,7 +193,7 @@ extension FileSetingViewController:UITableViewDelegate,UITableViewDataSource{
                     [unowned self]  (role) in
                     self.contentEntity.sender = role
                     self.tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: .none)
-                 }
+                }
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
@@ -161,7 +201,7 @@ extension FileSetingViewController:UITableViewDelegate,UITableViewDataSource{
     }
 }
 extension FileSetingViewController:UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
-   
+    
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         return CGSize(width: 30, height: 30)
     }
@@ -187,11 +227,14 @@ extension FileSetingViewController:UICollectionViewDataSource,UICollectionViewDe
         let location = self.textView?.selectedRange.location
         self.textView?.resignFirstResponder()
         let  str = NSMutableAttributedString(attributedString: (self.textView?.attributedText)!)
-        str.insert( NSMutableAttributedString.yy_attachmentString(withEmojiImage: model.image!, fontSize: 14)!, at: location!)
+        let attr = NSMutableAttributedString.yy_attachmentString(withEmojiImage: model.image!, fontSize: 14)!
+        attr.yy_setTextBackedString(YYTextBackedString.init(string: model.mapperName), range: NSMakeRange(0, attr.length))
+        str.insert(attr, at: location!)
         self.textView?.attributedText = str
         self.textView?.scrollRangeToVisible(NSMakeRange(location!+1, 0))
         self.textView?.selectedRange = NSMakeRange(location!+1, 0)
         
-      }
+        
+    }
 }
 

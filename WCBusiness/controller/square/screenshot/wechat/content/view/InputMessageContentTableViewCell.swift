@@ -26,7 +26,7 @@ class InputMessageContentTableViewCell: UITableViewCell {
         textView.textContainerInset = UIEdgeInsetsMake(10, 10, 10, 10);
         textView.font = UIFont.systemFont(ofSize: 14)
         textView.placeholderText = "请输入内容"
-       
+       textView.keyboardDismissMode = .onDrag
         textView.placeholderFont = UIFont.systemFont(ofSize: 14)
         textView.scrollIndicatorInsets = textView.contentInset;
  
