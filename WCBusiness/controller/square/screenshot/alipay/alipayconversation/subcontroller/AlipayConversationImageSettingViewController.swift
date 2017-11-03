@@ -17,7 +17,7 @@ class AlipayConversationImageSettingViewController : BaseViewController {
 //    var receiver:Role?
     var isEdit:Bool?
     var isSave:Bool? = false
-    var index:String?
+    var index:Int?
     var acUser:AlipayConversationUser?
     var selectRole:Role?
     var acContent:AlipayConversationContent?
@@ -98,9 +98,7 @@ class AlipayConversationImageSettingViewController : BaseViewController {
                 realm.create(AlipayConversationContent.self, value: self.acContent as Any, update: true)
             }
             self.navigationController?.popViewController(animated: true)
-        }
-        
-        print("rightItemBtnAction")
+        }        
     }
     func initData() {
         if isEdit == false && self.acContent == nil{
@@ -206,14 +204,8 @@ extension AlipayConversationImageSettingViewController:UITableViewDelegate,UITab
                 self.manager.clearSelectedList()
             let nav = UINavigationController(rootViewController: (self.photoVC));
                 nav.isNavigationBarHidden = true
+            self.isSave = true
             self.present(nav, animated: true, completion: nil)
-            
-//                let realm = try! Realm()
-//                try! realm.write {
-//                    self?.acUser.isDiskImage = false
-//                }
-//                self?.tableView?.reloadData()
-            
         }
     }
 }
@@ -235,5 +227,6 @@ extension AlipayConversationImageSettingViewController:HXPhotoViewControllerDele
         }
         self.dismiss(animated: false, completion: nil)
         self.tableView.reloadData()
+        self.isSave = false
     }
 }

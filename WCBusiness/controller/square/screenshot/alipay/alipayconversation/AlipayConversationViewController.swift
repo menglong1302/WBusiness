@@ -17,17 +17,16 @@ class AlipayConversationViewController : BaseViewController  {
     var footerView:UIView?
     var footerViewLeftBtn:UIButton?
     var footerViewRightBtn:UIButton?
-    var alipayCAV:AlipayConversationAddView?
-    //    var tableData:[AlipayConversationContent] = []
     var tableData:Array<AlipayConversationContent> = []
+    var alipayCAV:AlipayConversationAddView?
     lazy var acUser = AlipayConversationUser()
-    var index:String?
-//    var isEdite = false
-    var indexPath:IndexPath?
-    var targetIndexPath:IndexPath?
     lazy var dragingCell = self.initDragingCell()
+    var edgeScrollTimer:CADisplayLink?
+    var targetIndexPath:IndexPath?
+    var indexPath:IndexPath?
     var tempView:UIView?
-    
+    var edgeScrollRange:CGFloat?
+    var canEdgeScroll:Bool = true
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "支付宝对话"
@@ -36,11 +35,15 @@ class AlipayConversationViewController : BaseViewController  {
         initFooterView()
         initAddView()
         self.view.backgroundColor = UIColor.init(hexString: "EFEFF4")
-        self.index = String(self.tableData.count)
+        self.edgeScrollRange = 150.0
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         initData ()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tableData.removeAll()
     }
     func initDragingCell() -> AlipayConversationContentCell {
         let cell = AlipayConversationContentCell(frame:CGRect(x:0,y:0,width:SCREEN_WIDTH,height:50))
@@ -108,8 +111,12 @@ class AlipayConversationViewController : BaseViewController  {
         })
     }
     func rightItemBtnAction() -> Void {
-        //        print("rightItemBtnAction")
-        //        loadData()
+        let realm = try! Realm()
+        try! realm.write {
+            realm.delete(self.tableData)
+        }
+        self.tableData = []
+        self.tableView?.reloadData()
     }
     func initAddView(){
         alipayCAV = AlipayConversationAddView.init(frame: CGRect.init(x:0,y:SCREEN_HEIGHT,width:SCREEN_WIDTH,height:SCREEN_HEIGHT))
@@ -130,7 +137,8 @@ class AlipayConversationViewController : BaseViewController  {
                 let alipayConversationISVC = AlipayConversationImageSettingViewController()
                 if self?.acUser.sender != nil && self?.acUser.receiver != nil {
                     alipayConversationISVC.acUser = self?.acUser
-                    alipayConversationISVC.index = self?.index
+                    alipayConversationISVC.index = (self?.tableData.count)!
+                    print(self?.tableData.count as Any)
                     alipayConversationISVC.isEdit = false
                     self?.navigationController?.pushViewController(alipayConversationISVC, animated: true)
                 } else {
@@ -190,17 +198,15 @@ class AlipayConversationViewController : BaseViewController  {
     }
     //MARK: - 长按动作
     func longPressGesture(_ tap: UILongPressGestureRecognizer) {
-//        if !isEdite {
-//            isEdite = !isEdite
-//            self.tableView?.reloadData()
-//            return
-//        }
+
         let point = tap.location(in: self.tableView)
         switch tap.state {
         case UIGestureRecognizerState.began:
             dragBegan(point: point)
         case UIGestureRecognizerState.changed:
-            drageChanged(point: point)
+            if self.canEdgeScroll {
+                drageChanged(point: point)
+            }
         case UIGestureRecognizerState.ended:
             drageEnded(point: point)
         case UIGestureRecognizerState.cancelled:
@@ -213,6 +219,9 @@ class AlipayConversationViewController : BaseViewController  {
         indexPath = self.tableView?.indexPathForRow(at: point)
         if indexPath == nil || (indexPath?.section)! < 1 {
             return
+        }
+        if self.canEdgeScroll {
+            self.startEdgeScroll()
         }
         let cell = self.tableView?.cellForRow(at: indexPath!) as? AlipayConversationContentCell
 //        cell?.isHidden = true
@@ -255,6 +264,9 @@ class AlipayConversationViewController : BaseViewController  {
         if indexPath == nil || (indexPath?.section)! < 1 {
             return
         }
+        if self.canEdgeScroll {
+            self.stopEdgeScroll()
+        }
         let endCell = self.tableView?.cellForRow(at: indexPath!)
         UIView.animate(withDuration: 0.25, animations: {
             self.dragingCell.transform = CGAffineTransform.identity
@@ -271,11 +283,62 @@ class AlipayConversationViewController : BaseViewController  {
             let realm = try! Realm()
             for index in 0 ..< self.tableData.count {
                 try! realm.write {
-                    self.tableData[index].index = String(index)
+                    self.tableData[index].index = index
                 }
             }
             self.tableView?.reloadData()
         })
+    }
+    func startEdgeScroll () {
+        self.edgeScrollTimer = CADisplayLink.init(target: self, selector: #selector(processEdgeScroll))
+        self.edgeScrollTimer?.add(to:RunLoop.main, forMode: RunLoopMode.commonModes)
+    }
+    func processEdgeScroll () {
+//        let point = tap.location(in: self.tableView)
+//        drageChanged(point: point)
+        let minOffsetY:CGFloat = (self.tableView?.contentOffset.y)! + self.edgeScrollRange!
+        let maxOffsetY:CGFloat = (self.tableView?.contentOffset.y)! + (self.tableView?.bounds.size.height)! - self.edgeScrollRange!
+        let touchPoint = self.tempView?.center
+        if CGFloat((touchPoint?.y)!) < self.edgeScrollRange! {
+            if CGFloat((self.tableView?.contentOffset.y)!) <= 0 {
+                return
+            } else {
+                if (self.tableView?.contentOffset.y)! - 1 < 0 {
+                    return
+                }
+                self.tableView?.setContentOffset(CGPoint.init(x: (self.tableView?.contentOffset.x)!, y: (self.tableView?.contentOffset.y)! - 1), animated: false)
+                self.tempView?.center = CGPoint.init(x: (self.tempView?.center.x)!, y: (self.tempView?.center.y)! - 1)
+            }
+        }
+        if ((touchPoint?.y)! > (CGFloat((self.tableView?.contentSize.height)!) - self.edgeScrollRange!)) {
+            if ((self.tableView?.contentOffset.y)! >= (CGFloat((self.tableView?.contentSize.height)!) - CGFloat((self.tableView?.bounds.size.height)!))) {
+                return;
+            }else {
+                if ((self.tableView?.contentOffset.y)! + 1 > (self.tableView?.contentSize.height)! - (self.tableView?.bounds.size.height)!) {
+                    return;
+                }
+                self.tableView?.setContentOffset(CGPoint.init(x: (self.tableView?.contentOffset.x)!, y: (self.tableView?.contentOffset.y)! + 1), animated: false)
+                self.tempView?.center = CGPoint.init(x: (self.tempView?.center.x)!, y: (self.tempView?.center.y)! + 1)
+            }
+        }
+        //处理滚动
+        let maxMoveDistance:CGFloat = 20
+        if (touchPoint?.y)! < minOffsetY {
+            let moveDistance:CGFloat = (minOffsetY - (touchPoint?.y)!)/self.edgeScrollRange!*maxMoveDistance
+            self.tableView?.setContentOffset(CGPoint.init(x: (self.tableView?.contentOffset.x)!, y: (self.tableView?.contentOffset.y)! - moveDistance), animated: false)
+            self.tempView?.center = CGPoint.init(x: (self.tempView?.center.x)!, y: (self.tempView?.center.y)! - moveDistance)
+        } else if (touchPoint?.y)! > maxOffsetY {
+            let moveDistance:CGFloat = ((touchPoint?.y)! - maxOffsetY)/self.edgeScrollRange!*maxMoveDistance
+            self.tableView?.setContentOffset(CGPoint.init(x: (self.tableView?.contentOffset.x)!, y: (self.tableView?.contentOffset.y)! + moveDistance), animated: false)
+//            self.tempView?.center = CGPoint.init(x: (self.tempView?.center.x)!, y: (self.tempView?.center.y)! + moveDistance)
+        }
+        
+    }
+    func stopEdgeScroll () {
+        if (self.edgeScrollTimer != nil) {
+            self.edgeScrollTimer?.invalidate()
+            self.edgeScrollTimer = nil
+        }
     }
 }
 //talbeView 的两个代理方法的实现，其实这两个代理还能加到class声明的后面，代理方法的时候和OC里面的实现是一样的
@@ -339,6 +402,7 @@ extension AlipayConversationViewController:UITableViewDataSource,UITableViewDele
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlipayConversationContentCell
             cell.setData(["data" : self.tableData[indexPath.row]])
+            cell.contentLabel?.text = "Row=\(indexPath.row)+Index=\(self.tableData[indexPath.row].index)"
             cell.deleteBtn?.addTarget(self, action:#selector(deleteBtnAction(button:)), for: .touchUpInside)
             return cell
         }
@@ -352,7 +416,7 @@ extension AlipayConversationViewController:UITableViewDataSource,UITableViewDele
             }
         } else {
             let acisvc = AlipayConversationImageSettingViewController()
-            acisvc.index = String(indexPath.row)
+            acisvc.index = indexPath.row
             acisvc.acUser = self.acUser
             acisvc.isEdit = true
             acisvc.acContent = self.tableData[indexPath.row]
