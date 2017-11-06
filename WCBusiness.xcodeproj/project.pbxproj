@@ -12,6 +12,12 @@
 		4829AE101F95FB9900EBA903 /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4829AE0F1F95FB9900EBA903 /* RoleViewController.swift */; };
 		484A10CA1F9847FE00BDFFE5 /* RoleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10C91F9847FE00BDFFE5 /* RoleEditViewController.swift */; };
 		484A10CE1F98666C00BDFFE5 /* NameEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10CD1F98666C00BDFFE5 /* NameEditViewController.swift */; };
+		485549381FAAAE89006F6153 /* YLEmojiKeyBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485549371FAAAE89006F6153 /* YLEmojiKeyBoard.swift */; };
+		4855493A1FAAB065006F6153 /* YLEmojiTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485549391FAAB065006F6153 /* YLEmojiTabBar.swift */; };
+		4855493C1FAAB230006F6153 /* emojiBarBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4855493B1FAAB230006F6153 /* emojiBarBundle.bundle */; };
+		4855493E1FAAB2E3006F6153 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4855493D1FAAB2E3006F6153 /* String+extension.swift */; };
+		485549401FAAB638006F6153 /* YLEmojiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4855493F1FAAB638006F6153 /* YLEmojiContainer.swift */; };
+		485549441FAC44A6006F6153 /* WXConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485549431FAC44A6006F6153 /* WXConversationTableViewCell.swift */; };
 		487F6E171FA05FAD00F62868 /* AddRoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487F6E161FA05FAD00F62868 /* AddRoleViewController.swift */; };
 		487F6E1A1FA0795600F62868 /* WXConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487F6E191FA0795600F62868 /* WXConversationViewController.swift */; };
 		488899731FA6C1B9000193C5 /* WXContentEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488899721FA6C1B9000193C5 /* WXContentEntity.swift */; };
@@ -143,6 +149,12 @@
 		4829AE0F1F95FB9900EBA903 /* RoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
 		484A10C91F9847FE00BDFFE5 /* RoleEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleEditViewController.swift; sourceTree = "<group>"; };
 		484A10CD1F98666C00BDFFE5 /* NameEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEditViewController.swift; sourceTree = "<group>"; };
+		485549371FAAAE89006F6153 /* YLEmojiKeyBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YLEmojiKeyBoard.swift; sourceTree = "<group>"; };
+		485549391FAAB065006F6153 /* YLEmojiTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YLEmojiTabBar.swift; sourceTree = "<group>"; };
+		4855493B1FAAB230006F6153 /* emojiBarBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = emojiBarBundle.bundle; sourceTree = "<group>"; };
+		4855493D1FAAB2E3006F6153 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
+		4855493F1FAAB638006F6153 /* YLEmojiContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YLEmojiContainer.swift; sourceTree = "<group>"; };
+		485549431FAC44A6006F6153 /* WXConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXConversationTableViewCell.swift; sourceTree = "<group>"; };
 		48767B331F95D492000D9E0B /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48767B341F95D492000D9E0B /* ChameleonFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ChameleonFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48767B351F95D492000D9E0B /* FSCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FSCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -362,6 +374,19 @@
 			path = role;
 			sourceTree = "<group>";
 		};
+		485549361FAAAE71006F6153 /* emojiBar */ = {
+			isa = PBXGroup;
+			children = (
+				48E9976A1FA711660047933D /* wx_emoji.bundle */,
+				485549371FAAAE89006F6153 /* YLEmojiKeyBoard.swift */,
+				485549391FAAB065006F6153 /* YLEmojiTabBar.swift */,
+				4855493F1FAAB638006F6153 /* YLEmojiContainer.swift */,
+				4855493D1FAAB2E3006F6153 /* String+extension.swift */,
+				4855493B1FAAB230006F6153 /* emojiBarBundle.bundle */,
+			);
+			path = emojiBar;
+			sourceTree = "<group>";
+		};
 		487F6E181FA0786400F62868 /* wechat */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,6 +416,7 @@
 		48AE56551F9F3AB50055551D /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				485549361FAAAE71006F6153 /* emojiBar */,
 				48AE56561F9F3AE20055551D /* HXWeiboPhotoPicker */,
 			);
 			name = lib;
@@ -523,7 +549,6 @@
 				48B228EB1F8E08E1009081DA /* Assets.xcassets */,
 				48B228ED1F8E08E1009081DA /* LaunchScreen.storyboard */,
 				48B228F01F8E08E1009081DA /* Info.plist */,
-				48E9976A1FA711660047933D /* wx_emoji.bundle */,
 			);
 			path = WCBusiness;
 			sourceTree = "<group>";
@@ -575,6 +600,7 @@
 				48D6F0C71FA188C800F77521 /* ChatSettingTableViewCell.swift */,
 				48D6F0CB1FA1DE2B00F77521 /* GroupSelectPeopleTableViewCell.swift */,
 				48D6F0CD1FA2D8DC00F77521 /* GroupPersionCollectionViewCell.swift */,
+				485549431FAC44A6006F6153 /* WXConversationTableViewCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -874,6 +900,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4855493C1FAAB230006F6153 /* emojiBarBundle.bundle in Resources */,
 				48E9976B1FA711660047933D /* wx_emoji.bundle in Resources */,
 				48B2291C1F8E1865009081DA /* Podfile in Resources */,
 				48B228EF1F8E08E1009081DA /* LaunchScreen.storyboard in Resources */,
@@ -1006,6 +1033,7 @@
 				71876EE81FA09D7F00BCD139 /* AlipayConversationSettingInfoCell.swift in Sources */,
 				48AE56AD1F9F3AE20055551D /* HXAlbumListViewController.m in Sources */,
 				48AE56D41F9F3AE20055551D /* UIFont+HXExtension.m in Sources */,
+				4855493A1FAAB065006F6153 /* YLEmojiTabBar.swift in Sources */,
 				48AE56CC1F9F3AE20055551D /* HXPresentTransition.m in Sources */,
 				48FD47581F8F3844006685A8 /* SquareModel.swift in Sources */,
 				48E997671FA6D3350047933D /* SelectPeopleTableViewCell.swift in Sources */,
@@ -1032,9 +1060,11 @@
 				48AE56BD1F9F3AE20055551D /* HXPhoto3DTouchViewController.m in Sources */,
 				48D6F0BD1FA0824500F77521 /* PeopleTableViewCell.swift in Sources */,
 				48AE56B11F9F3AE20055551D /* HXCameraViewController.m in Sources */,
+				485549441FAC44A6006F6153 /* WXConversationTableViewCell.swift in Sources */,
 				48AE56C91F9F3AE20055551D /* HXPhotoView.m in Sources */,
 				48D6F0CA1FA1C69600F77521 /* ContentEditViewController.swift in Sources */,
 				48AE56BE1F9F3AE20055551D /* HXPhotoCustomNavigationBar.m in Sources */,
+				4855493E1FAAB2E3006F6153 /* String+extension.swift in Sources */,
 				48FD47551F8F2D6B006685A8 /* CommonUtil.swift in Sources */,
 				487F6E1A1FA0795600F62868 /* WXConversationViewController.swift in Sources */,
 				48D56D7B1FA73373001B6971 /* WXEmojiCollectionViewCell.swift in Sources */,
@@ -1077,6 +1107,7 @@
 				48E997691FA6D8F50047933D /* InputMessageContentTableViewCell.swift in Sources */,
 				48AE56C31F9F3AE20055551D /* HXPhotoPreviewViewCell.m in Sources */,
 				48AE56B81F9F3AE20055551D /* HXDatePhotoPreviewBottomView.m in Sources */,
+				485549401FAAB638006F6153 /* YLEmojiContainer.swift in Sources */,
 				48AE56D11F9F3AE20055551D /* NSBundle+HXWeiboPhotoPicker.m in Sources */,
 				48B229181F8E11BD009081DA /* WBTabBarController.swift in Sources */,
 				48AE56C11F9F3AE20055551D /* HXPhotoManager.m in Sources */,
@@ -1088,6 +1119,7 @@
 				48AE56B71F9F3AE20055551D /* HXDatePhotoCollectionViewLayoutAttributes.m in Sources */,
 				48AE56B21F9F3AE20055551D /* HXCircleProgressView.m in Sources */,
 				48D6F0CE1FA2D8DC00F77521 /* GroupPersionCollectionViewCell.swift in Sources */,
+				485549381FAAAE89006F6153 /* YLEmojiKeyBoard.swift in Sources */,
 				71876EE91FA09D7F00BCD139 /* AlipayConversationDataModel.swift in Sources */,
 				48FD475B1F8F4C64006685A8 /* ScreenshotViewController.swift in Sources */,
 				7105AD3D1FA2E502009B15C4 /* AlipayConversationImageSettingViewController.swift in Sources */,

@@ -40,7 +40,7 @@ class WXConversationViewController: BaseViewController {
     }()
     
     lazy var conversation = WXConversation()
-    
+    lazy var contents = List<WXContentEntity>()
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
@@ -49,6 +49,7 @@ class WXConversationViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchData()
+        getConversation()
         self.tableView.reloadData()
     }
     func initView()  {
@@ -56,7 +57,7 @@ class WXConversationViewController: BaseViewController {
         self.view.backgroundColor = UIColor.white
         self.view.addSubview(tableView)
         self.view.addSubview(footerView)
-         footerView.snp.makeConstraints { (maker) in
+        footerView.snp.makeConstraints { (maker) in
             maker.left.right.bottom.equalToSuperview()
             maker.height.equalTo(50)
         }
@@ -75,7 +76,7 @@ class WXConversationViewController: BaseViewController {
             maker.right.top.bottom.equalToSuperview()
             maker.width.equalTo(SCREEN_WIDTH/2.0)
         }
-       
+        
     }
     
     func fetchData(){
@@ -105,6 +106,16 @@ class WXConversationViewController: BaseViewController {
             
         }
         
+        
+    }
+    func getConversation(){
+        self.contents.removeAll()
+        let realm = try! Realm()
+        let predicate = NSPredicate(format: "parent.id = %@", self.conversation.id)
+        let results = realm.objects(WXContentEntity.self).filter(predicate)
+        for result in results {
+            self.contents.append(result)
+        }
     }
     
     func makeTableView() -> UITableView {
@@ -114,6 +125,8 @@ class WXConversationViewController: BaseViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(PeopleTableViewCell.self, forCellReuseIdentifier: "peopleCellId")
+        tableView.register(WXConversationTableViewCell.self, forCellReuseIdentifier: "WXConversationCellId")
+        
         
         //设置分割线内边距
         tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
@@ -148,7 +161,7 @@ class WXConversationViewController: BaseViewController {
     func addConversationBtnClick()  {
         
         UIApplication.shared.keyWindow?.addSubview(selectView)
-         selectView.snp.makeConstraints { (maker) in
+        selectView.snp.makeConstraints { (maker) in
             maker.edges.equalToSuperview()
         }
         self.view.layoutIfNeeded()
@@ -164,6 +177,9 @@ class WXConversationViewController: BaseViewController {
                 vc.contentEnumType = .WeChat
                 vc.conversation = self.conversation
                 vc.conversationType = self.conversationType
+                vc.block = {
+                    self.tableView.reloadData()
+                }
                 self.navigationController?.pushViewController(vc, animated: true)
                 break
             case 1:
@@ -209,8 +225,14 @@ extension WXConversationViewController:UITableViewDelegate,UITableViewDataSource
             cell.imageNum = count<=2 ? 2:count
             cell.confige(conversation)
             return  cell
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WXConversationCellId") as! WXConversationTableViewCell
+            let content = contents[indexPath.row]
+            cell.configer(content)
+            
+            return cell
         }
-        return UITableViewCell()
+        
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
@@ -218,8 +240,10 @@ extension WXConversationViewController:UITableViewDelegate,UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
+        }else{
+            return contents.count
         }
-        return 1
+       
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
@@ -229,21 +253,46 @@ extension WXConversationViewController:UITableViewDelegate,UITableViewDataSource
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        var vc:UIViewController?
-        switch self.conversationType {
-        case .groupChat:
-            let groupVc = GroupConversationSettingViewController()
-            groupVc.conversation = self.conversation
-            vc = groupVc
-            break
-        default:
-            let privateVC = PrivateConversationSettingViewController()
-            privateVC.conversation = self.conversation
-            vc = privateVC
-            break
+        if indexPath.section == 0 {
+            var vc:UIViewController?
+            switch self.conversationType {
+            case .groupChat:
+                let groupVc = GroupConversationSettingViewController()
+                groupVc.conversation = self.conversation
+                vc = groupVc
+                break
+            default:
+                let privateVC = PrivateConversationSettingViewController()
+                privateVC.conversation = self.conversation
+                vc = privateVC
+                break
+            }
+            self.navigationController?.pushViewController(vc!, animated: true)
         }
-        self.navigationController?.pushViewController(vc!, animated: true)
         
+        
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == 0{
+            return false
+            
+        }
+        return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let model =  contents[indexPath.row]
+            contents.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.left)
+            let realm = try! Realm()
+            try! realm.write {
+                realm.delete(model)
+            }
+            
+        }
+    }
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "删除"
     }
 }
 
