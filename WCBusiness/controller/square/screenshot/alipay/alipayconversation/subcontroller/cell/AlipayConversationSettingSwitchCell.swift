@@ -24,7 +24,7 @@ class AlipayConversationSettingSwitchCell: UITableViewCell {
         titleLabel.textColor = UIColor.black
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.systemFont(ofSize: 15);
-        titleLabel.text = "已添加对方为好友";
+//        titleLabel.text = "已添加对方为好友";
         titleLabel.snp.makeConstraints({(maker) in
             maker.centerY.equalToSuperview()
             maker.left.equalToSuperview().offset(20)

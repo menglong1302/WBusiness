@@ -104,6 +104,7 @@ extension AlipayConversationSettingViewController:UITableViewDataSource,UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 1 && indexPath.row == 1) {
             let switchCell = tableView.dequeueReusableCell(withIdentifier: "switchCell") as! AlipayConversationSettingSwitchCell
+            switchCell.titleLabel.text = "已添加对方为好友"
             switchCell.setData(["isFriend":self.acUser.isFriend])
             switchCell.selectionStyle = .none
             switchCell.swichBtn.addTarget(self, action:#selector(swithClick(_:)), for:.valueChanged)

@@ -1,8 +1,8 @@
 //
-//  AlipayConversationImageSettingViewController.swift
+//  AlipayConversationAudioSettingViewController.swift
 //  WCBusiness
 //
-//  Created by Ray on 2017/10/27.
+//  Created by Ray on 2017/11/2.
 //  Copyright © 2017年 LYL. All rights reserved.
 //
 
@@ -11,51 +11,29 @@ import SnapKit
 import RealmSwift
 import PGActionSheet
 
-class AlipayConversationImageSettingViewController : BaseViewController {
+class AlipayConversationAudioSettingViewController: BaseViewController {
     lazy var tableView = self.initTableView()
-//    var sender:Role?
-//    var receiver:Role?
-    var isEdit:Bool?
+    var dataSourse:Array<AlipayConversationContent> = []
+    var index:Int!
     var isSave:Bool? = false
-    var index:Int?
-    var acUser:AlipayConversationUser?
+    var isEdit:Bool?
+    var isSender:Bool? = false
+    var showSwitch:Bool? = false
     var selectRole:Role?
+    var acUser:AlipayConversationUser?
     var acContent:AlipayConversationContent?
-    lazy var manager:HXPhotoManager = {
-        () in
-        let manager = HXPhotoManager(type: HXPhotoManagerSelectedTypePhoto)
-        manager?.cameraType = HXPhotoManagerCameraTypeFullScreen
-        manager?.outerCamera = true
-        manager?.openCamera = true
-        manager?.saveSystemAblum = true
-        manager?.singleSelected = true
-        manager?.singleSelecteClip = false
-        return manager!
-    }()
-    lazy var photoVC = {
-        () -> HXPhotoViewController in
-        let vc = HXPhotoViewController()
-        vc.manager = self.manager;
-        vc.delegate = self;
-        return vc
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "图片设置"
-        self.view.backgroundColor = UIColor.init(hexString: "EFEFF4")
-        self.initView()
-        self.initRightNavBarBtn()
         if self.isEdit == true {
             self.selectRole = self.acContent?.contentSender
         } else {
             self.selectRole = self.acUser?.sender
         }
-        initData()
+        initView()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.iniData()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -68,45 +46,33 @@ class AlipayConversationImageSettingViewController : BaseViewController {
         }
     }
     func initView () {
+        self.navigationItem.title = "语音设置"
+        self.view.backgroundColor = UIColor.init(hexString: "EFEFF4")
         self.view.addSubview(self.tableView)
-        self.tableView.snp.makeConstraints({(maker) in
-            maker.edges.equalToSuperview()
-        })
+        let rightBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 30, height: 30))
+        rightBtn.setTitle("保存", for: .normal)
+        rightBtn.addTarget(self, action: #selector(rightBtnAction), for: .touchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightBtn)
         
     }
-    func initTableView() -> UITableView {
-        let tableView = UITableView(frame:CGRect.zero)
+    func initTableView () -> UITableView {
+        let tableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT-64), style: .grouped)
+        tableView.backgroundColor = UIColor.clear
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = UIColor.clear
         tableView.register(AlipayConversationSettingCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(AlipayConversationSettingSliderCell.self, forCellReuseIdentifier: "sliderCell")
+        tableView.register(AlipayConversationSettingSwitchCell.self, forCellReuseIdentifier: "switchCell")
         return tableView
     }
-    func initRightNavBarBtn() {
-        let rightBtn = UIButton.init(frame:CGRect.zero)
-        rightBtn.setTitle("保存", for: .normal)
-        rightBtn.addTarget(self,action:#selector(rightItemBtnAction), for: .touchUpInside)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightBtn)
-    }
-    func rightItemBtnAction() {
-        self.isSave = true
-        if self.acContent?.content == nil || self.acContent?.content == "" {
-            self.view.showImageHUDText("没有选择图片")
-        } else {
-            let realm = try! Realm()
-            try! realm.write {
-                realm.create(AlipayConversationContent.self, value: self.acContent as Any, update: true)
-            }
-            self.navigationController?.popViewController(animated: true)
-        }        
-    }
-    func initData() {
+    func iniData () {
         if isEdit == false && self.acContent == nil{
             let realm = try! Realm()
             self.acContent = AlipayConversationContent()
             self.acContent?.id = UUID().uuidString
             self.acContent?.index = self.index!
-            self.acContent?.type = "图片"
+            self.acContent?.type = "语音"
+            self.acContent?.content = "01秒"
             self.acContent?.user = self.acUser
             self.acContent?.contentSender = self.acUser?.sender
             let date = NSDate()
@@ -119,19 +85,48 @@ class AlipayConversationImageSettingViewController : BaseViewController {
             }
         }
     }
+    func rightBtnAction () {
+        self.isSave = true
+        let index = IndexPath.init(row: 0, section: 1)
+        let cell = self.tableView.cellForRow(at: index) as! AlipayConversationSettingSliderCell
+        let realm = try! Realm()
+        try! realm.write {
+            self.acContent?.content = cell.sliderValueLabel.text!
+//            realm.create(AlipayConversationContent.self, value: self.acContent as Any, update: true)
+        }
+        self.navigationController?.popViewController(animated: true)
+    }
+    func swithClick(_ sender : UISwitch) {
+        let realm = try! Realm()
+        try! realm.write {
+            if (sender.isOn == true) {
+                self.acContent?.isRead = true
+            }else{
+                self.acContent?.isRead = false
+            }
+        }
+    }
 }
-
-extension AlipayConversationImageSettingViewController:UITableViewDelegate,UITableViewDataSource {
+extension AlipayConversationAudioSettingViewController:UITableViewDelegate,UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        
+        if self.selectRole?.id == self.acUser?.sender?.id {
+            return 1
+        } else {
+            if section == 1 {
+                return 2
+            } else {
+                return 1
+            }
+            
+        }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
     }
@@ -149,8 +144,8 @@ extension AlipayConversationImageSettingViewController:UITableViewDelegate,UITab
         return view;
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlipayConversationSettingCell
         if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlipayConversationSettingCell
             if (self.selectRole?.isDiskImage)! {
                 cell.setData(["title":"选择发送人","name":(self.selectRole?.nickName)!,"imageName":""])
                 if !(self.selectRole?.imageUrl.isEmpty)! {
@@ -163,17 +158,26 @@ extension AlipayConversationImageSettingViewController:UITableViewDelegate,UITab
                     cell.setData(["title":"选择发送人","name":(self.selectRole?.nickName)!,"imageName":(self.selectRole?.imageName)!])
                 }
             }
-            
+            return cell
         } else {
-            if self.acContent?.content != nil {
-                cell.setData(["title":"选择照片","name":"","imageName":""])
-                cell.iconImage.kf.setImage(with: URL(fileURLWithPath: (self.acContent?.content.localPath())!))
+            if indexPath.row == 0 {
+                let sliderCell = tableView.dequeueReusableCell(withIdentifier: "sliderCell", for: indexPath) as! AlipayConversationSettingSliderCell
+                sliderCell.sliderValueLabel.text = self.acContent?.content
+                let str = self.acContent?.content
+                let index = str?.index((str?.startIndex)!, offsetBy:2)//获取字符d的索引
+                let sliderValue = Float(atof(str?.substring(to: index!)))
+                sliderCell.slider.setValue(sliderValue, animated: true)
+                return sliderCell
             } else {
-                cell.setData(["title":"选择照片","name":"","imageName":""])
+                let switchCell = tableView.dequeueReusableCell(withIdentifier: "switchCell", for: indexPath) as!AlipayConversationSettingSwitchCell
+                switchCell.titleLabel.text = "是否已读"
+                switchCell.setData(["isFriend":(self.acContent?.isRead ?? true)])
+                switchCell.selectionStyle = .none
+                switchCell.swichBtn.addTarget(self, action:#selector(swithClick(_:)), for:.valueChanged)
+                return switchCell
             }
             
         }
-        return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -190,7 +194,7 @@ extension AlipayConversationImageSettingViewController:UITableViewDelegate,UITab
             self.tableView.reloadData()
 //            let actionSheet = PGActionSheet(cancelButton: true, buttonList: [(self.acUser?.sender?.nickName)!,(self.acUser?.receiver?.nickName)!])
 //            actionSheet.actionSheetTranslucent = false
-//
+//            self.isSave = true
 //            present(actionSheet, animated: false, completion: {
 //                actionSheet.handler = {[weak self] index  in
 //                    if index == 0 {
@@ -203,39 +207,12 @@ extension AlipayConversationImageSettingViewController:UITableViewDelegate,UITab
 //                        self?.acContent?.contentSender = self?.selectRole
 //                    }
 //                    self?.tableView.reloadData()
-//                    self?.dismiss(animated: false, completion: {
-//
-//                    })
+//                    self?.dismiss(animated: false, completion: nil)
+//                    self?.isSave = false
 //                }
 //            })
-        } else {
-            
-                self.manager.clearSelectedList()
-            let nav = UINavigationController(rootViewController: (self.photoVC));
-                nav.isNavigationBarHidden = true
-            self.isSave = true
-            self.present(nav, animated: true, completion: nil)
         }
     }
 }
 
-extension AlipayConversationImageSettingViewController:HXPhotoViewControllerDelegate{
-    func photoViewControllerDidCancel() {
-    }
-    func photoViewControllerDidNext(_ allList: [HXPhotoModel]!, photos: [HXPhotoModel]!, videos: [HXPhotoModel]!, original: Bool) {
-        let model =  photos[0]
-        let data = model.thumbPhoto.kf.jpegRepresentation(compressionQuality: 0.7)
-        let imagename = (UUID().uuidString+".png")
-        let path = imagename.localPath()
-        try? data?.write(to: URL(fileURLWithPath: path))
-        
-        let realm = try! Realm()
-        try! realm.write {
-            self.acContent?.content = imagename
-//            self.acUser.isDiskImage = true
-        }
-        self.dismiss(animated: false, completion: nil)
-        self.tableView.reloadData()
-        self.isSave = false
-    }
-}
+

@@ -14,7 +14,7 @@ class AlipayConversationContentCell:UITableViewCell {
     var iconImage:UIImageView?
     var typeLabel:UILabel?
     var contentLabel:UILabel?
-    var deleteBtn:UIButton?
+//    var deleteBtn:UIButton?
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.initView()
@@ -50,15 +50,14 @@ class AlipayConversationContentCell:UITableViewCell {
             maker.left.equalTo((self.typeLabel?.snp.right)!).offset(5)
             maker.height.equalTo(20)
         })
-        self.deleteBtn = UIButton.init(frame:CGRect.zero)
-        self.addSubview(self.deleteBtn!)
-        self.deleteBtn?.setImage(UIImage.init(named:"portrait"), for:.normal)
-        self.deleteBtn?.snp.makeConstraints({ (maker) in
-            maker.centerY.equalToSuperview()
-            maker.width.height.equalTo(30)
-            maker.right.equalToSuperview().offset(-15)
-            
-        })
+//        self.deleteBtn = UIButton.init(frame:CGRect.zero)
+//        self.addSubview(self.deleteBtn!)
+//        self.deleteBtn?.setImage(UIImage.init(named:"portrait"), for:.normal)
+//        self.deleteBtn?.snp.makeConstraints({ (maker) in
+//            maker.centerY.equalToSuperview()
+//            maker.width.height.equalTo(30)
+//            maker.right.equalToSuperview().offset(-15)
+//        })
     }
     func setData(_ model:[String:AlipayConversationContent]) {
         self.model = model

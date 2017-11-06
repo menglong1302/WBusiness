@@ -88,7 +88,7 @@ class AlipayConversationViewController : BaseViewController  {
         
         footerViewRightBtn = UIButton.init(frame: CGRect.zero);
         footerView?.addSubview(footerViewRightBtn!);
-        footerViewRightBtn?.backgroundColor = UIColor.blue;
+        footerViewRightBtn?.backgroundColor = UIColor.init(hexString: "1BA5EA");
         footerViewRightBtn?.setTitleColor(UIColor.white, for: .normal);
         footerViewRightBtn?.setTitle("生成预览", for: .normal);
         footerViewRightBtn?.contentHorizontalAlignment = .center;
@@ -138,7 +138,6 @@ class AlipayConversationViewController : BaseViewController  {
                 if self?.acUser.sender != nil && self?.acUser.receiver != nil {
                     alipayConversationISVC.acUser = self?.acUser
                     alipayConversationISVC.index = (self?.tableData.count)!
-                    print(self?.tableData.count as Any)
                     alipayConversationISVC.isEdit = false
                     self?.navigationController?.pushViewController(alipayConversationISVC, animated: true)
                 } else {
@@ -146,6 +145,26 @@ class AlipayConversationViewController : BaseViewController  {
                 }
                 break
             case 2:
+                let alipayConversationAISVC = AlipayConversationAudioSettingViewController()
+                if self?.acUser.sender != nil && self?.acUser.receiver != nil {
+                    alipayConversationAISVC.acUser = self?.acUser
+                    alipayConversationAISVC.index = (self?.tableData.count)!
+                    alipayConversationAISVC.isEdit = false
+                    self?.navigationController?.pushViewController(alipayConversationAISVC, animated: true)
+                } else {
+                    self?.view.showImageHUDText("请先设置角色")
+                }
+                break
+            case 3:
+                let alipayConversationRPSVC = AlipayConversationRedPackageSettingViewController()
+                if self?.acUser.sender != nil && self?.acUser.receiver != nil {
+                    alipayConversationRPSVC.acUser = self?.acUser
+                    alipayConversationRPSVC.index = (self?.tableData.count)!
+                    alipayConversationRPSVC.isEdit = false
+                    self?.navigationController?.pushViewController(alipayConversationRPSVC, animated: true)
+                } else {
+                    self?.view.showImageHUDText("请先设置角色")
+                }
                 break
             default:
                 break
@@ -179,15 +198,15 @@ class AlipayConversationViewController : BaseViewController  {
         }
         self.tableView?.reloadData()
     }
-    func deleteBtnAction(button:UIButton) -> Void {
-        var indexPath = self.tableView?.indexPath(for: button.superview as! AlipayConversationContentCell)
-        let realm = try! Realm()
-        try! realm.write {
-            realm.delete(self.tableData[(indexPath?.row)!])
-        }
-        self.tableData.remove(at: (indexPath?.row)!)
-        self.tableView?.reloadData()
-    }
+//    func deleteBtnAction(button:UIButton) -> Void {
+//        var indexPath = self.tableView?.indexPath(for: button.superview as! AlipayConversationContentCell)
+//        let realm = try! Realm()
+//        try! realm.write {
+//            realm.delete(self.tableData[(indexPath?.row)!])
+//        }
+//        self.tableData.remove(at: (indexPath?.row)!)
+//        self.tableView?.reloadData()
+//    }
     func SnapshotViewWithInputView (inputView:UIView) -> UIImageView {
         UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0)
         inputView.layer.render(in: UIGraphicsGetCurrentContext()!)
@@ -375,6 +394,22 @@ extension AlipayConversationViewController:UITableViewDataSource,UITableViewDele
         view.backgroundColor = UIColor.clear;
         return view;
     }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.delete
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let realm = try! Realm()
+            try! realm.write {
+                realm.delete(self.tableData[(indexPath.row)])
+            }
+            self.tableData.remove(at: (indexPath.row))
+            self.tableView?.reloadData()
+        }
+    }
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "删除"
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0 && indexPath.row == 0) {
             let settingInfoCell = tableView.dequeueReusableCell(withIdentifier: "settingInfoCell",for: indexPath) as! AlipayConversationSettingInfoCell
@@ -402,8 +437,14 @@ extension AlipayConversationViewController:UITableViewDataSource,UITableViewDele
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlipayConversationContentCell
             cell.setData(["data" : self.tableData[indexPath.row]])
-            cell.contentLabel?.text = "Row=\(indexPath.row)+Index=\(self.tableData[indexPath.row].index)"
-            cell.deleteBtn?.addTarget(self, action:#selector(deleteBtnAction(button:)), for: .touchUpInside)
+//            cell.contentLabel?.text = "Row=\(indexPath.row)+Index=\(self.tableData[indexPath.row].index)"
+            if self.tableData[indexPath.row].type != "图片"{
+                print(self.tableData[indexPath.row])
+                cell.contentLabel?.text = self.tableData[indexPath.row].content
+            } else {
+                cell.contentLabel?.text = ""
+            }
+//            cell.deleteBtn?.addTarget(self, action:#selector(deleteBtnAction(button:)), for: .touchUpInside)
             return cell
         }
     }
@@ -415,12 +456,29 @@ extension AlipayConversationViewController:UITableViewDataSource,UITableViewDele
                 self.navigationController?.pushViewController(alipayCSVC, animated: true)
             }
         } else {
-            let acisvc = AlipayConversationImageSettingViewController()
-            acisvc.index = indexPath.row
-            acisvc.acUser = self.acUser
-            acisvc.isEdit = true
-            acisvc.acContent = self.tableData[indexPath.row]
-            self.navigationController?.pushViewController(acisvc, animated: true)
+            if self.tableData[indexPath.row].type == "图片" {
+                let acisvc = AlipayConversationImageSettingViewController()
+                acisvc.index = indexPath.row
+                acisvc.acUser = self.acUser
+                acisvc.isEdit = true
+                acisvc.acContent = self.tableData[indexPath.row]
+                self.navigationController?.pushViewController(acisvc, animated: true)
+            } else if self.tableData[indexPath.row].type == "语音" {
+                let acasvc = AlipayConversationAudioSettingViewController()
+                acasvc.index = indexPath.row
+                acasvc.acUser = self.acUser
+                acasvc.isEdit = true
+                acasvc.acContent = self.tableData[indexPath.row]
+                self.navigationController?.pushViewController(acasvc, animated: true)
+            } else if self.tableData[indexPath.row].type == "收红包" || self.tableData[indexPath.row].type == "发红包" {
+                let acrpsvc = AlipayConversationRedPackageSettingViewController()
+                acrpsvc.index = indexPath.row
+                acrpsvc.acUser = self.acUser
+                acrpsvc.isEdit = true
+                acrpsvc.acContent = self.tableData[indexPath.row]
+                self.navigationController?.pushViewController(acrpsvc, animated: true)
+            }
+            
         }
     }
 }

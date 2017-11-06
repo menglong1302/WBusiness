@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0938EACA38AFC62C1A043510 /* Pods_WCBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F4C63A189F658B8526E8D4 /* Pods_WCBusiness.framework */; };
 		481C17921F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C17911F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift */; };
 		481C17941F90931800C3D7C1 /* ScreenshotCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C17931F90931800C3D7C1 /* ScreenshotCollectionCell.swift */; };
 		4829AE101F95FB9900EBA903 /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4829AE0F1F95FB9900EBA903 /* RoleViewController.swift */; };
@@ -96,7 +95,13 @@
 		48FD47581F8F3844006685A8 /* SquareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FD47571F8F3844006685A8 /* SquareModel.swift */; };
 		48FD475B1F8F4C64006685A8 /* ScreenshotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FD475A1F8F4C64006685A8 /* ScreenshotViewController.swift */; };
 		48FD475D1F8F5507006685A8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FD475C1F8F5507006685A8 /* BaseViewController.swift */; };
+		68414FD2EAFB4CC152B352A0 /* Pods_WCBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6D052258C469C2F1184321 /* Pods_WCBusiness.framework */; };
 		7105AD3D1FA2E502009B15C4 /* AlipayConversationImageSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7105AD3C1FA2E502009B15C4 /* AlipayConversationImageSettingViewController.swift */; };
+		7124EA861FAAE64300994013 /* AlipayConversationAudioSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7124EA851FAAE64300994013 /* AlipayConversationAudioSettingViewController.swift */; };
+		7124EA8A1FAB1C3D00994013 /* AlipayConversationSettingSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7124EA891FAB1C3D00994013 /* AlipayConversationSettingSliderCell.swift */; };
+		715B9AF41FAC377F00BC24AF /* AlipayConversationRedPackageSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715B9AF31FAC377F00BC24AF /* AlipayConversationRedPackageSettingViewController.swift */; };
+		715B9AF61FAC3B9500BC24AF /* AlipayConversationSettingDoubleBtnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715B9AF51FAC3B9500BC24AF /* AlipayConversationSettingDoubleBtnCell.swift */; };
+		715B9AF81FAC599900BC24AF /* AlipayConversationSettingTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715B9AF71FAC599900BC24AF /* AlipayConversationSettingTextFieldCell.swift */; };
 		71876EE41FA09D7F00BCD139 /* AlipayConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71876ED11FA09D7F00BCD139 /* AlipayConversationViewController.swift */; };
 		71876EE51FA09D7F00BCD139 /* AlipayCAVHeaderResuableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71876ED31FA09D7F00BCD139 /* AlipayCAVHeaderResuableView.swift */; };
 		71876EE61FA09D7F00BCD139 /* AlipayConversationAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71876ED41FA09D7F00BCD139 /* AlipayConversationAddView.swift */; };
@@ -132,7 +137,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		069C20F68A14933B86FE3D37 /* Pods-WCBusiness.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WCBusiness.release.xcconfig"; path = "Pods/Target Support Files/Pods-WCBusiness/Pods-WCBusiness.release.xcconfig"; sourceTree = "<group>"; };
+		4201360F0A246F49FFDCAC94 /* Pods-WCBusiness.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WCBusiness.release.xcconfig"; path = "Pods/Target Support Files/Pods-WCBusiness/Pods-WCBusiness.release.xcconfig"; sourceTree = "<group>"; };
 		481C17911F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXZFBHeaderResuableView.swift; sourceTree = "<group>"; };
 		481C17931F90931800C3D7C1 /* ScreenshotCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCollectionCell.swift; sourceTree = "<group>"; };
 		4829AE0F1F95FB9900EBA903 /* RoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
@@ -286,6 +291,11 @@
 		48FD475A1F8F4C64006685A8 /* ScreenshotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotViewController.swift; sourceTree = "<group>"; };
 		48FD475C1F8F5507006685A8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		7105AD3C1FA2E502009B15C4 /* AlipayConversationImageSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayConversationImageSettingViewController.swift; sourceTree = "<group>"; };
+		7124EA851FAAE64300994013 /* AlipayConversationAudioSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayConversationAudioSettingViewController.swift; sourceTree = "<group>"; };
+		7124EA891FAB1C3D00994013 /* AlipayConversationSettingSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayConversationSettingSliderCell.swift; sourceTree = "<group>"; };
+		715B9AF31FAC377F00BC24AF /* AlipayConversationRedPackageSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayConversationRedPackageSettingViewController.swift; sourceTree = "<group>"; };
+		715B9AF51FAC3B9500BC24AF /* AlipayConversationSettingDoubleBtnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayConversationSettingDoubleBtnCell.swift; sourceTree = "<group>"; };
+		715B9AF71FAC599900BC24AF /* AlipayConversationSettingTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayConversationSettingTextFieldCell.swift; sourceTree = "<group>"; };
 		71876ED11FA09D7F00BCD139 /* AlipayConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlipayConversationViewController.swift; sourceTree = "<group>"; };
 		71876ED31FA09D7F00BCD139 /* AlipayCAVHeaderResuableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlipayCAVHeaderResuableView.swift; sourceTree = "<group>"; };
 		71876ED41FA09D7F00BCD139 /* AlipayConversationAddView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlipayConversationAddView.swift; sourceTree = "<group>"; };
@@ -299,10 +309,10 @@
 		71876EE01FA09D7F00BCD139 /* AlipayConversationSettingCellRoleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlipayConversationSettingCellRoleView.swift; sourceTree = "<group>"; };
 		71876EE11FA09D7F00BCD139 /* AlipayConversationSettingCellRoleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlipayConversationSettingCellRoleViewCell.swift; sourceTree = "<group>"; };
 		71A4AE421FA6F43700B60EC3 /* AlipayConversationContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayConversationContentCell.swift; sourceTree = "<group>"; };
-		8BC4A6418B154F154EFE3AF0 /* Pods-WCBusiness.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WCBusiness.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WCBusiness/Pods-WCBusiness.debug.xcconfig"; sourceTree = "<group>"; };
+		D75C0BCD36013E5102D695BA /* Pods-WCBusiness.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WCBusiness.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WCBusiness/Pods-WCBusiness.debug.xcconfig"; sourceTree = "<group>"; };
 		DB6082DC1F98F12E0095EF72 /* RoleEditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleEditTableViewCell.swift; sourceTree = "<group>"; };
 		DB6082DD1F98F12E0095EF72 /* RoleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleTableViewCell.swift; sourceTree = "<group>"; };
-		E9F4C63A189F658B8526E8D4 /* Pods_WCBusiness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WCBusiness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC6D052258C469C2F1184321 /* Pods_WCBusiness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WCBusiness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,7 +320,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0938EACA38AFC62C1A043510 /* Pods_WCBusiness.framework in Frameworks */,
+				68414FD2EAFB4CC152B352A0 /* Pods_WCBusiness.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,11 +341,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3D63142C3016C83C9F180789 /* Pods */ = {
+		2DCA38A7824294580EEB67FE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8BC4A6418B154F154EFE3AF0 /* Pods-WCBusiness.debug.xcconfig */,
-				069C20F68A14933B86FE3D37 /* Pods-WCBusiness.release.xcconfig */,
+				D75C0BCD36013E5102D695BA /* Pods-WCBusiness.debug.xcconfig */,
+				4201360F0A246F49FFDCAC94 /* Pods-WCBusiness.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -489,7 +499,7 @@
 				48B229031F8E08E1009081DA /* WCBusinessUITests */,
 				48B228E21F8E08E1009081DA /* Products */,
 				66480AD0D02881A55DDD7FE1 /* Frameworks */,
-				3D63142C3016C83C9F180789 /* Pods */,
+				2DCA38A7824294580EEB67FE /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -666,7 +676,7 @@
 				48767B3E1F95D492000D9E0B /* StarWars.framework */,
 				48767B3F1F95D492000D9E0B /* SwiftyUserDefaults.framework */,
 				48767B401F95D492000D9E0B /* Whisper.framework */,
-				E9F4C63A189F658B8526E8D4 /* Pods_WCBusiness.framework */,
+				FC6D052258C469C2F1184321 /* Pods_WCBusiness.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -716,6 +726,8 @@
 				71876EDA1FA09D7F00BCD139 /* AlipayConversationSettingViewController.swift */,
 				71876EDB1FA09D7F00BCD139 /* AlipayConversationTextSettingViewController.swift */,
 				7105AD3C1FA2E502009B15C4 /* AlipayConversationImageSettingViewController.swift */,
+				7124EA851FAAE64300994013 /* AlipayConversationAudioSettingViewController.swift */,
+				715B9AF31FAC377F00BC24AF /* AlipayConversationRedPackageSettingViewController.swift */,
 				71876EDC1FA09D7F00BCD139 /* cell */,
 			);
 			path = subcontroller;
@@ -726,6 +738,9 @@
 			children = (
 				71876EDD1FA09D7F00BCD139 /* AlipayConversationSettingCell.swift */,
 				71876EDE1FA09D7F00BCD139 /* AlipayConversationSettingSwitchCell.swift */,
+				7124EA891FAB1C3D00994013 /* AlipayConversationSettingSliderCell.swift */,
+				715B9AF51FAC3B9500BC24AF /* AlipayConversationSettingDoubleBtnCell.swift */,
+				715B9AF71FAC599900BC24AF /* AlipayConversationSettingTextFieldCell.swift */,
 				71876EDF1FA09D7F00BCD139 /* subcell */,
 			);
 			path = cell;
@@ -756,12 +771,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48B229091F8E08E1009081DA /* Build configuration list for PBXNativeTarget "WCBusiness" */;
 			buildPhases = (
-				CE5DB23CE1BF4F5678426997 /* [CP] Check Pods Manifest.lock */,
+				6B4F5B173E09E3DB111CED3D /* [CP] Check Pods Manifest.lock */,
 				48B228DD1F8E08E1009081DA /* Sources */,
 				48B228DE1F8E08E1009081DA /* Frameworks */,
 				48B228DF1F8E08E1009081DA /* Resources */,
-				78904F32E8654DF7B512E2B8 /* [CP] Embed Pods Frameworks */,
-				4E2052F89198CA0CC68F9BE9 /* [CP] Copy Pods Resources */,
+				796342911E10DED2A62A1055 /* [CP] Embed Pods Frameworks */,
+				9817BB090B2BC40AD49F2EBF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -884,24 +899,27 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4E2052F89198CA0CC68F9BE9 /* [CP] Copy Pods Resources */ = {
+		6B4F5B173E09E3DB111CED3D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WCBusiness-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WCBusiness/Pods-WCBusiness-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		78904F32E8654DF7B512E2B8 /* [CP] Embed Pods Frameworks */ = {
+		796342911E10DED2A62A1055 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
@@ -957,22 +975,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WCBusiness/Pods-WCBusiness-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CE5DB23CE1BF4F5678426997 /* [CP] Check Pods Manifest.lock */ = {
+		9817BB090B2BC40AD49F2EBF /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WCBusiness-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WCBusiness/Pods-WCBusiness-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -998,6 +1013,8 @@
 				48B228E71F8E08E1009081DA /* WBMyViewController.swift in Sources */,
 				48FD475D1F8F5507006685A8 /* BaseViewController.swift in Sources */,
 				487F6E171FA05FAD00F62868 /* AddRoleViewController.swift in Sources */,
+				7124EA8A1FAB1C3D00994013 /* AlipayConversationSettingSliderCell.swift in Sources */,
+				715B9AF81FAC599900BC24AF /* AlipayConversationSettingTextFieldCell.swift in Sources */,
 				48B229131F8E10FF009081DA /* WBSquareViewController.swift in Sources */,
 				484A10CA1F9847FE00BDFFE5 /* RoleEditViewController.swift in Sources */,
 				71876EEF1FA09D7F00BCD139 /* AlipayConversationSettingCellRoleViewCell.swift in Sources */,
@@ -1006,6 +1023,7 @@
 				DB6082DF1F98F12E0095EF72 /* RoleTableViewCell.swift in Sources */,
 				48D6F0D01FA2DBC100F77521 /* PeopleModel.swift in Sources */,
 				71876EE61FA09D7F00BCD139 /* AlipayConversationAddView.swift in Sources */,
+				715B9AF41FAC377F00BC24AF /* AlipayConversationRedPackageSettingViewController.swift in Sources */,
 				48AE56AF1F9F3AE20055551D /* HXAlbumTitleButton.m in Sources */,
 				48AE56C61F9F3AE20055551D /* HXPhotoSubViewCell.m in Sources */,
 				48AE56C71F9F3AE20055551D /* HXPhotoTools.m in Sources */,
@@ -1030,6 +1048,7 @@
 				48AE56BA1F9F3AE20055551D /* HXDatePhotoViewController.m in Sources */,
 				48D6F0C81FA188C800F77521 /* ChatSettingTableViewCell.swift in Sources */,
 				48AE56CB1F9F3AE20055551D /* HXPhotoViewController.m in Sources */,
+				715B9AF61FAC3B9500BC24AF /* AlipayConversationSettingDoubleBtnCell.swift in Sources */,
 				48AE56AE1F9F3AE20055551D /* HXAlbumModel.m in Sources */,
 				71876EE51FA09D7F00BCD139 /* AlipayCAVHeaderResuableView.swift in Sources */,
 				DB6082DE1F98F12E0095EF72 /* RoleEditTableViewCell.swift in Sources */,
@@ -1077,6 +1096,7 @@
 				48AE56B91F9F3AE20055551D /* HXDatePhotoPreviewViewController.m in Sources */,
 				48B229151F8E1170009081DA /* WBCommunityViewController.swift in Sources */,
 				48F4D1A41F94AE8200410CC7 /* RoleModel.swift in Sources */,
+				7124EA861FAAE64300994013 /* AlipayConversationAudioSettingViewController.swift in Sources */,
 				48D6F0BA1FA07C5500F77521 /* UIColor+extension.swift in Sources */,
 				71876EED1FA09D7F00BCD139 /* AlipayConversationSettingSwitchCell.swift in Sources */,
 			);
@@ -1234,7 +1254,7 @@
 		};
 		48B2290A1F8E08E1009081DA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8BC4A6418B154F154EFE3AF0 /* Pods-WCBusiness.debug.xcconfig */;
+			baseConfigurationReference = D75C0BCD36013E5102D695BA /* Pods-WCBusiness.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1255,7 +1275,7 @@
 		};
 		48B2290B1F8E08E1009081DA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 069C20F68A14933B86FE3D37 /* Pods-WCBusiness.release.xcconfig */;
+			baseConfigurationReference = 4201360F0A246F49FFDCAC94 /* Pods-WCBusiness.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
