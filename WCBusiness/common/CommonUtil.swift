@@ -30,4 +30,10 @@ extension String {
         str?.append("/"+self)
         return  UIImage(contentsOfFile:str!)!
     }
+    func getImageNamePath() -> String {
+        
+         var str =  Bundle.main.path(forResource: "wx_emoji", ofType: "bundle")
+        str?.append("/"+self)
+        return str!
+    }
 }

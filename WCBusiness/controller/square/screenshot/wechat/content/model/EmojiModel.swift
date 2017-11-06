@@ -7,10 +7,14 @@
 //
 
 import Foundation
+import YYImage
+
 class EmojiModel: NSObject {
     var image:UIImage?{
         get{
-            return self.name?.getImageByName()
+ 
+ 
+             return self.name?.getImageByName()
         }
     }
     var name:String?

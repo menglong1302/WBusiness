@@ -165,7 +165,7 @@ class WXConversationViewController: BaseViewController {
             maker.edges.equalToSuperview()
         }
         self.view.layoutIfNeeded()
-        UIView.animate(withDuration: 0.5, delay: 0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
             self.selectView.containerView?.frame = CGRect.init(x:0,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT)
             self.selectView.backgroundColor = UIColor.rgbq(r: 0, g: 0, b: 0, a: 0.3)
         }, completion: nil)
@@ -268,6 +268,18 @@ extension WXConversationViewController:UITableViewDelegate,UITableViewDataSource
                 break
             }
             self.navigationController?.pushViewController(vc!, animated: true)
+        }else{
+            let wxContentEntity = self.contents[indexPath.row]
+            let vc = FileSetingViewController()
+            vc.type = .Edit
+            vc.contentEnumType = .WeChat
+            vc.conversation = self.conversation
+            vc.conversationType = self.conversationType
+           vc.contentEntity = wxContentEntity
+            vc.block = {
+                self.tableView.reloadData()
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         
         

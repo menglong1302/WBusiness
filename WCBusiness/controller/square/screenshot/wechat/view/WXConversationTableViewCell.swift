@@ -14,16 +14,16 @@ class WXConversationTableViewCell: UITableViewCell {
         label.textVerticalAlignment = .center
         label.numberOfLines = 1;
         label.lineBreakMode = .byTruncatingTail
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 15)
         let mod =  YYTextLinePositionSimpleModifier()
-        mod.fixedLineHeight = 18
+        mod.fixedLineHeight = 20
         label.linePositionModifier = mod
         
         var emojiMapper = [String:UIImage]()
         
         for index in 1...114{
             let model = EmojiModel()
-            model.name = "Expression_"+String(index)+"@2x"
+            model.name = "Expression_"+String(index)+".png"
             model.mapperName = ":100\(index):"
             emojiMapper[model.mapperName!] = model.image
         }
@@ -90,8 +90,9 @@ class WXConversationTableViewCell: UITableViewCell {
              content = "[文本]"
             break
         }
-        
-      contentLabel.attributedText =   NSAttributedString.init(string: content!)
+        let content1 = NSMutableAttributedString(string: content!)
+        content1.yy_font = UIFont.systemFont(ofSize: 15)
+      contentLabel.attributedText = content1
         contentLabel.sizeToFit()
     }
     required init?(coder aDecoder: NSCoder) {
