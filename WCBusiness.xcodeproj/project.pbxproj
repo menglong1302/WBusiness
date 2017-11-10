@@ -120,7 +120,11 @@
 		71876EED1FA09D7F00BCD139 /* AlipayConversationSettingSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71876EDE1FA09D7F00BCD139 /* AlipayConversationSettingSwitchCell.swift */; };
 		71876EEE1FA09D7F00BCD139 /* AlipayConversationSettingCellRoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71876EE01FA09D7F00BCD139 /* AlipayConversationSettingCellRoleView.swift */; };
 		71876EEF1FA09D7F00BCD139 /* AlipayConversationSettingCellRoleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71876EE11FA09D7F00BCD139 /* AlipayConversationSettingCellRoleViewCell.swift */; };
+		718D3D8E1FB19EA3006388EF /* AlipayConversationTimeSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718D3D8D1FB19EA3006388EF /* AlipayConversationTimeSettingViewController.swift */; };
+		718D3D941FB1B37B006388EF /* AlipayConversationSettingTimeButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718D3D931FB1B37B006388EF /* AlipayConversationSettingTimeButtonCell.swift */; };
+		719D2B4D1FB0571800D2A948 /* AlipayConversationTransferSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719D2B4C1FB0571800D2A948 /* AlipayConversationTransferSettingViewController.swift */; };
 		71A4AE431FA6F43700B60EC3 /* AlipayConversationContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A4AE421FA6F43700B60EC3 /* AlipayConversationContentCell.swift */; };
+		71E56D711FB449C700E6B6F5 /* AlipayConversationSystemMessageSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E56D701FB449C700E6B6F5 /* AlipayConversationSystemMessageSettingViewController.swift */; };
 		DB6082DE1F98F12E0095EF72 /* RoleEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6082DC1F98F12E0095EF72 /* RoleEditTableViewCell.swift */; };
 		DB6082DF1F98F12E0095EF72 /* RoleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6082DD1F98F12E0095EF72 /* RoleTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -320,7 +324,11 @@
 		71876EDE1FA09D7F00BCD139 /* AlipayConversationSettingSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlipayConversationSettingSwitchCell.swift; sourceTree = "<group>"; };
 		71876EE01FA09D7F00BCD139 /* AlipayConversationSettingCellRoleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlipayConversationSettingCellRoleView.swift; sourceTree = "<group>"; };
 		71876EE11FA09D7F00BCD139 /* AlipayConversationSettingCellRoleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlipayConversationSettingCellRoleViewCell.swift; sourceTree = "<group>"; };
+		718D3D8D1FB19EA3006388EF /* AlipayConversationTimeSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayConversationTimeSettingViewController.swift; sourceTree = "<group>"; };
+		718D3D931FB1B37B006388EF /* AlipayConversationSettingTimeButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayConversationSettingTimeButtonCell.swift; sourceTree = "<group>"; };
+		719D2B4C1FB0571800D2A948 /* AlipayConversationTransferSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayConversationTransferSettingViewController.swift; sourceTree = "<group>"; };
 		71A4AE421FA6F43700B60EC3 /* AlipayConversationContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayConversationContentCell.swift; sourceTree = "<group>"; };
+		71E56D701FB449C700E6B6F5 /* AlipayConversationSystemMessageSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayConversationSystemMessageSettingViewController.swift; sourceTree = "<group>"; };
 		D75C0BCD36013E5102D695BA /* Pods-WCBusiness.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WCBusiness.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WCBusiness/Pods-WCBusiness.debug.xcconfig"; sourceTree = "<group>"; };
 		DB6082DC1F98F12E0095EF72 /* RoleEditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleEditTableViewCell.swift; sourceTree = "<group>"; };
 		DB6082DD1F98F12E0095EF72 /* RoleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleTableViewCell.swift; sourceTree = "<group>"; };
@@ -754,6 +762,9 @@
 				7105AD3C1FA2E502009B15C4 /* AlipayConversationImageSettingViewController.swift */,
 				7124EA851FAAE64300994013 /* AlipayConversationAudioSettingViewController.swift */,
 				715B9AF31FAC377F00BC24AF /* AlipayConversationRedPackageSettingViewController.swift */,
+				719D2B4C1FB0571800D2A948 /* AlipayConversationTransferSettingViewController.swift */,
+				718D3D8D1FB19EA3006388EF /* AlipayConversationTimeSettingViewController.swift */,
+				71E56D701FB449C700E6B6F5 /* AlipayConversationSystemMessageSettingViewController.swift */,
 				71876EDC1FA09D7F00BCD139 /* cell */,
 			);
 			path = subcontroller;
@@ -767,6 +778,7 @@
 				7124EA891FAB1C3D00994013 /* AlipayConversationSettingSliderCell.swift */,
 				715B9AF51FAC3B9500BC24AF /* AlipayConversationSettingDoubleBtnCell.swift */,
 				715B9AF71FAC599900BC24AF /* AlipayConversationSettingTextFieldCell.swift */,
+				718D3D931FB1B37B006388EF /* AlipayConversationSettingTimeButtonCell.swift */,
 				71876EDF1FA09D7F00BCD139 /* subcell */,
 			);
 			path = cell;
@@ -1028,6 +1040,7 @@
 				48D6F0C11FA08F3900F77521 /* GroupConversationSettingViewController.swift in Sources */,
 				48AE56AC1F9F3AE20055551D /* HXAlbumListView.m in Sources */,
 				48D6F0C31FA0943300F77521 /* ChangeRoleTableViewCell.swift in Sources */,
+				718D3D8E1FB19EA3006388EF /* AlipayConversationTimeSettingViewController.swift in Sources */,
 				71A4AE431FA6F43700B60EC3 /* AlipayConversationContentCell.swift in Sources */,
 				481C17941F90931800C3D7C1 /* ScreenshotCollectionCell.swift in Sources */,
 				71876EE81FA09D7F00BCD139 /* AlipayConversationSettingInfoCell.swift in Sources */,
@@ -1045,6 +1058,7 @@
 				715B9AF81FAC599900BC24AF /* AlipayConversationSettingTextFieldCell.swift in Sources */,
 				48B229131F8E10FF009081DA /* WBSquareViewController.swift in Sources */,
 				484A10CA1F9847FE00BDFFE5 /* RoleEditViewController.swift in Sources */,
+				719D2B4D1FB0571800D2A948 /* AlipayConversationTransferSettingViewController.swift in Sources */,
 				71876EEF1FA09D7F00BCD139 /* AlipayConversationSettingCellRoleViewCell.swift in Sources */,
 				48AE56C51F9F3AE20055551D /* HXPhotoResultModel.m in Sources */,
 				71876EEC1FA09D7F00BCD139 /* AlipayConversationSettingCell.swift in Sources */,
@@ -1080,6 +1094,7 @@
 				48AE56CB1F9F3AE20055551D /* HXPhotoViewController.m in Sources */,
 				715B9AF61FAC3B9500BC24AF /* AlipayConversationSettingDoubleBtnCell.swift in Sources */,
 				48AE56AE1F9F3AE20055551D /* HXAlbumModel.m in Sources */,
+				71E56D711FB449C700E6B6F5 /* AlipayConversationSystemMessageSettingViewController.swift in Sources */,
 				71876EE51FA09D7F00BCD139 /* AlipayCAVHeaderResuableView.swift in Sources */,
 				DB6082DE1F98F12E0095EF72 /* RoleEditTableViewCell.swift in Sources */,
 				48AE56C21F9F3AE20055551D /* HXPhotoModel.m in Sources */,
@@ -1095,6 +1110,7 @@
 				488899731FA6C1B9000193C5 /* WXContentEntity.swift in Sources */,
 				48AE56D61F9F3AE20055551D /* UIView+HXExtension.m in Sources */,
 				48FD47521F8F16F4006685A8 /* SquareCollectionViewCell.swift in Sources */,
+				718D3D941FB1B37B006388EF /* AlipayConversationSettingTimeButtonCell.swift in Sources */,
 				48AE56D31F9F3AE20055551D /* UIButton+HXExtension.m in Sources */,
 				48E997621FA6CF6A0047933D /* ContentEnum.swift in Sources */,
 				48B228E51F8E08E1009081DA /* AppDelegate.swift in Sources */,

@@ -56,9 +56,6 @@ class AlipayConversationSettingDoubleBtnCell: UITableViewCell {
         sendBtn.layer.cornerRadius = 15
         sendBtn.layer.borderWidth = 1
         sendBtn.setTitle("发红包", for: .normal)
-        
-
-        
         sendBtn.titleLabel?.snp.makeConstraints({ (maker) in
             maker.edges.equalToSuperview().inset(UIEdgeInsetsMake(5, 10, 5, 10))
         })

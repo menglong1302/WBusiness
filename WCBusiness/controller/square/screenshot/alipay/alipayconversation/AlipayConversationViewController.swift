@@ -166,6 +166,39 @@ class AlipayConversationViewController : BaseViewController  {
                     self?.view.showImageHUDText("请先设置角色")
                 }
                 break
+            case 4:
+                let alipayConversationTSVC = AlipayConversationTransferSettingViewController()
+                if self?.acUser.sender != nil && self?.acUser.receiver != nil {
+                    alipayConversationTSVC.acUser = self?.acUser
+                    alipayConversationTSVC.index = (self?.tableData.count)!
+                    alipayConversationTSVC.isEdit = false
+                    self?.navigationController?.pushViewController(alipayConversationTSVC, animated: true)
+                } else {
+                    self?.view.showImageHUDText("请先设置角色")
+                }
+                break
+            case 5:
+                let alipayConversationTSVC = AlipayConversationTimeSettingViewController()
+                if self?.acUser.sender != nil && self?.acUser.receiver != nil {
+                    alipayConversationTSVC.acUser = self?.acUser
+                    alipayConversationTSVC.index = (self?.tableData.count)!
+                    alipayConversationTSVC.isEdit = false
+                    self?.navigationController?.pushViewController(alipayConversationTSVC, animated: true)
+                } else {
+                    self?.view.showImageHUDText("请先设置角色")
+                }
+                break
+            case 6:
+                let alipayConversationSMSVC = AlipayConversationSystemMessageSettingViewController()
+                if self?.acUser.sender != nil && self?.acUser.receiver != nil {
+                    alipayConversationSMSVC.acUser = self?.acUser
+                    alipayConversationSMSVC.index = (self?.tableData.count)!
+                    alipayConversationSMSVC.isEdit = false
+                    self?.navigationController?.pushViewController(alipayConversationSMSVC, animated: true)
+                } else {
+                    self?.view.showImageHUDText("请先设置角色")
+                }
+                break
             default:
                 break
             }
@@ -439,7 +472,7 @@ extension AlipayConversationViewController:UITableViewDataSource,UITableViewDele
             cell.setData(["data" : self.tableData[indexPath.row]])
 //            cell.contentLabel?.text = "Row=\(indexPath.row)+Index=\(self.tableData[indexPath.row].index)"
             if self.tableData[indexPath.row].type != "图片"{
-                print(self.tableData[indexPath.row])
+//                print(self.tableData[indexPath.row])
                 cell.contentLabel?.text = self.tableData[indexPath.row].content
             } else {
                 cell.contentLabel?.text = ""
@@ -477,6 +510,27 @@ extension AlipayConversationViewController:UITableViewDataSource,UITableViewDele
                 acrpsvc.isEdit = true
                 acrpsvc.acContent = self.tableData[indexPath.row]
                 self.navigationController?.pushViewController(acrpsvc, animated: true)
+            } else if self.tableData[indexPath.row].type == "转账" {
+                let actsvc = AlipayConversationTransferSettingViewController()
+                actsvc.index = indexPath.row
+                actsvc.acUser = self.acUser
+                actsvc.isEdit = true
+                actsvc.acContent = self.tableData[indexPath.row]
+                self.navigationController?.pushViewController(actsvc, animated: true)
+            } else if self.tableData[indexPath.row].type == "时间" {
+                let actsvc = AlipayConversationTimeSettingViewController()
+                actsvc.index = indexPath.row
+                actsvc.acUser = self.acUser
+                actsvc.isEdit = true
+                actsvc.acContent = self.tableData[indexPath.row]
+                self.navigationController?.pushViewController(actsvc, animated: true)
+            } else if self.tableData[indexPath.row].type == "系统提示" {
+                let acsmsvc = AlipayConversationSystemMessageSettingViewController()
+                acsmsvc.index = indexPath.row
+                acsmsvc.acUser = self.acUser
+                acsmsvc.isEdit = true
+                acsmsvc.acContent = self.tableData[indexPath.row]
+                self.navigationController?.pushViewController(acsmsvc, animated: true)
             }
             
         }

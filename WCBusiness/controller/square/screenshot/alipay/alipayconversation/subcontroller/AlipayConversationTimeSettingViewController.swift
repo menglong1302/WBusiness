@@ -1,29 +1,29 @@
 //
-//  AlipayConversationRedPackageSettingViewController.swift
+//  AlipayConversationTimeSettingViewController.swift
 //  WCBusiness
 //
-//  Created by Ray on 2017/11/3.
+//  Created by Ray on 2017/11/7.
 //  Copyright © 2017年 LYL. All rights reserved.
 //
 
 import UIKit
 import SnapKit
 import RealmSwift
-import PGActionSheet
 
-class AlipayConversationRedPackageSettingViewController: BaseViewController {
+class AlipayConversationTimeSettingViewController: BaseViewController {
     lazy var tableView = self.initTableView()
     var dataSourse:Array<AlipayConversationContent> = []
     var index:Int!
     var isSave:Bool? = false
     var isEdit:Bool?
-    var sendBtn:UIButton?
-    var receiveBtn:UIButton?
-    var isSenderSelected:Bool? = true
     var textField:UITextField?
-    var textFieldValue:String? = ""
+    var transferAmountStr:String? = ""
+    var transferInstructions:String? = ""
+    var time12Btn:UIButton?
+    var time24Btn:UIButton?
+    var timeType:String?
+    var textFieldStr:String?
     var selectRole:Role?
-    var originalContentSender:Role?
     var acUser:AlipayConversationUser?
     var acContent:AlipayConversationContent?
     override func viewDidLoad() {
@@ -31,15 +31,11 @@ class AlipayConversationRedPackageSettingViewController: BaseViewController {
         initView()
         if self.isEdit == true {
             self.selectRole = self.acContent?.contentSender
-            self.textFieldValue = self.acContent?.content
-            self.originalContentSender = self.acContent?.contentSender
-            if self.acContent?.type == "发红包" {
-                self.isSenderSelected = true
-            } else {
-                self.isSenderSelected = false
-            }
+            self.textFieldStr = self.acContent?.content
+            self.timeType = self.acContent?.timeType
         } else {
             self.selectRole = self.acUser?.sender
+            self.timeType = "12小时制"
         }
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -55,14 +51,10 @@ class AlipayConversationRedPackageSettingViewController: BaseViewController {
             try! realm.write {
                 realm.delete(acContent!)
             }
-        } else if self.isEdit == true && self.isSave == false {
-            try! realm.write {
-                self.acContent?.contentSender = self.originalContentSender
-            }
         }
     }
     func initView () {
-        self.navigationItem.title = "红包设置"
+        self.navigationItem.title = "时间设置"
         self.view.backgroundColor = UIColor.init(hexString: "EFEFF4")
         self.view.addSubview(self.tableView)
         let rightBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 30, height: 30))
@@ -73,12 +65,17 @@ class AlipayConversationRedPackageSettingViewController: BaseViewController {
     func initTableView () -> UITableView {
         let tableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT-64), style: .grouped)
         tableView.backgroundColor = UIColor.clear
+        tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(AlipayConversationSettingCell.self, forCellReuseIdentifier: "cell")
-        tableView.register(AlipayConversationSettingDoubleBtnCell.self, forCellReuseIdentifier: "doubleBtnCell")
         tableView.register(AlipayConversationSettingTextFieldCell.self, forCellReuseIdentifier: "textFieldCell")
+        tableView.register(AlipayConversationSettingTimeButtonCell.self, forCellReuseIdentifier: "timeButtonCell")
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(tableViewTap))
+        tableView.addGestureRecognizer(tap)
         return tableView
+    }
+    func tableViewTap () {
+        self.textField?.resignFirstResponder()
     }
     func iniData () {
         if isEdit == false && self.acContent == nil{
@@ -86,8 +83,8 @@ class AlipayConversationRedPackageSettingViewController: BaseViewController {
             self.acContent = AlipayConversationContent()
             self.acContent?.id = UUID().uuidString
             self.acContent?.index = self.index!
-            self.acContent?.type = "发红包"
-//            self.acContent?.content = "恭喜发财，大吉大利！"
+            self.acContent?.type = "时间"
+            self.acContent?.timeType = self.timeType! 
             self.acContent?.user = self.acUser
             self.acContent?.contentSender = self.acUser?.sender
             let date = NSDate()
@@ -101,86 +98,92 @@ class AlipayConversationRedPackageSettingViewController: BaseViewController {
         }
     }
     func rightBtnAction () {
-        self.isSave = true
         self.textField?.resignFirstResponder()
-//        print(self.textFieldValue!)
+        self.isSave = true
         let realm = try! Realm()
         if self.isEdit == false {
-            if isSenderSelected == true {
-                if (self.textFieldValue?.characters.count)! < 1 {
-                    self.acContent?.content = "恭喜发财，大吉大利！"
-                } else {
-                    self.acContent?.content = self.textFieldValue!
-                }
-            } else {
-                self.acContent?.content = ""
-            }
+            self.acContent?.content = self.textFieldStr!
             try! realm.write {
                 realm.create(AlipayConversationContent.self, value: self.acContent as Any, update: true)
             }
         } else {
             try! realm.write {
-                if isSenderSelected == true {
-                    if (self.textFieldValue?.characters.count)! < 1 {
-                        self.acContent?.content = "恭喜发财，大吉大利！"
-                    } else {
-                        self.acContent?.content = self.textFieldValue!
-                    }
-                } else {
-                    self.acContent?.content = ""
-                }
+                self.acContent?.content = self.textFieldStr!
             }
         }
         self.navigationController?.popViewController(animated: true)
     }
-    func sendBtnAction (button:UIButton) {
-        self.isSenderSelected = true
-//        self.sendBtn = button
+    func timeButton12Action (button:UIButton) {
         button.backgroundColor = UIColor.init(hexString: "1BA5EA")
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.borderColor = UIColor.clear.cgColor
-        if (self.receiveBtn != nil) {
-            self.receiveBtn?.backgroundColor = UIColor.white
-            self.receiveBtn?.setTitleColor(UIColor.gray, for: .normal)
-            self.receiveBtn?.layer.borderColor = UIColor.gray.cgColor
-        }
+        self.time24Btn?.backgroundColor = UIColor.white
+        self.time24Btn?.setTitleColor(UIColor.gray, for: .normal)
+        self.time24Btn?.layer.borderColor = UIColor.init(hexString: "EFEFF4")?.cgColor
+        self.timeType = "12小时制"
         let realm = try! Realm()
         try! realm.write {
-            self.acContent?.type = "发红包"
+            self.acContent?.timeType = self.timeType!
         }
-        self.tableView.reloadData()
+        let index = IndexPath.init(row: 0, section: 0)
+//        let cell = self.tableView.cellForRow(at: index) as! AlipayConversationSettingTextFieldCell
+//        self.nowDate(cell: cell, timeType: self.timeType!)
+//        self.tableView.reloadData()
+        self.tableView.reloadRows(at: [index], with: UITableViewRowAnimation.none)
+
     }
-    func receiveBtnAction (button:UIButton) {
-        self.isSenderSelected = false
-//        self.receiveBtn = button
+    func timeButton24Action (button:UIButton) {
         button.backgroundColor = UIColor.init(hexString: "1BA5EA")
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.borderColor = UIColor.clear.cgColor
-        if (self.sendBtn != nil) {
-            self.sendBtn?.backgroundColor = UIColor.white
-            self.sendBtn?.setTitleColor(UIColor.gray, for: .normal)
-            self.sendBtn?.layer.borderColor = UIColor.gray.cgColor
-        }
+        self.time12Btn?.backgroundColor = UIColor.white
+        self.time12Btn?.setTitleColor(UIColor.gray, for: .normal)
+        self.time12Btn?.layer.borderColor = UIColor.init(hexString: "EFEFF4")?.cgColor
+        self.timeType = "24小时制"
         let realm = try! Realm()
         try! realm.write {
-            self.acContent?.type = "收红包"
+            self.acContent?.timeType = self.timeType!
         }
-        self.tableView.reloadData()
+        let index = IndexPath.init(row: 0, section: 0)
+//        let cell = self.tableView.cellForRow(at: index) as! AlipayConversationSettingTextFieldCell
+//        self.nowDate(cell: cell, timeType: self.timeType!)
+//        self.tableView.reloadData()
+        self.tableView.reloadRows(at: [index], with: UITableViewRowAnimation.none)
+    }
+    func nowDate(cell:AlipayConversationSettingTextFieldCell,timeType:String) {
+        let date = NSDate()
+        let timeFormatter = DateFormatter()
+        if timeType == "24小时制" {
+            timeFormatter.dateFormat = "HH:mm"
+            let strNowTime = timeFormatter.string(from: date as Date) as String
+            cell.textField?.text = strNowTime
+        } else {
+            timeFormatter.dateFormat = "HH:mm"
+            let strNowTime = timeFormatter.string(from: date as Date) as String
+            let hourStr = strNowTime.index(strNowTime.startIndex, offsetBy: 2)
+            let prefix = strNowTime.substring(to: hourStr)
+            let strToInt:Int = Int(prefix)!
+            var timeStr = ""
+            if strToInt > Int(12) {
+                timeStr = "下午"
+            } else {
+                timeStr = "上午"
+            }
+            timeFormatter.dateFormat = "hh:mm"
+            let nowTimeStr = timeFormatter.string(from: date as Date) as String
+            cell.textField?.text = "\(timeStr) \(nowTimeStr)"
+        }
     }
 }
-extension AlipayConversationRedPackageSettingViewController:UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate {
+extension AlipayConversationTimeSettingViewController:UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.isSenderSelected == false {
-            return 1
+        if section == 1 {
+            return 2
         } else {
-            if section == 1 {
-                return 2
-            } else {
-                return 1
-            }
+            return 1
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -204,43 +207,36 @@ extension AlipayConversationRedPackageSettingViewController:UITableViewDelegate,
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlipayConversationSettingCell
-            cell.selectionStyle = .none
-            if (self.selectRole?.isDiskImage)! {
-                cell.setData(["title":"选择发送人","name":(self.selectRole?.nickName)!,"imageName":""])
-                if !(self.selectRole?.imageUrl.isEmpty)! {
-                    cell.iconImage.kf.setImage(with: URL(fileURLWithPath: (self.selectRole?.imageUrl.localPath())!))
-                }
-            } else {
-                if (selectRole?.imageName.isEmpty)! {
-                    cell.setData(["title":"选择发送人","name":(self.selectRole?.nickName)!,"imageName":""])
-                } else {
-                    cell.setData(["title":"选择发送人","name":(self.selectRole?.nickName)!,"imageName":(self.selectRole?.imageName)!])
-                }
-            }
-            return cell
+            let textFieldCell = tableView.dequeueReusableCell(withIdentifier: "textFieldCell", for: indexPath) as!AlipayConversationSettingTextFieldCell
+            textFieldCell.textField?.text = self.transferAmountStr
+            textFieldCell.textField?.font = UIFont.systemFont(ofSize: 15)
+            textFieldCell.textField?.backgroundColor = UIColor.white
+            textFieldCell.textField?.textAlignment = .center
+            textFieldCell.textField?.borderStyle = .none
+            textFieldCell.textField?.placeholder = ""
+            self.textField = textFieldCell.textField
+            self.textField?.delegate = self
+            self.nowDate(cell: textFieldCell,timeType: self.timeType!)
+            return textFieldCell
         } else {
-            if indexPath.row == 0 {
-                let doubleBtnCell = tableView.dequeueReusableCell(withIdentifier: "doubleBtnCell", for: indexPath) as! AlipayConversationSettingDoubleBtnCell
-                doubleBtnCell.selectionStyle = .none
-                self.sendBtn = doubleBtnCell.sendBtn
-                self.receiveBtn = doubleBtnCell.receiveBtn
-                doubleBtnCell.setData(["type" : (self.acContent?.type)!])
-                doubleBtnCell.sendBtn.addTarget(self, action: #selector(sendBtnAction(button:)), for: .touchUpInside)
-                doubleBtnCell.receiveBtn.addTarget(self, action: #selector(receiveBtnAction(button:)), for: .touchUpInside)
-                return doubleBtnCell
-            } else {
-                let textFieldCell = tableView.dequeueReusableCell(withIdentifier: "textFieldCell", for: indexPath) as!AlipayConversationSettingTextFieldCell
-                textFieldCell.selectionStyle = .none
-                if self.textFieldValue == "恭喜发财，大吉大利！" {
-                    textFieldCell.textField?.text = ""
-                } else {
-                    textFieldCell.textField?.text = self.textFieldValue
+            let timeButtonCell = tableView.dequeueReusableCell(withIdentifier: "timeButtonCell", for: indexPath) as!AlipayConversationSettingTimeButtonCell
+            timeButtonCell.tag = 100 + indexPath.row
+            if timeButtonCell.tag == 100 {
+                self.time12Btn = timeButtonCell.button
+                if self.timeType == "12小时制" {
+                    timeButton12Action(button: timeButtonCell.button!)
                 }
-                self.textField = textFieldCell.textField
-                self.textField?.delegate = self
-                return textFieldCell
+                timeButtonCell.button?.addTarget(self, action: #selector(timeButton12Action(button:)), for: .touchUpInside)
+                timeButtonCell.setData(["title" : "12小时制"])
+            } else {
+                self.time24Btn = timeButtonCell.button
+                if self.timeType == "24小时制" {
+                    timeButton24Action(button: timeButtonCell.button!)
+                }
+                timeButtonCell.button?.addTarget(self, action: #selector(timeButton24Action(button:)), for: .touchUpInside)
+                timeButtonCell.setData(["title" : "24小时制"])
             }
+            return timeButtonCell
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -260,12 +256,12 @@ extension AlipayConversationRedPackageSettingViewController:UITableViewDelegate,
     }
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        self.textFieldValue = textField.text
-        print(textField.text as Any)
+        self.textFieldStr = textField.text
         return true
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        self.textFieldStr = textField.text
         return true
     }
 }

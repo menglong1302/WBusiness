@@ -48,6 +48,7 @@ class AlipayConversationContentCell:UITableViewCell {
         self.contentLabel?.snp.makeConstraints({(maker) in
             maker.centerY.equalToSuperview()
             maker.left.equalTo((self.typeLabel?.snp.right)!).offset(5)
+            maker.right.equalToSuperview().offset(-10)
             maker.height.equalTo(20)
         })
 //        self.deleteBtn = UIButton.init(frame:CGRect.zero)
@@ -69,7 +70,18 @@ class AlipayConversationContentCell:UITableViewCell {
         }
         
         let typeStr = self.model["data"]?.type
-        self.typeLabel?.text = "[\(typeStr ?? "")]"
+//        self.typeLabel?.text = "[\(typeStr ?? "")]"
+        self.updateLabelWidthAndText(labelText: "[\(typeStr ?? "")]")
+    }
+    func updateLabelWidthAndText(labelText: String){
+        self.typeLabel?.text = labelText
+        let statusLabelSize = labelText.size(attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 15)])
+        self.typeLabel?.snp.remakeConstraints({ (maker) in
+            maker.centerY.equalToSuperview()
+            maker.left.equalTo((self.iconImage?.snp.right)!).offset(20)
+            maker.height.equalTo(20)
+            maker.width.equalTo(statusLabelSize.width + 1)
+        })
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

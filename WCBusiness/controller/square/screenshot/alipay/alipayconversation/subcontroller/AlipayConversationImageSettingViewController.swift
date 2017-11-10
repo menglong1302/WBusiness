@@ -20,6 +20,7 @@ class AlipayConversationImageSettingViewController : BaseViewController {
     var index:Int?
     var acUser:AlipayConversationUser?
     var selectRole:Role?
+    var originalContentSender:Role?
     var acContent:AlipayConversationContent?
     lazy var manager:HXPhotoManager = {
         () in
@@ -48,6 +49,7 @@ class AlipayConversationImageSettingViewController : BaseViewController {
         self.initRightNavBarBtn()
         if self.isEdit == true {
             self.selectRole = self.acContent?.contentSender
+            self.originalContentSender = self.acContent?.contentSender
         } else {
             self.selectRole = self.acUser?.sender
         }
@@ -59,11 +61,15 @@ class AlipayConversationImageSettingViewController : BaseViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        let realm = try! Realm()
         if self.isEdit == false && self.isSave == false {
-            let realm = try! Realm()
             let acContent = realm.object(ofType: AlipayConversationContent.self, forPrimaryKey: self.acContent?.id)
             try! realm.write {
                 realm.delete(acContent!)
+            }
+        } else if self.isEdit == true && self.isSave == false {
+            try! realm.write {
+                self.acContent?.contentSender = self.originalContentSender
             }
         }
     }
