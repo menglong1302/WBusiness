@@ -14,16 +14,16 @@ class WXConversationTableViewCell: UITableViewCell {
         label.textVerticalAlignment = .center
         label.numberOfLines = 1;
         label.lineBreakMode = .byTruncatingTail
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 15)
         let mod =  YYTextLinePositionSimpleModifier()
-        mod.fixedLineHeight = 18
+        mod.fixedLineHeight = 20
         label.linePositionModifier = mod
         
         var emojiMapper = [String:UIImage]()
         
         for index in 1...114{
             let model = EmojiModel()
-            model.name = "Expression_"+String(index)+"@2x"
+            model.name = "Expression_"+String(index)+".png"
             model.mapperName = ":100\(index):"
             emojiMapper[model.mapperName!] = model.image
         }
@@ -62,36 +62,37 @@ class WXConversationTableViewCell: UITableViewCell {
         portraitIcon.image = model.sender?.image
         var  content:String?
         switch model.contentType{
-        case 0:
+        case 1:
             content = "[文本] "+model.content
             break
-        case 1:
+        case 2:
              content = "[图片]"
             break
-        case 2:
-             content = "[语音]"
-            break
         case 3:
-             content = "[红包]"
+             content = "[语音]"+model.content+"\""
             break
         case 4:
-             content = "[转账]"
+             content = "[红包]"
             break
         case 5:
-             content = "[时间]"
+             content = "[转账]"
             break
         case 6:
-             content = "[系统提示]"
+             content = "[时间]"
             break
         case 7:
+             content = "[系统提示]"
+            break
+        case 8:
              content = "[收款]"
             break
         default:
              content = "[文本]"
             break
         }
-        
-      contentLabel.attributedText =   NSAttributedString.init(string: content!)
+        let content1 = NSMutableAttributedString(string: content!)
+        content1.yy_font = UIFont.systemFont(ofSize: 15)
+      contentLabel.attributedText = content1
         contentLabel.sizeToFit()
     }
     required init?(coder aDecoder: NSCoder) {

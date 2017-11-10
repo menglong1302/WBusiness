@@ -21,5 +21,5 @@ pod 'SDWebImage'
 pod 'TOCropViewController', '~> 2.1.0'
 pod 'YYText'
 pod 'YYImage'
-
+pod 'ObjectMapper', '~> 2.2'
 end

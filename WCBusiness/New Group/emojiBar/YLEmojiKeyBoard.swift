@@ -48,7 +48,7 @@ class YLEmojiKeyBoard:NSObject {
         if type == .WeChat {
             for index in 1...114{
                 let model = EmojiModel()
-                model.name = "Expression_"+String(index)+"@2x"
+                model.name = "Expression_"+String(index)+".png"
                 model.mapperName = ":100\(index):"
                 array.append(model)
             }

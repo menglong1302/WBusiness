@@ -22,6 +22,8 @@
 		487F6E1A1FA0795600F62868 /* WXConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487F6E191FA0795600F62868 /* WXConversationViewController.swift */; };
 		488899731FA6C1B9000193C5 /* WXContentEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488899721FA6C1B9000193C5 /* WXContentEntity.swift */; };
 		488899761FA6C599000193C5 /* FileSetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488899751FA6C599000193C5 /* FileSetingViewController.swift */; };
+		489164DD1FB15213008B4074 /* ImageSetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489164DC1FB15213008B4074 /* ImageSetingViewController.swift */; };
+		489C98931FB53F60001C2B71 /* WXTimerSystemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489C98921FB53F60001C2B71 /* WXTimerSystemTableViewCell.swift */; };
 		48AE56AC1F9F3AE20055551D /* HXAlbumListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AE56581F9F3AE20055551D /* HXAlbumListView.m */; };
 		48AE56AD1F9F3AE20055551D /* HXAlbumListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AE565A1F9F3AE20055551D /* HXAlbumListViewController.m */; };
 		48AE56AE1F9F3AE20055551D /* HXAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AE565C1F9F3AE20055551D /* HXAlbumModel.m */; };
@@ -76,6 +78,8 @@
 		48B229181F8E11BD009081DA /* WBTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B229171F8E11BD009081DA /* WBTabBarController.swift */; };
 		48B2291C1F8E1865009081DA /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 48B2291B1F8E1864009081DA /* Podfile */; };
 		48B2291F1F8F0210009081DA /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B2291E1F8F0210009081DA /* BaseNavigationController.swift */; };
+		48B2715B1FB1590800966DCE /* YLPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B2715A1FB1590800966DCE /* YLPermission.swift */; };
+		48B2715D1FB1595C00966DCE /* Once.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B2715C1FB1595C00966DCE /* Once.swift */; };
 		48D56D7B1FA73373001B6971 /* WXEmojiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D56D7A1FA73373001B6971 /* WXEmojiCollectionViewCell.swift */; };
 		48D6F0BA1FA07C5500F77521 /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0B91FA07C5400F77521 /* UIColor+extension.swift */; };
 		48D6F0BD1FA0824500F77521 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0BC1FA0824500F77521 /* PeopleTableViewCell.swift */; };
@@ -88,6 +92,18 @@
 		48D6F0CC1FA1DE2B00F77521 /* GroupSelectPeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0CB1FA1DE2B00F77521 /* GroupSelectPeopleTableViewCell.swift */; };
 		48D6F0CE1FA2D8DC00F77521 /* GroupPersionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0CD1FA2D8DC00F77521 /* GroupPersionCollectionViewCell.swift */; };
 		48D6F0D01FA2DBC100F77521 /* PeopleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6F0CF1FA2DBC100F77521 /* PeopleModel.swift */; };
+		48E574AB1FB2F4B900AD4423 /* WXAudioSetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E574AA1FB2F4B900AD4423 /* WXAudioSetingViewController.swift */; };
+		48E574AD1FB2F5A300AD4423 /* WXAudioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E574AC1FB2F5A300AD4423 /* WXAudioTableViewCell.swift */; };
+		48E574AF1FB3023400AD4423 /* WXRedPacketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E574AE1FB3023400AD4423 /* WXRedPacketViewController.swift */; };
+		48E574B21FB30A7F00AD4423 /* RedPacketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E574B11FB30A7F00AD4423 /* RedPacketModel.swift */; };
+		48E574B41FB3F4FF00AD4423 /* WXRedPacketTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E574B31FB3F4FF00AD4423 /* WXRedPacketTypeTableViewCell.swift */; };
+		48E574B61FB4060600AD4423 /* WXRedPacketContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E574B51FB4060600AD4423 /* WXRedPacketContentTableViewCell.swift */; };
+		48E574B81FB4250A00AD4423 /* WXTransferAccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E574B71FB4250A00AD4423 /* WXTransferAccountsViewController.swift */; };
+		48E574BA1FB4257400AD4423 /* TransferAccountsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E574B91FB4257400AD4423 /* TransferAccountsModel.swift */; };
+		48E574BC1FB42A3200AD4423 /* WXTransferAccountTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E574BB1FB42A3200AD4423 /* WXTransferAccountTypeTableViewCell.swift */; };
+		48E574BE1FB433A600AD4423 /* WXTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E574BD1FB433A600AD4423 /* WXTimeViewController.swift */; };
+		48E574C01FB4359100AD4423 /* TimeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E574BF1FB4359100AD4423 /* TimeModel.swift */; };
+		48E574C21FB4368700AD4423 /* WXTimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E574C11FB4368700AD4423 /* WXTimerTableViewCell.swift */; };
 		48E997621FA6CF6A0047933D /* ContentEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E997611FA6CF6A0047933D /* ContentEnum.swift */; };
 		48E997641FA6D28B0047933D /* SenderPeopleSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E997631FA6D28B0047933D /* SenderPeopleSelectViewController.swift */; };
 		48E997671FA6D3350047933D /* SelectPeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E997661FA6D3350047933D /* SelectPeopleTableViewCell.swift */; };
@@ -178,6 +194,8 @@
 		487F6E191FA0795600F62868 /* WXConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXConversationViewController.swift; sourceTree = "<group>"; };
 		488899721FA6C1B9000193C5 /* WXContentEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXContentEntity.swift; sourceTree = "<group>"; };
 		488899751FA6C599000193C5 /* FileSetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSetingViewController.swift; sourceTree = "<group>"; };
+		489164DC1FB15213008B4074 /* ImageSetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSetingViewController.swift; sourceTree = "<group>"; };
+		489C98921FB53F60001C2B71 /* WXTimerSystemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXTimerSystemTableViewCell.swift; sourceTree = "<group>"; };
 		48AE56571F9F3AE20055551D /* HXAlbumListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXAlbumListView.h; sourceTree = "<group>"; };
 		48AE56581F9F3AE20055551D /* HXAlbumListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXAlbumListView.m; sourceTree = "<group>"; };
 		48AE56591F9F3AE20055551D /* HXAlbumListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXAlbumListViewController.h; sourceTree = "<group>"; };
@@ -281,6 +299,8 @@
 		48B229171F8E11BD009081DA /* WBTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBTabBarController.swift; sourceTree = "<group>"; };
 		48B2291B1F8E1864009081DA /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		48B2291E1F8F0210009081DA /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		48B2715A1FB1590800966DCE /* YLPermission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YLPermission.swift; sourceTree = "<group>"; };
+		48B2715C1FB1595C00966DCE /* Once.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Once.swift; sourceTree = "<group>"; };
 		48D56D7A1FA73373001B6971 /* WXEmojiCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXEmojiCollectionViewCell.swift; sourceTree = "<group>"; };
 		48D6F0B91FA07C5400F77521 /* UIColor+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
 		48D6F0BC1FA0824500F77521 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
@@ -293,6 +313,18 @@
 		48D6F0CB1FA1DE2B00F77521 /* GroupSelectPeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSelectPeopleTableViewCell.swift; sourceTree = "<group>"; };
 		48D6F0CD1FA2D8DC00F77521 /* GroupPersionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPersionCollectionViewCell.swift; sourceTree = "<group>"; };
 		48D6F0CF1FA2DBC100F77521 /* PeopleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleModel.swift; sourceTree = "<group>"; };
+		48E574AA1FB2F4B900AD4423 /* WXAudioSetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXAudioSetingViewController.swift; sourceTree = "<group>"; };
+		48E574AC1FB2F5A300AD4423 /* WXAudioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXAudioTableViewCell.swift; sourceTree = "<group>"; };
+		48E574AE1FB3023400AD4423 /* WXRedPacketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXRedPacketViewController.swift; sourceTree = "<group>"; };
+		48E574B11FB30A7F00AD4423 /* RedPacketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedPacketModel.swift; sourceTree = "<group>"; };
+		48E574B31FB3F4FF00AD4423 /* WXRedPacketTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXRedPacketTypeTableViewCell.swift; sourceTree = "<group>"; };
+		48E574B51FB4060600AD4423 /* WXRedPacketContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXRedPacketContentTableViewCell.swift; sourceTree = "<group>"; };
+		48E574B71FB4250A00AD4423 /* WXTransferAccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXTransferAccountsViewController.swift; sourceTree = "<group>"; };
+		48E574B91FB4257400AD4423 /* TransferAccountsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferAccountsModel.swift; sourceTree = "<group>"; };
+		48E574BB1FB42A3200AD4423 /* WXTransferAccountTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXTransferAccountTypeTableViewCell.swift; sourceTree = "<group>"; };
+		48E574BD1FB433A600AD4423 /* WXTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXTimeViewController.swift; sourceTree = "<group>"; };
+		48E574BF1FB4359100AD4423 /* TimeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeModel.swift; sourceTree = "<group>"; };
+		48E574C11FB4368700AD4423 /* WXTimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXTimerTableViewCell.swift; sourceTree = "<group>"; };
 		48E997611FA6CF6A0047933D /* ContentEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentEnum.swift; sourceTree = "<group>"; };
 		48E997631FA6D28B0047933D /* SenderPeopleSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderPeopleSelectViewController.swift; sourceTree = "<group>"; };
 		48E997661FA6D3350047933D /* SelectPeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPeopleTableViewCell.swift; sourceTree = "<group>"; };
@@ -398,6 +430,7 @@
 		487F6E181FA0786400F62868 /* wechat */ = {
 			isa = PBXGroup;
 			children = (
+				48E574B01FB30A6300AD4423 /* model */,
 				488899741FA6C57C000193C5 /* content */,
 				48D6F0C41FA177DD00F77521 /* entity */,
 				48D6F0BB1FA0822A00F77521 /* view */,
@@ -415,8 +448,13 @@
 				48E997701FA725410047933D /* model */,
 				48E997651FA6D3230047933D /* view */,
 				488899751FA6C599000193C5 /* FileSetingViewController.swift */,
+				489164DC1FB15213008B4074 /* ImageSetingViewController.swift */,
 				48E997611FA6CF6A0047933D /* ContentEnum.swift */,
 				48E997631FA6D28B0047933D /* SenderPeopleSelectViewController.swift */,
+				48E574AA1FB2F4B900AD4423 /* WXAudioSetingViewController.swift */,
+				48E574AE1FB3023400AD4423 /* WXRedPacketViewController.swift */,
+				48E574B71FB4250A00AD4423 /* WXTransferAccountsViewController.swift */,
+				48E574BD1FB433A600AD4423 /* WXTimeViewController.swift */,
 			);
 			path = content;
 			sourceTree = "<group>";
@@ -623,6 +661,13 @@
 			path = entity;
 			sourceTree = "<group>";
 		};
+		48E574B01FB30A6300AD4423 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		48E997651FA6D3230047933D /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -630,6 +675,12 @@
 				48E997681FA6D8F50047933D /* InputMessageContentTableViewCell.swift */,
 				48E9976E1FA7226A0047933D /* WXEmojiTableViewCell.swift */,
 				48D56D7A1FA73373001B6971 /* WXEmojiCollectionViewCell.swift */,
+				48E574AC1FB2F5A300AD4423 /* WXAudioTableViewCell.swift */,
+				48E574B31FB3F4FF00AD4423 /* WXRedPacketTypeTableViewCell.swift */,
+				48E574B51FB4060600AD4423 /* WXRedPacketContentTableViewCell.swift */,
+				48E574BB1FB42A3200AD4423 /* WXTransferAccountTypeTableViewCell.swift */,
+				48E574C11FB4368700AD4423 /* WXTimerTableViewCell.swift */,
+				489C98921FB53F60001C2B71 /* WXTimerSystemTableViewCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -637,7 +688,10 @@
 		48E997701FA725410047933D /* model */ = {
 			isa = PBXGroup;
 			children = (
+				48E574B11FB30A7F00AD4423 /* RedPacketModel.swift */,
 				48E997711FA7254D0047933D /* EmojiModel.swift */,
+				48E574B91FB4257400AD4423 /* TransferAccountsModel.swift */,
+				48E574BF1FB4359100AD4423 /* TimeModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -667,6 +721,8 @@
 		48FD47531F8F2D42006685A8 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				48B2715C1FB1595C00966DCE /* Once.swift */,
+				48B2715A1FB1590800966DCE /* YLPermission.swift */,
 				48D6F0B91FA07C5400F77521 /* UIColor+extension.swift */,
 				48FD47541F8F2D6B006685A8 /* CommonUtil.swift */,
 			);
@@ -969,6 +1025,7 @@
 				"${BUILT_PRODUCTS_DIR}/Gallery/Gallery.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Onboard/Onboard.framework",
 				"${BUILT_PRODUCTS_DIR}/PGActionSheet/PGActionSheet.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -993,6 +1050,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gallery.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Onboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PGActionSheet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -1036,8 +1094,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48E574BA1FB4257400AD4423 /* TransferAccountsModel.swift in Sources */,
 				48AE56B61F9F3AE20055551D /* HXDatePhotoCollectionViewLayout.m in Sources */,
 				48D6F0C11FA08F3900F77521 /* GroupConversationSettingViewController.swift in Sources */,
+				48B2715D1FB1595C00966DCE /* Once.swift in Sources */,
 				48AE56AC1F9F3AE20055551D /* HXAlbumListView.m in Sources */,
 				48D6F0C31FA0943300F77521 /* ChangeRoleTableViewCell.swift in Sources */,
 				718D3D8E1FB19EA3006388EF /* AlipayConversationTimeSettingViewController.swift in Sources */,
@@ -1056,6 +1116,7 @@
 				487F6E171FA05FAD00F62868 /* AddRoleViewController.swift in Sources */,
 				7124EA8A1FAB1C3D00994013 /* AlipayConversationSettingSliderCell.swift in Sources */,
 				715B9AF81FAC599900BC24AF /* AlipayConversationSettingTextFieldCell.swift in Sources */,
+				48E574B61FB4060600AD4423 /* WXRedPacketContentTableViewCell.swift in Sources */,
 				48B229131F8E10FF009081DA /* WBSquareViewController.swift in Sources */,
 				484A10CA1F9847FE00BDFFE5 /* RoleEditViewController.swift in Sources */,
 				719D2B4D1FB0571800D2A948 /* AlipayConversationTransferSettingViewController.swift in Sources */,
@@ -1067,7 +1128,9 @@
 				71876EE61FA09D7F00BCD139 /* AlipayConversationAddView.swift in Sources */,
 				715B9AF41FAC377F00BC24AF /* AlipayConversationRedPackageSettingViewController.swift in Sources */,
 				48AE56AF1F9F3AE20055551D /* HXAlbumTitleButton.m in Sources */,
+				48E574AB1FB2F4B900AD4423 /* WXAudioSetingViewController.swift in Sources */,
 				48AE56C61F9F3AE20055551D /* HXPhotoSubViewCell.m in Sources */,
+				48B2715B1FB1590800966DCE /* YLPermission.swift in Sources */,
 				48AE56C71F9F3AE20055551D /* HXPhotoTools.m in Sources */,
 				48D6F0CC1FA1DE2B00F77521 /* GroupSelectPeopleTableViewCell.swift in Sources */,
 				71876EE71FA09D7F00BCD139 /* AlipayConversationAddViewCell.swift in Sources */,
@@ -1076,6 +1139,7 @@
 				48AE56B11F9F3AE20055551D /* HXCameraViewController.m in Sources */,
 				485549441FAC44A6006F6153 /* WXConversationTableViewCell.swift in Sources */,
 				48AE56C91F9F3AE20055551D /* HXPhotoView.m in Sources */,
+				48E574AD1FB2F5A300AD4423 /* WXAudioTableViewCell.swift in Sources */,
 				48D6F0CA1FA1C69600F77521 /* ContentEditViewController.swift in Sources */,
 				48AE56BE1F9F3AE20055551D /* HXPhotoCustomNavigationBar.m in Sources */,
 				4855493E1FAAB2E3006F6153 /* String+extension.swift in Sources */,
@@ -1090,6 +1154,7 @@
 				71876EEE1FA09D7F00BCD139 /* AlipayConversationSettingCellRoleView.swift in Sources */,
 				48AE56BF1F9F3AE20055551D /* HXPhotoEditView.m in Sources */,
 				48AE56BA1F9F3AE20055551D /* HXDatePhotoViewController.m in Sources */,
+				48E574BE1FB433A600AD4423 /* WXTimeViewController.swift in Sources */,
 				48D6F0C81FA188C800F77521 /* ChatSettingTableViewCell.swift in Sources */,
 				48AE56CB1F9F3AE20055551D /* HXPhotoViewController.m in Sources */,
 				715B9AF61FAC3B9500BC24AF /* AlipayConversationSettingDoubleBtnCell.swift in Sources */,
@@ -1097,6 +1162,8 @@
 				71E56D711FB449C700E6B6F5 /* AlipayConversationSystemMessageSettingViewController.swift in Sources */,
 				71876EE51FA09D7F00BCD139 /* AlipayCAVHeaderResuableView.swift in Sources */,
 				DB6082DE1F98F12E0095EF72 /* RoleEditTableViewCell.swift in Sources */,
+				48E574AF1FB3023400AD4423 /* WXRedPacketViewController.swift in Sources */,
+				48E574C21FB4368700AD4423 /* WXTimerTableViewCell.swift in Sources */,
 				48AE56C21F9F3AE20055551D /* HXPhotoModel.m in Sources */,
 				71876EEA1FA09D7F00BCD139 /* AlipayConversationSettingViewController.swift in Sources */,
 				48AE56C41F9F3AE20055551D /* HXPhotoPreviewViewController.m in Sources */,
@@ -1104,6 +1171,7 @@
 				48D6F0BF1FA08EF200F77521 /* PrivateConversationSettingViewController.swift in Sources */,
 				488899761FA6C599000193C5 /* FileSetingViewController.swift in Sources */,
 				48E997641FA6D28B0047933D /* SenderPeopleSelectViewController.swift in Sources */,
+				48E574B81FB4250A00AD4423 /* WXTransferAccountsViewController.swift in Sources */,
 				4829AE101F95FB9900EBA903 /* RoleViewController.swift in Sources */,
 				484A10CE1F98666C00BDFFE5 /* NameEditViewController.swift in Sources */,
 				48AE56CE1F9F3AE20055551D /* HXVideoPresentTransition.m in Sources */,
@@ -1114,6 +1182,7 @@
 				48AE56D31F9F3AE20055551D /* UIButton+HXExtension.m in Sources */,
 				48E997621FA6CF6A0047933D /* ContentEnum.swift in Sources */,
 				48B228E51F8E08E1009081DA /* AppDelegate.swift in Sources */,
+				48E574B41FB3F4FF00AD4423 /* WXRedPacketTypeTableViewCell.swift in Sources */,
 				481C17921F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift in Sources */,
 				71876EE41FA09D7F00BCD139 /* AlipayConversationViewController.swift in Sources */,
 				48AE56D21F9F3AE20055551D /* NSDate+HXExtension.m in Sources */,
@@ -1126,6 +1195,7 @@
 				485549401FAAB638006F6153 /* YLEmojiContainer.swift in Sources */,
 				48AE56D11F9F3AE20055551D /* NSBundle+HXWeiboPhotoPicker.m in Sources */,
 				48B229181F8E11BD009081DA /* WBTabBarController.swift in Sources */,
+				48E574BC1FB42A3200AD4423 /* WXTransferAccountTypeTableViewCell.swift in Sources */,
 				48AE56C11F9F3AE20055551D /* HXPhotoManager.m in Sources */,
 				48AE56C01F9F3AE20055551D /* HXPhotoEditViewController.m in Sources */,
 				48AE56D51F9F3AE20055551D /* UIImage+HXExtension.m in Sources */,
@@ -1138,10 +1208,14 @@
 				485549381FAAAE89006F6153 /* YLEmojiKeyBoard.swift in Sources */,
 				71876EE91FA09D7F00BCD139 /* AlipayConversationDataModel.swift in Sources */,
 				48FD475B1F8F4C64006685A8 /* ScreenshotViewController.swift in Sources */,
+				48E574C01FB4359100AD4423 /* TimeModel.swift in Sources */,
+				489C98931FB53F60001C2B71 /* WXTimerSystemTableViewCell.swift in Sources */,
+				48E574B21FB30A7F00AD4423 /* RedPacketModel.swift in Sources */,
 				7105AD3D1FA2E502009B15C4 /* AlipayConversationImageSettingViewController.swift in Sources */,
 				48AE56B01F9F3AE20055551D /* HXCameraPreviewViewController.m in Sources */,
 				48AE56CF1F9F3AE20055551D /* HXVideoPreviewViewController.m in Sources */,
 				48AE56B91F9F3AE20055551D /* HXDatePhotoPreviewViewController.m in Sources */,
+				489164DD1FB15213008B4074 /* ImageSetingViewController.swift in Sources */,
 				48B229151F8E1170009081DA /* WBCommunityViewController.swift in Sources */,
 				48F4D1A41F94AE8200410CC7 /* RoleModel.swift in Sources */,
 				7124EA861FAAE64300994013 /* AlipayConversationAudioSettingViewController.swift in Sources */,

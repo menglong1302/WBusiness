@@ -13,3 +13,4 @@
 #import "TOCropViewController.h"
 #import "UIView+HXExtension.h"
 #import "YYText.h"
+#import "NSAttributedString+YYText.h"
