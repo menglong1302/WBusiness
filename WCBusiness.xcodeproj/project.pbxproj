@@ -24,6 +24,8 @@
 		488899761FA6C599000193C5 /* FileSetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488899751FA6C599000193C5 /* FileSetingViewController.swift */; };
 		489164DD1FB15213008B4074 /* ImageSetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489164DC1FB15213008B4074 /* ImageSetingViewController.swift */; };
 		489C98931FB53F60001C2B71 /* WXTimerSystemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489C98921FB53F60001C2B71 /* WXTimerSystemTableViewCell.swift */; };
+		489C98951FB57706001C2B71 /* WXPromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489C98941FB57706001C2B71 /* WXPromptViewController.swift */; };
+		489C98971FB5779C001C2B71 /* WXPromptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489C98961FB5779C001C2B71 /* WXPromptTableViewCell.swift */; };
 		48AE56AC1F9F3AE20055551D /* HXAlbumListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AE56581F9F3AE20055551D /* HXAlbumListView.m */; };
 		48AE56AD1F9F3AE20055551D /* HXAlbumListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AE565A1F9F3AE20055551D /* HXAlbumListViewController.m */; };
 		48AE56AE1F9F3AE20055551D /* HXAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AE565C1F9F3AE20055551D /* HXAlbumModel.m */; };
@@ -196,6 +198,8 @@
 		488899751FA6C599000193C5 /* FileSetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSetingViewController.swift; sourceTree = "<group>"; };
 		489164DC1FB15213008B4074 /* ImageSetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSetingViewController.swift; sourceTree = "<group>"; };
 		489C98921FB53F60001C2B71 /* WXTimerSystemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXTimerSystemTableViewCell.swift; sourceTree = "<group>"; };
+		489C98941FB57706001C2B71 /* WXPromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXPromptViewController.swift; sourceTree = "<group>"; };
+		489C98961FB5779C001C2B71 /* WXPromptTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXPromptTableViewCell.swift; sourceTree = "<group>"; };
 		48AE56571F9F3AE20055551D /* HXAlbumListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXAlbumListView.h; sourceTree = "<group>"; };
 		48AE56581F9F3AE20055551D /* HXAlbumListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXAlbumListView.m; sourceTree = "<group>"; };
 		48AE56591F9F3AE20055551D /* HXAlbumListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXAlbumListViewController.h; sourceTree = "<group>"; };
@@ -455,6 +459,7 @@
 				48E574AE1FB3023400AD4423 /* WXRedPacketViewController.swift */,
 				48E574B71FB4250A00AD4423 /* WXTransferAccountsViewController.swift */,
 				48E574BD1FB433A600AD4423 /* WXTimeViewController.swift */,
+				489C98941FB57706001C2B71 /* WXPromptViewController.swift */,
 			);
 			path = content;
 			sourceTree = "<group>";
@@ -681,6 +686,7 @@
 				48E574BB1FB42A3200AD4423 /* WXTransferAccountTypeTableViewCell.swift */,
 				48E574C11FB4368700AD4423 /* WXTimerTableViewCell.swift */,
 				489C98921FB53F60001C2B71 /* WXTimerSystemTableViewCell.swift */,
+				489C98961FB5779C001C2B71 /* WXPromptTableViewCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1186,6 +1192,7 @@
 				481C17921F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift in Sources */,
 				71876EE41FA09D7F00BCD139 /* AlipayConversationViewController.swift in Sources */,
 				48AE56D21F9F3AE20055551D /* NSDate+HXExtension.m in Sources */,
+				489C98971FB5779C001C2B71 /* WXPromptTableViewCell.swift in Sources */,
 				48D6F0C61FA1780D00F77521 /* WXConversation.swift in Sources */,
 				48AE56BB1F9F3AE20055551D /* HXFullScreenCameraPlayView.m in Sources */,
 				48AE56C81F9F3AE20055551D /* HXPhotoUIManager.m in Sources */,
@@ -1197,6 +1204,7 @@
 				48B229181F8E11BD009081DA /* WBTabBarController.swift in Sources */,
 				48E574BC1FB42A3200AD4423 /* WXTransferAccountTypeTableViewCell.swift in Sources */,
 				48AE56C11F9F3AE20055551D /* HXPhotoManager.m in Sources */,
+				489C98951FB57706001C2B71 /* WXPromptViewController.swift in Sources */,
 				48AE56C01F9F3AE20055551D /* HXPhotoEditViewController.m in Sources */,
 				48AE56D51F9F3AE20055551D /* UIImage+HXExtension.m in Sources */,
 				48E997721FA7254D0047933D /* EmojiModel.swift in Sources */,
