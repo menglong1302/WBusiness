@@ -166,6 +166,25 @@ class WXConversationViewController: BaseViewController {
     }
     func addConversationBtnClick()  {
         
+        guard   self.conversation.receivers.count != 0 else {
+            var vc:UIViewController?
+            switch self.conversationType {
+            case .groupChat:
+                let groupVc = GroupConversationSettingViewController()
+                groupVc.conversation = self.conversation
+                vc = groupVc
+                break
+            default:
+                let privateVC = PrivateConversationSettingViewController()
+                privateVC.conversation = self.conversation
+                vc = privateVC
+                break
+            }
+            self.navigationController?.pushViewController(vc!, animated: true)
+            return
+        }
+        
+        
         UIApplication.shared.keyWindow?.addSubview(selectView)
         selectView.snp.makeConstraints { (maker) in
             maker.edges.equalToSuperview()
@@ -251,10 +270,23 @@ class WXConversationViewController: BaseViewController {
                     }
                     self.navigationController?.pushViewController(vc, animated: true)
                 }else{
-                    
+                    let vc =  WXPromptViewController()
+                    vc.conversation = self.conversation
+                    vc.conversationType = self.conversationType
+                    vc.block = {
+                        self.tableView.reloadData()
+                    }
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
                 break
             case 6:
+                let vc =  WXPromptViewController()
+                vc.conversation = self.conversation
+                vc.conversationType = self.conversationType
+                vc.block = {
+                    self.tableView.reloadData()
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
                 break
             case 7:
                 break
@@ -404,6 +436,19 @@ extension WXConversationViewController:UITableViewDelegate,UITableViewDataSource
                     self.tableView.reloadData()
                 }
                 self.navigationController?.pushViewController(vc, animated: true)
+                break
+                
+            case 7:
+                let vc = WXPromptViewController()
+                vc.type = .Edit
+                vc.conversation = self.conversation
+                vc.conversationType = self.conversationType
+                vc.contentEntity = wxContentEntity
+                vc.block = {
+                    self.tableView.reloadData()
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
+                
                 break
             default:
                 break

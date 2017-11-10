@@ -8,10 +8,11 @@
 
 import Foundation
 import YYText
+import ObjectMapper
 class WXConversationTableViewCell: UITableViewCell {
     lazy var contentLabel:YYLabel = {
         let label = YYLabel()
-        label.textVerticalAlignment = .center
+        label.textVerticalAlignment = .top
         label.numberOfLines = 1;
         label.lineBreakMode = .byTruncatingTail
         label.font = UIFont.systemFont(ofSize: 15)
@@ -69,26 +70,28 @@ class WXConversationTableViewCell: UITableViewCell {
              content = "[图片]"
             break
         case 3:
-             content = "[语音]"+model.content+"\""
+             content = "[语音] "+model.content+"\""
             break
         case 4:
              content = "[红包]"
             break
         case 5:
-             content = "[转账]"
+            let transfer = TransferAccountsModel(JSONString: model.content)
+            content = "[转账] \((transfer?.transferAmount)!)"
             break
         case 6:
-             content = "[时间]"
+            portraitIcon.image = UIImage(named:"default")
+            let timer = TimeModel(JSONString: model.content)
+             content = "[时间] \((timer?.timer)!)"
             break
         case 7:
-             content = "[系统提示]"
+            portraitIcon.image = UIImage(named:"default")
+
+             content = "[系统提示] \(model.content)"
             break
-        case 8:
-             content = "[收款]"
-            break
+         
         default:
-             content = "[文本]"
-            break
+             break
         }
         let content1 = NSMutableAttributedString(string: content!)
         content1.yy_font = UIFont.systemFont(ofSize: 15)
