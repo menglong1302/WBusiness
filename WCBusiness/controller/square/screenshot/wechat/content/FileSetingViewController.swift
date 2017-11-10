@@ -119,7 +119,7 @@ class FileSetingViewController: BaseViewController {
                 contentEntity.index = entities.count+1
                 contentEntity.parent = conversation
                 contentEntity.id = UUID().uuidString
-                contentEntity.contentType = 0
+                contentEntity.contentType = 1
                 realm.create(WXContentEntity.self, value: contentEntity, update: false)
                 
             }

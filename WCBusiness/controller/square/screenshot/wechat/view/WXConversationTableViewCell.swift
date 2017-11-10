@@ -62,28 +62,28 @@ class WXConversationTableViewCell: UITableViewCell {
         portraitIcon.image = model.sender?.image
         var  content:String?
         switch model.contentType{
-        case 0:
+        case 1:
             content = "[文本] "+model.content
             break
-        case 1:
+        case 2:
              content = "[图片]"
             break
-        case 2:
-             content = "[语音]"
-            break
         case 3:
-             content = "[红包]"
+             content = "[语音]"+model.content+"\""
             break
         case 4:
-             content = "[转账]"
+             content = "[红包]"
             break
         case 5:
-             content = "[时间]"
+             content = "[转账]"
             break
         case 6:
-             content = "[系统提示]"
+             content = "[时间]"
             break
         case 7:
+             content = "[系统提示]"
+            break
+        case 8:
              content = "[收款]"
             break
         default:

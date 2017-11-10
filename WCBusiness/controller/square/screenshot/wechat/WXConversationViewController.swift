@@ -25,9 +25,14 @@ class WXConversationViewController: BaseViewController {
         didSet{
             switch conversationType {
             case .groupChat:
+                self.selectView.dataArray.remove(at: 7)
+                self.selectView.dataArray.remove(at: 4)
+
                 self.navigationItem.title = "微信群聊"
                 break
             default:
+                self.selectView.dataArray.remove(at: 7)
+
                 self.navigationItem.title = "微信单聊"
                 break
             }
@@ -36,6 +41,7 @@ class WXConversationViewController: BaseViewController {
     let selectView:AlipayConversationAddView = {
         () in
         let view = AlipayConversationAddView()
+       
         return  view
     }()
     
@@ -183,14 +189,70 @@ class WXConversationViewController: BaseViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
                 break
             case 1:
+                let vc = ImageSetingViewController()
+                vc.contentEnumType = .WeChat
+                vc.conversation = self.conversation
+                vc.conversationType = self.conversationType
+                vc.block = {
+                    self.tableView.reloadData()
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
                 break
             case 2:
+                
+                let vc =  WXAudioSetingViewController()
+                vc.contentEnumType = .WeChat
+                vc.conversation = self.conversation
+                vc.conversationType = self.conversationType
+                vc.block = {
+                    self.tableView.reloadData()
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
                 break
             case 3:
+                let vc =  WXRedPacketViewController()
+                vc.contentEnumType = .WeChat
+                vc.conversation = self.conversation
+                vc.conversationType = self.conversationType
+                vc.block = {
+                    self.tableView.reloadData()
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
                 break
+                
             case 4:
+                if self.conversationType == .privateChat{
+                    let vc =  WXTransferAccountsViewController()
+                    vc.conversation = self.conversation
+                    vc.conversationType = self.conversationType
+                    vc.block = {
+                        self.tableView.reloadData()
+                    }
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    break
+                }else{//群聊 4：时间
+                    
+                    let vc =  WXTimeViewController()
+                    vc.conversation = self.conversation
+                    vc.conversationType = self.conversationType
+                    vc.block = {
+                        self.tableView.reloadData()
+                    }
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
                 break
             case 5:
+                if self.conversationType == .privateChat{
+                    let vc =  WXTimeViewController()
+                    vc.conversation = self.conversation
+                    vc.conversationType = self.conversationType
+                    vc.block = {
+                        self.tableView.reloadData()
+                    }
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }else{
+                    
+                }
                 break
             case 6:
                 break
@@ -270,16 +332,83 @@ extension WXConversationViewController:UITableViewDelegate,UITableViewDataSource
             self.navigationController?.pushViewController(vc!, animated: true)
         }else{
             let wxContentEntity = self.contents[indexPath.row]
-            let vc = FileSetingViewController()
-            vc.type = .Edit
-            vc.contentEnumType = .WeChat
-            vc.conversation = self.conversation
-            vc.conversationType = self.conversationType
-           vc.contentEntity = wxContentEntity
-            vc.block = {
-                self.tableView.reloadData()
+            switch wxContentEntity.contentType{
+            case  1:
+                let vc = FileSetingViewController()
+                vc.type = .Edit
+                vc.contentEnumType = .WeChat
+                vc.conversation = self.conversation
+                vc.conversationType = self.conversationType
+                vc.contentEntity = wxContentEntity
+                vc.block = {
+                    self.tableView.reloadData()
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
+                break
+            case 2:
+                let vc = ImageSetingViewController()
+                vc.type = .Edit
+                vc.contentEnumType = .WeChat
+                vc.conversation = self.conversation
+                vc.conversationType = self.conversationType
+                vc.contentEntity = wxContentEntity
+                vc.block = {
+                    self.tableView.reloadData()
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
+                break
+             case 3:
+                
+                let vc = WXAudioSetingViewController()
+                vc.type = .Edit
+                vc.contentEnumType = .WeChat
+                vc.conversation = self.conversation
+                vc.conversationType = self.conversationType
+                vc.contentEntity = wxContentEntity
+                vc.block = {
+                    self.tableView.reloadData()
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+                break
+            case 4:
+                let vc = WXRedPacketViewController()
+                vc.type = .Edit
+                vc.contentEnumType = .WeChat
+                vc.conversation = self.conversation
+                vc.conversationType = self.conversationType
+                vc.contentEntity = wxContentEntity
+                vc.block = {
+                    self.tableView.reloadData()
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
+                break
+            case 5:
+                let vc = WXTransferAccountsViewController()
+                vc.type = .Edit
+                vc.conversation = self.conversation
+                vc.conversationType = self.conversationType
+                vc.contentEntity = wxContentEntity
+                vc.block = {
+                    self.tableView.reloadData()
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
+                break
+            case 6:
+                let vc = WXTimeViewController()
+                vc.type = .Edit
+                vc.conversation = self.conversation
+                vc.conversationType = self.conversationType
+                vc.contentEntity = wxContentEntity
+                vc.block = {
+                    self.tableView.reloadData()
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
+                break
+            default:
+                break
             }
-            self.navigationController?.pushViewController(vc, animated: true)
+           
         }
         
         
