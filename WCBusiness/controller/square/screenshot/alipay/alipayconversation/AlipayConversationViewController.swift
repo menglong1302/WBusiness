@@ -199,6 +199,18 @@ class AlipayConversationViewController : BaseViewController  {
                     self?.view.showImageHUDText("请先设置角色")
                 }
                 break
+            case 7:
+                let alipayConversationCSVC = AlipayConversationCollectionsSettingViewController()
+                if self?.acUser.sender != nil && self?.acUser.receiver != nil {
+                    alipayConversationCSVC.acUser = self?.acUser
+                    alipayConversationCSVC.index = (self?.tableData.count)!
+                    alipayConversationCSVC.isEdit = false
+                    self?.navigationController?.pushViewController(alipayConversationCSVC, animated: true)
+                } else {
+                    self?.view.showImageHUDText("请先设置角色")
+                }
+                break
+                
             default:
                 break
             }
@@ -531,6 +543,13 @@ extension AlipayConversationViewController:UITableViewDataSource,UITableViewDele
                 acsmsvc.isEdit = true
                 acsmsvc.acContent = self.tableData[indexPath.row]
                 self.navigationController?.pushViewController(acsmsvc, animated: true)
+            } else if self.tableData[indexPath.row].type == "收款" || self.tableData[indexPath.row].type == "付款" {
+                let accsvc = AlipayConversationCollectionsSettingViewController()
+                accsvc.index = indexPath.row
+                accsvc.acUser = self.acUser
+                accsvc.isEdit = true
+                accsvc.acContent = self.tableData[indexPath.row]
+                self.navigationController?.pushViewController(accsvc, animated: true)
             }
             
         }

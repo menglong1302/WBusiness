@@ -67,14 +67,14 @@ class AlipayConversationSettingDoubleBtnCell: UITableViewCell {
     func setData(_ model:[String:String]) {
         self.model = model
         self.typeStr = self.model["type"]!
-        if self.typeStr == "收红包" {
+        if self.typeStr == "收红包" || self.typeStr == "付款" {
             self.receiveBtn.backgroundColor = UIColor.init(hexString: "1BA5EA")
             self.receiveBtn.setTitleColor(UIColor.white, for: .normal)
             self.receiveBtn.layer.borderColor = UIColor.clear.cgColor
             self.sendBtn.backgroundColor = UIColor.white
             self.sendBtn.setTitleColor(UIColor.gray, for: .normal)
             self.sendBtn.layer.borderColor = UIColor.gray.cgColor
-        } else {
+        } else if self.typeStr == "发红包" || self.typeStr == "收款" {
             self.sendBtn.backgroundColor = UIColor.init(hexString: "1BA5EA")
             self.sendBtn.setTitleColor(UIColor.white, for: .normal)
             self.sendBtn.layer.borderColor = UIColor.clear.cgColor
