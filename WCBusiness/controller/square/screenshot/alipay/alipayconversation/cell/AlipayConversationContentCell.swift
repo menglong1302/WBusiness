@@ -66,7 +66,11 @@ class AlipayConversationContentCell:UITableViewCell {
         if isDiskImage == true {
             self.iconImage?.kf.setImage(with: URL(fileURLWithPath: (self.model["data"]?.contentSender?.imageUrl.localPath())!))
         } else {
-            self.iconImage?.image = UIImage.init(named:(self.model["data"]?.contentSender?.imageName)!)
+            if self.model["data"]?.type == "时间" {
+                self.iconImage?.image = UIImage(named:"portrait")
+            } else {
+                self.iconImage?.image = UIImage.init(named:(self.model["data"]?.contentSender?.imageName)!)
+            }
         }
         
         let typeStr = self.model["data"]?.type
