@@ -14,29 +14,24 @@ class AlipayConversationTimeSettingViewController: BaseViewController {
     lazy var tableView = self.initTableView()
     var dataSourse:Array<AlipayConversationContent> = []
     var index:Int!
+    var timer:TimeModel?
     var isSave:Bool? = false
     var isEdit:Bool?
     var textField:UITextField?
-    var transferAmountStr:String? = ""
-    var transferInstructions:String? = ""
-    var time12Btn:UIButton?
-    var time24Btn:UIButton?
-    var timeType:String?
     var textFieldStr:String?
-    var selectRole:Role?
     var acUser:AlipayConversationUser?
     var acContent:AlipayConversationContent?
+    lazy var dataPicker:UIDatePicker = {
+        let picker = UIDatePicker(frame: CGRect.zero)
+        picker.backgroundColor = UIColor.lightGray
+        picker.datePickerMode = .dateAndTime
+        picker.locale = Locale(identifier: "zh_CN")
+        picker.addTarget(self, action: #selector(pickerSelect(_:)), for: .valueChanged)
+        return  picker
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
-        if self.isEdit == true {
-            self.selectRole = self.acContent?.contentSender
-            self.textFieldStr = self.acContent?.content
-            self.timeType = self.acContent?.timeType
-        } else {
-            self.selectRole = self.acUser?.sender
-            self.timeType = "12小时制"
-        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -61,6 +56,11 @@ class AlipayConversationTimeSettingViewController: BaseViewController {
         rightBtn.setTitle("保存", for: .normal)
         rightBtn.addTarget(self, action: #selector(rightBtnAction), for: .touchUpInside)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightBtn)
+        self.view.addSubview(self.dataPicker)
+        self.dataPicker.snp.makeConstraints { (maker) in
+            maker.left.right.bottom.equalToSuperview()
+            maker.height.equalTo(200)
+        }
     }
     func initTableView () -> UITableView {
         let tableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT-64), style: .grouped)
@@ -69,7 +69,7 @@ class AlipayConversationTimeSettingViewController: BaseViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(AlipayConversationSettingTextFieldCell.self, forCellReuseIdentifier: "textFieldCell")
-        tableView.register(AlipayConversationSettingTimeButtonCell.self, forCellReuseIdentifier: "timeButtonCell")
+        tableView.register(AlipayConversationSettingTimeButtonCell.self, forCellReuseIdentifier: "timerBtnCell")
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(tableViewTap))
         tableView.addGestureRecognizer(tap)
         return tableView
@@ -79,14 +79,17 @@ class AlipayConversationTimeSettingViewController: BaseViewController {
     }
     func iniData () {
         if isEdit == false && self.acContent == nil{
+            let now = Date()
+            let tempString = "{\"timerType\":0,\"timer\":\"\(now.getStringDateFrom12())\",\"time\":\(now.timeIntervalSince1970)}"
+            self.timer =  TimeModel(JSONString: tempString)
             let realm = try! Realm()
             self.acContent = AlipayConversationContent()
             self.acContent?.id = UUID().uuidString
             self.acContent?.index = self.index!
             self.acContent?.type = "时间"
-            self.acContent?.timeType = self.timeType! 
+            self.acContent?.content = (self.timer?.toJSONString())!
             self.acContent?.user = self.acUser
-            self.acContent?.contentSender = self.acUser?.sender
+            self.acContent?.contentSender = nil
             let date = NSDate()
             let timeFormatter = DateFormatter()
             timeFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
@@ -99,80 +102,30 @@ class AlipayConversationTimeSettingViewController: BaseViewController {
     }
     func rightBtnAction () {
         self.textField?.resignFirstResponder()
+        self.timer?.timer = self.textField?.text
         self.isSave = true
         let realm = try! Realm()
         if self.isEdit == false {
-            self.acContent?.content = self.textFieldStr!
+            self.acContent?.content = (self.timer?.toJSONString())!
             try! realm.write {
                 realm.create(AlipayConversationContent.self, value: self.acContent as Any, update: true)
             }
         } else {
             try! realm.write {
-                self.acContent?.content = self.textFieldStr!
+                self.acContent?.content = (self.timer?.toJSONString())!
             }
         }
         self.navigationController?.popViewController(animated: true)
     }
-    func timeButton12Action (button:UIButton) {
-        button.backgroundColor = UIColor.init(hexString: "1BA5EA")
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.layer.borderColor = UIColor.clear.cgColor
-        self.time24Btn?.backgroundColor = UIColor.white
-        self.time24Btn?.setTitleColor(UIColor.gray, for: .normal)
-        self.time24Btn?.layer.borderColor = UIColor.init(hexString: "EFEFF4")?.cgColor
-        self.timeType = "12小时制"
-        let realm = try! Realm()
-        try! realm.write {
-            self.acContent?.timeType = self.timeType!
+    @objc func  pickerSelect(_ picker:UIDatePicker){
+        if self.timer?.timerType == 0{
+            self.timer?.timer =  picker.date.getStringDateFrom12()
+            self.timer?.time = picker.date.timeIntervalSince1970
+        }else{
+            self.timer?.timer =  picker.date.getStringDateFrom24()
+            self.timer?.time = picker.date.timeIntervalSince1970
         }
-        let index = IndexPath.init(row: 0, section: 0)
-//        let cell = self.tableView.cellForRow(at: index) as! AlipayConversationSettingTextFieldCell
-//        self.nowDate(cell: cell, timeType: self.timeType!)
-//        self.tableView.reloadData()
-        self.tableView.reloadRows(at: [index], with: UITableViewRowAnimation.none)
-
-    }
-    func timeButton24Action (button:UIButton) {
-        button.backgroundColor = UIColor.init(hexString: "1BA5EA")
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.layer.borderColor = UIColor.clear.cgColor
-        self.time12Btn?.backgroundColor = UIColor.white
-        self.time12Btn?.setTitleColor(UIColor.gray, for: .normal)
-        self.time12Btn?.layer.borderColor = UIColor.init(hexString: "EFEFF4")?.cgColor
-        self.timeType = "24小时制"
-        let realm = try! Realm()
-        try! realm.write {
-            self.acContent?.timeType = self.timeType!
-        }
-        let index = IndexPath.init(row: 0, section: 0)
-//        let cell = self.tableView.cellForRow(at: index) as! AlipayConversationSettingTextFieldCell
-//        self.nowDate(cell: cell, timeType: self.timeType!)
-//        self.tableView.reloadData()
-        self.tableView.reloadRows(at: [index], with: UITableViewRowAnimation.none)
-    }
-    func nowDate(cell:AlipayConversationSettingTextFieldCell,timeType:String) {
-        let date = NSDate()
-        let timeFormatter = DateFormatter()
-        if timeType == "24小时制" {
-            timeFormatter.dateFormat = "HH:mm"
-            let strNowTime = timeFormatter.string(from: date as Date) as String
-            cell.textField?.text = strNowTime
-        } else {
-            timeFormatter.dateFormat = "HH:mm"
-            let strNowTime = timeFormatter.string(from: date as Date) as String
-            let hourStr = strNowTime.index(strNowTime.startIndex, offsetBy: 2)
-            let prefix = strNowTime.substring(to: hourStr)
-            let strToInt:Int = Int(prefix)!
-            var timeStr = ""
-            if strToInt > Int(12) {
-                timeStr = "下午"
-            } else {
-                timeStr = "上午"
-            }
-            timeFormatter.dateFormat = "hh:mm"
-            let nowTimeStr = timeFormatter.string(from: date as Date) as String
-            cell.textField?.text = "\(timeStr) \(nowTimeStr)"
-        }
+        self.tableView.reloadData()
     }
 }
 extension AlipayConversationTimeSettingViewController:UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate {
@@ -180,14 +133,7 @@ extension AlipayConversationTimeSettingViewController:UITableViewDelegate,UITabl
         return 2
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 1 {
-            return 2
-        } else {
-            return 1
-        }
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 1
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
@@ -208,51 +154,28 @@ extension AlipayConversationTimeSettingViewController:UITableViewDelegate,UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let textFieldCell = tableView.dequeueReusableCell(withIdentifier: "textFieldCell", for: indexPath) as!AlipayConversationSettingTextFieldCell
-            textFieldCell.textField?.text = self.transferAmountStr
+            textFieldCell.textField?.text = self.timer?.timer
             textFieldCell.textField?.font = UIFont.systemFont(ofSize: 15)
             textFieldCell.textField?.backgroundColor = UIColor.white
             textFieldCell.textField?.textAlignment = .center
             textFieldCell.textField?.borderStyle = .none
             textFieldCell.textField?.placeholder = ""
+            textFieldCell.textField?.delegate = self
             self.textField = textFieldCell.textField
-            self.textField?.delegate = self
-            self.nowDate(cell: textFieldCell,timeType: self.timeType!)
             return textFieldCell
-        } else {
-            let timeButtonCell = tableView.dequeueReusableCell(withIdentifier: "timeButtonCell", for: indexPath) as!AlipayConversationSettingTimeButtonCell
-            timeButtonCell.tag = 100 + indexPath.row
-            if timeButtonCell.tag == 100 {
-                self.time12Btn = timeButtonCell.button
-                if self.timeType == "12小时制" {
-                    timeButton12Action(button: timeButtonCell.button!)
-                }
-                timeButtonCell.button?.addTarget(self, action: #selector(timeButton12Action(button:)), for: .touchUpInside)
-                timeButtonCell.setData(["title" : "12小时制"])
-            } else {
-                self.time24Btn = timeButtonCell.button
-                if self.timeType == "24小时制" {
-                    timeButton24Action(button: timeButtonCell.button!)
-                }
-                timeButtonCell.button?.addTarget(self, action: #selector(timeButton24Action(button:)), for: .touchUpInside)
-                timeButtonCell.setData(["title" : "24小时制"])
+        }else{
+            let timerBtnCell = tableView.dequeueReusableCell(withIdentifier: "timerBtnCell") as! AlipayConversationSettingTimeButtonCell
+            timerBtnCell.block = {
+                [unowned self] in
+                self.tableView.reloadData()
             }
-            return timeButtonCell
+            timerBtnCell.configer(self.timer!)
+            timerBtnCell.selectionStyle = .none
+            return timerBtnCell
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.section == 0 {
-            if self.selectRole?.id == self.acUser?.sender?.id {
-                self.selectRole = self.acUser?.receiver
-            } else {
-                self.selectRole = self.acUser?.sender
-            }
-            let realm = try! Realm()
-            try! realm.write {
-                self.acContent?.contentSender = self.selectRole
-            }
-            self.tableView.reloadData()
-        }
     }
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -265,3 +188,4 @@ extension AlipayConversationTimeSettingViewController:UITableViewDelegate,UITabl
         return true
     }
 }
+

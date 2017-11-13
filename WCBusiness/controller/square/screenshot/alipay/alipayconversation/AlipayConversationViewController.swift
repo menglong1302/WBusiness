@@ -483,11 +483,14 @@ extension AlipayConversationViewController:UITableViewDataSource,UITableViewDele
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlipayConversationContentCell
             cell.setData(["data" : self.tableData[indexPath.row]])
 //            cell.contentLabel?.text = "Row=\(indexPath.row)+Index=\(self.tableData[indexPath.row].index)"
-            if self.tableData[indexPath.row].type != "图片"{
+            if self.tableData[indexPath.row].type == "图片"{
 //                print(self.tableData[indexPath.row])
-                cell.contentLabel?.text = self.tableData[indexPath.row].content
-            } else {
                 cell.contentLabel?.text = ""
+            } else if self.tableData[indexPath.row].type == "时间"{
+                let timer = TimeModel(JSONString: self.tableData[indexPath.row].content)!
+                cell.contentLabel?.text = timer.timer
+            } else {
+                cell.contentLabel?.text = self.tableData[indexPath.row].content
             }
 //            cell.deleteBtn?.addTarget(self, action:#selector(deleteBtnAction(button:)), for: .touchUpInside)
             return cell
@@ -535,6 +538,7 @@ extension AlipayConversationViewController:UITableViewDataSource,UITableViewDele
                 actsvc.acUser = self.acUser
                 actsvc.isEdit = true
                 actsvc.acContent = self.tableData[indexPath.row]
+                actsvc.timer = TimeModel(JSONString: self.tableData[indexPath.row].content)!
                 self.navigationController?.pushViewController(actsvc, animated: true)
             } else if self.tableData[indexPath.row].type == "系统提示" {
                 let acsmsvc = AlipayConversationSystemMessageSettingViewController()
