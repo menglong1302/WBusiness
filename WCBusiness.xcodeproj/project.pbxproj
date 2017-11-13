@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		481C17921F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C17911F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift */; };
 		481C17941F90931800C3D7C1 /* ScreenshotCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C17931F90931800C3D7C1 /* ScreenshotCollectionCell.swift */; };
+		481D18651FB98BD8001D37E9 /* YLTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D18641FB98BD8001D37E9 /* YLTableView.swift */; };
 		4829AE101F95FB9900EBA903 /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4829AE0F1F95FB9900EBA903 /* RoleViewController.swift */; };
 		484A10CA1F9847FE00BDFFE5 /* RoleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10C91F9847FE00BDFFE5 /* RoleEditViewController.swift */; };
 		484A10CE1F98666C00BDFFE5 /* NameEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10CD1F98666C00BDFFE5 /* NameEditViewController.swift */; };
@@ -170,6 +171,7 @@
 		2AA4312B4C4481D70A0B78F9 /* Pods_WCBusiness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WCBusiness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		481C17911F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXZFBHeaderResuableView.swift; sourceTree = "<group>"; };
 		481C17931F90931800C3D7C1 /* ScreenshotCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCollectionCell.swift; sourceTree = "<group>"; };
+		481D18641FB98BD8001D37E9 /* YLTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YLTableView.swift; sourceTree = "<group>"; };
 		4829AE0F1F95FB9900EBA903 /* RoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
 		484A10C91F9847FE00BDFFE5 /* RoleEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleEditViewController.swift; sourceTree = "<group>"; };
 		484A10CD1F98666C00BDFFE5 /* NameEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEditViewController.swift; sourceTree = "<group>"; };
@@ -720,6 +722,7 @@
 		48FD47531F8F2D42006685A8 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				481D18641FB98BD8001D37E9 /* YLTableView.swift */,
 				48B2715C1FB1595C00966DCE /* Once.swift */,
 				48B2715A1FB1590800966DCE /* YLPermission.swift */,
 				48D6F0B91FA07C5400F77521 /* UIColor+extension.swift */,
@@ -1139,6 +1142,7 @@
 				715B9AF41FAC377F00BC24AF /* AlipayConversationRedPackageSettingViewController.swift in Sources */,
 				48AE56AF1F9F3AE20055551D /* HXAlbumTitleButton.m in Sources */,
 				48E574AB1FB2F4B900AD4423 /* WXAudioSetingViewController.swift in Sources */,
+				481D18651FB98BD8001D37E9 /* YLTableView.swift in Sources */,
 				48AE56C61F9F3AE20055551D /* HXPhotoSubViewCell.m in Sources */,
 				48B2715B1FB1590800966DCE /* YLPermission.swift in Sources */,
 				48AE56C71F9F3AE20055551D /* HXPhotoTools.m in Sources */,
