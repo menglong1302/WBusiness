@@ -124,18 +124,23 @@ class WXConversationViewController: BaseViewController {
         }
     }
     
-    func makeTableView() -> UITableView {
-        let tableView = UITableView(frame: CGRect.zero)
+    func makeTableView() -> YLTableView {
+        let tableView = YLTableView(frame: CGRect.zero)
         tableView.backgroundColor = UIColor.rgbq(r: 238, g: 236, b: 243, a: 1)
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.ylDataSource = self
+        tableView.ylDelegate = self
+        tableView.separatorStyle = .singleLine
+        tableView.isArrowCrossSection = false
         tableView.register(PeopleTableViewCell.self, forCellReuseIdentifier: "peopleCellId")
         tableView.register(WXConversationTableViewCell.self, forCellReuseIdentifier: "WXConversationCellId")
         
-        
+        tableView.onlyChangeSelectIndexPath = IndexPath(row: 0, section: 1)
         //设置分割线内边距
-        tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        
+        tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 0)
         return tableView
     }
     
@@ -300,7 +305,35 @@ class WXConversationViewController: BaseViewController {
     
 }
 
-extension WXConversationViewController:UITableViewDelegate,UITableViewDataSource{
+extension WXConversationViewController:UITableViewDelegate,UITableViewDataSource,YLTableViewDelegate,YLTableViewDataSource{
+    
+    func dataSourceArrayInTableView(_ tableView: YLTableView) -> Array<AnyObject> {
+        
+        var array = Array<AnyObject>()
+        for entity in contents{
+            array.append(entity)
+        }
+        return array
+    }
+ 
+    
+    func tableView(_ tableView: YLTableView, newDataSourceArrayAfterMove newDataSourceArray: Array<AnyObject>) {
+        contents.removeAll()
+        for entity in newDataSourceArray {
+            contents.append(entity as! WXContentEntity)
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+
+        }
+    }
+    func tableView(_ tableView: YLTableView, canMoveYlForIndexPath indexPath: IndexPath) -> Bool {
+        if indexPath.section == 0{
+            return false
+        }else{
+            return true
+        }
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -323,8 +356,7 @@ extension WXConversationViewController:UITableViewDelegate,UITableViewDataSource
             let cell = tableView.dequeueReusableCell(withIdentifier: "WXConversationCellId") as! WXConversationTableViewCell
             let content = contents[indexPath.row]
             cell.configer(content)
-            
-            return cell
+              return cell
         }
         
     }
