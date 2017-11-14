@@ -86,7 +86,7 @@ class YLTableView: UITableView {
         cell.selectionStyle = .none
         tempView = snapshotWithInputView(cell)
         tempView?.layer.shadowColor = UIColor.lightGray.cgColor;
-        tempView?.layer.masksToBounds = false;
+        tempView?.layer.masksToBounds = true;
         tempView?.layer.cornerRadius = 0;
         tempView?.layer.shadowOffset = CGSize(width: -5, height: 0);
         tempView?.layer.shadowOpacity = 0.4;

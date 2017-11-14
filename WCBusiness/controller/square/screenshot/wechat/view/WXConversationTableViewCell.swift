@@ -39,6 +39,12 @@ class WXConversationTableViewCell: UITableViewCell {
         view.contentMode = .scaleAspectFill
         return view
     }()
+    lazy var lineView = {
+       () -> UIView in
+        let view = UIView()
+        view.backgroundColor = UIColor.rgbq(r: 238, g: 236, b: 243, a: 1)
+        return view
+    }()
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         initView()
@@ -46,7 +52,7 @@ class WXConversationTableViewCell: UITableViewCell {
     func initView()  {
         addSubview(contentLabel)
         addSubview(portraitIcon)
-        
+        addSubview(lineView)
         portraitIcon.snp.makeConstraints { (maker) in
             maker.height.width.equalTo(35)
             maker.centerY.equalToSuperview()
@@ -56,6 +62,12 @@ class WXConversationTableViewCell: UITableViewCell {
             maker.left.equalTo(portraitIcon.snp.right).offset(10)
             maker.right.equalToSuperview().offset(-10)
             maker.centerY.equalToSuperview()
+        }
+        lineView.snp.makeConstraints { (maker) in
+            maker.left.equalToSuperview().offset(15)
+            maker.right.equalToSuperview()
+            maker.bottom.equalToSuperview()
+            maker.height.equalTo(0.5).priority(999)
         }
     }
     

@@ -140,7 +140,7 @@ class WXConversationViewController: BaseViewController {
         tableView.onlyChangeSelectIndexPath = IndexPath(row: 0, section: 1)
         //设置分割线内边距
         
-        tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 0)
+        tableView.separatorStyle = .none
         return tableView
     }
     
