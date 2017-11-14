@@ -204,10 +204,17 @@ extension PrivateConversationSettingViewController:UITableViewDelegate,UITableVi
                             vc.roleSelectBlock = {
                                 (role) in
                                 let realm = try! Realm()
+                                
+                                let predicate = NSPredicate(format: "parent.id = %@", (self?.conversation?.id)!)
+                                let results = realm.objects(WXContentEntity.self).filter(predicate)
                                 try! realm.write {
+                                    for result in results{
+                                        if self?.conversation.sender?.id == result.sender?.id{
+                                            result.sender = role
+                                        }
+                                    }
                                     self?.conversation.sender = role
                                 }
-                                
                                 tableView.reloadData()
                             }
                             self?.navigationController?.pushViewController(vc, animated: true)
@@ -259,7 +266,16 @@ extension PrivateConversationSettingViewController:UITableViewDelegate,UITableVi
                             vc.roleSelectBlock = {
                                 (role) in
                                 let realm = try! Realm()
+                                let predicate = NSPredicate(format: "parent.id = %@", (self?.conversation?.id)!)
+                                let results = realm.objects(WXContentEntity.self).filter(predicate)
                                 try! realm.write {
+                                    let roleTemp =  self?.conversation.receivers.first
+                                    for result in results{
+                                        if roleTemp?.id == result.sender?.id{
+                                            result.sender = role
+                                        }
+                                    }
+                                    
                                     self?.conversation.receivers.removeAll()
                                     self?.conversation.receivers.append(role)
                                 }

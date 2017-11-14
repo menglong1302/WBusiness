@@ -158,7 +158,6 @@ extension GroupConversationSettingViewController:UITableViewDataSource,UITableVi
             return settingCell
         }
         
-        return UITableViewCell()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -206,26 +205,26 @@ extension GroupConversationSettingViewController:UITableViewDataSource,UITableVi
             switch indexPath.row{
             case 0:
                 vc.editContentType = .GroupName
-
+                
                 vc.navTitle = "群聊名称"
                 vc.textField.text = String((self.conversation?.groupName)!)
                 break
             case 1:
                 vc.editContentType = .GroupNum
-
+                
                 vc.navTitle = "群聊人数"
                 vc.textField.text = String((self.conversation?.groupNum)!)
                 break
             case 2:
                 vc.editContentType = .UnReadMessageNum
-
+                
                 vc.navTitle = "未读消息树"
                 vc.textField.text = String((self.conversation?.unReadMessageNum)!)
                 break
             default :
                 break
             }
-           
+            
             vc.block = {
                 self.tableView.reloadData()
             }
@@ -306,6 +305,9 @@ extension GroupConversationSettingViewController:UICollectionViewDelegateFlowLay
                 
                 switch index {
                 case 0:
+                    
+                    
+                    
                     let roleVC = RoleViewController()
                     roleVC.operatorType = .ChangeSelect
                     roleVC.changeIndex = indexPath.row
@@ -313,21 +315,32 @@ extension GroupConversationSettingViewController:UICollectionViewDelegateFlowLay
                     roleVC.tempRole = self.conversation?.sender
                     roleVC.roleSelectBlock = {
                         (role) in
+                        let realm = try! Realm()
                         if indexPath.row == 0{
-                            let realm = try! Realm()
                             try! realm.write{
                                 self.conversation?.sender = role
                             }
                         }else{
-                            let realm = try! Realm()
                             try! realm.write{
                                 self.conversation?.receivers.insert(role, at: (indexPath.row))
                                 self.conversation?.receivers.remove(at: indexPath.row-1)
                             }
                         }
+                        let predicate = NSPredicate(format: "parent.id = %@", (self.conversation?.id)!)
+                        let results = realm.objects(WXContentEntity.self).filter(predicate)
+                        
                         
                         self.peopleArray.insert(PeopleModel(role: role), at: (indexPath.row+1))
-                        self.peopleArray.remove(at: indexPath.row)
+                        let oldModel =  self.peopleArray.remove(at: indexPath.row)
+                        
+                        try! realm.write{
+                            for result in  results{
+                                if result.sender?.id == oldModel.role?.id{
+                                    result.sender = role
+                                }
+                            }
+                        }
+                        
                         
                         self.tableView.reloadData()
                         collectionView.reloadData()
@@ -347,8 +360,13 @@ extension GroupConversationSettingViewController:UICollectionViewDelegateFlowLay
                     
                     break
                 default:
-                    self.peopleArray.remove(at: indexPath.row)
+                    let model = self.peopleArray.remove(at: indexPath.row)
+                    
                     let realm = try! Realm()
+                    let predicate = NSPredicate(format: "parent.id = %@", (self.conversation?.id)!)
+                    let results = realm.objects(WXContentEntity.self).filter(predicate)
+                    
+                    
                     try! realm.write{
                         if indexPath.row == 0{
                             if self.peopleArray.count>1{
@@ -361,6 +379,11 @@ extension GroupConversationSettingViewController:UICollectionViewDelegateFlowLay
                             
                         }else{
                             self.conversation?.receivers.remove(at: indexPath.row-1)
+                        }
+                        for result in results {
+                            if result.sender?.id == model.role?.id{
+                                realm.delete(result)
+                            }
                         }
                     }
                     
