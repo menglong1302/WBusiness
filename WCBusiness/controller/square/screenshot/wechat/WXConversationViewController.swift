@@ -54,9 +54,12 @@ class WXConversationViewController: BaseViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchData()
-        getConversation()
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+             self.fetchData()
+            self.tableView.reloadData()
+        }
+        
+ 
     }
     func initView()  {
         
@@ -91,6 +94,7 @@ class WXConversationViewController: BaseViewController {
         if self.conversationType == .privateChat {
             if let conv = realm.objects(WXConversation.self).filter("conversationType = 1").first{
                 conversation = conv
+                 self.getConversation()
             }else{
                 conversation.id = UUID().uuidString
                 try! realm.write {
@@ -101,6 +105,7 @@ class WXConversationViewController: BaseViewController {
         }else{
             if let conv = realm.objects(WXConversation.self).filter("conversationType = 2").first{
                 conversation = conv
+                 self.getConversation()
             }else{
                 conversation.id = UUID().uuidString
                 conversation.conversationType = 2
@@ -167,7 +172,13 @@ class WXConversationViewController: BaseViewController {
         btn.setTitleColor(UIColor.white, for: .normal)
         btn.titleLabel?.textAlignment = .center
         btn.backgroundColor = UIColor.rgbq(r: 37, g: 202, b: 117, a: 1)
+        btn.addTarget(self, action: #selector(previewClick), for: .touchUpInside)
         return btn
+    }
+    func previewClick(){
+        let vc = WXChatViewController()
+       
+        present( WXBaseNavigationViewController(rootViewController: vc), animated: true, completion: nil)
     }
     func addConversationBtnClick()  {
         
