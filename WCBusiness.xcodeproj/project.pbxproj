@@ -10,6 +10,8 @@
 		481C17921F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C17911F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift */; };
 		481C17941F90931800C3D7C1 /* ScreenshotCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C17931F90931800C3D7C1 /* ScreenshotCollectionCell.swift */; };
 		481D18651FB98BD8001D37E9 /* YLTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D18641FB98BD8001D37E9 /* YLTableView.swift */; };
+		481D18671FBACE1D001D37E9 /* WXChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D18661FBACE1D001D37E9 /* WXChatViewController.swift */; };
+		481D18691FBAF6A7001D37E9 /* WXBaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D18681FBAF6A7001D37E9 /* WXBaseNavigationViewController.swift */; };
 		4829AE101F95FB9900EBA903 /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4829AE0F1F95FB9900EBA903 /* RoleViewController.swift */; };
 		484A10CA1F9847FE00BDFFE5 /* RoleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10C91F9847FE00BDFFE5 /* RoleEditViewController.swift */; };
 		484A10CE1F98666C00BDFFE5 /* NameEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10CD1F98666C00BDFFE5 /* NameEditViewController.swift */; };
@@ -172,6 +174,8 @@
 		481C17911F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXZFBHeaderResuableView.swift; sourceTree = "<group>"; };
 		481C17931F90931800C3D7C1 /* ScreenshotCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCollectionCell.swift; sourceTree = "<group>"; };
 		481D18641FB98BD8001D37E9 /* YLTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YLTableView.swift; sourceTree = "<group>"; };
+		481D18661FBACE1D001D37E9 /* WXChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXChatViewController.swift; sourceTree = "<group>"; };
+		481D18681FBAF6A7001D37E9 /* WXBaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXBaseNavigationViewController.swift; sourceTree = "<group>"; };
 		4829AE0F1F95FB9900EBA903 /* RoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
 		484A10C91F9847FE00BDFFE5 /* RoleEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleEditViewController.swift; sourceTree = "<group>"; };
 		484A10CD1F98666C00BDFFE5 /* NameEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEditViewController.swift; sourceTree = "<group>"; };
@@ -437,6 +441,7 @@
 				48D6F0BE1FA08EF200F77521 /* PrivateConversationSettingViewController.swift */,
 				48D6F0C01FA08F3900F77521 /* GroupConversationSettingViewController.swift */,
 				48D6F0C91FA1C69600F77521 /* ContentEditViewController.swift */,
+				481D18661FBACE1D001D37E9 /* WXChatViewController.swift */,
 			);
 			path = wechat;
 			sourceTree = "<group>";
@@ -634,6 +639,7 @@
 			children = (
 				48FD475C1F8F5507006685A8 /* BaseViewController.swift */,
 				48B2291E1F8F0210009081DA /* BaseNavigationController.swift */,
+				481D18681FBAF6A7001D37E9 /* WXBaseNavigationViewController.swift */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -1113,6 +1119,7 @@
 				48AE56AC1F9F3AE20055551D /* HXAlbumListView.m in Sources */,
 				48D6F0C31FA0943300F77521 /* ChangeRoleTableViewCell.swift in Sources */,
 				718D3D8E1FB19EA3006388EF /* AlipayConversationTimeSettingViewController.swift in Sources */,
+				481D18671FBACE1D001D37E9 /* WXChatViewController.swift in Sources */,
 				71A4AE431FA6F43700B60EC3 /* AlipayConversationContentCell.swift in Sources */,
 				481C17941F90931800C3D7C1 /* ScreenshotCollectionCell.swift in Sources */,
 				71876EE81FA09D7F00BCD139 /* AlipayConversationSettingInfoCell.swift in Sources */,
@@ -1169,6 +1176,7 @@
 				48AE56BF1F9F3AE20055551D /* HXPhotoEditView.m in Sources */,
 				48AE56BA1F9F3AE20055551D /* HXDatePhotoViewController.m in Sources */,
 				48E574BE1FB433A600AD4423 /* WXTimeViewController.swift in Sources */,
+				481D18691FBAF6A7001D37E9 /* WXBaseNavigationViewController.swift in Sources */,
 				48D6F0C81FA188C800F77521 /* ChatSettingTableViewCell.swift in Sources */,
 				48AE56CB1F9F3AE20055551D /* HXPhotoViewController.m in Sources */,
 				715B9AF61FAC3B9500BC24AF /* AlipayConversationSettingDoubleBtnCell.swift in Sources */,
