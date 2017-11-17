@@ -11,6 +11,10 @@ import UIKit
 public let SCREEN_WIDTH=UIScreen.main.bounds.size.width
 public let SCREEN_HEIGHT=UIScreen.main.bounds.size.height
 
+
+public let BORDER_WIDTH_1PX = UIScreen.main.scale > 0.0 ? (1.0/UIScreen.main.scale) : 1.0
+
+
 extension String {
     public  func localPath() -> String {
         var path = NSHomeDirectory() + "/Documents/"

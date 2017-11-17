@@ -14,7 +14,7 @@ class WXBaseNavigationViewController: UINavigationController {
         view.frame = CGRect(x: 0, y: -20, width: SCREEN_WIDTH, height: 64)
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = CGRect(x: 0, y:0, width: SCREEN_WIDTH, height: 64)
-        gradientLayer.colors = [HexColor("040012", 1)!.cgColor,HexColor("040012", 0.23)!.cgColor]
+        gradientLayer.colors = [HexColor("040012", 0.77)!.cgColor,HexColor("040012", 0.23)!.cgColor]
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
         gradientLayer.endPoint = CGPoint(x: 0, y: 1.0)
         view.layer.addSublayer(gradientLayer)
