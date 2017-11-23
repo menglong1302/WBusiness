@@ -97,6 +97,21 @@ class WXChatViewController: UIViewController {
          self.tableView.backgroundView = bgView
         self.tableView.layoutIfNeeded()
         
+        let bottomBar:UIImageView = {
+           let imageView = UIImageView()
+            imageView.contentMode = .scaleAspectFill
+            imageView.image = UIImage(named:"bottom_bar")
+            return imageView
+        }()
+        self.view.addSubview(bottomBar)
+        
+        bottomBar.snp.makeConstraints { (maker) in
+            maker.left.bottom.right.equalToSuperview()
+            maker.height.equalTo(50)
+        }
+        
+        
+        
 //        NotificationCenter.default.addObserver(self, selector: #selector(reloadView), name: NSNotification.Name(rawValue: "reloadView"), object: nil)
         
         
@@ -111,7 +126,7 @@ class WXChatViewController: UIViewController {
         view.separatorStyle = .none
         view.estimatedRowHeight = 50
         view.backgroundColor = HexColor("EBEBEB")
-        view.contentInset = UIEdgeInsetsMake(0, 0, 49, 0)
+        view.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
         view.rowHeight =  UITableViewAutomaticDimension
         view.register(WXMessageTextCell.self, forCellReuseIdentifier: "textCellId")
         view.register(WXMessageImageCell.self, forCellReuseIdentifier: "imageCellId")
