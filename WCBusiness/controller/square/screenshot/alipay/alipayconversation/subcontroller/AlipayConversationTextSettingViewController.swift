@@ -6,4 +6,243 @@
 //  Copyright © 2017年 LYL. All rights reserved.
 //
 
-import Foundation
+import YYText
+import RealmSwift
+
+class AlipayConversationTextSettingViewController: BaseViewController {
+    
+    var index:Int?
+    var isEdit:Bool?
+    var isSave:Bool? = false
+    var selectRole:Role?
+    var originalContentSender:Role?
+    var acUser:AlipayConversationUser?
+    var acContent:AlipayConversationContent?
+    var array = [EmojiModel]()
+    var block:ContentBlock?
+    var emojiMapper = [String:UIImage]()
+    var tempString:NSMutableAttributedString?
+    lazy var tableView:UITableView = {
+        let tableView = UITableView(frame: CGRect.zero)
+        tableView.tableFooterView = UIView()
+        tableView.backgroundColor = UIColor.rgbq(r: 238, g: 236, b: 243, a: 1)
+        tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0 )
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 50
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        tableView.register(AlipayConversationSettingCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(WXEmojiTableViewCell.self, forCellReuseIdentifier: "WXEmojiCellId")
+        tableView.register(InputMessageContentTableViewCell.self, forCellReuseIdentifier: "InputMessageContentCellId")
+        return tableView
+    }()
+    var textView:YYTextView?
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        getData()
+        initView()
+        if self.isEdit == true {
+            self.selectRole = self.acContent?.contentSender
+            self.originalContentSender = self.acContent?.contentSender
+            self.tempString = NSMutableAttributedString(string: (self.acContent?.content)!)
+            self.tempString?.yy_font = UIFont.systemFont(ofSize: 16)
+        } else {
+            self.selectRole = self.acUser?.sender
+        }
+        initData()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        let realm = try! Realm()
+        if self.isEdit == false && self.isSave == false {
+            let acContent = realm.object(ofType: AlipayConversationContent.self, forPrimaryKey: self.acContent?.id)
+            try! realm.write {
+                realm.delete(acContent!)
+            }
+        } else if self.isEdit == true && self.isSave == false {
+            try! realm.write {
+                self.acContent?.contentSender = self.originalContentSender
+            }
+        }
+    }
+    func getData() -> Void {
+        for index in 1...114{
+            let model = EmojiModel()
+            model.name = "Expression_"+String(index)+".png"
+            model.mapperName = ":100\(index):"
+            array.append(model)
+            emojiMapper[model.mapperName!] = model.image
+        }
+    }
+    func initData() {
+        if isEdit == false && self.acContent == nil{
+            let realm = try! Realm()
+            self.acContent = AlipayConversationContent()
+            self.acContent?.id = UUID().uuidString
+            self.acContent?.index = self.index!
+            self.acContent?.type = "文本"
+            self.acContent?.user = self.acUser
+            self.acContent?.contentSender = self.acUser?.sender
+            let date = NSDate()
+            let timeFormatter = DateFormatter()
+            timeFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+            let strNowTime = timeFormatter.string(from: date as Date) as String
+            self.acContent?.creatAt = strNowTime
+            try! realm.write {
+                realm.create(AlipayConversationContent.self, value: self.acContent as Any, update: false)
+            }
+        }
+    }
+    func initView()  {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        self.view.backgroundColor = UIColor.rgbq(r: 238, g: 236, b: 243, a: 1)
+        self.navigationItem.title = "文本设置"
+        self.rightTitle = "保存"
+        self.view.addSubview(self.tableView)
+        self.tableView.snp.makeConstraints { (maker) in
+            maker.edges.equalToSuperview()
+        }
+        self.automaticallyAdjustsScrollViewInsets = false
+    }
+    override func rightBtnClick(_ sender: UIButton) {
+        let text = textView?.attributedText
+        var string = ""
+        text?.enumerateAttribute(YYTextBackedStringAttributeName, in: NSMakeRange(0, (text?.length)!), options:NSAttributedString.EnumerationOptions.longestEffectiveRangeNotRequired, using: { (value, range, stop ) in
+            if value != nil  {
+                let backed = value as! YYTextBackedString
+                
+                string.append(backed.string!)
+            }else{
+                string.append((text?.attributedSubstring(from: range).string)!)
+            }
+        })
+        if string.isEmpty {
+            self.view .showImageHUDText("请输入文本内容")
+            return
+        } else {
+            self.isSave = true
+            let realm = try! Realm()
+            try! realm.write {
+                if self.isEdit == false {
+                    self.acContent?.content = string
+                    realm.create(AlipayConversationContent.self, value: self.acContent as Any, update: true)
+                } else {
+                    self.acContent?.content = string
+                }
+            }
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    @objc func keyBoardWillShow(_ noti:Notification){
+    }
+    @objc func keyBoardWillHide(_ noti:Notification){
+    }
+    @objc func keyboardDidHide(_ noti:Notification){
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+}
+extension AlipayConversationTextSettingViewController:UITableViewDelegate,UITableViewDataSource{
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlipayConversationSettingCell
+            if (self.selectRole?.isDiskImage)! {
+                cell.setData(["title":"选择发送人","name":(self.selectRole?.nickName)!,"imageName":""])
+                if !(self.selectRole?.imageUrl.isEmpty)! {
+                    cell.iconImage.kf.setImage(with: URL(fileURLWithPath: (self.selectRole?.imageUrl.localPath())!))
+                }
+            } else {
+                if (selectRole?.imageName.isEmpty)! {
+                    cell.setData(["title":"选择发送人","name":(self.selectRole?.nickName)!,"imageName":""])
+                } else {
+                    cell.setData(["title":"选择发送人","name":(self.selectRole?.nickName)!,"imageName":(self.selectRole?.imageName)!])
+                }
+            }
+            return cell
+        } else if indexPath.section == 1{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InputMessageContentCellId") as! InputMessageContentTableViewCell
+            cell.mapper = emojiMapper
+            self.textView = cell.textView
+            cell.textView.becomeFirstResponder()
+            if self.tempString != nil{
+                cell.textView.attributedText  = self.tempString
+                self.textView?.selectedRange = NSMakeRange((self.tempString?.length)!, 0)
+            }
+            return cell
+        } else if indexPath.section == 2{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WXEmojiCellId") as! WXEmojiTableViewCell
+            cell.collectionView.delegate = self
+            cell.collectionView.dataSource = self
+            return cell
+        }
+        return UITableViewCell()
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == 0 {
+            if self.selectRole?.id == self.acUser?.sender?.id {
+                self.selectRole = self.acUser?.receiver
+            } else {
+                self.selectRole = self.acUser?.sender
+            }
+            let realm = try! Realm()
+            try! realm.write {
+                self.acContent?.contentSender = self.selectRole
+            }
+            self.tableView.reloadData()
+        }
+    }
+}
+extension AlipayConversationTextSettingViewController:UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
+        return CGSize(width: 30, height: 30)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.array.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "emojiCollectionCellId", for: indexPath) as! WXEmojiCollectionViewCell
+        let model = array[indexPath.row]
+        cell.imageView.image = model.image
+        
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsetsMake(5, 5, 5, 5)
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: false)
+        
+        let model = array[indexPath.row]
+        let location = self.textView?.selectedRange.location
+        self.textView?.resignFirstResponder()
+        let  str = NSMutableAttributedString(attributedString: (self.textView?.attributedText)!)
+        let attr = NSMutableAttributedString.yy_attachmentString(withEmojiImage: model.image!, fontSize: 16)!
+        attr.yy_setTextBackedString(YYTextBackedString.init(string: model.mapperName), range: NSMakeRange(0, attr.length))
+        str.insert(attr, at: location!)
+        str.yy_font = UIFont.systemFont(ofSize: 16)
+        self.textView?.attributedText = str
+        self.textView?.scrollRangeToVisible(NSMakeRange(location!+1, 0))
+        self.textView?.selectedRange = NSMakeRange(location!+1, 0)
+    }
+}

@@ -8,15 +8,39 @@
 
 import UIKit
 import SnapKit
+import YYText
 
 class AlipayConversationContentCell:UITableViewCell {
     var model:[String:AlipayConversationContent]!
     var iconImage:UIImageView?
     var typeLabel:UILabel?
-    var contentLabel:UILabel?
-//    var deleteBtn:UIButton?
+//    var contentLabel:UILabel?
+    lazy var contentLabel:YYLabel = {
+        let label = YYLabel()
+        label.textVerticalAlignment = .top
+        label.numberOfLines = 1;
+        label.lineBreakMode = .byTruncatingTail
+        label.font = UIFont.systemFont(ofSize: 15)
+        let mod =  YYTextLinePositionSimpleModifier()
+        mod.fixedLineHeight = 20
+        label.linePositionModifier = mod
+        
+        var emojiMapper = [String:UIImage]()
+        
+        for index in 1...114{
+            let model = EmojiModel()
+            model.name = "Expression_"+String(index)+".png"
+            model.mapperName = ":100\(index):"
+            emojiMapper[model.mapperName!] = model.image
+        }
+        let parser = YYTextSimpleEmoticonParser()
+        parser.emoticonMapper = emojiMapper;
+        label.textParser = parser
+        return label
+    }()
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.addSubview(self.contentLabel)
         self.initView()
     }
     func initView () {
@@ -40,25 +64,12 @@ class AlipayConversationContentCell:UITableViewCell {
             maker.left.equalTo((self.iconImage?.snp.right)!).offset(20)
             maker.height.equalTo(20)
         })
-        self.contentLabel = UILabel.init(frame:CGRect.zero)
-        self.addSubview(self.contentLabel!)
-        self.contentLabel?.textColor = UIColor.black
-        self.contentLabel?.textAlignment = .left
-        self.contentLabel?.font = UIFont.systemFont(ofSize: 15);
-        self.contentLabel?.snp.makeConstraints({(maker) in
+        self.contentLabel.snp.makeConstraints({(maker) in
             maker.centerY.equalToSuperview()
             maker.left.equalTo((self.typeLabel?.snp.right)!).offset(5)
             maker.right.equalToSuperview().offset(-10)
             maker.height.equalTo(20)
         })
-//        self.deleteBtn = UIButton.init(frame:CGRect.zero)
-//        self.addSubview(self.deleteBtn!)
-//        self.deleteBtn?.setImage(UIImage.init(named:"portrait"), for:.normal)
-//        self.deleteBtn?.snp.makeConstraints({ (maker) in
-//            maker.centerY.equalToSuperview()
-//            maker.width.height.equalTo(30)
-//            maker.right.equalToSuperview().offset(-15)
-//        })
     }
     func setData(_ model:[String:AlipayConversationContent]) {
         self.model = model

@@ -194,26 +194,6 @@ extension AlipayConversationImageSettingViewController:UITableViewDelegate,UITab
                 self.acContent?.contentSender = self.selectRole
             }
             self.tableView.reloadData()
-//            let actionSheet = PGActionSheet(cancelButton: true, buttonList: [(self.acUser?.sender?.nickName)!,(self.acUser?.receiver?.nickName)!])
-//            actionSheet.actionSheetTranslucent = false
-//
-//            present(actionSheet, animated: false, completion: {
-//                actionSheet.handler = {[weak self] index  in
-//                    if index == 0 {
-//                        self?.selectRole = self?.acUser?.sender
-//                    } else {
-//                        self?.selectRole = self?.acUser?.receiver
-//                    }
-//                    let realm = try! Realm()
-//                    try! realm.write {
-//                        self?.acContent?.contentSender = self?.selectRole
-//                    }
-//                    self?.tableView.reloadData()
-//                    self?.dismiss(animated: false, completion: {
-//
-//                    })
-//                }
-//            })
         } else {
             
                 self.manager.clearSelectedList()

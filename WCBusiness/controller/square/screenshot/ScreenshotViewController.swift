@@ -162,9 +162,9 @@ extension ScreenshotViewController:UICollectionViewDataSource,UICollectionViewDe
                 alipayConversationVC.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(alipayConversationVC, animated: true)
             case 1:
-                //                let screenVC = ScreenshotViewController();
-                //                screenVC.hidesBottomBarWhenPushed = true
-                //                self.navigationController?.pushViewController(screenVC, animated: true)
+                let alipayTransferVC = AlipayTransferViewController();
+                alipayTransferVC.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(alipayTransferVC, animated: true)
                 break;
                 
             default:
