@@ -11,6 +11,10 @@ import UIKit
 public let SCREEN_WIDTH=UIScreen.main.bounds.size.width
 public let SCREEN_HEIGHT=UIScreen.main.bounds.size.height
 
+
+public let BORDER_WIDTH_1PX = UIScreen.main.scale > 0.0 ? (1.0/UIScreen.main.scale) : 1.0
+
+
 extension String {
     public  func localPath() -> String {
         var path = NSHomeDirectory() + "/Documents/"
@@ -32,11 +36,11 @@ extension String {
     }
     func getImageNamePath() -> String {
         
-         var str =  Bundle.main.path(forResource: "wx_emoji", ofType: "bundle")
+        var str =  Bundle.main.path(forResource: "wx_emoji", ofType: "bundle")
         str?.append("/"+self)
         return str!
     }
-   
+    
 }
 enum WeekDate:Int{
     case Sunday = 1,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday
@@ -147,5 +151,22 @@ extension Date{
         return (hour <= 9 ? "0\(hour)" : "\(hour)") + ":" + (minute <= 9 ?"0\(minute)":"\(minute)")
     }
     
-   
+    
+}
+
+extension UIImage{
+    func imageWithScale(width:CGFloat) -> UIImage{
+        if self.size.width < width{
+            return self
+        }
+        //1.根据 宽度 计算高度
+        let height = width * size.height / size.width
+        //2.按照宽高比绘制一张新的图片
+        let currentSize = CGSize.init(width: width, height: height)
+        UIGraphicsBeginImageContext(currentSize)  //开始绘制
+        draw(in: CGRect.init(origin: CGPoint.zero, size: currentSize))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()  //结束上下文
+        return newImage!
+    }
 }

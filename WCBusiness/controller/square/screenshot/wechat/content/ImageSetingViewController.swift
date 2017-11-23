@@ -43,10 +43,11 @@ class ImageSetingViewController: BaseViewController {
     }
     var conversationType:ConversationType?
     var contentEnumType:ContentEnumType?
-    
+    var imageModel:WXImageModel?
     var contentEntity:WXContentEntity = WXContentEntity(){
         didSet{
             tempString = contentEntity.content
+            imageModel = WXImageModel(JSONString: tempString!)
             tempRole = contentEntity.sender
         }
     }
@@ -93,15 +94,15 @@ class ImageSetingViewController: BaseViewController {
         self.automaticallyAdjustsScrollViewInsets = false
     }
     override func rightBtnClick(_ sender: UIButton) {
-        if self.tempString == nil || (self.tempString?.isEmpty)!{
+        guard let _ = self.imageModel else {
             self.view.showImageHUDText("请选择图片！")
             return
-        }
+        } 
         
         let realm = try! Realm()
         
         try! realm.write {
-            contentEntity.content = self.tempString!
+            contentEntity.content = (self.imageModel?.toJSONString())!
             contentEntity.sender = tempRole
             if self.type == .Create || self.type == nil{
                 let entities = realm.objects(WXContentEntity.self).filter("parent.id = %@",self.conversation?.id ?? "")
@@ -148,8 +149,8 @@ extension ImageSetingViewController:UITableViewDelegate,UITableViewDataSource{
             cell.accessoryType = .disclosureIndicator
             cell.hintLabel.text = "选择图片"
             cell.nickNameLabel.isHidden = true
-            if self.tempString != nil && !(self.tempString?.isEmpty)!{
-                cell.portraitIcon.kf.setImage(with:URL(fileURLWithPath: (self.tempString?.localPath())!))
+            if let _ = self.imageModel{
+                cell.portraitIcon.kf.setImage(with:URL(fileURLWithPath: (self.imageModel?.path?.localPath())!))
             }else{
                 cell.portraitIcon.image = UIImage(named: "default")
             }
@@ -256,11 +257,24 @@ extension ImageSetingViewController:UIImagePickerControllerDelegate ,UINavigatio
             
         }
         let image =  info[UIImagePickerControllerOriginalImage] as! UIImage
-        let data = image.kf.jpegRepresentation(compressionQuality: 0.7)
         let imagename = (UUID().uuidString+".png")
+        let tempImage =  image.imageWithScale(width: 400)
+        let data = tempImage.kf.jpegRepresentation(compressionQuality: 0.7)
+
         let path = imagename.localPath()
         try? data?.write(to: URL(fileURLWithPath: path))
-        self.tempString = imagename
+         let model = WXImageModel()
+        if image.size.width<400 {
+            model.height = image.size.height
+            model.width = image.size.width
+        }else{
+            model.height = 400 * image.size.height / image.size.width
+            model.width = 400
+         }
+        model.path = imagename
+
+        
+        self.imageModel = model
         self.tableView.reloadData()
     }
 }

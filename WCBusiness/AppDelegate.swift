@@ -25,7 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         realmDB()
         
         initData();
-        
+        UIApplication.shared.statusBarStyle = .lightContent
+
         
         return true
     }

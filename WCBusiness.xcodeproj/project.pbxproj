@@ -10,6 +10,8 @@
 		481C17921F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C17911F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift */; };
 		481C17941F90931800C3D7C1 /* ScreenshotCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C17931F90931800C3D7C1 /* ScreenshotCollectionCell.swift */; };
 		481D18651FB98BD8001D37E9 /* YLTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D18641FB98BD8001D37E9 /* YLTableView.swift */; };
+		481D18671FBACE1D001D37E9 /* WXChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D18661FBACE1D001D37E9 /* WXChatViewController.swift */; };
+		481D18691FBAF6A7001D37E9 /* WXBaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D18681FBAF6A7001D37E9 /* WXBaseNavigationViewController.swift */; };
 		4829AE101F95FB9900EBA903 /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4829AE0F1F95FB9900EBA903 /* RoleViewController.swift */; };
 		484A10CA1F9847FE00BDFFE5 /* RoleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10C91F9847FE00BDFFE5 /* RoleEditViewController.swift */; };
 		484A10CE1F98666C00BDFFE5 /* NameEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10CD1F98666C00BDFFE5 /* NameEditViewController.swift */; };
@@ -19,6 +21,14 @@
 		4855493E1FAAB2E3006F6153 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4855493D1FAAB2E3006F6153 /* String+extension.swift */; };
 		485549401FAAB638006F6153 /* YLEmojiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4855493F1FAAB638006F6153 /* YLEmojiContainer.swift */; };
 		485549441FAC44A6006F6153 /* WXConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485549431FAC44A6006F6153 /* WXConversationTableViewCell.swift */; };
+		48570A111FBD44400018E231 /* WXMessageBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48570A101FBD44400018E231 /* WXMessageBaseCell.swift */; };
+		48570A131FBD67650018E231 /* WXMessageTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48570A121FBD67650018E231 /* WXMessageTextCell.swift */; };
+		48570A151FBD6FA40018E231 /* WXMessageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48570A141FBD6FA40018E231 /* WXMessageConstants.swift */; };
+		48570A171FBE898D0018E231 /* WXMessageImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48570A161FBE898D0018E231 /* WXMessageImageCell.swift */; };
+		48570A191FBE8A560018E231 /* YLMessageImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48570A181FBE8A560018E231 /* YLMessageImageView.swift */; };
+		48570A1B1FBEA9B40018E231 /* WXMessageVoiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48570A1A1FBEA9B40018E231 /* WXMessageVoiceCell.swift */; };
+		48570A1D1FBEBE4B0018E231 /* WXMessageSystemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48570A1C1FBEBE4B0018E231 /* WXMessageSystemCell.swift */; };
+		4870DB8E1FC270E600A11587 /* WXMessageRedPacketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870DB8D1FC270E600A11587 /* WXMessageRedPacketCell.swift */; };
 		487F6E171FA05FAD00F62868 /* AddRoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487F6E161FA05FAD00F62868 /* AddRoleViewController.swift */; };
 		487F6E1A1FA0795600F62868 /* WXConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487F6E191FA0795600F62868 /* WXConversationViewController.swift */; };
 		488899731FA6C1B9000193C5 /* WXContentEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488899721FA6C1B9000193C5 /* WXContentEntity.swift */; };
@@ -27,6 +37,8 @@
 		489C98931FB53F60001C2B71 /* WXTimerSystemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489C98921FB53F60001C2B71 /* WXTimerSystemTableViewCell.swift */; };
 		489C98951FB57706001C2B71 /* WXPromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489C98941FB57706001C2B71 /* WXPromptViewController.swift */; };
 		489C98971FB5779C001C2B71 /* WXPromptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489C98961FB5779C001C2B71 /* WXPromptTableViewCell.swift */; };
+		48A253771FC2DA58008D59A9 /* WXMessageTransferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A253761FC2DA58008D59A9 /* WXMessageTransferCell.swift */; };
+		48A67D571FC6699A00E5A00F /* WXImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A67D561FC6699A00E5A00F /* WXImageModel.swift */; };
 		48AE56AC1F9F3AE20055551D /* HXAlbumListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AE56581F9F3AE20055551D /* HXAlbumListView.m */; };
 		48AE56AD1F9F3AE20055551D /* HXAlbumListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AE565A1F9F3AE20055551D /* HXAlbumListViewController.m */; };
 		48AE56AE1F9F3AE20055551D /* HXAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AE565C1F9F3AE20055551D /* HXAlbumModel.m */; };
@@ -175,6 +187,8 @@
 		481C17911F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXZFBHeaderResuableView.swift; sourceTree = "<group>"; };
 		481C17931F90931800C3D7C1 /* ScreenshotCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCollectionCell.swift; sourceTree = "<group>"; };
 		481D18641FB98BD8001D37E9 /* YLTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YLTableView.swift; sourceTree = "<group>"; };
+		481D18661FBACE1D001D37E9 /* WXChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXChatViewController.swift; sourceTree = "<group>"; };
+		481D18681FBAF6A7001D37E9 /* WXBaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXBaseNavigationViewController.swift; sourceTree = "<group>"; };
 		4829AE0F1F95FB9900EBA903 /* RoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
 		484A10C91F9847FE00BDFFE5 /* RoleEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleEditViewController.swift; sourceTree = "<group>"; };
 		484A10CD1F98666C00BDFFE5 /* NameEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEditViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +198,14 @@
 		4855493D1FAAB2E3006F6153 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		4855493F1FAAB638006F6153 /* YLEmojiContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YLEmojiContainer.swift; sourceTree = "<group>"; };
 		485549431FAC44A6006F6153 /* WXConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXConversationTableViewCell.swift; sourceTree = "<group>"; };
+		48570A101FBD44400018E231 /* WXMessageBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMessageBaseCell.swift; sourceTree = "<group>"; };
+		48570A121FBD67650018E231 /* WXMessageTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMessageTextCell.swift; sourceTree = "<group>"; };
+		48570A141FBD6FA40018E231 /* WXMessageConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMessageConstants.swift; sourceTree = "<group>"; };
+		48570A161FBE898D0018E231 /* WXMessageImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMessageImageCell.swift; sourceTree = "<group>"; };
+		48570A181FBE8A560018E231 /* YLMessageImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YLMessageImageView.swift; sourceTree = "<group>"; };
+		48570A1A1FBEA9B40018E231 /* WXMessageVoiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMessageVoiceCell.swift; sourceTree = "<group>"; };
+		48570A1C1FBEBE4B0018E231 /* WXMessageSystemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMessageSystemCell.swift; sourceTree = "<group>"; };
+		4870DB8D1FC270E600A11587 /* WXMessageRedPacketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMessageRedPacketCell.swift; sourceTree = "<group>"; };
 		48767B331F95D492000D9E0B /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48767B341F95D492000D9E0B /* ChameleonFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ChameleonFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48767B351F95D492000D9E0B /* FSCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FSCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -207,6 +229,8 @@
 		489C98921FB53F60001C2B71 /* WXTimerSystemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXTimerSystemTableViewCell.swift; sourceTree = "<group>"; };
 		489C98941FB57706001C2B71 /* WXPromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXPromptViewController.swift; sourceTree = "<group>"; };
 		489C98961FB5779C001C2B71 /* WXPromptTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXPromptTableViewCell.swift; sourceTree = "<group>"; };
+		48A253761FC2DA58008D59A9 /* WXMessageTransferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMessageTransferCell.swift; sourceTree = "<group>"; };
+		48A67D561FC6699A00E5A00F /* WXImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXImageModel.swift; sourceTree = "<group>"; };
 		48AE56571F9F3AE20055551D /* HXAlbumListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXAlbumListView.h; sourceTree = "<group>"; };
 		48AE56581F9F3AE20055551D /* HXAlbumListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXAlbumListView.m; sourceTree = "<group>"; };
 		48AE56591F9F3AE20055551D /* HXAlbumListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXAlbumListViewController.h; sourceTree = "<group>"; };
@@ -435,7 +459,6 @@
 		487F6E181FA0786400F62868 /* wechat */ = {
 			isa = PBXGroup;
 			children = (
-				48E574B01FB30A6300AD4423 /* model */,
 				488899741FA6C57C000193C5 /* content */,
 				48D6F0C41FA177DD00F77521 /* entity */,
 				48D6F0BB1FA0822A00F77521 /* view */,
@@ -443,6 +466,7 @@
 				48D6F0BE1FA08EF200F77521 /* PrivateConversationSettingViewController.swift */,
 				48D6F0C01FA08F3900F77521 /* GroupConversationSettingViewController.swift */,
 				48D6F0C91FA1C69600F77521 /* ContentEditViewController.swift */,
+				481D18661FBACE1D001D37E9 /* WXChatViewController.swift */,
 			);
 			path = wechat;
 			sourceTree = "<group>";
@@ -640,6 +664,7 @@
 			children = (
 				48FD475C1F8F5507006685A8 /* BaseViewController.swift */,
 				48B2291E1F8F0210009081DA /* BaseNavigationController.swift */,
+				481D18681FBAF6A7001D37E9 /* WXBaseNavigationViewController.swift */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -653,6 +678,15 @@
 				48D6F0CB1FA1DE2B00F77521 /* GroupSelectPeopleTableViewCell.swift */,
 				48D6F0CD1FA2D8DC00F77521 /* GroupPersionCollectionViewCell.swift */,
 				485549431FAC44A6006F6153 /* WXConversationTableViewCell.swift */,
+				48570A101FBD44400018E231 /* WXMessageBaseCell.swift */,
+				48570A121FBD67650018E231 /* WXMessageTextCell.swift */,
+				48570A161FBE898D0018E231 /* WXMessageImageCell.swift */,
+				48570A181FBE8A560018E231 /* YLMessageImageView.swift */,
+				48570A141FBD6FA40018E231 /* WXMessageConstants.swift */,
+				48570A1A1FBEA9B40018E231 /* WXMessageVoiceCell.swift */,
+				48570A1C1FBEBE4B0018E231 /* WXMessageSystemCell.swift */,
+				4870DB8D1FC270E600A11587 /* WXMessageRedPacketCell.swift */,
+				48A253761FC2DA58008D59A9 /* WXMessageTransferCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -665,13 +699,6 @@
 				488899721FA6C1B9000193C5 /* WXContentEntity.swift */,
 			);
 			path = entity;
-			sourceTree = "<group>";
-		};
-		48E574B01FB30A6300AD4423 /* model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = model;
 			sourceTree = "<group>";
 		};
 		48E997651FA6D3230047933D /* view */ = {
@@ -699,6 +726,7 @@
 				48E997711FA7254D0047933D /* EmojiModel.swift */,
 				48E574B91FB4257400AD4423 /* TransferAccountsModel.swift */,
 				48E574BF1FB4359100AD4423 /* TimeModel.swift */,
+				48A67D561FC6699A00E5A00F /* WXImageModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1146,10 +1174,13 @@
 				48AE56AC1F9F3AE20055551D /* HXAlbumListView.m in Sources */,
 				48D6F0C31FA0943300F77521 /* ChangeRoleTableViewCell.swift in Sources */,
 				718D3D8E1FB19EA3006388EF /* AlipayConversationTimeSettingViewController.swift in Sources */,
+				481D18671FBACE1D001D37E9 /* WXChatViewController.swift in Sources */,
 				71A4AE431FA6F43700B60EC3 /* AlipayConversationContentCell.swift in Sources */,
 				481C17941F90931800C3D7C1 /* ScreenshotCollectionCell.swift in Sources */,
+				48570A1B1FBEA9B40018E231 /* WXMessageVoiceCell.swift in Sources */,
 				71876EE81FA09D7F00BCD139 /* AlipayConversationSettingInfoCell.swift in Sources */,
 				713F70C71FB57F83005ECF90 /* AlipayConversationCollectionsSettingViewController.swift in Sources */,
+				48A67D571FC6699A00E5A00F /* WXImageModel.swift in Sources */,
 				48AE56AD1F9F3AE20055551D /* HXAlbumListViewController.m in Sources */,
 				48AE56D41F9F3AE20055551D /* UIFont+HXExtension.m in Sources */,
 				4855493A1FAAB065006F6153 /* YLEmojiTabBar.swift in Sources */,
@@ -1174,6 +1205,7 @@
 				71876EE61FA09D7F00BCD139 /* AlipayConversationAddView.swift in Sources */,
 				715B9AF41FAC377F00BC24AF /* AlipayConversationRedPackageSettingViewController.swift in Sources */,
 				48AE56AF1F9F3AE20055551D /* HXAlbumTitleButton.m in Sources */,
+				48570A131FBD67650018E231 /* WXMessageTextCell.swift in Sources */,
 				48E574AB1FB2F4B900AD4423 /* WXAudioSetingViewController.swift in Sources */,
 				481D18651FB98BD8001D37E9 /* YLTableView.swift in Sources */,
 				48AE56C61F9F3AE20055551D /* HXPhotoSubViewCell.m in Sources */,
@@ -1182,6 +1214,7 @@
 				48D6F0CC1FA1DE2B00F77521 /* GroupSelectPeopleTableViewCell.swift in Sources */,
 				712DBD321FBD837300C2C2D5 /* AlipayTransferViewController.swift in Sources */,
 				71876EE71FA09D7F00BCD139 /* AlipayConversationAddViewCell.swift in Sources */,
+				48570A151FBD6FA40018E231 /* WXMessageConstants.swift in Sources */,
 				48AE56BD1F9F3AE20055551D /* HXPhoto3DTouchViewController.m in Sources */,
 				48D6F0BD1FA0824500F77521 /* PeopleTableViewCell.swift in Sources */,
 				48AE56B11F9F3AE20055551D /* HXCameraViewController.m in Sources */,
@@ -1190,6 +1223,7 @@
 				48E574AD1FB2F5A300AD4423 /* WXAudioTableViewCell.swift in Sources */,
 				48D6F0CA1FA1C69600F77521 /* ContentEditViewController.swift in Sources */,
 				48AE56BE1F9F3AE20055551D /* HXPhotoCustomNavigationBar.m in Sources */,
+				48570A171FBE898D0018E231 /* WXMessageImageCell.swift in Sources */,
 				4855493E1FAAB2E3006F6153 /* String+extension.swift in Sources */,
 				48FD47551F8F2D6B006685A8 /* CommonUtil.swift in Sources */,
 				487F6E1A1FA0795600F62868 /* WXConversationViewController.swift in Sources */,
@@ -1203,10 +1237,12 @@
 				48AE56BF1F9F3AE20055551D /* HXPhotoEditView.m in Sources */,
 				48AE56BA1F9F3AE20055551D /* HXDatePhotoViewController.m in Sources */,
 				48E574BE1FB433A600AD4423 /* WXTimeViewController.swift in Sources */,
+				481D18691FBAF6A7001D37E9 /* WXBaseNavigationViewController.swift in Sources */,
 				48D6F0C81FA188C800F77521 /* ChatSettingTableViewCell.swift in Sources */,
 				48AE56CB1F9F3AE20055551D /* HXPhotoViewController.m in Sources */,
 				715B9AF61FAC3B9500BC24AF /* AlipayConversationSettingDoubleBtnCell.swift in Sources */,
 				48AE56AE1F9F3AE20055551D /* HXAlbumModel.m in Sources */,
+				48570A1D1FBEBE4B0018E231 /* WXMessageSystemCell.swift in Sources */,
 				71E56D711FB449C700E6B6F5 /* AlipayConversationSystemMessageSettingViewController.swift in Sources */,
 				71876EE51FA09D7F00BCD139 /* AlipayCAVHeaderResuableView.swift in Sources */,
 				DB6082DE1F98F12E0095EF72 /* RoleEditTableViewCell.swift in Sources */,
@@ -1224,10 +1260,13 @@
 				484A10CE1F98666C00BDFFE5 /* NameEditViewController.swift in Sources */,
 				48AE56CE1F9F3AE20055551D /* HXVideoPresentTransition.m in Sources */,
 				488899731FA6C1B9000193C5 /* WXContentEntity.swift in Sources */,
+				48A253771FC2DA58008D59A9 /* WXMessageTransferCell.swift in Sources */,
 				48AE56D61F9F3AE20055551D /* UIView+HXExtension.m in Sources */,
 				48FD47521F8F16F4006685A8 /* SquareCollectionViewCell.swift in Sources */,
+				48570A191FBE8A560018E231 /* YLMessageImageView.swift in Sources */,
 				718D3D941FB1B37B006388EF /* AlipayConversationSettingTimeButtonCell.swift in Sources */,
 				48AE56D31F9F3AE20055551D /* UIButton+HXExtension.m in Sources */,
+				4870DB8E1FC270E600A11587 /* WXMessageRedPacketCell.swift in Sources */,
 				48E997621FA6CF6A0047933D /* ContentEnum.swift in Sources */,
 				48B228E51F8E08E1009081DA /* AppDelegate.swift in Sources */,
 				48E574B41FB3F4FF00AD4423 /* WXRedPacketTypeTableViewCell.swift in Sources */,
@@ -1239,6 +1278,7 @@
 				48AE56BB1F9F3AE20055551D /* HXFullScreenCameraPlayView.m in Sources */,
 				48AE56C81F9F3AE20055551D /* HXPhotoUIManager.m in Sources */,
 				48E997691FA6D8F50047933D /* InputMessageContentTableViewCell.swift in Sources */,
+				48570A111FBD44400018E231 /* WXMessageBaseCell.swift in Sources */,
 				48AE56C31F9F3AE20055551D /* HXPhotoPreviewViewCell.m in Sources */,
 				71DCB29A1FC56FB5007B0DD8 /* AlipayTransferViewControllerCell.swift in Sources */,
 				48AE56B81F9F3AE20055551D /* HXDatePhotoPreviewBottomView.m in Sources */,

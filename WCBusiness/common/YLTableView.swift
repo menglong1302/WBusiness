@@ -108,12 +108,11 @@ class YLTableView: UITableView {
                 
                 self.yl_updateDataSourceAndCellFromIndexPath(selectedIndexPath!, toIndexPath: currentIndexPath! )
                 selectedIndexPath = currentIndexPath!
-                
             }
-            tempView?.center = CGPoint(x:(tempView?.center.x)!, y:point.y);
 
         }
-        
+        tempView?.center = CGPoint(x:(tempView?.center.x)!, y:point.y);
+
     }
     func yl_gestureEnd(_ gesture:UILongPressGestureRecognizer) {
         jx_stopEdgeScroll()
@@ -132,8 +131,11 @@ class YLTableView: UITableView {
     }
     func yl_updateDataSourceAndCellFromIndexPath(_ fromIndexPath: IndexPath, toIndexPath: IndexPath)  {
         if  let _  = onlyChangeSelectIndexPath {
-              (tempArray![fromIndexPath.row],tempArray![toIndexPath.row]) = (tempArray![toIndexPath.row],tempArray![fromIndexPath.row])
+               (tempArray![fromIndexPath.row],tempArray![toIndexPath.row]) = (tempArray![toIndexPath.row],tempArray![fromIndexPath.row])
+            self.beginUpdates()
             self.moveRow(at: fromIndexPath , to: toIndexPath )
+            self.endUpdates()
+
         }else{
             if self.numberOfSections == 1 {
                 (tempArray![fromIndexPath.row],tempArray![toIndexPath.row]) = (tempArray![toIndexPath.row],tempArray![fromIndexPath.row])
@@ -182,20 +184,20 @@ class YLTableView: UITableView {
     }
     @objc func jx_Scroll(){
         
-        let point = gesture.location(in: gesture.view)
-        let currentIndexPath = self.indexPathForRow(at: point)
-        if self.isArrowCrossSection || currentIndexPath?.section == selectedIndexPath?.section{
-            if currentIndexPath != nil && (selectedIndexPath != currentIndexPath) {
-                
-                self.yl_updateDataSourceAndCellFromIndexPath(selectedIndexPath!, toIndexPath: currentIndexPath! )
-                selectedIndexPath = currentIndexPath!
-                
-                
-            }
-            tempView?.center = CGPoint(x:(tempView?.center.x)!, y:point.y);
-
-        }
- 
+//        let point = gesture.location(in: gesture.view)
+//        let currentIndexPath = self.indexPathForRow(at: point)
+//        if self.isArrowCrossSection || currentIndexPath?.section == selectedIndexPath?.section{
+//            if currentIndexPath != nil && (selectedIndexPath != currentIndexPath) {
+//
+//                self.yl_updateDataSourceAndCellFromIndexPath(selectedIndexPath!, toIndexPath: currentIndexPath! )
+//                selectedIndexPath = currentIndexPath!
+//
+//
+//            }
+//            tempView?.center = CGPoint(x:(tempView?.center.x)!, y:point.y);
+//
+//        }
+//
         
         let minOffsetY = self.contentOffset.y + CGFloat(scrollMinY)
         let maxOffsetY = self.contentOffset.y + self.bounds.height - CGFloat(scrollMinY)

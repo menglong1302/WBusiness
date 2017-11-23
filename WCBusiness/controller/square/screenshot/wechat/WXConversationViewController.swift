@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SnapKit
 import RealmSwift
-enum ConversationType {
+ enum ConversationType {
     case privateChat
     case groupChat
 }
@@ -21,6 +21,7 @@ class WXConversationViewController: BaseViewController {
     lazy var footerView = self.makeFooterView()
     lazy var addConversationBtn = self.makeAddConversationBtn()
     lazy var generatePreviewBtn = self.makeGeneratePreviewBtn()
+    var flag = false
     var conversationType:ConversationType = .privateChat{
         didSet{
             switch conversationType {
@@ -50,13 +51,19 @@ class WXConversationViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
-        
+        self.fetchData()
+        self.tableView.reloadData()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchData()
-        getConversation()
-        self.tableView.reloadData()
+        guard !flag else {
+                self.fetchData()
+                self.tableView.reloadData()
+            return 
+        }
+        flag = true
+        
+ 
     }
     func initView()  {
         
@@ -91,6 +98,7 @@ class WXConversationViewController: BaseViewController {
         if self.conversationType == .privateChat {
             if let conv = realm.objects(WXConversation.self).filter("conversationType = 1").first{
                 conversation = conv
+                 self.getConversation()
             }else{
                 conversation.id = UUID().uuidString
                 try! realm.write {
@@ -101,6 +109,7 @@ class WXConversationViewController: BaseViewController {
         }else{
             if let conv = realm.objects(WXConversation.self).filter("conversationType = 2").first{
                 conversation = conv
+                 self.getConversation()
             }else{
                 conversation.id = UUID().uuidString
                 conversation.conversationType = 2
@@ -118,7 +127,7 @@ class WXConversationViewController: BaseViewController {
         self.contents.removeAll()
         let realm = try! Realm()
         let predicate = NSPredicate(format: "parent.id = %@", self.conversation.id)
-        let results = realm.objects(WXContentEntity.self).filter(predicate)
+        let results = realm.objects(WXContentEntity.self).filter(predicate).sorted(byKeyPath: "index")
         for result in results {
             self.contents.append(result)
         }
@@ -130,8 +139,9 @@ class WXConversationViewController: BaseViewController {
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.ylDataSource = self
         tableView.ylDelegate = self
+        tableView.ylDataSource = self
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 10, 0)
         tableView.separatorStyle = .singleLine
         tableView.isArrowCrossSection = false
         tableView.register(PeopleTableViewCell.self, forCellReuseIdentifier: "peopleCellId")
@@ -167,7 +177,14 @@ class WXConversationViewController: BaseViewController {
         btn.setTitleColor(UIColor.white, for: .normal)
         btn.titleLabel?.textAlignment = .center
         btn.backgroundColor = UIColor.rgbq(r: 37, g: 202, b: 117, a: 1)
+        btn.addTarget(self, action: #selector(previewClick), for: .touchUpInside)
         return btn
+    }
+    func previewClick(){
+        let vc = WXChatViewController()
+        vc.contents = self.contents
+        vc.conversation = self.conversation
+        present( WXBaseNavigationViewController(rootViewController: vc), animated: true, completion: nil)
     }
     func addConversationBtnClick()  {
         
@@ -326,6 +343,19 @@ extension WXConversationViewController:UITableViewDelegate,UITableViewDataSource
             self.tableView.reloadData()
 
         }
+        
+         DispatchQueue.main.async{
+            let realm = try! Realm()
+            var index = 0
+            try! realm.write{
+                for entity in newDataSourceArray{
+                  let model =   entity as! WXContentEntity
+                    model.index = index
+                    index += 1
+                }
+            }
+        }
+        
     }
     func tableView(_ tableView: YLTableView, canMoveYlForIndexPath indexPath: IndexPath) -> Bool {
         if indexPath.section == 0{

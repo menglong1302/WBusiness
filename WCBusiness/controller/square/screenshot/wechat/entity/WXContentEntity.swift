@@ -13,7 +13,7 @@ class WXContentEntity:Object{
     @objc dynamic var id = ""
     @objc dynamic var sender:Role?
     @objc dynamic var parent:WXConversation?
-       //1：文本，2：图片 3:语音 4：红包 5：转账 6：时间 7：系统提示 8收款
+       //1：文本，2：图片 3:语音 4：红包 5：转账 6：时间 7：系统提示
     @objc dynamic var contentType:Int = 1
     //内容
     @objc dynamic var content:String = ""
