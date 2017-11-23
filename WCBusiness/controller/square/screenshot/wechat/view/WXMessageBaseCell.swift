@@ -12,11 +12,11 @@ let AVATAR_SPACE_X = 8.0
 let AVATAR_SPACE_Y = 8.0
 let AVATAR_WIDTH = 40.0
 let NAME_HEIGHT = 14.0
-let NAME_SPACE_X = 12.0
+let NAME_SPACE_X = 10.0
 let NAME_SPACE_Y = 1.0
 let MSGBG_SPACE_X = 5.0
 let MSGBG_SPACE_Y = 1.0
-class WXMessageBaseCell: UITableViewCell {
+ class WXMessageBaseCell: UITableViewCell {
     
     lazy var avatarButton = self.makeAvatarButtion()
     
@@ -27,7 +27,7 @@ class WXMessageBaseCell: UITableViewCell {
     public var entity:WXContentEntity?
     
     public var conversation:WXConversation?
-    
+   
     var isSelf:Bool{
         get{
             if entity?.sender?.id == conversation?.sender?.id{
@@ -90,7 +90,7 @@ class WXMessageBaseCell: UITableViewCell {
             if isSelf{
                 maker.right.equalTo(avatarButton.snp.left).offset(-NAME_SPACE_X)
             }else{
-                maker.left.equalTo(avatarButton.snp.left).offset(NAME_SPACE_X)
+                maker.left.equalTo(avatarButton.snp.right).offset(NAME_SPACE_X)
             }
             maker.height.equalTo((self.conversation?.isShowGroupMemberNickName)! ? NAME_HEIGHT:0)
         }
@@ -98,10 +98,10 @@ class WXMessageBaseCell: UITableViewCell {
             if  isSelf {
                 maker.right.equalTo(avatarButton.snp.left).offset(-MSGBG_SPACE_X).priority(999)
             }else{
-                maker.left.equalTo(avatarButton.snp.left).offset(MSGBG_SPACE_X).priority(999)
+                maker.left.equalTo(avatarButton.snp.right).offset(MSGBG_SPACE_X).priority(999)
                 
             }
-            maker.top.equalTo(nickName.snp.bottom).offset((self.conversation?.isShowGroupMemberNickName)! ? 0 : -MSGBG_SPACE_Y)
+            maker.top.equalTo(nickName.snp.bottom).offset((self.conversation?.isShowGroupMemberNickName)! ? -1 : -MSGBG_SPACE_Y)
         }
         
         nickName.isHidden = !(self.conversation?.isShowGroupMemberNickName)!

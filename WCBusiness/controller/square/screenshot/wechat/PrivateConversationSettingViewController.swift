@@ -53,6 +53,7 @@ class PrivateConversationSettingViewController: BaseViewController {
         tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0 )
         tableView.delegate = self
         tableView.dataSource = self
+        
         tableView.register(ChangeRoleTableViewCell.self, forCellReuseIdentifier: "roleCellId")
         tableView.register(ChatSettingTableViewCell.self, forCellReuseIdentifier: "chatSettingCellId")
         return tableView

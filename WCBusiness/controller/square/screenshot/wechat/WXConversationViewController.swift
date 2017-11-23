@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SnapKit
 import RealmSwift
-enum ConversationType {
+ enum ConversationType {
     case privateChat
     case groupChat
 }
@@ -21,6 +21,7 @@ class WXConversationViewController: BaseViewController {
     lazy var footerView = self.makeFooterView()
     lazy var addConversationBtn = self.makeAddConversationBtn()
     lazy var generatePreviewBtn = self.makeGeneratePreviewBtn()
+    var flag = false
     var conversationType:ConversationType = .privateChat{
         didSet{
             switch conversationType {
@@ -50,14 +51,17 @@ class WXConversationViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
-        
+        self.fetchData()
+        self.tableView.reloadData()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        DispatchQueue.main.async {
-             self.fetchData()
-            self.tableView.reloadData()
+        guard !flag else {
+                self.fetchData()
+                self.tableView.reloadData()
+            return 
         }
+        flag = true
         
  
     }
@@ -123,7 +127,7 @@ class WXConversationViewController: BaseViewController {
         self.contents.removeAll()
         let realm = try! Realm()
         let predicate = NSPredicate(format: "parent.id = %@", self.conversation.id)
-        let results = realm.objects(WXContentEntity.self).filter(predicate)
+        let results = realm.objects(WXContentEntity.self).filter(predicate).sorted(byKeyPath: "index")
         for result in results {
             self.contents.append(result)
         }
@@ -135,8 +139,9 @@ class WXConversationViewController: BaseViewController {
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.ylDataSource = self
         tableView.ylDelegate = self
+        tableView.ylDataSource = self
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 10, 0)
         tableView.separatorStyle = .singleLine
         tableView.isArrowCrossSection = false
         tableView.register(PeopleTableViewCell.self, forCellReuseIdentifier: "peopleCellId")
@@ -338,6 +343,19 @@ extension WXConversationViewController:UITableViewDelegate,UITableViewDataSource
             self.tableView.reloadData()
 
         }
+        
+         DispatchQueue.main.async{
+            let realm = try! Realm()
+            var index = 0
+            try! realm.write{
+                for entity in newDataSourceArray{
+                  let model =   entity as! WXContentEntity
+                    model.index = index
+                    index += 1
+                }
+            }
+        }
+        
     }
     func tableView(_ tableView: YLTableView, canMoveYlForIndexPath indexPath: IndexPath) -> Bool {
         if indexPath.section == 0{

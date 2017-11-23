@@ -91,9 +91,19 @@ class WXChatViewController: UIViewController {
         self.tableView.snp.makeConstraints { (maker) in
             maker.edges.equalToSuperview()
         }
+        let bgView = UIImageView(image: UIImage(contentsOfFile: (conversation?.backgroundUrl.localPath())!))
+        bgView.autoresizingMask = [.flexibleWidth , .flexibleHeight]
+        bgView.contentMode = .scaleAspectFill
+         self.tableView.backgroundView = bgView
+        self.tableView.layoutIfNeeded()
+        
+//        NotificationCenter.default.addObserver(self, selector: #selector(reloadView), name: NSNotification.Name(rawValue: "reloadView"), object: nil)
+        
         
     }
-    
+    func reloadView()  {
+        self.tableView.reloadData()
+    }
     func makeTableView() -> UITableView {
         let view = UITableView()
         view.delegate = self
@@ -107,9 +117,8 @@ class WXChatViewController: UIViewController {
         view.register(WXMessageImageCell.self, forCellReuseIdentifier: "imageCellId")
         view.register(WXMessageVoiceCell.self, forCellReuseIdentifier: "voiceCellId")
         view.register(WXMessageSystemCell.self, forCellReuseIdentifier: "systemCellId")
-        
-        
-        
+        view.register(WXMessageRedPacketCell.self, forCellReuseIdentifier: "redPacketCellId")
+        view.register(WXMessageTransferCell.self, forCellReuseIdentifier: "transferCellId")
         return view
     }
     
@@ -133,9 +142,39 @@ extension WXChatViewController:UITableViewDelegate,UITableViewDataSource{
             cell = tableView.dequeueReusableCell(withIdentifier: "textCellId") as? WXMessageBaseCell
         case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: "imageCellId") as? WXMessageBaseCell
+            
         case 3:
             cell = tableView.dequeueReusableCell(withIdentifier: "voiceCellId") as? WXMessageBaseCell
-        case 6:
+        case 4:
+            
+            let entity = self.contents![indexPath.row]
+            let model = RedPacketModel(JSONString: entity.content)
+            if model?.packetType == "0"{
+                let tempCell = tableView.dequeueReusableCell(withIdentifier: "redPacketCellId") as! WXMessageRedPacketCell
+                tempCell.backgroundColor = UIColor.clear
+                tempCell.entity = self.contents![indexPath.row]
+                tempCell.conversation = self.conversation
+                tempCell.setView()
+                tempCell.updateMessage()
+                return tempCell
+            }else{
+                let tempCell = tableView.dequeueReusableCell(withIdentifier: "systemCellId") as? WXMessageSystemCell
+                tempCell?.entity = self.contents![indexPath.row]
+                tempCell?.conversation = self.conversation
+                tempCell?.setView()
+                return tempCell!
+            }
+            
+        case 5:
+            
+            let tempCell = tableView.dequeueReusableCell(withIdentifier: "transferCellId") as? WXMessageBaseCell
+            tempCell?.entity = self.contents![indexPath.row]
+            tempCell?.conversation = self.conversation
+             tempCell?.updateMessage()
+            return tempCell!
+            
+            
+         case 6:
             let tempCell = tableView.dequeueReusableCell(withIdentifier: "systemCellId") as? WXMessageSystemCell
             tempCell?.entity = self.contents![indexPath.row]
             tempCell?.conversation = self.conversation

@@ -10,8 +10,8 @@ import Foundation
 import YYText
 public let     MSG_SPACE_TOP    =   14
 public let     MSG_SPACE_BTM    =   20
-public let     MSG_SPACE_LEFT   =   19
-public let     MSG_SPACE_RIGHT  =   22
+public let     MSG_SPACE_LEFT   =   15
+public let     MSG_SPACE_RIGHT  =   15
 
 
 class WXMessageTextCell: WXMessageBaseCell {
@@ -39,7 +39,7 @@ class WXMessageTextCell: WXMessageBaseCell {
         content.yy_font = UIFont.systemFont(ofSize: 16)
         content.yy_lineSpacing = 0.0
         content.yy_maximumLineHeight = 18
-        content.yy_lineBreakMode = .byCharWrapping
+         content.yy_lineBreakMode = .byCharWrapping
         
         let container = YYTextContainer(size: CGSize(width: MAX_MESSAGE_WIDTH, height: CGFloat.greatestFiniteMagnitude), insets: UIEdgeInsets.zero)
         let layout = YYTextLayout(container: container, text: content)
@@ -50,7 +50,8 @@ class WXMessageTextCell: WXMessageBaseCell {
         messageLabel.attributedText = content
         messageLabel.sizeToFit()
            if isSelf {
-            self.maskBackgroundImageView.image = UIImage(named:"message_sender_bg")
+            
+            self.maskBackgroundImageView.image = UIImage(named:"message_ly_send_bg")?.resizableImage(withCapInsets: UIEdgeInsets(top: 26, left: 6, bottom: 6, right: 27),resizingMode:.stretch)
             self.messageLabel.snp.remakeConstraints({ (maker) in
                 maker.right.equalTo(self.maskBackgroundImageView).offset(-MSG_SPACE_RIGHT);
                 maker.top.equalTo(self.maskBackgroundImageView).offset(10)
@@ -61,30 +62,31 @@ class WXMessageTextCell: WXMessageBaseCell {
             
             self.maskBackgroundImageView.snp.remakeConstraints({ (maker) in
                 maker.left.equalTo(self.messageLabel).offset(-MSG_SPACE_LEFT)
-                maker.bottom.equalTo(self.messageLabel.snp.bottom).offset(20)
+                maker.bottom.equalTo(self.messageLabel.snp.bottom).offset(10)
                   maker.right.equalTo(avatarButton.snp.left).offset(-MSGBG_SPACE_X)
                 maker.top.equalTo(nickName.snp.bottom).offset((self.conversation?.isShowGroupMemberNickName)! ? 0 : -MSGBG_SPACE_Y)
             })
-//
+ 
             
         }else{
-            self.maskBackgroundImageView.image = UIImage(named:"message_receiver_bg")
+            self.maskBackgroundImageView.image = UIImage(named:"message_ly_receive_bg")?.resizableImage(withCapInsets: UIEdgeInsets(top: 26, left: 27, bottom: 6, right: 6),resizingMode:.stretch)
             
             self.messageLabel.snp.remakeConstraints({ (maker) in
-                maker.left.equalTo(self.maskBackgroundImageView).offset(-MSG_SPACE_RIGHT);
-                maker.top.equalTo(self.maskBackgroundImageView).offset(MSG_SPACE_TOP);            maker.width.lessThanOrEqualTo(MAX_MESSAGE_WIDTH)
-                maker.bottom.equalToSuperview().offset(-10)
- 
+                maker.left.equalTo(self.maskBackgroundImageView).offset(MSG_SPACE_RIGHT)
+                maker.top.equalTo(self.maskBackgroundImageView).offset(MSG_SPACE_TOP)
+                maker.bottom.equalToSuperview().offset(-15)
+                maker.width.lessThanOrEqualTo(MAX_MESSAGE_WIDTH)
+
                 
 
             })
             self.maskBackgroundImageView.snp.remakeConstraints({ (maker) in
-                maker.right.equalTo(self.messageLabel).offset(-MSG_SPACE_LEFT)
-                maker.bottom.equalTo(self.messageLabel.snp.bottom).offset(MSG_SPACE_BTM)
-                  maker.left.equalTo(avatarButton.snp.left).offset(MSGBG_SPACE_X).priority(999)
+                maker.right.equalTo(self.messageLabel).offset(MSG_SPACE_LEFT)
+                maker.bottom.equalTo(self.messageLabel.snp.bottom).offset(10)
+                  maker.left.equalTo(avatarButton.snp.right).offset(MSGBG_SPACE_X).priority(999)
           maker.top.equalTo(nickName.snp.bottom).offset((self.conversation?.isShowGroupMemberNickName)! ? 0 : -MSGBG_SPACE_Y)
             })
-//
+ 
             
         }
         self.layoutIfNeeded()
@@ -94,7 +96,7 @@ class WXMessageTextCell: WXMessageBaseCell {
     
     func makeMessageLabel() -> YYLabel {
         let label = YYLabel()
-        label.textVerticalAlignment = .bottom
+        label.textVerticalAlignment = .center
         label.numberOfLines = 0;
         label.lineBreakMode = .byCharWrapping
         label.font = UIFont.systemFont(ofSize: 16)
