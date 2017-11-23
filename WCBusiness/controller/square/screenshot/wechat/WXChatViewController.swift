@@ -149,7 +149,25 @@ extension WXChatViewController:UITableViewDelegate,UITableViewDataSource{
             
             let entity = self.contents![indexPath.row]
             let model = RedPacketModel(JSONString: entity.content)
-            if model?.packetType == "0"{
+            if model?.conversationType == "0"{ //单聊
+                //发红包：当前发送人收取只提示消息模式  收红包 都是消息模式
+                if (model?.packetType == "0" && self.conversation?.sender?.id == entity.sender?.id) || model?.packetType == "1"{
+                    let tempCell = tableView.dequeueReusableCell(withIdentifier: "systemCellId") as? WXMessageSystemCell
+                    tempCell?.entity = self.contents![indexPath.row]
+                    tempCell?.conversation = self.conversation
+                    tempCell?.setView()
+                    return tempCell!
+                }else{
+                    let tempCell = tableView.dequeueReusableCell(withIdentifier: "redPacketCellId") as! WXMessageRedPacketCell
+                    tempCell.backgroundColor = UIColor.clear
+                    tempCell.entity = self.contents![indexPath.row]
+                    tempCell.conversation = self.conversation
+                    tempCell.setView()
+                    tempCell.updateMessage()
+                    return tempCell
+                }
+            }
+            if model?.packetType == "0" {
                 let tempCell = tableView.dequeueReusableCell(withIdentifier: "redPacketCellId") as! WXMessageRedPacketCell
                 tempCell.backgroundColor = UIColor.clear
                 tempCell.entity = self.contents![indexPath.row]

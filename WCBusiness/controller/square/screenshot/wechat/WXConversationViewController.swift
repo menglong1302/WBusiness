@@ -542,6 +542,8 @@ extension WXConversationViewController:UITableViewDelegate,UITableViewDataSource
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return "删除"
     }
+    
+    
 }
 
 

@@ -15,7 +15,8 @@ let NAME_HEIGHT = 14.0
 let NAME_SPACE_X = 10.0
 let NAME_SPACE_Y = 1.0
 let MSGBG_SPACE_X = 5.0
-let MSGBG_SPACE_Y = 1.0
+let MSGBG_SPACE_Y = 0.5
+let MSGNAME_SPACE_Y = 3
  class WXMessageBaseCell: UITableViewCell {
     
     lazy var avatarButton = self.makeAvatarButtion()
@@ -101,7 +102,7 @@ let MSGBG_SPACE_Y = 1.0
                 maker.left.equalTo(avatarButton.snp.right).offset(MSGBG_SPACE_X).priority(999)
                 
             }
-            maker.top.equalTo(nickName.snp.bottom).offset((self.conversation?.isShowGroupMemberNickName)! ? -1 : -MSGBG_SPACE_Y)
+            maker.top.equalTo(nickName.snp.bottom).offset((self.conversation?.isShowGroupMemberNickName)! ? MSGNAME_SPACE_Y : -MSGBG_SPACE_Y)
         }
         
         nickName.isHidden = !(self.conversation?.isShowGroupMemberNickName)!

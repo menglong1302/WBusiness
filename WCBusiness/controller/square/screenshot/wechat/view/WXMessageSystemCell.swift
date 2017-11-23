@@ -81,25 +81,82 @@ class WXMessageSystemCell: UITableViewCell {
             let str = NSMutableAttributedString()
             str.append(NSAttributedString.yy_attachmentString(withEmojiImage: UIImage(named:"xiaobao_icon")!, fontSize: 14)!)
             
-            if model?.receiveType == "0"{
+            if self.conversation?.conversationType == 1{ //单聊
+                if (model?.packetType == "0" && (model?.isGetted)! && self.entity?.sender?.id == self.conversation?.sender?.id) || ( model?.packetType == "1" && self.entity?.sender?.id != self.conversation?.sender?.id){
+                    //发红包，并且发送者是自己
+                    let role =  self.conversation?.receivers.first
+                    str.append(NSAttributedString(string: " " + (role?.nickName)! + "领取了你的"))
+                    str.yy_setColor(UIColor.white, range: NSMakeRange(0, str.length))
+                    let temp = NSMutableAttributedString(string:"红包")
+                    temp.yy_setColor(HexColor("f99c3a"), range: NSMakeRange(0, 2))
+                    str.append(temp)
+                    self.systemLabel.attributedText = str
+                }else {
+                    let role =  self.conversation?.receivers.first
+                    
+                    str.append(NSAttributedString(string: " 你领取了" + (role?.nickName)! + "的"))
+                    str.yy_setColor(UIColor.white, range: NSMakeRange(0, str.length))
+                    
+                    let temp = NSMutableAttributedString(string:"红包")
+                    temp.yy_setColor(HexColor("f99c3a"), range: NSMakeRange(0, 2))
+                    str.append(temp)
+                    self.systemLabel.attributedText = str
+                    
+                }
+            }else{//群聊
                 
-                 str.append(NSAttributedString(string: " " + (self.entity?.sender?.nickName)! + "领取了您的"))
-                str.yy_setColor(UIColor.white, range: NSMakeRange(0, str.length))
-                let temp = NSMutableAttributedString(string:"红包")
-                temp.yy_setColor(HexColor("f99c3a"), range: NSMakeRange(0, 2))
-                str.append(temp)
-                self.systemLabel.attributedText = str
-            }else{
+                if self.entity?.sender?.id == self.conversation?.sender?.id{
+                    str.append(NSAttributedString(string: " 你"  + "领取了自己的"))
+                    str.yy_setColor(UIColor.white, range: NSMakeRange(0, str.length))
+                    let temp = NSMutableAttributedString(string:"红包")
+                    temp.yy_setColor(HexColor("f99c3a"), range: NSMakeRange(0, 2))
+                    str.append(temp)
+                    self.systemLabel.attributedText = str
+                }else{
+                    if model?.receiveType == "0"{//别人收取我的红包
+                        let role =  self.entity?.sender
+                        str.append(NSAttributedString(string: " " + (role?.nickName)! + "领取了你的"))
+                        str.yy_setColor(UIColor.white, range: NSMakeRange(0, str.length))
+                        let temp = NSMutableAttributedString(string:"红包")
+                        temp.yy_setColor(HexColor("f99c3a"), range: NSMakeRange(0, 2))
+                        str.append(temp)
+                        self.systemLabel.attributedText = str
+                    }else{
+                      let role =  self.entity?.sender
+                        
+                        str.append(NSAttributedString(string: " 你领取了" + (role?.nickName)! + "的"))
+                        str.yy_setColor(UIColor.white, range: NSMakeRange(0, str.length))
+                        
+                        let temp = NSMutableAttributedString(string:"红包")
+                        temp.yy_setColor(HexColor("f99c3a"), range: NSMakeRange(0, 2))
+                        str.append(temp)
+                        self.systemLabel.attributedText = str
+                    }
+                }
                 
-                 str.append(NSAttributedString(string: " 您领取了" + (self.entity?.sender?.nickName)! + "的"))
-                str.yy_setColor(UIColor.white, range: NSMakeRange(0, str.length))
-
-                let temp = NSMutableAttributedString(string:"红包")
-                temp.yy_setColor(HexColor("f99c3a"), range: NSMakeRange(0, 2))
-                str.append(temp)
-                self.systemLabel.attributedText = str
-
+                
             }
+//            if (model?.receiveType == "0" && (model?.isGetted)! && self.entity?.sender?.id == self.conversation?.sender?.id) || ( model?.receiveType == "1" && self.entity?.sender?.id != self.conversation?.sender?.id){
+//                //发红包，并且发送者是自己
+//               let role =  self.conversation?.receivers.first
+//                str.append(NSAttributedString(string: " " + (role?.nickName)! + "领取了你的"))
+//                str.yy_setColor(UIColor.white, range: NSMakeRange(0, str.length))
+//                let temp = NSMutableAttributedString(string:"红包")
+//                temp.yy_setColor(HexColor("f99c3a"), range: NSMakeRange(0, 2))
+//                str.append(temp)
+//                self.systemLabel.attributedText = str
+//            }else {
+//                let role =  self.conversation?.receivers.first
+//
+//                str.append(NSAttributedString(string: " 你领取了" + (role?.nickName)! + "的"))
+//                str.yy_setColor(UIColor.white, range: NSMakeRange(0, str.length))
+//
+//                let temp = NSMutableAttributedString(string:"红包")
+//                temp.yy_setColor(HexColor("f99c3a"), range: NSMakeRange(0, 2))
+//                str.append(temp)
+//                self.systemLabel.attributedText = str
+//
+//            }
             str.yy_setFont(UIFont.systemFont(ofSize: 14), range: NSMakeRange(0, str.length))
             systemLabel.snp.remakeConstraints { (maker) in
                 maker.centerX.equalToSuperview()

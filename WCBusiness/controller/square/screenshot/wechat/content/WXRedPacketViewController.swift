@@ -91,8 +91,10 @@ class WXRedPacketViewController: BaseViewController {
     }
     override func rightBtnClick(_ sender: UIButton) {
         
-        if self.textView != nil{
+        if self.textView != nil && !((self.textView?.text.isEmpty)!){
             self.redPacket?.content = self.textView?.text
+        }else{
+            self.redPacket?.content = "恭喜发财，大吉大利"
         }
         let realm = try! Realm()
         

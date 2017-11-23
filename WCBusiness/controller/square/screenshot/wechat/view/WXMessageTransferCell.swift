@@ -106,7 +106,7 @@ class WXMessageTransferCell: WXMessageBaseCell {
                 maker.left.equalTo(avatarButton.snp.right).offset(MSGBG_SPACE_X).priority(999)
                 
             }
-            maker.top.equalTo(nickName.snp.bottom).offset((self.conversation?.isShowGroupMemberNickName)! ? 0 : -MSGBG_SPACE_Y)
+            maker.top.equalTo(nickName.snp.bottom).offset((self.conversation?.isShowGroupMemberNickName)! ? MSGNAME_SPACE_Y : -MSGBG_SPACE_Y)
             maker.width.equalTo(235)
             maker.height.equalTo(85)
             maker.bottom.equalToSuperview().offset(-5)

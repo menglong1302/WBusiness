@@ -46,7 +46,7 @@ class WXMessageVoiceCell: WXMessageBaseCell {
             })
             self.voiceImageView.snp.remakeConstraints({ (maker) in
                 maker.right.equalTo(-13)
-                maker.centerY.equalTo(self.avatarButton)
+                maker.centerY.equalTo( self.maskBackgroundImageView)
             })
            
         }else{
@@ -59,7 +59,7 @@ class WXMessageVoiceCell: WXMessageBaseCell {
             })
             self.voiceImageView.snp.remakeConstraints({ (maker) in
                 maker.left.equalTo(13)
-                maker.centerY.equalTo(self.avatarButton)
+                maker.centerY.equalTo( self.maskBackgroundImageView)
             })
 
         }
@@ -70,7 +70,7 @@ class WXMessageVoiceCell: WXMessageBaseCell {
                 maker.left.equalTo(avatarButton.snp.right).offset(MSGBG_SPACE_X).priority(999)
                 
             }
-            maker.top.equalTo(nickName.snp.bottom).offset((self.conversation?.isShowGroupMemberNickName)! ? 0 : -MSGBG_SPACE_Y)
+            maker.top.equalTo(nickName.snp.bottom).offset((self.conversation?.isShowGroupMemberNickName)! ? MSGNAME_SPACE_Y : -MSGBG_SPACE_Y)
             maker.width.equalTo(width)
             maker.bottom.equalToSuperview().offset(-10)
 

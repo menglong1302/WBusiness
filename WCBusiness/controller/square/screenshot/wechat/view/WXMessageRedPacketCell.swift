@@ -32,12 +32,17 @@ class WXMessageRedPacketCell: WXMessageBaseCell {
     }
     
     func setView(){
-        let model =  RedPacketModel(JSONString: (self.entity?.content)!)
-        hintTitle.text = model?.content
-        statusLabel.text = "领取红包"
+//        let model =  RedPacketModel(JSONString: (self.entity?.content)!)
+//        hintTitle.text = model?.content
+//        statusLabel.text = "领取红包"
     }
     override func updateMessage() {
         super.updateMessage()
+        
+        let model =  RedPacketModel(JSONString: (self.entity?.content)!)
+        hintTitle.text = model?.content
+        statusLabel.text = "领取红包"
+        
         categoryLabel.text = "微信红包"
         if isSelf {
             self.maskBackgroundImageView.image = UIImage(named:"bg_from_hongbao")
@@ -45,7 +50,7 @@ class WXMessageRedPacketCell: WXMessageBaseCell {
             categoryLabel.snp.remakeConstraints({ (maker) in
                 maker.left.equalTo(10)
                 maker.bottom.equalToSuperview().offset(-1)
-                maker.height.equalTo(20)
+                maker.height.equalTo(18)
             })
             
             hintTitle.snp.remakeConstraints({ (maker) in
@@ -61,12 +66,19 @@ class WXMessageRedPacketCell: WXMessageBaseCell {
             })
             
         }else{
-            self.maskBackgroundImageView.image = UIImage(named:"bg_to_hongbao")
+            if (model?.isGetted)!{
+                self.maskBackgroundImageView.image = UIImage(named:"hongbao_sender_bg")
+
+            }else{
+                self.maskBackgroundImageView.image = UIImage(named:"bg_to_hongbao")
+
+            }
+            
             
             categoryLabel.snp.remakeConstraints({ (maker) in
                 maker.left.equalTo(15)
                 maker.bottom.equalToSuperview().offset(-1)
-                maker.height.equalTo(20)
+                maker.height.equalTo(18)
             })
             
             hintTitle.snp.remakeConstraints({ (maker) in
@@ -89,9 +101,9 @@ class WXMessageRedPacketCell: WXMessageBaseCell {
                 maker.left.equalTo(avatarButton.snp.right).offset(MSGBG_SPACE_X).priority(999)
                 
             }
-            maker.top.equalTo(nickName.snp.bottom).offset((self.conversation?.isShowGroupMemberNickName)! ? 0 : -MSGBG_SPACE_Y)
-            maker.width.equalTo(MAX_MESSAGE_WIDTH)
-            maker.height.equalTo(MIN_MESSAGE_IMAGE_WIDTH)
+            maker.top.equalTo(nickName.snp.bottom).offset((self.conversation?.isShowGroupMemberNickName)! ? MSGNAME_SPACE_Y : -MSGBG_SPACE_Y)
+            maker.width.equalTo(235)
+            maker.height.equalTo(84)
             maker.bottom.equalToSuperview().offset(-5)
         }
         
