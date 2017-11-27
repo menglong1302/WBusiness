@@ -7,12 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4801A98D1FCBCD020042C11D /* WXRedPacketPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4801A98C1FCBCD020042C11D /* WXRedPacketPreviewViewController.swift */; };
+		4801A98F1FCBCD210042C11D /* WXRedPacketSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4801A98E1FCBCD210042C11D /* WXRedPacketSetViewController.swift */; };
+		4801A9911FCBE1CE0042C11D /* WXRedPacketSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4801A9901FCBE1CE0042C11D /* WXRedPacketSetModel.swift */; };
 		481C17921F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C17911F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift */; };
 		481C17941F90931800C3D7C1 /* ScreenshotCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C17931F90931800C3D7C1 /* ScreenshotCollectionCell.swift */; };
 		481D18651FB98BD8001D37E9 /* YLTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D18641FB98BD8001D37E9 /* YLTableView.swift */; };
 		481D18671FBACE1D001D37E9 /* WXChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D18661FBACE1D001D37E9 /* WXChatViewController.swift */; };
 		481D18691FBAF6A7001D37E9 /* WXBaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D18681FBAF6A7001D37E9 /* WXBaseNavigationViewController.swift */; };
 		4829AE101F95FB9900EBA903 /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4829AE0F1F95FB9900EBA903 /* RoleViewController.swift */; };
+		4844330B1FCC009B00623407 /* WeChatNumber-170206.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4844330A1FCC009B00623407 /* WeChatNumber-170206.ttf */; };
+		4844330E1FCC1C6800623407 /* WXSmallChangeSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4844330D1FCC1C6800623407 /* WXSmallChangeSetViewController.swift */; };
+		484433101FCC2A2B00623407 /* WXSmallChangePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4844330F1FCC2A2B00623407 /* WXSmallChangePreviewViewController.swift */; };
 		484A10CA1F9847FE00BDFFE5 /* RoleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10C91F9847FE00BDFFE5 /* RoleEditViewController.swift */; };
 		484A10CE1F98666C00BDFFE5 /* NameEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A10CD1F98666C00BDFFE5 /* NameEditViewController.swift */; };
 		485549381FAAAE89006F6153 /* YLEmojiKeyBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485549371FAAAE89006F6153 /* YLEmojiKeyBoard.swift */; };
@@ -184,12 +190,18 @@
 /* Begin PBXFileReference section */
 		1B85F58761B4F53C1196462C /* Pods-WCBusiness.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WCBusiness.release.xcconfig"; path = "Pods/Target Support Files/Pods-WCBusiness/Pods-WCBusiness.release.xcconfig"; sourceTree = "<group>"; };
 		2AA4312B4C4481D70A0B78F9 /* Pods_WCBusiness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WCBusiness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4801A98C1FCBCD020042C11D /* WXRedPacketPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXRedPacketPreviewViewController.swift; sourceTree = "<group>"; };
+		4801A98E1FCBCD210042C11D /* WXRedPacketSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXRedPacketSetViewController.swift; sourceTree = "<group>"; };
+		4801A9901FCBE1CE0042C11D /* WXRedPacketSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXRedPacketSetModel.swift; sourceTree = "<group>"; };
 		481C17911F908D3600C3D7C1 /* WXZFBHeaderResuableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXZFBHeaderResuableView.swift; sourceTree = "<group>"; };
 		481C17931F90931800C3D7C1 /* ScreenshotCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCollectionCell.swift; sourceTree = "<group>"; };
 		481D18641FB98BD8001D37E9 /* YLTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YLTableView.swift; sourceTree = "<group>"; };
 		481D18661FBACE1D001D37E9 /* WXChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXChatViewController.swift; sourceTree = "<group>"; };
 		481D18681FBAF6A7001D37E9 /* WXBaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXBaseNavigationViewController.swift; sourceTree = "<group>"; };
 		4829AE0F1F95FB9900EBA903 /* RoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
+		4844330A1FCC009B00623407 /* WeChatNumber-170206.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WeChatNumber-170206.ttf"; sourceTree = "<group>"; };
+		4844330D1FCC1C6800623407 /* WXSmallChangeSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXSmallChangeSetViewController.swift; sourceTree = "<group>"; };
+		4844330F1FCC2A2B00623407 /* WXSmallChangePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXSmallChangePreviewViewController.swift; sourceTree = "<group>"; };
 		484A10C91F9847FE00BDFFE5 /* RoleEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleEditViewController.swift; sourceTree = "<group>"; };
 		484A10CD1F98666C00BDFFE5 /* NameEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEditViewController.swift; sourceTree = "<group>"; };
 		485549371FAAAE89006F6153 /* YLEmojiKeyBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YLEmojiKeyBoard.swift; sourceTree = "<group>"; };
@@ -431,6 +443,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4801A9921FCBE4150042C11D /* redpacket */ = {
+			isa = PBXGroup;
+			children = (
+				4801A9931FCBE42F0042C11D /* model */,
+				4801A98C1FCBCD020042C11D /* WXRedPacketPreviewViewController.swift */,
+				4801A98E1FCBCD210042C11D /* WXRedPacketSetViewController.swift */,
+			);
+			path = redpacket;
+			sourceTree = "<group>";
+		};
+		4801A9931FCBE42F0042C11D /* model */ = {
+			isa = PBXGroup;
+			children = (
+				4801A9901FCBE1CE0042C11D /* WXRedPacketSetModel.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		4829AE0E1F95FB7900EBA903 /* role */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,6 +471,15 @@
 				487F6E161FA05FAD00F62868 /* AddRoleViewController.swift */,
 			);
 			path = role;
+			sourceTree = "<group>";
+		};
+		4844330C1FCC1C1200623407 /* smallchange */ = {
+			isa = PBXGroup;
+			children = (
+				4844330D1FCC1C6800623407 /* WXSmallChangeSetViewController.swift */,
+				4844330F1FCC2A2B00623407 /* WXSmallChangePreviewViewController.swift */,
+			);
+			path = smallchange;
 			sourceTree = "<group>";
 		};
 		485549361FAAAE71006F6153 /* emojiBar */ = {
@@ -459,6 +498,8 @@
 		487F6E181FA0786400F62868 /* wechat */ = {
 			isa = PBXGroup;
 			children = (
+				4844330C1FCC1C1200623407 /* smallchange */,
+				4801A9921FCBE4150042C11D /* redpacket */,
 				488899741FA6C57C000193C5 /* content */,
 				48D6F0C41FA177DD00F77521 /* entity */,
 				48D6F0BB1FA0822A00F77521 /* view */,
@@ -624,6 +665,7 @@
 				48B228E41F8E08E1009081DA /* AppDelegate.swift */,
 				48B228EB1F8E08E1009081DA /* Assets.xcassets */,
 				48B228ED1F8E08E1009081DA /* LaunchScreen.storyboard */,
+				4844330A1FCC009B00623407 /* WeChatNumber-170206.ttf */,
 				48B228F01F8E08E1009081DA /* Info.plist */,
 			);
 			path = WCBusiness;
@@ -1042,6 +1084,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4855493C1FAAB230006F6153 /* emojiBarBundle.bundle in Resources */,
+				4844330B1FCC009B00623407 /* WeChatNumber-170206.ttf in Resources */,
 				48E9976B1FA711660047933D /* wx_emoji.bundle in Resources */,
 				48B2291C1F8E1865009081DA /* Podfile in Resources */,
 				48B228EF1F8E08E1009081DA /* LaunchScreen.storyboard in Resources */,
@@ -1215,6 +1258,7 @@
 				712DBD321FBD837300C2C2D5 /* AlipayTransferViewController.swift in Sources */,
 				71876EE71FA09D7F00BCD139 /* AlipayConversationAddViewCell.swift in Sources */,
 				48570A151FBD6FA40018E231 /* WXMessageConstants.swift in Sources */,
+				4801A9911FCBE1CE0042C11D /* WXRedPacketSetModel.swift in Sources */,
 				48AE56BD1F9F3AE20055551D /* HXPhoto3DTouchViewController.m in Sources */,
 				48D6F0BD1FA0824500F77521 /* PeopleTableViewCell.swift in Sources */,
 				48AE56B11F9F3AE20055551D /* HXCameraViewController.m in Sources */,
@@ -1244,6 +1288,7 @@
 				48AE56AE1F9F3AE20055551D /* HXAlbumModel.m in Sources */,
 				48570A1D1FBEBE4B0018E231 /* WXMessageSystemCell.swift in Sources */,
 				71E56D711FB449C700E6B6F5 /* AlipayConversationSystemMessageSettingViewController.swift in Sources */,
+				4844330E1FCC1C6800623407 /* WXSmallChangeSetViewController.swift in Sources */,
 				71876EE51FA09D7F00BCD139 /* AlipayCAVHeaderResuableView.swift in Sources */,
 				DB6082DE1F98F12E0095EF72 /* RoleEditTableViewCell.swift in Sources */,
 				48E574AF1FB3023400AD4423 /* WXRedPacketViewController.swift in Sources */,
@@ -1251,6 +1296,7 @@
 				48AE56C21F9F3AE20055551D /* HXPhotoModel.m in Sources */,
 				71876EEA1FA09D7F00BCD139 /* AlipayConversationSettingViewController.swift in Sources */,
 				48AE56C41F9F3AE20055551D /* HXPhotoPreviewViewController.m in Sources */,
+				4801A98D1FCBCD020042C11D /* WXRedPacketPreviewViewController.swift in Sources */,
 				48E9976F1FA7226A0047933D /* WXEmojiTableViewCell.swift in Sources */,
 				48D6F0BF1FA08EF200F77521 /* PrivateConversationSettingViewController.swift in Sources */,
 				488899761FA6C599000193C5 /* FileSetingViewController.swift in Sources */,
@@ -1287,11 +1333,13 @@
 				48B229181F8E11BD009081DA /* WBTabBarController.swift in Sources */,
 				48E574BC1FB42A3200AD4423 /* WXTransferAccountTypeTableViewCell.swift in Sources */,
 				71B3E44F1FBEB08A0082298E /* AlipayTransferModel.swift in Sources */,
+				484433101FCC2A2B00623407 /* WXSmallChangePreviewViewController.swift in Sources */,
 				48AE56C11F9F3AE20055551D /* HXPhotoManager.m in Sources */,
 				489C98951FB57706001C2B71 /* WXPromptViewController.swift in Sources */,
 				48AE56C01F9F3AE20055551D /* HXPhotoEditViewController.m in Sources */,
 				48AE56D51F9F3AE20055551D /* UIImage+HXExtension.m in Sources */,
 				48E997721FA7254D0047933D /* EmojiModel.swift in Sources */,
+				4801A98F1FCBCD210042C11D /* WXRedPacketSetViewController.swift in Sources */,
 				48AE56B51F9F3AE20055551D /* HXCustomCameraViewController.m in Sources */,
 				48AE56CD1F9F3AE20055551D /* HXTransition.m in Sources */,
 				48AE56B71F9F3AE20055551D /* HXDatePhotoCollectionViewLayoutAttributes.m in Sources */,
