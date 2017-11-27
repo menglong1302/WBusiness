@@ -150,7 +150,13 @@ extension ScreenshotViewController:UICollectionViewDataSource,UICollectionViewDe
                 screenVC.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(screenVC, animated: true)
                 break;
-                
+            case 2:
+                let redPacketVC = WXRedPacketSetViewController()
+                self.navigationController?.pushViewController(redPacketVC, animated: true)
+                break;
+            case 3:
+                let smallChange = WXSmallChangeSetViewController()
+                self.navigationController?.pushViewController(smallChange, animated: true)
             default:
                 break;
                 

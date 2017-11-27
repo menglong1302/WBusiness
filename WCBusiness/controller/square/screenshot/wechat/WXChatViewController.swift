@@ -151,7 +151,7 @@ class WXChatViewController: UIViewController {
             maker.centerX.equalToSuperview()
             maker.bottom.equalToSuperview().offset(-10)
         }
-         
+        
         
         let rightBtn:UIButton = {
             let btn = UIButton(type: .custom)

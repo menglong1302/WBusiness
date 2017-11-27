@@ -40,6 +40,15 @@ extension String {
         str?.append("/"+self)
         return str!
     }
+    func isPurnFloat() -> Bool {
+        
+        let scan: Scanner = Scanner(string: self)
+        
+        var val:Float = 0
+        
+        return scan.scanFloat(&val) && scan.isAtEnd
+        
+    }
     
 }
 enum WeekDate:Int{
