@@ -118,14 +118,14 @@ extension GroupConversationSettingViewController:UITableViewDataSource,UITableVi
                 break
             case 2:
                 
-                settingCell.hintLabel.text = "未读消息树"
+                settingCell.hintLabel.text = "未读消息数"
                 settingCell.numLabel.text =  String.init(describing: (self.conversation?.unReadMessageNum)!)
                 settingCell.numLabel.isHidden = false
                 settingCell.swichBar.isHidden = true
                 settingCell.accessoryType = .disclosureIndicator
                 break
             case 3:
-                settingCell.hintLabel.text = "消息免打扰"
+                settingCell.hintLabel.text = "使用听筒模式"
                 settingCell.numLabel.text = ""
                 settingCell.numLabel.isHidden = true
                 settingCell.swichBar.isHidden = false
@@ -152,6 +152,20 @@ extension GroupConversationSettingViewController:UITableViewDataSource,UITableVi
                     settingCell.swichBar.isOn = false
                 }
                 break
+            case 5:
+                settingCell.hintLabel.text = "消息免打扰"
+                settingCell.numLabel.text = ""
+                settingCell.numLabel.isHidden = true
+                settingCell.swichBar.isHidden = false
+                settingCell.swichBar.tag = 102
+                settingCell.swichBar.addTarget(self, action: #selector(switchAction(_:)), for:.valueChanged)
+                settingCell.accessoryType = .none
+                if (self.conversation?.isIgnoreMessage)!{
+                    settingCell.swichBar.isOn = true
+                }else{
+                    settingCell.swichBar.isOn = false
+                }
+                break
             default :
                 break
             }
@@ -167,7 +181,7 @@ extension GroupConversationSettingViewController:UITableViewDataSource,UITableVi
         if  section == 0||section == 1 {
             return 1
         }
-        return 5
+        return 6
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return UIView()
@@ -218,7 +232,7 @@ extension GroupConversationSettingViewController:UITableViewDataSource,UITableVi
             case 2:
                 vc.editContentType = .UnReadMessageNum
                 
-                vc.navTitle = "未读消息树"
+                vc.navTitle = "未读消息数"
                 vc.textField.text = String((self.conversation?.unReadMessageNum)!)
                 break
             default :
@@ -242,11 +256,17 @@ extension GroupConversationSettingViewController:UITableViewDataSource,UITableVi
                 }else{
                     self.conversation?.isUseTelephoneReceiver = false
                 }
-            }else{
+            }else if swt.tag == 101{
                 if swt.isOn{
                     self.conversation?.isShowGroupMemberNickName = true
                 }else{
                     self.conversation?.isShowGroupMemberNickName = false
+                }
+            }else{
+                if swt.isOn{
+                    self.conversation?.isIgnoreMessage = true
+                }else{
+                    self.conversation?.isIgnoreMessage = false
                 }
             }
         }

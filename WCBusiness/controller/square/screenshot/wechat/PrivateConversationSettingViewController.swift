@@ -71,7 +71,7 @@ extension PrivateConversationSettingViewController:UITableViewDelegate,UITableVi
         case 1:
             return 1
         case 2:
-            return 2
+            return 3
             
         default:
             return 1
@@ -141,9 +141,24 @@ extension PrivateConversationSettingViewController:UITableViewDelegate,UITableVi
                 settingCell.numLabel.text = ""
                 settingCell.numLabel.isHidden = true
                 settingCell.swichBar.isHidden = false
+                settingCell.swichBar.tag = 100
                 settingCell.swichBar.addTarget(self, action: #selector(switchAction(_:)), for:.valueChanged)
                 settingCell.accessoryType = .none
                 if self.conversation.isUseTelephoneReceiver{
+                    settingCell.swichBar.isOn = true
+                }else{
+                    settingCell.swichBar.isOn = false
+                }
+                break
+            case 1:
+                settingCell.hintLabel.text = "消息免打扰"
+                settingCell.numLabel.text = ""
+                settingCell.numLabel.isHidden = true
+                settingCell.swichBar.isHidden = false
+                 settingCell.swichBar.tag = 101
+                settingCell.swichBar.addTarget(self, action: #selector(switchAction(_:)), for:.valueChanged)
+                settingCell.accessoryType = .none
+                if self.conversation.isIgnoreMessage{
                     settingCell.swichBar.isOn = true
                 }else{
                     settingCell.swichBar.isOn = false
@@ -344,11 +359,20 @@ extension PrivateConversationSettingViewController:UITableViewDelegate,UITableVi
     @objc func switchAction(_ swt:UISwitch) {
         let realm = try! Realm()
         try! realm.write {
-            if swt.isOn{
-                self.conversation.isUseTelephoneReceiver = true
+            if swt.tag == 100{
+                if swt.isOn{
+                    self.conversation.isUseTelephoneReceiver = true
+                }else{
+                    self.conversation.isUseTelephoneReceiver = false
+                }
             }else{
-                self.conversation.isUseTelephoneReceiver = false
+                if swt.isOn{
+                    self.conversation.isIgnoreMessage = true
+                }else{
+                    self.conversation.isIgnoreMessage = false
+                }
             }
+           
         }
         
     }

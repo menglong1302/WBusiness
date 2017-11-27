@@ -14,9 +14,13 @@ class WXChatViewController: UIViewController {
     
     var conversationType:ConversationType?
     var contents:List<WXContentEntity>?
-    var conversation:WXConversation?
+    var conversation:WXConversation?{
+        didSet{
+            
+            
+        }
+    }
     lazy var tableView:UITableView = self.makeTableView()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +30,6 @@ class WXChatViewController: UIViewController {
     }
     func initView()  {
         
-        self.navigationItem.title = "微信"
         
         self.automaticallyAdjustsScrollViewInsets = false
         self.edgesForExtendedLayout = UIRectEdge.all
@@ -46,7 +49,12 @@ class WXChatViewController: UIViewController {
             label.textColor = UIColor.white
             return label
         }()
-        [imageView,label].forEach {
+        if (self.conversation?.unReadMessageNum)! > 0{
+             label.text  = "微信\((self.conversation?.unReadMessageNum)!)"
+        }else{
+            label.text = "微信"
+        }
+         [imageView,label].forEach {
             container.addSubview($0)
         }
         let leftItem =  UIBarButtonItem(customView: container)
@@ -70,17 +78,91 @@ class WXChatViewController: UIViewController {
             let label = UILabel()
             label.text = "IT部门(11)"
             label.textColor = UIColor.white
-            label.font = UIFont.boldSystemFont(ofSize: 18)
+            label.font = UIFont.boldSystemFont(ofSize: 19)
+            label.numberOfLines = 1
+            label.lineBreakMode = .byTruncatingTail
             return label
         }()
-        self.navigationItem.titleView = titleView
+        if self.conversationType == .privateChat{
+            let role = self.conversation?.receivers.first
+            titleView.text = "\(String(describing: (role?.nickName)!))"
+
+        }else{
+            titleView.text = "\(String(describing: (self.conversation?.groupName)!))(\((self.conversation?.receivers.count)! + 1))"
+
+        }
         
+        
+        let titleContainerView:UIView = {
+            let view = UIView()
+            return view
+        }()
+        
+        titleContainerView.addSubview(titleView)
+        
+        titleView.snp.makeConstraints { (maker) in
+            maker.left.top.bottom.equalToSuperview()
+        }
+        
+        let telephoneReceiverImageView = UIImageView()
+        
+        if (self.conversation?.isUseTelephoneReceiver)!{
+            telephoneReceiverImageView.contentMode = .scaleAspectFit
+            telephoneReceiverImageView.image = UIImage(named:"telephone_receiver")
+            titleContainerView.addSubview(telephoneReceiverImageView)
+            telephoneReceiverImageView.snp.makeConstraints { (maker) in
+                
+                maker.left.equalTo(titleView.snp.right).offset(2)
+                maker.top.bottom.equalToSuperview()
+                if !(self.conversation?.isIgnoreMessage)!{
+                    maker.right.equalToSuperview()
+                }
+            }
+        }
+        let ignoreImageView = UIImageView()
+        if (self.conversation?.isIgnoreMessage)!{
+            
+            ignoreImageView.contentMode = .scaleAspectFit
+            ignoreImageView.image = UIImage(named:"ignore_message")
+            titleContainerView.addSubview(ignoreImageView)
+            ignoreImageView.snp.makeConstraints { (maker) in
+                
+                if (self.conversation?.isUseTelephoneReceiver)!{
+                    maker.left.equalTo((telephoneReceiverImageView.snp.right)).offset(-1)
+                }else{
+                    maker.left.equalTo(titleView.snp.right).offset(2)
+                }
+                maker.right.bottom.equalToSuperview()
+                maker.top.equalToSuperview().offset(1)
+                
+            }
+        }
+        
+        if !(self.conversation?.isUseTelephoneReceiver)! && !(self.conversation?.isIgnoreMessage)! {
+            titleView.snp.remakeConstraints { (maker) in
+                maker.left.top.bottom.right.equalToSuperview()
+            }
+        }
+        
+        
+        
+        self.navigationController?.navigationBar.addSubview(titleContainerView)
+        titleContainerView.snp.makeConstraints { (maker) in
+            maker.centerX.equalToSuperview()
+            maker.bottom.equalToSuperview().offset(-10)
+        }
+         
         
         let rightBtn:UIButton = {
             let btn = UIButton(type: .custom)
             btn.setImage(UIImage(named: "barbuttonicon_InfoMulti"), for: .normal)
             return btn
         }()
+        if self.conversationType == .privateChat{
+              rightBtn.setImage(UIImage(named: "barbuttonicon_InfoSingle"), for: .normal)
+        }else{
+              rightBtn.setImage(UIImage(named: "barbuttonicon_InfoMulti"), for: .normal)
+        }
         rightBtn.imageView?.snp.makeConstraints({ (maker) in
             maker.right.equalToSuperview().offset(5)
             maker.width.height.equalTo(30)
@@ -94,11 +176,11 @@ class WXChatViewController: UIViewController {
         let bgView = UIImageView(image: UIImage(contentsOfFile: (conversation?.backgroundUrl.localPath())!))
         bgView.autoresizingMask = [.flexibleWidth , .flexibleHeight]
         bgView.contentMode = .scaleAspectFill
-         self.tableView.backgroundView = bgView
+        self.tableView.backgroundView = bgView
         self.tableView.layoutIfNeeded()
         
         let bottomBar:UIImageView = {
-           let imageView = UIImageView()
+            let imageView = UIImageView()
             imageView.contentMode = .scaleAspectFill
             imageView.image = UIImage(named:"bottom_bar")
             return imageView
@@ -109,11 +191,6 @@ class WXChatViewController: UIViewController {
             maker.left.bottom.right.equalToSuperview()
             maker.height.equalTo(50)
         }
-        
-        
-        
-//        NotificationCenter.default.addObserver(self, selector: #selector(reloadView), name: NSNotification.Name(rawValue: "reloadView"), object: nil)
-        
         
     }
     func reloadView()  {
@@ -203,11 +280,11 @@ extension WXChatViewController:UITableViewDelegate,UITableViewDataSource{
             let tempCell = tableView.dequeueReusableCell(withIdentifier: "transferCellId") as? WXMessageBaseCell
             tempCell?.entity = self.contents![indexPath.row]
             tempCell?.conversation = self.conversation
-             tempCell?.updateMessage()
+            tempCell?.updateMessage()
             return tempCell!
             
             
-         case 6:
+        case 6:
             let tempCell = tableView.dequeueReusableCell(withIdentifier: "systemCellId") as? WXMessageSystemCell
             tempCell?.entity = self.contents![indexPath.row]
             tempCell?.conversation = self.conversation

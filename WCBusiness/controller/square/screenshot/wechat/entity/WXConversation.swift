@@ -18,6 +18,9 @@ class WXConversation:Object{
     @objc dynamic var backgroundUrl = ""
     @objc dynamic var unReadMessageNum:Int = 0
     @objc dynamic var isUseTelephoneReceiver = false
+    
+    @objc dynamic var isIgnoreMessage = false
+
     //1 代表单聊，2代表群聊
     @objc dynamic var conversationType:Int = 1
     

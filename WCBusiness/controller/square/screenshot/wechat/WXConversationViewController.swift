@@ -184,6 +184,7 @@ class WXConversationViewController: BaseViewController {
         let vc = WXChatViewController()
         vc.contents = self.contents
         vc.conversation = self.conversation
+        vc.conversationType = self.conversationType
         present( WXBaseNavigationViewController(rootViewController: vc), animated: true, completion: nil)
     }
     func addConversationBtnClick()  {
