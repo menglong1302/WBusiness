@@ -68,30 +68,34 @@ class ScreenshotViewController: BaseViewController {
         self.view.addSubview(roleBtn!)
         roleBtn?.backgroundColor = UIColor.white
         roleBtn?.setTitleColor(UIColor.black, for: .normal)
-        roleBtn?.setTitle("角色库", for: .normal)
+        roleBtn?.setTitle("    角色库", for: .normal)
         roleBtn?.setImage(UIImage.init(named: "portrait"), for: .normal)
         roleBtn?.contentHorizontalAlignment = .center
         roleBtn?.imageView?.contentMode = .scaleAspectFit
         roleBtn?.imageView?.layer.masksToBounds = true
         roleBtn?.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        
+        roleBtn?.addTarget(self, action: #selector(roleClick), for: .touchUpInside)
         roleBtn?.snp.makeConstraints({ (maker) in
             maker.left.right.bottom.equalToSuperview()
             maker.height.equalTo(44)
         })
-        roleBtn?.titleLabel?.snp.makeConstraints({ (maker) in
-            maker.centerX.equalToSuperview().offset(20)
-            maker.height.equalTo(30)
-            maker.centerY.equalToSuperview()
-        })
-        roleBtn?.imageView?.snp.makeConstraints({ (maker) in
+        
+        roleBtn?.imageView?.snp.remakeConstraints({ (maker) in
             maker.width.height.equalTo(30)
-            maker.right.equalTo((roleBtn?.titleLabel)!.snp.left).offset(-10)
-            maker.centerY.equalToSuperview()
-        })
+            maker.centerXWithinMargins.equalTo(-30)
+            
+          })
         
+        roleBtn?.titleLabel?.snp.remakeConstraints({ (maker) in
+            maker.left.equalTo((self.roleBtn?.imageView)!.snp.right)
+         })
         
-        
+    }
+    
+    @objc func roleClick() {
+        let roleVC = RoleViewController()
+        roleVC.operatorType = .Edit
+        self.navigationController?.pushViewController(roleVC, animated: true)
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -136,13 +140,23 @@ extension ScreenshotViewController:UICollectionViewDataSource,UICollectionViewDe
         if indexPath.section == 0 {
             switch indexPath.item {
             case 0:
+                let conversationVC = WXConversationViewController()
+                conversationVC.conversationType = .privateChat
+                self.navigationController?.pushViewController(conversationVC, animated: true)
                 break;
             case 1:
-                let screenVC = ScreenshotViewController();
+                let screenVC = WXConversationViewController();
+                screenVC.conversationType = .groupChat
                 screenVC.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(screenVC, animated: true)
                 break;
-                
+            case 2:
+                let redPacketVC = WXRedPacketSetViewController()
+                self.navigationController?.pushViewController(redPacketVC, animated: true)
+                break;
+            case 3:
+                let smallChange = WXSmallChangeSetViewController()
+                self.navigationController?.pushViewController(smallChange, animated: true)
             default:
                 break;
                 
@@ -154,9 +168,9 @@ extension ScreenshotViewController:UICollectionViewDataSource,UICollectionViewDe
                 alipayConversationVC.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(alipayConversationVC, animated: true)
             case 1:
-                //                let screenVC = ScreenshotViewController();
-                //                screenVC.hidesBottomBarWhenPushed = true
-                //                self.navigationController?.pushViewController(screenVC, animated: true)
+                let alipayTransferVC = AlipayTransferViewController();
+                alipayTransferVC.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(alipayTransferVC, animated: true)
                 break;
                 
             default:

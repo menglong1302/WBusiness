@@ -12,6 +12,7 @@ import  SwiftyUserDefaults
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    
     var window: UIWindow?
     
     
@@ -24,7 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         realmDB()
         
         initData();
-        
+        UIApplication.shared.statusBarStyle = .lightContent
+
         
         return true
     }
@@ -67,31 +69,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let userDefault = UserDefaults.standard
         let isFirst:Bool? = userDefault.hasKey("isDBInit")
         //存在first 并且first = true
-        let realm = try! Realm()
         if let first = isFirst ,!first{
-            
-            let roleArray =  Role.initData()
-            for (index,name) in roleArray.enumerated(){
-                let role = Role()
-                role.id = UUID().uuidString
-                role.nickName = name
-                role.imageName = "image-\(index+1)"
-                role.isLocalImage = true
-                role.isSelf = false
-                role.imageUrl = ""
-                try! realm.write{
-                    realm.create(Role.self, value: role, update: false)
+
+        DispatchQueue.global().async{
+            let realm = try! Realm()
+                let roleArray =  Role.initData()
+                for (index,name) in roleArray.enumerated(){
+                    let role = Role()
+                    role.id = UUID().uuidString
+                    role.nickName = name
+                    role.imageName = "Image-\(index+1)"
+                    role.isDiskImage = false
+                    role.isSelf = false
+                    role.imageUrl = ""
+                    role.firstLetter =  name.getFirstLetterFromString()
+                    try! realm.write{
+                        realm.create(Role.self, value: role, update: false)
+                    }
+                }
+                
+                DispatchQueue.main.async {
+                    userDefault.set(true, forKey: "isDBInit")
+
                 }
             }
-            
-            
-            
-            userDefault.set(true, forKey: "isDBInit")
         }
-        
         
         userDefault.synchronize()
     }
-    
+ 
 }
 
+public extension String{
+    
+    
+    func getFirstLetterFromString() -> (String) {
+        
+        // 注意,这里一定要转换成可变字符串
+        let mutableString = NSMutableString.init(string: self)
+        // 将中文转换成带声调的拼音
+        CFStringTransform(mutableString as CFMutableString, nil, kCFStringTransformToLatin, false)
+        // 去掉声调(用此方法大大提高遍历的速度)
+        let pinyinString = mutableString.folding(options: String.CompareOptions.diacriticInsensitive, locale: NSLocale.current)
+        // 将拼音首字母装换成大写
+        let strPinYin = pinyinString.uppercased()
+        // 截取大写首字母
+        let firstString = strPinYin.substring(to: strPinYin.index(strPinYin.startIndex, offsetBy:1))
+        // 判断姓名首位是否为大写字母
+        let regexA = "^[A-Z]$"
+        let predA = NSPredicate.init(format: "SELF MATCHES %@", regexA)
+        return predA.evaluate(with: firstString) ? firstString : "#"
+    }
+}

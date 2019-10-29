@@ -4,6 +4,7 @@ PODS:
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
   - FSCalendar (2.7.9)
+  - Gallery (2.0.1)
   - Kingfisher (3.13.1)
   - Moya (8.0.5):
     - Moya/Core (= 8.0.5)
@@ -11,32 +12,41 @@ PODS:
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
   - Onboard (2.3.1)
+  - PGActionSheet (1.0.5)
   - ReachabilitySwift (4.1.0)
-  - Realm (2.10.2):
-    - Realm/Headers (= 2.10.2)
-  - Realm/Headers (2.10.2)
-  - RealmSwift (2.10.2):
-    - Realm (= 2.10.2)
+  - Realm (3.0.0):
+    - Realm/Headers (= 3.0.0)
+  - Realm/Headers (3.0.0)
+  - RealmSwift (3.0.0):
+    - Realm (= 3.0.0)
   - Result (3.2.4)
+  - SDWebImage (4.1.2):
+    - SDWebImage/Core (= 4.1.2)
+  - SDWebImage/Core (4.1.2)
   - SnapKit (3.0.2)
   - StarWars (2.0)
   - SwiftyUserDefaults (3.0.0)
+  - TOCropViewController (2.1.0)
   - Whisper (5.0.0)
-  - ZCAnimatedLabel (0.0.4)
+  - ZZYQRCodeSwift (1.0.0)
 
 DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - FSCalendar
+  - Gallery
   - Kingfisher (~> 3.13.1)
   - Moya (~> 8.0.5)
   - Onboard
+  - PGActionSheet
   - ReachabilitySwift
   - RealmSwift
+  - SDWebImage
   - SnapKit (~> 3.0.0)
   - StarWars (~> 2.0)
   - SwiftyUserDefaults
+  - TOCropViewController (~> 2.1.0)
   - Whisper
-  - ZCAnimatedLabel
+  - ZZYQRCodeSwift (~> 1.0.0)
 
 EXTERNAL SOURCES:
   ChameleonFramework:
@@ -51,19 +61,23 @@ SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
+  Gallery: 160e6ee5046e5897b200b0554219afbe306b96f4
   Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
   Moya: c37eec09a098ba9991b5a963b291fc5704bdb9ef
   Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
+  PGActionSheet: f76c2826fd18a2f354a3cc7b175ceee3f1e840fb
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
-  Realm: 0ef72b837fb67e9f4b098bac771ddd72c7fdbb69
-  RealmSwift: 07a9ae0505091eda6b2ee7c190c3786d6e90a7b0
+  Realm: dec0de73be8c57506e39db72694d513c189493b3
+  RealmSwift: 44a7090b16d1b22a406c6bf129bdd602db1bbecc
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  SDWebImage: cb6f9f266a9977741efcbc21e618e8be3734c774
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   StarWars: 3c68dc5e9f1b6ca6d407b1d4218fd8a65c2eacfa
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
+  TOCropViewController: f88194a084f6afe1fd6f21a3f0edda7dd097e38b
   Whisper: 051f25e704bf8992641ffd28b20d5682ddc5f5d3
-  ZCAnimatedLabel: 519b688bef4403fd356bc785f9b61cdfd8e6472d
+  ZZYQRCodeSwift: ec6ec9ec7a2e6b62a053b7004cf0c70f4ff01dc3
 
-PODFILE CHECKSUM: db62abfb8d429790416363f61c329299994ca988
+PODFILE CHECKSUM: 9ab14242693d95ff8ce4665fd0f022e6ba14bda1
 
 COCOAPODS: 1.3.1
